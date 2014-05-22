@@ -1,0 +1,570 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./notes.css" title="style1">
+</head>
+<font face="Arial" style="font-size: 12pt; font-weight: 600; color: black" > 
+  
+<b>
+<body bgcolor="#99C68E">
+<a name="top"></a>
+<a href="http://h30097.www3.hp.com/docs/base_doc/DOCUMENTATION/V40D_HTML/AQTLTBTE/TITLE.HTM">ANSI C docs</a>
+<b><h2>Control Statements in Imperative Languages</h2> </b>
+  
+A control statement modifies the default line-by-line order of execution 
+in a program by branching. 
+<pre>
+Types of control in a program 
+    . precedence and associativity for expressions
+    . <a href="./Code/C/forks.c">forks</a>, <a href="./Code/C/Semaphores">semaphores and threads</a> for processes
+    . the function call for functional languages
+    . resolution for logic languages 
+    . subprograms for procedural languages (next topic)
+    . control statements for imperative languages
+ 
+Control statements in imperative languages mirror the hardware
+  
+    . FORTRAN I control statements based on <a href="http://en.wikipedia.org/wiki/IBM_704">IBM 704 hardware</a>
+    . algorithms in a flowchart can be coded with if/else and while only
+    . RISC ex: <a href="http://en.wikipedia.org/wiki/MIPS_architecture#MIPS_Assembly_Language">MIPS assembly</a>  has two control instructions:
+      conditional branch - branch on equal or not equal
+      unconditional jump - to address or to label
+</pre> 
+<h3>UNCONDITIONAL BRANCH STATEMENTS</h3>
+<pre> 
+    Statements:  goto, break, continue, redo
+    All unconditional branches are restricted and camouflaged goto's
+    Perl: last (jump out) next (jump to top) redo (to top w/o re-evaluation)
+    Java has NO goto but has a labeled break and continue
+  
+  <div STYLE="Background-Color : beige">   <tt>
+       // unconditional branches in C:  (<a href="./hw08.c">code</a>)
+       j = 0;
+       while (j < 3)
+       {
+         if (array[j] < 1) 
+             goto out_of_bounds;
+         else if (array[j] == 1) 
+             break; 
+         else if (array[j] > 1) {
+             j++;
+             continue;   // will take you to the top of the loop
+          }
+       }
+       printf("break got me here\n");
+       out_of_bounds: printf("goto got me here\n");
+  </div>
+  
+  <div STYLE="Background-Color : beige">   
+     for (i = 0; i < SIZE; i++)
+     {
+        if (num[i] <= 1.00)  //  skip values <= 1.00  
+           continue;     
+        printf("value = %.2f\n", num[i]);
+     }
+  
+  </div>
+  <div STYLE="Background-Color : beige"> 
+     for (i = 0; i < SIZE; i++)
+     {
+        if (num[i] <= 1.00)  /* exit loop completely for values <= 1.00 */
+           break;     
+        printf("value = %.2f\n", num[i]);
+     }
+  
+ </tt> 
+  </div>  
+</pre> 
+<h3>THE INFAMOUS GOTO</h3>
+   A heated debate in 1960's and 1970's; readability major concern
+  
+<pre>
+  <div STYLE="Background-Color : beige">   <tt>
+   ! Example of spaghetti code in Fortran
+      GOTO 10   ! jump forward
+   23 CONTINUE
+      i = i - 1
+      IF (i .eq. 0) GOTO 99
+   10 PRINT "I Loop"
+   69 j = j - 1 ! loop
+      print "J Loop" 
+      IF (j .ne. 0) GOTO 69
+      GOTO 23   ! jump back
+  099 CONTINUE
+  </div>
+  <div STYLE="Background-Color : beige">   
+    // the same code without gotos
+    do {
+        print "I Loop"
+  
+        while (j>0) {
+           print "J Loop"
+           j--
+        }
+    i--
+    }
+    while (i > 0)
+  </tt>
+  </div>
+    Goto's might be the best way to get out of nested loops (<a href="./hw08.c">see code</a>)
+  
+    Goto's might be the cleanest solution:
+  
+    Knuth, Donald, "Structured Programming with Goto Statements,"
+  <u>Computing Surveys</u> 6:4 (1974).
+  
+  <div STYLE="Background-Color : beige">   <tt>
+     L1: if B1 then goto L2
+           statement1;
+         if B2 then goto L2
+           statement2;
+         goto L1;
+     L2: statement3;
+ </tt> 
+  </div>
+  If the last thing a function does before the return is call itself, 
+  the function is tail recursive. This function is NOT tail recursive:
+  <pre>
+  <div STYLE="Background-Color : beige">   <tt>
+     int fac (int n) {
+       if (n == 0) return 1
+       else
+          return n * fac(n-1);  // last operation is mult 
+     }
+ </tt> </div> </pre>
+  If a function is tail recursive, just convert the recursive call into a 
+  loop (e.g. "goto" the beginning of the function). A simple example: 
+  <div STYLE="Background-Color : beige">   <tt>
+    void stuff (int n) { 
+       print n; 
+       if (n>0) 
+           stuff (n-1); 
+    }
+  
+    while (n > 0) { 
+        print n; 
+        n--;
+    }</tt>
+  </div>
+  
+  Knuth shows that goto is the most intuitive solution to replace 
+  non-tail recursion:
+  <div STYLE="Background-Color : beige">   <tt>
+      void treeprint(Node * t){
+         if (t != null) {
+            treeprint(t->left);
+            print(t);
+            treeprint(t->right);
+         }
+       }</tt>
+  </div>
+  First replace the tail recursive call with a goto:
+  <div STYLE="Background-Color : beige">   
+      void treeprint(Node * t){
+      L:  if (t != null) {
+            treeprint(t->left);
+            print(t);
+            t = t->right;  <= normally done in the recursive call
+            goto L;
+          }
+      }
+  </div>
+  The remaining recursive call can then be eliminated with a stack:
+  <div STYLE="Background-Color : beige">   
+      void treeprint(Node * t){
+          Stack s;  <= holds pointers 
+      L1: while ( t != null ) {
+             s.push(t); 
+             p = t->left;
+             goto L1;     
+      L2:    s.pop(t);
+             print(t->value);
+             t = t->right; 
+          } // end while   
+  
+          if (!s.empty())
+             goto L2;
+      }
+  Example 6c.
+  </div>
+  "The goto's can be eliminated without difficulty, but in general when a
+  recursive call is embedded in several complex levels of control, there is
+  no equally simple way to remove recursion without resorting to something
+  like Example 6c" (p.282).
+</pre>  
+<h3>CONDITIONAL BRANCH STATEMENTS</h3>
+ 
+Conditional branch control is selection statements,  iterative (looping) 
+statements, and guarded commands.
+  
+<h3>SELECTION STATEMENTS</h3>
+A selection statement is a choice between one or more paths of execution.
+  
+<pre> 
+   Types: 1-way (if)   2-way (if..else)   n-way (if..elseif..else or switch)
+  
+  
+    All selection statements have a condition:
+  
+         if (boolean_expr) ....   // condition returns T/F
+         if (arith_expr) ....     // False if 0 - True otherwise  
+  
+    Positive logic more often used
+  
+          if (condition) stmnt  // stmnt executed when condition is true
+  
+    Negative logic sometimes appropriate  
+  
+         if (!condition) stmnt // stmnt executed when condition is false
+         ex: if (!EOF)
+
+  <u>One-Way Selection Statements</u>
+
+         if (condition) statement(s);   
+ 
+    In 1-way selection you either take a path or you don't
+  
+    1-way selection and 'goto' can simulate everything (early Fortran)
+  
+    Modern languages have n-way for writeability and readability 
+  
+ 
+  <u>Two-Way Selection Statements</u>
+
+       if (condition)
+          statement(s);
+       else
+          statement(s);
+
+   The dangling else problem:
+   
+  <div STYLE="Background-Color : beige">   
+    if (sum == 0)
+       if (count == 0)
+          result = 0;
+     else result = 1;   // which if gets the else?  
+  
+  </div>
+   Java/C/C++/C# static semantics rule is: else matches nearest if
+  
+   To force alternative semantics use compound statements:
+  <div STYLE="Background-Color : beige">   <tt>
+   if (sum == 0) {
+     if (count == 0)
+        result = 0;
+   }
+   else result = 1;
+ </tt> </div>
+   In Perl all then/else clauses are compound (no dangling else)
+  
+  <u>Multiple-Way Selection Statements</u>   <a href="http://en.wikipedia.org/wiki/Switch_statement">(see wiki)</a>
+
+     . switch/case/select
+
+     . what is control type (integral, float)?
+  
+     . is fall through allowed?  
+
+     . is default value supported? pro: easy way to cover all possible values
+       con: forces the programmer to consider all possible values up-front
+  
+  <div STYLE="Background-Color : beige"> <tt>  
+     // syntax of C's switch statement
+     switch (expression) {
+        case const_expr_1: stmt_1;   
+          ...
+        case const_expr_n: stmt_n;
+        [default: stmt_n+1]
+     }</tt>
+  </div>
+    C's switch statement:</u> (<a href="./hw08.c">see code</a>) 
+    . control expression must be integral type 
+    . selectable code can be statement sequences, blocks, or compound statements
+    . no implicit branch at end of selectable segments <== fall through allowed 
+    . default for unrepresented values 
+  
+   Ada's is more reliable than C's 
+   No fall through: once stmt_sequence is completed, control passed out case 
+  <div STYLE="Background-Color : beige">  <tt> 
+   case expression is
+      when choice list => stmt_sequence;
+      ...
+      when choice list => stmt_sequence;
+      when others => stmt_sequence;]
+   end case;
+   next_stmt; // control passed here </tt>
+  </div>
+  
+  <u>Multiple-Way Selection with elsif</u>
+  
+  Some languages include an explicit elsif (not C):
+  In Ada:
+  <div STYLE="Background-Color : beige">   
+      if ...
+         then ...
+      elsif ...
+         then ...
+      elsif ...
+         then ...
+      else ...
+      end if
+  </div>
+  In Perl:
+  <div STYLE="Background-Color : beige">   
+    if (num < 1.0) {
+      print "1";        
+    }
+    elsif ( num < 2.0) { 
+       print "2";
+    }
+    elsif ( num < 3.0) { 
+       print "3";
+    }
+  </div>
+ </pre> 
+  <h3>ITERATIVE STATEMENTS</h3><pre>
+  The repeated execution of a statement or compound statement is accomplished
+  by iteration or recursion 
+   
+  . multiple entry points in a loop is controversial
+  
+  . multiple exit points in a loop is often done 
+  
+  General design issues for iteration control statements:
+     1. How is iteration controlled?
+     2. Where is the control mechanism in the loop?
+  
+  <u>Counter-Controlled Loops</u>
+  
+  A counting iterative statement has a loop variable and 3 parameters:
+  (initial value, terminal value, and stepsize values )
+  
+  Design Issues:
+  1) What are the type and scope of the loop variable?
+  2) What is the value of the loop variable at loop termination?
+  3) Should it be legal for the loop variable or loop parameters to be changed 
+     in the loop body, and if so, does the change affect loop control?
+  4) Should the loop parameters be evaluated only once, or once for every 
+     iteration?  
+  
+  Example, FORTRAN 90:
+   
+   DO label var = start, finish [, stepsize]
+  
+    1. Loop variable must be INTEGER
+    2. Loop variable always has a last value
+    3. The loop variable cannot be changed in the loop 
+    4. Loop parameters are evaluated only once and can be changed after 
+       evaluation w/o affecting loop execution 
+    5. Stepwize can be any value but zero
+    6. Parameters can be expressions
+  
+  Example, Pascal:
+  
+   for variable := initial (to|downto) final do statement
+  
+    1. Loop variable must be an ordinal type of usual scope
+    2. After normal termination, loop variable is undefined
+    3. The loop variable cannot be changed in the loop
+    4. The loop parameters can be changed, but they are evaluated just once, so 
+       it does not affect loop control
+  
+   Example, Ada:
+  
+   for var in [reverse] discrete_range loop               ...
+   end loop
+  
+    1. A discrete range is a sub-range of an integer or enumeration type
+    2. Scope of the loop variable is the range of the loop
+    3. Loop variable is implicitly undeclared after loop termination
+  
+  Example: C's for loop is LISP-like
+  <div STYLE="Background-Color : beige">   
+   for ([expr_1] ; [expr_2] ; [expr_3]) statement
+  
+     which is equivalent to:
+  
+     expr_1;
+     while ( expr_2 ) {
+        statement
+        expr_3;
+     }
+  </div>
+  . The expressions can be a single statement or a sequence of statements 
+  . The value of a statement sequence is the value of the last statement 
+  . There is no explicit loop variable
+  . Everything can be changed in the loop
+  . Expr_1 is evaluated once, the other two are evaluated with each iteration
+  
+  Example of C <a href="./Code/C/loops.c">for loop</a>
+  
+  C++ differs from C in two ways:
+   . control expression can also be Boolean (C++ has a Boolean type)
+   . Expr_1 can include variable definitions (scope is within loop)
+  
+  Java and C#
+   . control expression MUST be Boolean
+  
+   The exclusive use of Boolean expressions in control statements prevents:
+
+       while (i = 1)           //  while (i == 1) is what you really meant
+  
+   The downside is a lack of flexibility -- cannot do something like this:
+          int num = 5;
+          while (num){   <== prevents a divide by zero error
+           x / num;
+           num--;
+         }
+  
+  
+  <u>Logically-Controlled Loops</u>
+ 
+  A 'for' loop is a special type of logically-controlled loop
+ 
+  Repetition control based on a Boolean  (C suuports arithmetic expressions)
+  
+  General forms:
+  <div STYLE="Background-Color : beige">   
+   while (ctrl_expr)    // pre-test
+   do loop body
+  
+   do loop body
+   while (ctrl_expr)   // post-test
+  
+  </div>
+   Examples:
+   Pascal has separate pre-test and post-test logical loop statements 
+   (while-do and repeat-until)
+  
+  . C and C++ also have both - the control expression may be arithmetic
+   (while-do and do- while)
+  
+  . Java is like C, except the control expression must be Boolean (and the body 
+   can only be entered at the beginning <== Java has no goto
+  
+  . Ada has a pretest version, but no post-test
+  
+  . FORTRAN 77 and 90 have neither
+  
+  . Perl has pre-test while and until, but no post-test logical loop
+  
+  <u>User-Located Loop Control Mechanisms</u>  (<a href="./hw08.c">see code</a>)
+  . allows programmers to pick an exit other than top or bottom loop
+  . Simple design for single loops (e.g., break)
+  . Design issues for nested loops
+  . Should the conditional be part of the exit?
+  . Should control be transferable out of more than one loop?
+  
+  
+  <u>Iteration Based on Data Structures</u>
+  . Perl, JavaScript, PHP, Java, and C#
+  . Number of elements of in a data structure control loop iteration
+  . Control mechanism is a call to an iterator function that returns the next 
+    element in some chosen order, if there is one; else loop is terminated
+  . C's for can be used to build a user-defined iterator:
+  
+   for (p=root; p==NULL; traverse(p)){ 
+    }
+  
+   Perl and C#'s 'foreach' iterates on the elements of arrays, hashes, files:
+  <div STYLE="Background-Color : beige">   
+    # Perl
+    foreach(@words) {
+       $word = $_;
+       $word =~ tr/A-Z/a-z/;   
+       print 'word: ', $_, "\n";
+    }
+  </div>
+  <div STYLE="Background-Color : beige">   
+    // C#
+   Strings[ ] = strList = {.Bob., .Carol., .Ted.};
+   foreach (Strings name in strList)
+    Console.WriteLine (.Name: {0}., name);
+  
+  </div>
+  . Perl's while  (&lt;FILEHANDLE>) iterates on the lines of &lt;FILE>
+  <div STYLE="Background-Color : beige">   
+     open(WORDS, $filename);
+     while(&lt;WORDS>) {
+     . . . 
+     }
+     close(WORDS);
+  
+  </div>
+  
+  
+  <b> DIJKSTRA'S GUARDED COMMANDS</b>
+  Purpose:
+  . To support a program verification during development
+  . For concurrent programming in CSP and Ada
+
+  Basic Idea: 
+  If the order of evaluation is not important, the program 
+  should not specify one
+  
+  Selection Guarded Command  
+  <div STYLE="Background-Color : beige">   
+  if &lt;Boolean exp> -> &lt;statement>
+  [ ] &lt;Boolean exp> -> &lt;statement>
+   ...
+  [ ] &lt;Boolean exp> -> &lt;statement>
+  fi
+  </div>
+  Semantics: 
+  . When construct is reached, evaluate all Boolean expressions
+  . If more than one are true, choose one non-deterministically
+  . If none are true, it is a runtime error
+  
+  Loop Guarded Command Example:
+  <div STYLE="Background-Color : beige">   
+  do &lt;Boolean> -> &lt;statement>
+  [ ] &lt;Boolean> -> &lt;statement>
+   ...
+  [ ] &lt;Boolean> -> &lt;statement>
+  od
+  </div>
+  . Semantics: for each iteration
+  . Evaluate all Boolean expressions
+  . If multiple are true, choose one non-deterministically; start loop again
+  . If none are true, exit loop
+  
+  Concrete Example:
+  <div STYLE="Background-Color : beige">   
+      if a >= b then print "More or equal";
+      else print "Less";
+  
+  Guarded:
+      if a >= b -> print "More or equal"
+      [ ] a < b  -> print "Less"
+      fi
+  </div>
+  
+  Another example:
+  <div STYLE="Background-Color : beige">   
+      if
+          a >= b -> print "More or equal"
+          a &lt;= b -> print "Less or equal"
+      fi
+  </div>
+  
+  When a = b, the result of command can be "More or equal" or "Less or equal".
+  
+  Guarded Commands: Rationale
+  . Connection between control statements and program verification is intimate
+  . Verification is impossible with goto statements
+  . Verification is possible with only selection and logical pretest loops
+  . Verification is relatively simple with only guarded commands
+  
+  Guarded commands are useful in parallel computing:
+  
+  . as the basis for controlling asynchronous message passing by allowing all 
+    requestors an equal but nondeterministic chance of communicating 
+  
+  . as a way of supporting instruction level parallelism 
+ 
+<SPAN STYLE="Background-Color : YELLOW">
+<a href="#top">TOP</a>
+</SPAN>
+
+ 
+  </body>
+  </html>

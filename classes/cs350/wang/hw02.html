@@ -1,0 +1,925 @@
+<!-- filename: hw02.html -->
+<HTML>
+<STYLE type=text/css>
+DIV {
+  font-weight: normal;
+  font-family: helvetica;
+  font-size: 10pt;
+  color: red;
+  padding-right: 20px;
+}
+
+BODY {
+  margin: 2% 10% 5% 5%;
+  font-family: courier;
+  background-color: #DDDDFF;
+  color: #19193A;
+  font-weight: normal;
+  font-size: 12pt;
+}
+</STYLE>
+<HEAD>
+<TITLE>HW 2 - CS 350</TITLE>
+<p>
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 50;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 0; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if (j == 4 ) break;
+           var myvalue = parseInt(document.quizform.elements[index].value);
+           var ischecked = document.quizform.elements[index].checked; 
+           if ( (ischecked && myvalue != 1) || (!ischecked && myvalue == 1) ) {
+              err_flag = 1;
+              question = i + 1;
+              err_str = err_str + question + ",";
+              wrong++;
+              break;
+           } 
+       }
+       if ( !err_flag ) right++;
+       err_flag = 0;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+
+</HEAD>
+
+<body bgcolor="papayawhip">
+<font face="Courier" style="font-size: 10pt; font-weight: 500">
+Computer Science 350 
+<h3>HW 02: History of Languages (ch 2) & Functional Languages (ch 15)</h3>
+<font color=red>Due: next tue before lecture (monday is a holiday)</font>
+<form name="quizform" METHOD="POST" ACTION="emailme.php">
+<pre class=verbatim>
+01. Early Fortran was designed specifically for which computer architecture?  
+    A. IBM 701/704    B. VAX 3000    C. Intel 8080    D. IBM PowerPC  </pre>
+    &nbsp;&nbsp;A<input type="radio" name="Q1" value="1"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Intel 8080 and PowerPC pertain to microprocessors. Fortran was designed in the 1960s, in age of mainframes and before microprocessors. VAX 3000 is a minicomputer so not in the running either.'; } ">
+
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+02. Which feature(s) were not in Fortran 0?
+    A. assignment statements
+    B. subroutines 
+    C. loop control structures
+    D. string data types</pre>
+&nbsp;&nbsp;&nbsp;A<input type="checkbox" name="Q2" value="0"> B<input type="checkbox" name="Q2" value="1"> C<input type="checkbox" name="Q2" value="0"> D<input type="checkbox" name="Q2" value="1">  
+
+<input type="button" value="check" onClick="
+      myArea=document.getElementById('Q2Area');
+      if (document.quizform.Q2[1].checked && document.quizform.Q2[3].checked &&
+         !document.quizform.Q2[0].checked && !document.quizform.Q2[2].checked)
+                { myArea.innerHTML='CORRECT'; }
+      else
+    { myArea.innerHTML='Hint: Early imperative languages were not procedural (no subroutines).'; } ">
+
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+03. Which data types were in the original specification of Lisp?
+    A. atoms    B. lists    C. arrays    D. numbers</pre>
+   &nbsp;&nbsp;A<input type="checkbox" name="Q3" value="1"> B<input type="checkbox" name="Q3" value="1"> C<input type="checkbox" name="Q3" value="0"> D<input type="checkbox" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if (document.quizform.Q3[0].checked && 
+               document.quizform.Q3[1].checked && 
+                !document.quizform.Q3[2].checked &&
+               !document.quizform.Q3[3].checked )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: LisP means List Processing. Original lisp was typeless.'; } ">
+
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+04. The "psuedocode" languages prior to Fortran were designed to overcome which 
+    shortcomings of computer hardware?
+    A. the lack of multiple CPUs 
+    B. the lack of index registers
+    C. the lack of floating-point hardware 
+    D. the lack of pipelining</pre>
+   &nbsp;&nbsp;A<input type="checkbox" name="Q4" value="0"> B<input type="checkbox" name="Q4" value="1"> C<input type="checkbox" name="Q4" value="1"> D<input type="checkbox" name="Q4" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( !document.quizform.Q4[0].checked &&
+               document.quizform.Q4[1].checked && 
+               document.quizform.Q4[2].checked && 
+               !document.quizform.Q4[3].checked) 
+                { myArea.innerHTML='CORRECT'; }
+            else
+ { myArea.innerHTML='Hint: The problems in question were fixed with the IBM 701/704.'; } ">
+
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+05. The primary reason for the relative slowness of pseudocode interpreters in 
+    the early 1950s was what? 
+    A. floating-point arithmetic done in software rather than hardware
+    B. insufficient memory</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q5" value="1"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Floating point operations are extremely expensive without hardware support.'; } ">
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+06. How did index registers, which first appeared in the IBM 701 in 1955,
+    influence the evolution of programming languages? 
+    A. eliminated the need for absolute addressing into arrays 
+    B. allowed loop operations on arrays to be implemented more efficiently 
+    C. both A and B </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q6" value="0"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="1"> D<input type="radio" name="Q6" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: An index register holds the address to the top of the array - all subsequent references are offsets from that address. Think of this question from the standpoint of the compiler as well as the programmer.'; } ">
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+07. The first Fortran compiler was developed in what decade?  
+    A. 1940       B. 1950         C. 1960</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q7" value="0"> B<input type="radio" name="Q7" value="1"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Do not confuse this with the Fortran language specification, which was written a few years earlier.'; } ">
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+08. The writer and designer of Fortran (John Backus) was also the co-designer 
+    of what?
+    A. the computer architecture that the Fortran compiler ran on 
+    B. the Lisp programminhg language</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q8" value="1"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Early hardware designers such as John Backus tested their hardware by writing in assembly code.'; } ">
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+09. In an imperative language, the primary operation is
+    A. the if statement  
+    B. the assignment statement  
+    C. the loop   
+    D. all three </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="1"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Imperative languages are closely tied to computer architecture; e.g., think of assembly - most work reduces to reading a value from memory and writing a new value back to memory.'; } ">
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV>
+
+
+<pre>
+10. What behaviors differentiate dynamic languages from non-dynamic languages?
+    A. changing the value of a variable at runtime
+    B. allocating memory for variables from the runtime heap
+    C. changing a variable's type at runtime 
+    D. changing a variable's size at runtime</pre> 
+   &nbsp;&nbsp;A<input type="checkbox" name="Q10" value="0"> B<input type="checkbox" name="Q10" value="1"> C<input type="checkbox" name="Q10" value="1"> D<input type="checkbox" name="Q10" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( !document.quizform.Q10[0].checked  
+               && document.quizform.Q10[1].checked  
+               && document.quizform.Q10[2].checked  
+               && document.quizform.Q10[3].checked  
+              )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: In this context the term dynamic refers to something that occurs at runtime that normally occurs at compile time. All languages have the ability to change the value of variables at runtime. Languages range from very dynamic to not dynamic at all. A dynamic typed language is one in which a variable type changes at runtime. Most interpreted languages (JavaScript, PHP) are dynamic typed. Polymorphism is a dynamic quality of OO languages. Both imperative and functional languages can have dynamic aspects. Lisp is very dynamic--functions can be dynamic (code can write code) and variables can have dynamic scope.'; } ">
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+11. The Lisp language was written in what decade?  
+    A. 1940       B. 1950         C. 1960     D. 1970</pre>
+   </pre>&nbsp;&nbsp;A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="1"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Lisp was written to tackle artificial intelligence at the same time Fortran was written to tackle number crunching in scientific computing.'; } ">
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+12. What missing language element of ALGOL 60 damaged its chances for 
+    widespread use? (One of the design goals of ALGOL was portability.)
+    A. dynamic memory 
+    B. input/output statements
+    C. pass by reference </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: I/O is still the most machine specific aspect of a language - which is why Java does not easy I/O such as cout and cin.'; } ">
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+13. Which statement is NOT true regarding the COBOL language?
+    A. COBOL was developed by computer manufacturers and the Dept. of Defense.
+    B. A 1997 report by the Gartner Group found that 80% of the world's business
+       applications ran on COBOL.
+    C. All subsequent imperative languages are based on COBOL.
+    D. COBOL was the first language to separate code and data in memory. </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="1"> D<input type="radio" name="Q13" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: No language is derived from Cobol. Draw your own conclusions.'; } ">
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV>
+
+
+<pre>
+14. The first COBOL compiler was released in what decade?
+    A. 1940     B. 1950      C. 1960    D. 1970     </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q14" value="0"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="1"> D<input type="radio" name="Q14" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Scientific programming and AI was tackled in the first decade. The next decade belonged to business and other domains.'; } ">
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+15. This language provided the basis of all subsequent imperative languages,
+    although the language itself was never widely used. 
+    A. PL/I     B. ALGOL     C. Ada    D.  SIMULA </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the design goal of this language was on the syntax of writing ALGOrithms. This was the first language with a specification in BNF notation'; } ">
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+16. Select the true statements. BASIC  
+    A. was the first widely used time-sharing language.
+    B. was originally designed for non-science students.
+    C. was first implemented on an Intel microprocessor.
+    D. is a functional language.</pre> 
+   &nbsp;&nbsp;A<input type="checkbox" name="Q16" value="1"> B<input type="checkbox" name="Q16" value="1"> C<input type="checkbox" name="Q16" value="0"> D<input type="checkbox" name="Q16" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[0].checked  
+               && document.quizform.Q16[1].checked  
+               && !document.quizform.Q16[2].checked  
+               && !document.quizform.Q16[3].checked  
+             )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The first Intel microprocessor was released in the early 1970s. Functional languages are mathematically oriented.'; } ">
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+17. Why was BASIC an important language in the early 1980s?
+    A. BASIC was the first structured programming language.
+    B. Microcomputers had small memories and BASIC interpreters were very small.
+    C. both statements are true  </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="1"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The BASIC language relied heavily on GOTOs.'; } ">
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+18. PL/I was designed to replace which language?
+    A. Fortran     B. COBOL       C. ALGOL      D. all three</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="1"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: PL/I means Programming Language One. It was given such an impressive name because the designers at IBM wanted PL/I to be the swiss-army knife of languages.'; } ">
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+19. PL/I was designed for what type of computer?
+    A. mainframes   B. minicomputers   C. microcomputers  D. embedded systems </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q19" value="1"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: It helps to know computer history here. The age of the minicomputer belonged to DEC in the 1970s, with the PDP-1 through PDP-11 computers offering an affordable alternative to IBM mainframes. Embedded systems became widespread after the development of microcontrollers in the 1970s. PL/I was designed before this.'; } ">
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+20. Classes and inheritance, now important parts of object-oriented languages, 
+    were initially introduced in which language?
+    A. Lisp      B. SNOBOL       C. Prolog       D. Simula 67  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="0"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="1"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: SNOBOL means String something or other, Prolog means Programming in Logic, Lisp is a functional language, Simula means to Simulate the real world. That should help.'; } ">
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+21. What innovation of data structuring was introduced in ALGOL 68 but is often 
+    credited to Pascal?
+    A. user defined data types     B. dynamic memory    C. arrays</pre>
+ 
+   &nbsp;&nbsp;A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Use a process of elimination. Arrays were part of Fortran and dynamic memory has nothing to do with data structuring.'; } ">
+<DIV id="Q21Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+22. Which design criteria were used extensively in ALGOL 68?
+    A. reliability   B. orthogonality   C. concurrency    D. objects</pre>
+   &nbsp;&nbsp;A<input type="checkbox" name="Q22" value="0"> B<input type="checkbox" name="Q22" value="1"> C<input type="checkbox" name="Q22" value="0"> D<input type="checkbox" name="Q22" value="0"> 
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( !document.quizform.Q22[0].checked  
+               && document.quizform.Q22[1].checked  
+               && !document.quizform.Q22[2].checked  
+               && !document.quizform.Q22[3].checked  
+             )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Use a process of elimination. Reliability and concurrency were the design objectives of the DoD and development on Ada. Object oriented features were introduced in Simula, not in ALGOL.'; } ">
+<DIV id="Q22Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+23. Which language is considered to be too large and complex?
+    A. Ada     B. PL/I     C. Lisp    D. ALGOL  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="1"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Process of elimination. Lisp is terse and elegant. ALGOL is designed not to be complex. Ada was designed for reliability. The language designed to be the swiss-army-knife is a sure bet.'; } ">
+<DIV id="Q23Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+24. Algorithms are written as a series of statements (rules and facts) that 
+    evaluate to true or false in which language paradigm? 
+    A. functional     B. imperative    C. declarative      </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="1"> D<input type="radio" name="Q24" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: In imperative languages algorithms are defined step-by-step. In functional languages, algorithms are defined as functions .'; } ">
+<DIV id="Q24Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+25. Perl was written by Larry Wall at JPL to combine and extend what languages?
+    A. Unix shell utilities (awk, sed, sh) 
+    B. Fortran 
+    C. C 
+    D. assembly</pre>
+   &nbsp;&nbsp;A<input type="checkbox" name="Q25" value="1"> B<input type="checkbox" name="Q25" value="0"> C<input type="checkbox" name="Q25" value="1"> D<input type="checkbox" name="Q25" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[0].checked  
+               && !document.quizform.Q25[1].checked  
+               && document.quizform.Q25[2].checked  
+               && !document.quizform.Q25[3].checked  
+             )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Fortran and C are apples and oranges. C was written to replace assembly.'; } ">
+<DIV id="Q25Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+26. Which language was designed to facilitate string processing?
+    A. Lisp     B. Algol     C. Prolog     D. SNOBOL  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q26" value="0"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="1"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try a process of elimination. '; } ">
+<DIV id="Q26Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+27. Ada was primarily designed for what application area?
+    A. engineering  B. business  C. number crunching  D. embedded systems </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q27" value="0"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="1"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The DoD spent a lot of money to make Ada the most reliable language possible with built-in support for concurrency. The first primary application was to control the circuitry in air and space craft.'; } ">
+<DIV id="Q27Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+28. At the time Ada was designed, what feature set it apart from other 
+    languages?
+    A. concurrancy    B. data-oriented   C. procedure-oriented  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q28" value="1"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Object oriented features had already been introduced in Simula and procedures in Fortran, ALGOL, etc.. '; } ">
+<DIV id="Q28Area" STYLE="background-color: white" >
+</DIV>
+
+<pre> 
+29. What Ada construct is similar to classes in the object-oriented paradigm?
+    A. Packages     B. Procedures</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q29" value="1"> B<input type="radio" name="Q29" value="0"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q29Area');
+          if ( document.quizform.Q29[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Ada Packages are an implementation of abstract data types, supporting both reusability and encapsulation. Packages have aspacts of the standard class libraries and namespaces in C++. '; } ">
+<DIV id="Q29Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+30. Smalltalk, developed by Alan Kay et al. at Xerox, is what type of language?
+    A. functional   B. object-oriented   C. procedural   D. declarative</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q30" value="0"> B<input type="radio" name="Q30" value="1"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q30Area');
+          if ( document.quizform.Q30[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Smalltalk refers to the message passing that occurs between objects in the program. '; } ">
+<DIV id="Q30Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+31. Which language(s) were forced on users by the Department of Defense?
+   A. Ada                B. COBOL                C. both A and B </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q31" value="0"> B<input type="radio" name="Q31" value="0"> C<input type="radio" name="Q31" value="1"> D<input type="radio" name="Q31" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q31Area');
+          if ( document.quizform.Q31[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The DoD had strict language requirements for its business operations as well as its scientific operations. '; } ">
+<DIV id="Q31Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+32. Which of the following was not a primary goal of the design of C++?
+   A. reliability 
+   B. to support legacy C programs
+   C. to allow an organization similar to Simula 67
+   D. generic programming </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q32" value="1"> B<input type="radio" name="Q32" value="0"> C<input type="radio" name="Q32" value="0"> D<input type="radio" name="Q32" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q32Area');
+          if ( document.quizform.Q32[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Unfortunately, C++ is no more reliable than C--primary due to the support for pointers.'; } ">
+<DIV id="Q32Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+33. Delphi is derived from what language?
+    A. Ada     B. Pascal    C. Fortran    D. C</pre> 
+
+   &nbsp;&nbsp;A<input type="radio" name="Q33" value="0"> B<input type="radio" name="Q33" value="1"> C<input type="radio" name="Q33" value="0"> D<input type="radio" name="Q33" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q33Area');
+          if ( document.quizform.Q33[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Borland is the developer of Delphi as well as Turbo Pascal. '; } ">
+<DIV id="Q33Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+34. Which of the following is a true statement?
+   A. Functions may exist outside classes in both C++ and Java.
+   B. Functions may exist outside classes in C++ but not in Java.  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q34" value="0"> B<input type="radio" name="Q34" value="1"> C<input type="radio" name="Q34" value="0"> D<input type="radio" name="Q34" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q34Area');
+          if ( document.quizform.Q34[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Java is pure object oriented while C++ is also procedural. '; } ">
+<DIV id="Q34Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+35. What characteristic of Java is most evident in JavaScript?
+   A. how classes are created and used
+   B. the syntax of control statements
+   C. both A and B</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q35" value="0"> B<input type="radio" name="Q35" value="1"> C<input type="radio" name="Q35" value="0"> D<input type="radio" name="Q35" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q35Area');
+          if ( document.quizform.Q35[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Java and JavaScript both use C-like syntax for control structures. The similarity ends there.'; } ">
+<DIV id="Q35Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+36. Which language was developed specifically for web programming?
+   A. PHP      B. Python      C. Ruby    D. Perl  </pre>
+ 
+   &nbsp;&nbsp;A<input type="radio" name="Q36" value="1"> B<input type="radio" name="Q36" value="0"> C<input type="radio" name="Q36" value="0"> D<input type="radio" name="Q36" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q36Area');
+          if ( document.quizform.Q36[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: While all these languages could be used for server-side scripting, PHP means Personal Hypertext Processor or something similar. '; } ">
+<DIV id="Q36Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+37. What is true regarding C#? 
+    A. C# is a compiled language like C++.
+    B. C# is a hybrid language like Java and compiled into bytecode first.</pre>
+    &nbsp;&nbsp;A<input type="radio" name="Q37" value="0"> B<input type="radio" name="Q37" value="1"> C<input type="radio" name="Q37" value="0"> D<input type="radio" name="Q37" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q37Area');
+          if ( document.quizform.Q37[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: C# was designed to take the best of Java and the best of C. The interoperability of bytecode is a big advantage to Java. '; } ">
+<DIV id="Q37Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+38. Which of the following features are in C++ but not in Java?
+    A. the goto statement 
+    B. pointers and pass by reference
+    C. both A and B </pre>
+    &nbsp;&nbsp;A<input type="radio" name="Q38" value="0"> B<input type="radio" name="Q38" value="0"> C<input type="radio" name="Q38" value="1"> D<input type="radio" name="Q38" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q38Area');
+          if ( document.quizform.Q38[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Java eliminates the most egregious vulnerabilities of C, which are the pointer and the goto.'; } ">
+<DIV id="Q38Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+39. The following code will execute without error in Javascript. From this, 
+    what do you know about Javascript?
+    var x = 5;     // Line 1
+    var y = "hi";  // Line 2 
+    var z = x + y; // Line 3 
+    z = x / y;     // Line 4 
+
+    A. C is more strongly typed than Javascript.
+    B. Javascript is a dynamically typed language.
+    C. Both A and B are true.   </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q39" value="0"> B<input type="radio" name="Q39" value="0"> C<input type="radio" name="Q39" value="1"> D<input type="radio" name="Q39" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q39Area');
+          if ( document.quizform.Q39[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: In a strongly typed language, the compiler strictly controls type rules - nothing is left to runtime. '; } ">
+<DIV id="Q39Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+40. JavaServlets are part of what technology? 
+    A. JavaScript    B. JSP     C. .NET     D. XSLT </pre> 
+
+   &nbsp;&nbsp;A<input type="radio" name="Q40" value="0"> B<input type="radio" name="Q40" value="1"> C<input type="radio" name="Q40" value="0"> D<input type="radio" name="Q40" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q40Area');
+          if ( document.quizform.Q40[1].checked  )
+                { myArea.innerHTML='CORRECT; Java Servlet Pages'; }
+            else
+    { myArea.innerHTML='Hint: Any acronym starting with X refers to dynamic HTML/webpage processing. Java is SUN and .NET is Microsoft. Microsoft and Sun hate each other.'; } ">
+<DIV id="Q40Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+41. Which statement is true in Lisp?
+    A. In prefix notation, an operator can take any number of arguments.  
+    B. In Lisp, everything but NIL or 0 is true.
+    C. Both statements are true.      </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q41" value="0"> B<input type="radio" name="Q41" value="0"> C<input type="radio" name="Q41" value="1"> D<input type="radio" name="Q41" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q41Area');
+          if ( document.quizform.Q41[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: (+ 3 4 5 6) returns 18 and (if 17 t NIL) returns T.'; } ">
+<DIV id="Q41Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+42. Why were imperative features added to Lisp? 
+    A. To reduce function calls and make Lisp more efficient.
+    B. To improve writeability and readability.
+    C. Both A and B</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q42" value="0"> B<input type="radio" name="Q42" value="0"> C<input type="radio" name="Q42" value="1"> D<input type="radio" name="Q42" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q42Area');
+          if ( document.quizform.Q42[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: There is an enormous runtime overhead to function calls. '; } ">
+<DIV id="Q42Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+43. Which of the following is an imperative construct that was added to Lisp?
+    A. car          B. setf      C. cons        D. lambda  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q43" value="0"> B<input type="radio" name="Q43" value="1"> C<input type="radio" name="Q43" value="0"> D<input type="radio" name="Q43" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q43Area');
+          if ( document.quizform.Q43[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: One of these behaves like an assignment operator. '; } ">
+<DIV id="Q43Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+44. Lisp is a typeless language.
+    A. True      B. False</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q44" value="0"> B<input type="radio" name="Q44" value="1"> C<input type="radio" name="Q44" value="0"> D<input type="radio" name="Q44" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q44Area');
+          if ( document.quizform.Q44[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: In a typeless language there is no distinction between a number and a character (for example). Typeless is not the same as dynamic typing. Lisp is a dynamic typed language.'; } ">
+<DIV id="Q44Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+45. In a static scoped language like C, what will function g return?
+        x = 0;
+        int f () { return x; }
+        int g () { int x = 1; return f(); }
+
+     A. 0       B. 1      C. f()  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q45" value="1"> B<input type="radio" name="Q45" value="0"> C<input type="radio" name="Q45" value="0"> D<input type="radio" name="Q45" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q45Area');
+          if ( document.quizform.Q45[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Static scoping rules follow the code as it appears on the page. '; } ">
+<DIV id="Q45Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+46. What will this Lisp function return if you call it with (foo '(1 2 3))?
+
+      (defun foo (x)
+        (if (null x)
+           0 
+        (+ (foo (cdr x)) (car x))))
+
+    A. return 3             B. return 6   </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q46" value="0"> B<input type="radio" name="Q46" value="1"> C<input type="radio" name="Q46" value="0"> D<input type="radio" name="Q46" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q46Area');
+          if ( document.quizform.Q46[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: car returns the head of the list. '; } ">
+<DIV id="Q46Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+47. What does this Lisp function return if you call it with (thing '(a b c))?
+
+    (defun thing ( x )
+       ( if ( NULL x )
+           NIL
+          ( if ( listp ( car x ) )
+               T
+               ( thing ( cdr x ) ) ) ))
+  A.  NIL 
+  B.  T
+  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q47" value="1"> B<input type="radio" name="Q47" value="0"> C<input type="radio" name="Q47" value="0"> D<input type="radio" name="Q47" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q47Area');
+          if ( document.quizform.Q47[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: NULL x returns true if x is an empty list.'; } ">
+<DIV id="Q47Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+48. This function will return T if the last element in the list y is equal to
+    the value of x, otherwise NIL. 
+       (defun stuff (x y)
+          (if (null y)
+              nil
+             (if (eql (car y) x)
+                 t
+                 (stuff x (cdr y)))))
+    A. True  B. False  </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q48" value="0"> B<input type="radio" name="Q48" value="1"> C<input type="radio" name="Q48" value="0"> D<input type="radio" name="Q48" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q48Area');
+          if ( document.quizform.Q48[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: trace the function call (stuff &prime;a &prime(b a c) )'; } "> 
+<DIV id="Q48Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+49. In a Lisp interpreter what will this lambda expression return?
+           ((lambda (x) (+ x 100)) 1)
+
+    A. 1       B. 101    C. nothing, x has not been assigned a value</pre> 
+ 
+   &nbsp;&nbsp;A<input type="radio" name="Q49" value="0"> B<input type="radio" name="Q49" value="1"> C<input type="radio" name="Q49" value="0"> D<input type="radio" name="Q49" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q49Area');
+          if ( document.quizform.Q49[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: This means: apply the unnamed function x + 100 to  the value 1. '; } ">
+<DIV id="Q49Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+50. Lisp functions return either an atom or a list. (T is an atom and () is both.)  
+    A. True    B. False </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q50" value="1"> B<input type="radio" name="Q50" value="0"> C<input type="radio" name="Q50" value="0"> D<input type="radio" name="Q50" value="0"> 
+
+       <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q50Area');
+          if ( document.quizform.Q50[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try this: (if 1 &prime;(a b c) &prime;a) '; } ">
+<DIV id="Q50Area" STYLE="background-color: white" >
+</DIV>
+<p>
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="backgroun
+d-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 2">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+
+</form>
+</body>
+</html>
+

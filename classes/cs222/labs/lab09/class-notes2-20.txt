@@ -1,0 +1,31 @@
+class Person
+{
+	private:
+	string f_name;
+	string l_name;
+	int ssn;
+
+	static int count;
+	static string junk; 
+	
+	public:
+	Person(){count++;}
+	~Person(){count--;}
+
+	Person(string)
+
+//Static functions can only accept or modify static variables
+	static int GetCount(){return count;} 
+}
+
+int Person::count=0; //must externally initialize static members
+
+int main()
+{
+
+person a, b;
+
+
+cout<< a.GetCount();
+
+look up page 823 for operator overload;

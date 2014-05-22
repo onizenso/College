@@ -1,0 +1,507 @@
+CMPS 350 FINAL EXAM WTR 2010                                          /55
+
+01. In C++, what code do you put after a throw in a catch block?
+    A. code you want executed after a non-critical exception has occurred
+    B. code you want executed if an exception hasn't occurred
+    C. neither answer is correct 
+<#-- C --!>
+
+02. Fortran was the first widely used time-sharing language.  (T / F)
+<#-- B -->
+
+03. ALGOL was designed to be the swiss-army knife of languages.  (T /F)
+<#-- B -->
+
+04.  What will this Lisp function return if you call it with (foo '(1 2 3))?
+      (defun foo (x)
+        (if (null x)
+           0 
+        (+ (foo (cdr x)) 1))) 
+    A.  6     B.  3    C. 4
+<#--   B --!>
+
+05. This function will return T if you call it with  (stuff 'a '(b (a) c))
+       (defun stuff (x y)
+          (if (null y)
+              nil
+             (if (eql (car y) x)    
+                 t
+                 (stuff x (cdr y)))))
+    A. true       B. false 
+<#--  B --!>
+
+06. What will be returned by calling function g under dynamic scoping?
+        int x = 0;
+        int f () { return x; }
+        int g () { int x = 1; return f(); }
+   A. 0       B. 1     
+<#--  B --!>
+
+07. Fortran was initially designed for a specific computer architecture. (T / F)
+<#--   A --!>
+
+08. What is Count in the following attribute grammar? (x <- 5 means x is 
+    assigned value 5)
+        <astring> ::= <astring>[2] a
+        Count(<astring>[2]) <- Count(<astring>) + 1  
+   A. a synthesized attribute        B. an inherited attribute 
+<#--  B --!>
+
+   Attribute Grammar 1 (AG 1) 
+   =========================
+    type - an attribute to store the data type of variables or expressions
+    lookup (<var>.id) returns the variable's type from the symbol table 
+
+    <assign> ::= <var> = <expr> 
+    PREDICATE: <var>.type == <expr>.type
+    
+    <expr> ::= <var> + <expr>[2] 
+    Semantic Rule #1: if (<expr>[2] == REAL or <var> == REAL)
+                           <expr>.type <- REAL 
+                       else
+                           <expr>.type <- INT 
+
+    <expr> ::= <var>
+    Semantic Rule #2: <expr>.type <- <var>.type
+
+    <var> -> A | B | C
+    Semantic Rule #3: <var>.type <- lookup (<var>.id)
+
+ Following AG1, this is an undecorated parse tree for the statement 
+          A = B + C + D, where A is INT, B is INT, C is REAL and D is INT. 
+    
+                           <assign>
+                       /             \
+                  <var>       =        <expr>
+                 .type INT             .type
+                    |                 /         \ 
+                    A             <var>    +    <expr>
+                   INT          .type           .type  
+                                  |             /     \
+                                  B         <var>  +  <expr>
+                                 INT       .type     .type 
+                                              |         |
+                                              C       <var>
+                                             REAL      .type 
+                                                         |
+                                                         D
+                                                         INT
+
+        
+09. Semantic Rule #1 is applied how many times?
+    A. once      B. twice     C. three times
+<#--  B --!>
+
+10. What is the value of <expr>.type after the last application of Semantic 
+    Rule #1?
+    A. INT         B. REAL
+<#--  B --!>
+
+11. The predicate in AG1 
+    A. will fail          B. will pass
+<#--  A --!>
+
+12. What is the weakest precondition P for the this assignment statement and 
+    postcondition?
+
+           ( P } a = 2 * (b + 2) - 1   {a > 0}
+
+    A. b > -3/2       B. a > -3/2      C. b > 0       D.  b > 3/2 
+<#--  A --!>
+
+The Rule of Consequence in axiomatic semantics is shown here, where '=>' 
+denotes implication:
+      {P} S {Q}, P' => P, Q => Q'  
+      --------------------------
+            {P'} S {Q'}           
+
+13. For {P} = a > 0 and {Q} = b > 5, and S is b = a + 5, possible values for 
+    {P'} and {Q'} are {P'} = a > 10 and {Q'} = b > 0 
+    A. true       b. false
+<#--  A --!>
+
+14. The Rule of Consequences shows that a postcondition of statement S can 
+    always be strengthened and the precondition of S weakened.
+    A. true    B. false 
+<#--  B --!>
+
+          BNF Grammar 1
+          =============
+    <expr> ::= <expr> * <term> | <term> + <term>  | <term>
+    <term> ::= <var> | const 
+     <var> ::= a | b | c | d
+
+15. Following the rules in BNF Grammar 1, and given the expression 5 * 3 * 2,
+    A. 5 * 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 * 3.
+<#--  A --!>
+
+16. Following the rules in BNF Grammar 1, and given the expression 5 + 3 * 2, 
+    A. 5 + 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 + 3.
+<#--  A --!>
+
+17. Consider the grammar:
+   <S> -> <A> a <B> b
+   <A> -> <A> b | b 
+   <B> -> a <B> | a
+
+   Which of these strings is in the language defined by the above grammar?
+   A. ababbab        B. bbaaaaa         C. bbaabb      D. baaaaab         
+<#--   D --!>
+
+18. Which string cannot be derived by the grammar below?
+     <S> -> <A> <B> <C>
+     <A> -> a<A> | a 
+     <B> -> b<B>c | b 
+     <C> -> c<C> | c  
+
+   A. aaabbbcc    B. aaaabbcc   C. aaabbbc
+<#--  C --!>
+
+19. If all of these statements are valid in a language, what do you know about
+    that language?
+           $stuff = "hello";
+           $stuff = 5; 
+           $stuff = 5 + "hello";
+    A. strings are arrays that are coerced into scalar types
+    B. this language uses static duck typing
+    C. this language is not strong typed
+    D. all statements are true
+<#-- C -->
+
+20. What is displayed on the screen in the following C code?
+     bits.a = 4;   // size 4 bit field
+     bits.b = 5;   // size 4 bit field
+     printf("%d", bits.a & bits.b);     // '&' is bitwise AND 
+
+   A.  0      B.  1     C.  4     D.  5
+<#-- C -->
+
+21. In the IEEE standard, single precision floating point numbers are
+    represented in the format s * 2^e, where 'e' is the stored value of the
+    exponent - 127, and 's' is 1 + the stored value of the fraction. Under
+    this encoding, what is the correct representation of 1.5 * 2^5 ?     
+       A.  0    10000100  10000000000000000000000
+       B.  0    10000101  01000000000000000000000
+          sign  exponent  fraction
+<#-- A -->
+
+22. If the following code raises a CONSTRAINT_ERROR exception, what do you
+    know about the language? 
+       type AN_ARRAY is array(1..10) of INTEGER;   
+       myArray : AN_ARRAY;
+       ...
+       myArray(99) := 0;
+    A. all index boundary checking is caught before runtime by the compiler 
+    B. the language includes implicit exception handling
+    C. both statements are true
+<#-- B -->
+
+23. C employs eager garbage collection and calls to malloc always allocate 
+    multiple bytes of storage in contiguous memory locations. Recurrent calls
+    to fun will cause heap fragmentation under what conditions?
+    A. if you allocate lots of small chunks of memory, then deallocate every
+       other one of those chunks, and then allocate several large chunks
+    B. if you allocate a small chunk of memory, then allocate a large chunk
+       of memory, deallocate both and repeat the process
+    C. both statements are true 
+<#-- A -->
+
+24. What is this Fortran code equivalent to?
+      i = 5
+      j = 5
+   10 PRINT "foo"
+   15 PRINT "bar" 
+      i = i - 1
+      IF (i .gt. 0) GOTO 15        // .gt. is "greater than"
+      j = j - 1
+      IF (j .ne. 0) GOTO 10       // .ne. is "not equal to"
+   A. a while loop nested in another while loop 
+   B. two while loops that are not nested 
+<#-- A -->
+
+25. How many times will the loop body execute in this C code? 
+                  int i = 5;
+                  while (i = 5)  {
+                      i--;
+                  }
+    A. five times
+    B. one time 
+    C. an infinite number of times 
+<#-- C -->
+    
+26. The output of the two chunks of code below for n = 3 is identical.
+    // #1 
+    void junk1 (int n) {
+        print n;
+        if ( n > 0)
+           junk1 (n-1);
+    }
+    // #2 
+    while (n > 0) {
+         print n;
+         n--;
+    }
+    A. true         B. false 
+<#-- B -->
+
+27. What is true about this C++ code? 
+     void fun(Stuff& stuff )  {
+          stuff.setCount(200);       // line #1
+          Stuff new_stuff(999);
+          stuff = new_stuff;         // line #2 
+          new_stuff.setCount(222); 
+     }
+    A. line #1 modifies the Stuff object in the caller
+    B. line #2 doesn't modify anything in the caller
+<#-- A ->
+
+28. The following code compiles in Python except for the marked line. Because
+    of this, what do you know? 
+         def fun1(argument):
+            result = argument + 5
+         fun1(5)           # this is OK
+         # fun1('a')       # this is not OK  
+   A. Python uses dynamic duck typing
+   B. Python is strongly typed
+   C. Both A and B
+<#-- C -->
+ 
+29. If the following code will not compile, what do you know?
+       int foo(int a, int b){   
+          a = b;    // <= compilation error here 
+          return 0; 
+       }
+   A. 'a' is an IN mode parameter 
+   B. 'b' is an OUT mode parameter 
+   C. either A or B
+<#-- B -->
+
+
+30. After executing this C++ code, and if stuff[0] holds 6, what do you know?
+      int stuff[2] = {5,10};
+      int & iref = stuff;
+      iref++;   // line 3 
+   A. that iref and stuff share the same lvalue
+   B. that the actual value of iref is an address
+   C. both statements are true
+<#-- A -->
+
+31. Under what conditions might the following statement result in an unwanted
+    functional side effect? 
+      C = A + fun(A) + A; 
+    A. if A is a global variable and its value is modified in function fun
+    B. if A is a 2-way parameter its value is modified in function fun
+    C. either one could cause a problem 
+<#-- C -->
+
+32. A combination of a continue and break statement allows you to both jump in 
+    and jump out of a loop somewhere other than at the top or the bottom.
+    A. true   B. false
+<#--  B --> 
+
+33. If the 'int' data type is implemented in 4 bytes, with negative integers
+    stored as the two's complement of the positive integer, what is the decimal
+    value of this?
+         11111111111111111111111111101010
+    A. -22       B. -21          
+<#-- A -->
+
+
+34. If the code below is valid, what is true concerning that language?
+      sub test {
+           $str = <stdin>; // user types in hello 
+           $str = <stdin>; // user types in the gettyburg address
+           $str = <stdin>; // user types in hi
+      }
+    A. $str is a stack dynamic variable that is instantiated once
+    B. $str is a heap dynamic variable that is instantiated three times 
+    C. neither statement is true
+<#-- B -->
+
+
+35. A function that is not tail recursive can be easily converted into a loop 
+    control structure.
+    A. true          B. false 
+<#-- B --> 
+
+
+36. The following C code will display the first row containing all zeros.
+     while ( i < n ) {
+       flag = 1;
+       for ( j = 0; j < n; j++ ) {
+          if ( X[i][j] == 0 ) {        
+             flag = 0
+             break;
+       }
+       if ( flag )  {
+           printf ("found: %d\n", i);
+           i = n ;  
+       } 
+       i++;
+    }
+   A. true        B. false    
+<#-- B -->
+
+
+37. What type of array allocation is performed in this C code?
+       int sd_array[size];   
+   A. heap-dynamic 
+   B. fixed heap-dynamic
+   C. stack-dynamic
+   D. fixed stack-dynamic
+<#-- C -->
+
+38. What is the next line executed in this C code for value = -1?
+     1 while (sum < 1000) {
+     2     getnext(value);
+     3     if (value < 0) 
+     4        continue;
+     5     sum := value;
+     6 }
+     7 printf("Value: %d",value);
+   A. Line 1       B. Line 5      C. Line 7 
+<#-- A -->
+
+39. If the address of the actual parameter is 0xffbefa28 and the address of 
+    the formal parameter is 0xffbefa28, you know you are passing by reference.
+    A. true     B. false
+<#-- A -->
+
+40. A language that uses dynamic duck typing must also be weakly typed.
+    A. true     B. false
+<#-- B -->
+
+
+41. This python function call 
+             test_function(arg2='b', arg1='a')
+    demonstrates how you can assign default values to parameters in python. 
+    A.  true    B.  false
+<# -- B -->
+
+42. A formal parameter name exists only in the caller.
+    A.  true    B.  false
+<# -- B -->
+
+
+43. All parameters in C are pass-by-value.
+    A.  true    B.  false
+<# -- A -->
+
+44. Which line will let you know if d is pass-by-value or pass-by-reference?
+        void foo(Dog d) {
+           d.setName("Fifi");         // line #1
+           d = new Dog("Spot");       // line #2 
+        }
+    A. line #1       B. line #2       C. either A or B 
+<#-- B -->
+
+45. In gdb, the stack frame for main is always marked with
+    A. #0
+    B. the largest stack frame number
+<#-- B -->
+
+46. Dynamic links may be optional in a language in which
+    A. all non-static locals are allocated from the heap
+    B. stack dynamic variables are not supported
+    C. both statements are true
+<#-- C-->
+
+47. Under what conditions is the reference to X in foobar bound to the instance 
+    of X on the stack corresponding to foobar's closest static ancestor? 
+      void foobar () {
+         X = 10;   
+      } 
+    A. when foobar is called in a static scoped language that does not support 
+       nested subroutines.
+    B. when foobar is called in a static scoped language that supports nested 
+       subroutines.
+    C. when foobar is called in a dynamic coped language that supports nested 
+       subroutines.
+<#-- B -->
+
+48. Under Solaris (and most systems), what happens to memory addresses as you 
+    move from the oldest stack frame to the most recent stack frame?
+    A. addresses decrease         B. addresses increase
+<#-- A -->
+
+49. What is the size of the current activation record given this information
+    from gdb?
+      (gdb) p $sp
+      $9 = (void *) 0xffbef849
+      (gdb) p $fp
+      $10 = (void *) 0xffbef8e2
+    A. 0x78 bytes      B. 0x93 bytes   C. 0x99 bytes
+<#-- C -->
+
+50. This is the output of gdb on a running C program. From this you know that
+    the reference to b(value 6) is nested inside the reference to b(value 5).
+       (gdb) info local
+        b = 4 
+        b = 5
+        b = 6 
+    A. true     B. false
+<#-- B -->
+
+51. What does the static chain reference (2,3) mean in the stack frame for 
+    function foo?
+    A. the variable is declared in function foo.
+    B. the variable is declared in foo's static parent.
+    C. the variable is declared in foo's static grandparent.
+<#-- C -->
+
+52. In a dynamic scoped language, variable names must be stored in the 
+    activiation record of a subroutine.
+    A. true     B. false
+<#-- A -->
+
+53. If you execute the following GNU C function and enter 8 at the prompt, what
+    is the address of $sp at line 5?
+    1 void foo ( ) {
+    2     printf("Enter size for a stack dynamic array of integers:");
+    3     scanf ("%d",&size);
+    4     int A[size];
+    5     A[0] = 0; 
+    6}
+    The debugger trace at line 2 is:
+       (gdb) p $sp
+       0xffbef9d8
+       (gdb) p $fp
+       0xffbefa60
+    The debugger trace at line 5 is:
+       (gdb) p $fp
+       0xffbefa60
+   A. 0xffbef9d0     B. 0xffbefA0A    C. 0xffbef868   D. 0xffbef9A6
+ <#-- C -->
+
+54. Assume this GNU C program and debugger trace from a break point in foobar:
+    int main () {
+       int x = 1;
+       void foo ( int i ) {
+            int y = 1;
+            void foobar () {
+               x = 5;          
+               y = 5;       
+           }
+           foobar();
+      }
+      foo(a);
+      return 0;
+   }
+   from main's frame:        $fp = 0xffbefa60  
+   from foo's frame:         $fp = 0xffbef9a8
+   from foobar's frame:      $fp = 0xffbef930 
+   Given the frame pointers above, the references to x and y in foobar are 
+   bound to what addresses?  
+   A. x is bound to 0xffbefa3c and y is bound to 0xffbef990.
+   B. y is bound to 0xffbefa3c and x is bound to 0xffbef990.
+ <#-- A -->
+
+55. Static chaining is necessary for a function call to foobar if
+        void foobar () {
+            X = 10;
+    A. X is a non-static variable
+    B. foobar is nested in another function
+    C. both statements are true
+<# -- C -->

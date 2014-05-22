@@ -1,0 +1,62 @@
+html
+{
+	background: #444444 url('white_bg.png') repeat-y fixed center;
+}
+
+A { text-decoration:  none; }
+
+A:hover { 
+  color: darkorange;
+  text-decoration:  none;
+}
+
+
+div#wrapper
+{
+	background-color: #FFFFF;
+	padding: 5px 0px;
+	width: 950px;
+	height: 950px;
+	margin: 5px auto;
+/*  border: solid #666666 2px; */
+}
+
+div#main
+{	
+	position: relative;
+  float: left;
+	width: 760px;
+	padding: 5px 5px 5px 10px;
+}
+
+div#left
+{
+	width: 150px;
+	position: relative;
+  float: left; 
+	left: 0px;
+	margin: 0px;
+	padding: 0px;
+/*  border: solid #666666 2px; */
+	background-color: #CCFF99;
+}
+
+div#left ul
+{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px 10px 5px 10px;
+}
+
+div#left h4
+{
+  padding: 10px 10px 0px 10px;
+  margin: 0px;
+}
+
+
+img.code
+{
+  border: solid #666666 2px;
+}
+

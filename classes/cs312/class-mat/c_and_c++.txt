@@ -1,0 +1,85 @@
+    C AND C++ RELATIONSHIP: ROUGHLY SPEAKING, C++ IS A SUPERSET OF C
+
+        ---
+       | class is fundamental; a class is a structure which can have
+       |   member functions, a constructor, friend operators, and more:
+       |
+       |  class         objects(s)
+       |  ------       ---------------
+       |  complex       x, y, z, w;
+       |  list          student_data(100);
+ C++   |
+Object | #include <iostream>  // classes istream and ostream
+Orient-| #include <fstream>   // classes ifstream and ofstream
+  ed   | using namespace std;
+       |
+       | C++ Object-Oriented I/O with member functions:
+       | I/O objects: cin, cout, cerr
+       | operators: << and >> (these are hidden function calls)
+       |
+       |   input: cin >> variable;
+       |   output: cout << information;
+       |
+       |  typical I/O member functions (NOT all apply):
+       |     .open() .close() .tellg() .seekg()
+       |     .get() .ignore() .getline() .put() .flush()
+       |   from base class ios:
+       |     .fail() .eof() .clear()
+       |
+       | dynamic memory allocation operator: new
+        ---
+       | conveniences which are transparent to the programmer:
+ C++   |
+ cos-  | allow comment to end of line with "//"
+metic  | 
+       | name mangling of functions:
+       |   void func(int, int)  might be renamed as func_2i()
+       |   void func(double, double) renamed as func_2d() 
+       |
+       | parameter restructuring of functions:
+       |   complex func(complex, complex) might be restructured as
+       |   void func(complex &, complex, complex) 
+        ---
+       | user-defined data structures:
+       |   struct _tagname {..};
+       |
+       | user-defined functions:
+       |   func(): parameters passed by value (or pointer) return value
+       |           must be a simple type
+ ANSI  |
+  and  | dynamic memory allocation calls: malloc() and sbrk()
+ K&R   |
+  C    | built-in simple types with modifiers (short, long, *):
+       |
+       |   type         variable(s)
+       |  ------       -------------
+       |   char         c, k;
+       |   int          *iptr, j, k;
+       |   double       *xptr, y, z;
+       |
+       | decision, looping, and control structures:
+       |   if () {..} else if () {..} else {..}
+       |   for ( ; ; ) {..}
+       |   while ( ) {..} and do {..} while ( );
+       |   switch ( ) {..} 
+       |   break and continue
+       |
+       | #include <stdio.h>   /* K&R C */
+       | #include <stdlib.h>  /* ANSI C */
+       | #include <math.h>    /* the usual math functions */
+       |
+       | C stream I/O -- buffered calls:
+       | I/O descriptors: stdin, stdout, stderr
+       |   scanf() fscanf() getchar() fgets()
+       |   printf() fprintf() putchar() fputs()
+       |
+       | #include <unistd.h>
+ OS    | #include <sys/types.h>
+inter- | #include <sys/stat.h>
+ face  |
+       | lowest level I/O -- calls to operating system:
+       |   open() creat() and close()
+       |   stat() lseek() and unlink()
+       |   read() write()
+        ---
+

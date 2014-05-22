@@ -1,0 +1,9 @@
+ file:lab2_part1.cpp ,function:main ,line:98 start of logging
+ file:lab2_part1.cpp ,function:PromptForInt ,line:15 start PromptForInt(0);
+ file:lab2_part1.cpp ,function:PromptForInt ,line:29 end of PromptForInt(5);
+ file:lab2_part1.cpp ,function:PromptForChar ,line:36 start PromptForChar(0);
+ file:lab2_part1.cpp ,function:PromptForChar ,line:50 end of PromptForChar(5);
+ file:lab2_part1.cpp ,function:DumpInt ,line:57 start DumpInt(0);
+ file:lab2_part1.cpp ,function:DumpInt ,line:70 end of DumpInt(5);
+ file:lab2_part1.cpp ,function:DumpChar ,line:78 start DumpChar(0);
+ file:lab2_part1.cpp ,function:DumpChar ,line:91 end of DumpChar(5);

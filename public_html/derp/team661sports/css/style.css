@@ -1,0 +1,115 @@
+#cube h2 { font-weight: bold; font-size: 1.6em; margin: 15px 0; }
+#cube h3 { font-weight: bold; font-size: 1.45em; margin: 10px 0; }
+
+#content {
+	display: block;
+	margin: 20px auto 1060px;
+	width: 640px;
+}
+
+#content p { line-height: 1.2em; margin: 5px 0; }
+
+#content ul { list-style-type: disc; margin-left: 20px; }
+
+#content li { 
+    line-height: 1.2em; 
+    list-style-position: inside; 
+    margin-left: 10px; 
+}
+
+header#t-head {
+    background-color: #fff;
+    height: 150px;
+    margin: -20px auto 20px;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+}
+
+header#t-head img {
+    display: block;
+    height: 150px;
+    margin: 35px auto 0;
+    position: relative;
+    text-align: center;
+    width: 284px;
+}
+
+div#cube {
+    background-color: rgb(255, 255, 255);
+    display: block;
+    margin: 20px auto;
+    padding: 20px 12px;
+    position: relative;
+    width: 1024px;
+    z-index: 1;
+}
+
+nav li { list-style-type: none; }
+
+nav#l-nav {
+    float: left;
+    margin: 200px 0;
+    position: fixed;
+    width: 160px;
+}
+nav#l-nav ul, nav#l-nav ul li { display: block; width: 100%; }
+nav#l-nav a:link, nav#l-nav a:active, nav#l-nav a:visited {
+    background-image: url('../style/nav-grad.png');
+    background-repeat: repeat-x;
+    border: 0px #000 solid;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px #888;
+    -moz-box-shadow: 0px 2px 5px #888;
+    -webkit-box-shadow: 0px 2px 5px #888;
+    display: inline-block;
+    color: #fff;
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+    text-align: center;
+    text-decoration: none;
+    width: 160px;
+}
+nav#l-nav a:hover, nav#l-nav a:focus {
+    background-image: url('../style/nav-grad-sel.png');
+    background-repeat: repeat-x;
+    color: #000;
+}
+
+nav#l-nav a.fb-icon {
+    background-color: none;
+    background-image: url('../pics/logo/fb-icon.png');
+    display: block;
+    height: 80px;
+    margin: 20px auto;
+    position: relative;
+    width: 80px;
+}
+
+div#slider {
+    display: block;
+    height: 480px;
+    margin: 180px auto 40px;
+    width: 640px;
+}
+
+div#slider img {
+	height: 480px;
+	margin: 0 auto;
+	width: 640px;
+}
+
+#content table.eu-tbl th { font-weight: bold; }
+#content table.eu-tbl td, #content table.eu-tbl th{
+    padding: 5px;	
+    text-align: center;
+}
+
+aside#social {
+    display: block;
+    margin: 200px auto 0 872px;
+    position: fixed;
+    width: 292px;
+    z-index: 1;
+}

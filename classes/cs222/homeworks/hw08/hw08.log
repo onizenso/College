@@ -1,0 +1,143 @@
+ file:person_main.cpp ,function:main ,line:19 start of logging
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns  
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Homer J. Simpson
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Homer J. Simpson
+(559) 555-1212
+742 Evergreen Terrace
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns  
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Barny Gumble
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Barny Gumble
+(559) 555-8899
+93 Super Lush Ct
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns  
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Moe Syzlak
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Moe Syzlak
+(559) 555-4856
+1024 Peanut St
+Springfield Ga, 580080000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Homer J. Simpson
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Homer J. Simpson
+(559) 555-1212
+742 Evergreen Terrace
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns Barny Gumble
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Barny Gumble
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Barny Gumble
+(559) 555-8899
+93 Super Lush Ct
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns Moe Syzlak
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Moe Syzlak
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Moe Syzlak
+(559) 555-4856
+1024 Peanut St
+Springfield Ga, 580080000
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Barny Gumble
+ so  is Homer J. Simpson  >  Barny Gumble
+I think I will return true
+
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Barny Gumble
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Barny Gumble
+(559) 555-8899
+93 Super Lush Ct
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator= ,line:206 
+ someone is trying to assign one instance of the person class to another 
+ I am on the left side, my FormattedName() returns Barny Gumble
+ The only parameter to this function is a reference to  another person instance its FormattedName() returns Homer J. Simpson
+I need to copy over all of the data from the person instance passed into this function
+ I am still the  left side but ive copied all the date from the other person instance ,  now my ToString() returns 
+Homer J. Simpson
+(559) 555-1212
+742 Evergreen Terrace
+Springfield Ga, 313290000
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Moe Syzlak
+ so  is Homer J. Simpson  >  Moe Syzlak
+I think I will return false
+
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Barny Gumble
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Homer J. Simpson
+ so  is Barny Gumble  >  Homer J. Simpson
+I think I will return false
+
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Moe Syzlak
+ so  is Homer J. Simpson  >  Moe Syzlak
+I think I will return false
+
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Barny Gumble
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Homer J. Simpson
+ so  is Barny Gumble  >  Homer J. Simpson
+I think I will return false
+
+
+ file:person.cpp ,function:operator> ,line:255 
+ someone is trying compare one person with another using the > operator  
+ I am the function that is part of the person instance to the left side of the > , the person instance that is passed in as a parameter is the one on the right
+my FormattedName() returns Homer J. Simpson
+ The only parameter to this function is a reference to  another person instance  (on the right of the > ) its FormattedName() returns Moe Syzlak
+ so  is Homer J. Simpson  >  Moe Syzlak
+I think I will return false
+
+

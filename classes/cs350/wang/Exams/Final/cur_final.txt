@@ -1,0 +1,288 @@
+CMPS 350 Final Exam WTR 2011  - covers Ch 8 - ch 10
+
+01. Select the false statements concerning an implicit branch in a multiple 
+    selection statement.
+    A. it ensures that only one selection will be executed
+    B. it supports implicit flow through 
+    C. it can result in redundant code
+<ANS:  B -->
+
+02. What is this Fortran code equivalent to?
+      i = 5
+      j = 5
+   10 PRINT "foo"
+   15 PRINT "bar" 
+      i = i - 1
+      IF (i .gt. 0) GOTO 15        // .gt. is "greater than"
+      j = j - 1
+      IF (j .ne. 0) GOTO 10       // .ne. is "not equal to"
+   A. a while loop nested in another while loop 
+   B. two while loops that are not nested 
+<ANS:  A -->
+
+03. Which of the following controls would allow you to jump in and jump out 
+    of a loop somewhere other than the top and the bottom?
+    A. unconditional labeled branch statements 
+    B. unconditional unlabeled branch statements
+    C. either control structure would work
+<ANS:  A --> 
+
+04. Since this code is legal in C
+          int i;
+          while (i = 0)   // assignment statement 
+    this code is also legal:
+          int x = 4;
+          while (5*x+30)   
+    A. true        B. false 
+<ANS:  A -->
+
+05. In counter-controlled loops, the loop variable may be evaluated within the 
+    loop control more than once per iteration.
+    A. true        B. false 
+<ANS:  B -->
+
+06. C#'s switch statement syntax requires an explicit break statement, thus
+    A. it is not possible to fall through a switch as you can in C. 
+    B. it is possible to fall through a switch just as you can in C. 
+<ANS:  A -->
+
+07. The following two control structures in C share the same semantics.
+     // #1
+     k = 0;
+     loop:
+     k = k + 1;
+     print k;
+     if ( k > 10 ) then goto out
+     goto loop
+     out: 
+
+     // #2
+     for ( k = 1; k <=10; k++ ) 
+       print k;
+   A. true        B. false 
+<ANS:  B -->
+
+08. These two C control structures share the same semantics.
+     int i;
+     int j = 0;
+     // #1
+     for ( i = 0; i < 3; i++) {
+       switch (j+2) {
+         case 3:
+         case 2: j--; 
+         case 0: j++; 
+         default: j = 0;
+       }
+       if ( j > 0 ) break;
+       j = 3 - i;
+     }
+
+     // #2
+     i = 0;
+     while ( i < 3 ) {
+        if ( (j+2 == 3) || (j+2 == 2) ) {
+           j--;
+           j++;
+         }
+         else
+           j = 0;
+        if ( j > 0 )  
+           break;
+        j = 3 - i;
+        i++;
+     }
+    A. true         B. false 
+<ANS: B -->
+
+09. The following C code will accomplish what? 
+    while ( i < n ) {
+       flag = 1;
+       for ( j = 0; j < n; j++ ) 
+          if ( X[i][j] == 0 ) {    // X is a 2-dimensional array of ints    
+             flag = 0
+             break;
+          }
+       if ( flag )  {
+           printf ("found: %d\n", i);
+           i = n ;  
+       } 
+       i++;
+    }
+   A. display the first row containing all nonzeros 
+   B. display the first row containing all zeros 
+<ANS:  A -->
+
+10. The output of the two chunks of code below for n = 4 is identical.
+    // #1 
+    void junk1 (int n) {
+        print n;
+        if ( n > 0)
+           junk1 (n-1);
+    }
+    // #2 
+    while (n > 0) {
+         print n;
+         n--;
+    }
+    A. true         B. false 
+<ANS:  B -->
+
+11. What is the next line executed after the break in this C code?
+     1 while (sum < 1000) {
+     2     getnext(value);
+     3     if (value < 0) 
+     4        break;
+     5     sum := value;
+     6 }
+     7 printf("Value: %d",value);
+   A. Line 5       B. Line 7      C. Line 1     D. Line 2 
+<ANS:  B -->
+
+12. Select the correct statement concerning this Ada selective accept statement:
+    loop
+       select                  // a guarded command selection 
+          when OK1 =>         
+              accept pickup;   // will wait indefinitely for a pickup
+       or
+          when OK2 =>          
+              accept dropoff;
+       or 
+         terminate;
+       end select;
+    end loop;
+
+A. OK2 is evaluated only when OK1 is false.
+B. If OK1 and OK2 are both true, pickup and dropoff requests are randomly 
+   selected.
+<ANS:  B  -->
+
+13. In this C# function definition, line 2 is a compilation error (T/F)
+          1 Foo (out int x) {    
+          2     int y = x;    
+          3     x = 10;     
+          4 }             
+ <ANS:  A -->
+
+14. If the address of the actual parameter is 0xffbefa28, and the address of 
+    the formal parameter is also 0xffbefa28, what do you know?
+    A. you are passing a pointer type in C
+    B. you are passing a reference type in C++ 
+<ANS:  B -->
+
+15. This python function call 
+             test_function(arg2='b', arg1='a')
+    is an example of what?
+    A. a function call using default values for arguments
+    B. a function call using keyword binding for arguments
+<ANS:  B -->
+ 
+16. In the JavaScript code below, '6' is displayed in the alert. Thus, you 
+    know the referencing environment of sub2 is
+    A. the static environment of the function definition. 
+    B. the the dynamic environment of the function execution.
+    C. the static environment of the call statement. 
+<ANS:  C -->
+
+// JavaScript code:
+  function sub1(){
+    var x = 7;
+    function sub2(){     
+      alert(x);   // displays '6'
+    };
+    function sub3(){
+      var x = 6;
+      sub4(sub2);        
+    };
+    function sub4(subx){
+        var x = 5;
+        subx();        
+    }
+    sub3();
+  };
+
+17. C and Java both support IN OUT parameter passing mode.
+    A. true         B. false
+<ANS: B ->
+
+18. After running foo() in this C++ code, 'int size' in the Stuff object from 
+    the calling procedure is set to what?  (assume no overloaded = operator)
+    void foo(Stuff& s )  { // C++ code
+          s.setSize(200);     
+          Stuff t(999);    // sets 'private int size' to 999
+          s = t;        
+          t.setSize(222); 
+     }
+    A. 200         B. 999             C. 222  
+<ANS:  B ->
+
+19. The following code compiles in Python except line 4. Because
+    of this, what do you know? 
+       1   def fun1(argument):
+       2     result = argument + 5
+       3  fun1(5)   
+       4  fun1('a')      
+   A. Python is both dynamic and strong typed.
+   B. The addition operator is not overloaded to concatenate strings.
+<ANS:  A -->
+ 
+20. In Java all parameters are pass-by-value. The name of 'Dog c' at the
+    end of main() in this Java code will thus be what?
+        public static void main (String[] args) 
+        {
+           Dog c = new Dog("Fido");
+           foo(c);                       
+        }   
+        public static void foo(Dog d) {
+           d.setName("Fifi");       
+           d = new Dog("Spot");      
+        }
+    A. Fido        B. Fifi     C. Spot 
+<ANS:  B -->
+
+21. Given this gdb trace, what can you say about MAX?
+      (gdb) p &MAX
+      $2 = (int *) 0x20bb4
+      (gdb) info frame
+      Stack level 0, frame at 0xffbefa60:
+      A. MAX is a variable in another stack frame.
+      B. MAX is a static variable in the data section of the executable.
+<ANS:  B -->
+
+22. Dynamic links are optional in a language in which
+    A. all non-static locals are allocated from the heap
+    B. stack dynamic variables are not supported
+    C. both statements are true
+<ANS-- C-->
+
+23. Under what conditions is the reference to 'x' in foo bound to the instance 
+    of 'x' on the stack corresponding to foo's closest static ancestor? 
+      void foo() {
+         x = 10;   
+      } 
+    A. when foo is called in a static scoped language that does not support 
+       nested subroutines.
+    B. when foo is called in a static scoped language that supports nested 
+       subroutines.
+    C. when foo is called in a dynamic coped language that supports nested 
+       subroutines.
+<#-- B -->
+
+24. Under Solaris (and most systems), what happens to memory addresses as you 
+    move from the oldest stack frame to the most recent stack frame?
+    A. addresses decrease         B. addresses increase
+<#-- A -->
+
+25. What is the size of the current activation record given this information
+    from gdb?
+      (gdb) p $sp
+      $9 = (void *) 0xffbef849
+      (gdb) p $fp
+      $10 = (void *) 0xffbef8e2
+    A. 0x78 bytes      B. 0x93 bytes   C. 0x99 bytes
+<#-- C -->
+
+26. Since blocks in C are executed in strict textual order, it is possible for 
+    multiple blocks to share the same variable space on the stack.
+    A.  true     B.  false
+ANS: A
+

@@ -1,0 +1,73 @@
+.:Forensic Duplication:.
+
+Admissibility
+    FRE allows GENUINE duplicates (rule 1003)
+        particularly when true original is hard to produce
+    GENUINE != original all the time
+        Goal: bit by bit copy of media
+            Issues: Bad sectors on physical media
+                    Drives that remap physical blocks (e.g. SSD's)
+                    What will duplication tool do when it encounters bad blocks
+        Types of Duplicates
+           Forensic Duplicate (closest to binary copy)
+               Try to copy every bit from source
+               Use placeholder to mark bad reads
+               Tools: dd-based
+           Qualified Forensic Duplicate
+               Similar to forensic duplicate
+               May format-shift the results
+                   In-band hashes of sectors read
+                   Empty sector compression
+               Format-shifted image must be able to recreate the original
+               Tools: enCase, SafeBack
+           Tools must meet requirement of Daubert Test
+               Methods must be sound, reproducible, and accepted
+
+Creating Image
+    Use appropriate tool for type of investigation
+    Document the Geometry of Magnetic Disks
+        Sectors, Cylinders, & Heads determine boundaries of partitions
+        Restoring to Physical Media
+            May need to alter partition table if geometry differs
+        Using Virtual Image
+            May need geometry to correctly access partitions
+    Document the Partition Table
+    Use tool to create image (do NOT modify original media)
+    Verify that image is correct
+        For dd-based, involves checksums of original drive vs. created image
+            Account for bad reads
+        enCase can do this automatically
+    Store image properly
+        Essentially is the "best evidence" & should be handled as such
+
+Creating Working Copies (Restored images)
+    Can restore to physical media or use in a virtual environment
+        physical media - potential disk geometry issues
+        virtual environment - need true copy of image file
+    Destination media should be wiped first
+    Physical Media Restore
+        Duplicate's hash may not match original's hash due to geometry diff.
+    Virtual Environment
+        Both dd & enCase created images can be used for 
+            many virtual environment tools
+
+Tools
+    DD based tools
+        dd has many options to control its behavior (man dd)
+    Basic Options:
+        if=<device>       "input file", source device/file
+        of=<device>       "output file", destination device/file
+        bs=<number>       "block size", unit of data to use
+        count=<number>    number of blocks for operation
+        skip=<number>     how many blocks to skip over at start
+        conv=<options>    comma-separated list of conversion options
+              notrunc     do not truncate data
+              noerror     continue after read errors
+
+    DD Shell Script
+        #!/bin/sh
+        count=1
+        while(dd if=/dev/sda of=image.${count}.dd \
+              bs=2048k count=1 skip=$(($count-1)) \
+              conv=noerror,notrunc);
+        do count=$(($count + 1)); done

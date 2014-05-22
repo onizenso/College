@@ -1,0 +1,166 @@
+<HTML>
+<HEAD>
+<TITLE>Event Handling in JavaScript</TITLE>
+<style type=text/css>
+    body { margin : 5% 5% 5% 5%; }
+</style>
+
+<SCRIPT language="JavaScript">
+
+ /* 
+  Preload some images; these image objects do NOT belong to the document yet. 
+  To be part of the document (i.e. window.document.imageName) the image must 
+  be loaded and named in an IMG SRC tag. Preloading images puts them into the 
+  browser's cache. */
+
+  if (navigator.appVersion.substring(0,1) >= 3) {
+             image1=new Image(158, 25);             // fix image size in pixels 
+             image1.src="./Images/act1.gif";
+             image2=new Image(158, 25);
+             image2.src="./Images/act2.gif";
+  }
+
+  // preload some more images and set current color to blue  
+  var current_color = "blue";  // var gives the variable document scope
+  var backgrounds = [];
+  backgrounds[0] = "./Images/circle.gif";
+  var water_bg      = new Image(); 
+  water_bg.src      = "./Images/water_bg.jpg";
+
+  var yellow        = new Image();
+  yellow.src        = "./Images/yellow.gif";
+  var blue          = new Image();
+  blue.src          = "./Images/blue.gif";
+  var current       = new Image();
+  current.src       = blue.src;      // start with a blue background
+  var next_face     = new Image();
+  next_face.src     = "./Images/sad_face.gif";     
+  var temp          = new Image();   // use for image swapping       
+
+function display(str1, str2)
+{
+  area=document.getElementById('myArea');
+  area.innerHTML=str1 + " " + str2;
+
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="window.document.bgColor='#FF33FF'">
+
+<!-- div elements need an ID not a name -->
+<DIV ID="innerDiv" STYLE="
+     background-color: #A0D0E0;
+     border-bottom: 4px solid #FFC600;
+     border-top: 4px solid #EFEFEF;
+     border-left: 4px dotted #EFEFEF;
+     border-right: 4px dotted #EFEFEF;
+     padding: 8px 10px 8px 10px;
+     width: 85%;" >
+
+<h3> test various ways to embed JavaScript in FORM element triggers </h3>
+
+<!-- to have access to a form or a form element you must name it -->
+<FORM NAME="myForm" ACTION="javascript:display('say ','goodbye');">
+
+<b> test click/dbl click triggers: </b> 
+<INPUT TYPE="button" NAME="button1" 
+       value="Click to Write/doubleClick to Erase" 
+       onClick="area=document.getElementById('myArea'); 
+                area.innerHTML='Write stuff dynamically on the page<p>'; 
+                return false;"
+      onDblClick="area.innerHTML='myArea is here.';" >
+
+<!-- create an area on the document to write to -->
+<P/>
+<DIV id="myArea" STYLE="background-color: #FF9363">
+myArea is here.
+</DIV>
+
+<P/> <b> test changing document body background:</b>
+
+<INPUT TYPE="button" NAME="button2" value="set body background to an image"
+ onClick=
+   "document.body.background='./Images/circle.gif'; return false;" >
+<P/>
+
+<b>change innerDiv background to an image:</b>
+<INPUT TYPE="button" NAME="button3" value="doIt"
+      onClick=" 
+            var divArea = document.getElementById('innerDiv');
+            divArea.style.background = '#A6A6A6'; 
+            filename = './Images/ivy_bg.jpg';
+            divArea.style.backgroundImage = 'url(' + filename + ')'; 
+                        
+            return false;" >
+(if image is transparent you would see background color)
+
+<P/>
+<b> test radio button element: </b>
+
+    cat <input type="radio" name="pet" value="cat"> dog <input type="radio" name="pet" value="dog">
+    bat <input type="radio" name="pet" value="bat">
+
+  <input type="button" value="checkRadio" 
+        onClick="len=document.myForm.pet.length;
+                       area = document.getElementById('myArea');
+                       var myChoice = 0;
+                       for (i = 0; i < len; i++){
+                              if (myForm.pet[i].checked)
+                              myChoice = i;
+                        }
+                        area.innerHTML=
+         'you have a ' + myForm.pet[myChoice].value + ' for a pet.';" >
+
+<p/>
+<b> test onChange trigger in select element: </b>
+<SELECT name = "mySelect" 
+       onChange = "display(mySelect[selectedIndex].value,selectedIndex);
+                   if (selectedIndex == 3)
+                           window.location = 'http://www.cs.csubak.edu'; ">
+
+<option value = "apple"> I love apples
+<option value = "orange">I love oranges
+<option value = "pear"> I love pears
+<option value = "gohome"> Goto: www.cs.csub.edu 
+</SELECT>
+
+<p/>
+<b>Test checking contents of form select box by selection all true statements:</b>
+<p/>
+A. <input type = "checkbox" name = "Q1"> I like fish   
+B. <input type = "checkbox" name = "Q1"> I like lamb 
+C. <input type = "checkbox" name = "Q1"> I like tofu 
+D. <input type = "checkbox" name = "Q1"> I like beef
+
+  <input type="button" value="checkSelect" 
+        onClick="var myChoice = 0; str = new String('');
+                 area = document.getElementById('myArea');
+
+                     if (myForm.Q1[0].checked) str = str + 'fish ';
+                     if (myForm.Q1[1].checked) str = str + 'lamb ';
+                     if (myForm.Q1[2].checked) str = str + 'tofu ';
+                     if (myForm.Q1[3].checked) str = str + 'beef ';
+                     if (str.length == 0) { str = 'nothing '};
+                     area.innerHTML='You like ' + str; ">
+
+<p/>
+<b>Test onBlur trigger and copying input from a text element: </b>
+Enter Text:<input type=text name="myText"
+   onChange="var divArea = document.getElementById('textDiv');
+         divArea.innerHTML = myForm.myText.value;">
+<p/>
+<b> test form SUBMIT trigger in submit button: </b>
+<INPUT type="submit" value="say goodbye">  
+
+</DIV>
+<p/>
+
+</FORM>
+<p/>
+<DIV id="textDiv">
+</DIV>
+
+</BODY>
+</HTML>

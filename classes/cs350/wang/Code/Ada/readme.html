@@ -1,0 +1,36 @@
+<html>
+<body>
+resources:</br>
+<a href="http://www.adaic.org/standards/05rm/html/RM-TOC.html">Ada 95 Ref. Manual</a><br>
+<a href="http://www.infres.enst.fr/~pautet/Ada95/a95list.htm">Ada 95 Tutorial</a><br>
+<a href="http://en.wikibooks.org/wiki/Ada_Programming/Keywords">Ada wiki-keywords</a><br>
+<a href="http://www.gnu.org/software/gnat/">GNAT Ada compiler</a> (download)<br>
+<a href="http://www.dmitry-kazakov.de/ada/components.htm">Components</a> (download)<br>
+<a href="http://www.sigada.org/">ACM SIGAda </a><br>
+<p>
+The Ada compiler on sleipnir, gnu gnat,  supports the Ada95 standard. 
+GNAT is a front-end to GNU gcc. Read this before starting.
+<pre>
+Filenames:
+
+  test.adb   // ada package body - source code
+  test.ads   // ada package specification - like a header or class definition
+  test.ali   // created by compiler for the linker - you can delete this file
+  test.o     // object file created for gdb debugger by compiler - can delete
+ 
+Compile and link the short way:
+ 
+ $ gnatmake test.adb 
+
+OR compile and link the long way: 
+
+ $ gcc -c test.adb
+ $ gnatbind test
+ $ gnatlink test
+
+Run the executable
+
+  $ ./test
+</pre>
+</body>
+</html>

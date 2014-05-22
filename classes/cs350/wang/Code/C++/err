@@ -1,0 +1,16 @@
+Undefined			first referenced
+ symbol  			    in file
+operator new(unsigned int)          /var/tmp//cc47PunW.o
+std::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned int) const/var/tmp//cc47PunW.o
+std::basic_ostream<char, std::char_traits<char> >::operator<<(std::basic_ostream<char, std::char_traits<char> >& (*)(std::basic_ostream<char, std::char_traits<char> >&))/var/tmp//cc47PunW.o
+std::basic_ostream<char, std::char_traits<char> >::operator<<(float)/var/tmp//cc47PunW.o
+operator delete(void*)              /var/tmp//cc47PunW.o
+std::cout                           /var/tmp//cc47PunW.o
+std::ios_base::Init::~Init()        /var/tmp//cc47PunW.o
+std::ios_base::Init::Init()         /var/tmp//cc47PunW.o
+__gxx_personality_v0                /var/tmp//cc47PunW.o
+std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)/var/tmp//cc47PunW.o
+std::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const/var/tmp//cc47PunW.o
+std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)/var/tmp//cc47PunW.o
+ld: fatal: Symbol referencing errors. No output written to a.out
+collect2: ld returned 1 exit status

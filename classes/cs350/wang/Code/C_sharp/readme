@@ -1,0 +1,62 @@
+C# language uses a Just-In-Time (JIT) compiler - development is thus like Java.
+You can compile on sleipnir and execute under Windows (if you have .net) and 
+under sleipnir using mono.
+
+Compile a C# source into an executable named filename.exe
+
+  $ mcs  {filename.cs} # for the version 1 compiler
+  $ gmcs {filename.cs} # for the version 2 compiler
+
+Execute the C# application  
+
+  $ mono {filename.exe}
+
+Debug your executable:
+
+  $ mcs -debug {filename.exe}
+  $ mdb {filename.exe}
+
+=====================================================================
+Note: mcs on helios is not unlocking semaphores. This means that after a 
+limited number of users execute the program, everyone after that point is 
+locked out.
+I am manually having to clean up after mcs until I figure out what the 
+problem is. If you get an error message like this:
+<pre>
+
+** (/opt/csw/mono/lib/mono/1.0/mcs.exe:10800): CRITICAL **:
+_wapi_shm_semaphores_init: semget error: No space left on device.
+
+</pre>
+CTRL-C to kill the process and email me. To remove your own semaphore do
+the following:
+<pre>
+
+bash-2.03$ ipcs -s
+IPC status from <running system> as of Mon Feb 13 11:40:22 PST 2006
+T         ID      KEY        MODE        OWNER    GROUP
+Semaphores:
+s          7   0x4d0061a0 --ra-------    donna    staff
+bash-2.03$ ipcrm -s 7
+bash-2.03$ ipcs -s
+IPC status from <running system> as of Mon Feb 13 11:40:36 PST 2006
+T         ID      KEY        MODE        OWNER    GROUP
+Semaphores:
+========================================================================
+Note: if you are on helios:
+To compile and run C# programs you need to add the mono (.NET code generator) 
+and mcs (C# compiler) executables to your Unix PATH environment variable. 
+Insert this at the beginning of your PATH environment variable in .profile:
+
+   /opt/csw/mono/bin
+
+Update your path with:
+
+   $ source .profile.
+
+Verify:
+
+   $ mcs --version 
+
+   Mono C# compiler version 1.1.13.2
+

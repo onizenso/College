@@ -1,0 +1,687 @@
+<html>
+<head>
+<!-- <link rel="stylesheet" type="text/css" href="./style.css" title="style1"> -->
+</head>
+<body bgcolor=papayawhip>
+<!-- <a name="top"></a>
+<DIV id="myDiv" style="position:absolute; left:60px; top:10px; height:45px; z-index:9" >
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0  HEIGHT=30 BGCOLOR="#FFFFFF" BORDERC
+OLOR="#FF0000">
+  <TR ALIGN="center" >
+    <TD WIDTH=200 ALIGN=center>
+<a href="./index.html">home</a></TD>
+    <TD WIDTH=200 ALIGN=center>
+<a href="#attribute">Attribute Grammars</a></TD>
+    <TD WIDTH=200 ALIGN=center>
+<a href="#axiomatic">Axiomatic Semantics</a></a></TD>
+  </TR>
+</TABLE>
+</DIV>
+-->
+<!-- <FONT FACE="arial black" size=+1>  -->
+<a name="attribute"></a>
+<h3>CMPS 350 LECTURE NOTES Ch. 3.4: Describing Semantics</h3>
+<SPAN STYLE="Background-Color : yellow">
+<h3> Attribute Grammars </h3>
+</SPAN>
+  <u>Static Semantics</u> refers to the context-sensitive information in a 
+  programming language that can be determined prior to runtime. Normally, 
+  semantics describes the behavior of a program during execution 
+ but in this context reflects the context-sensitive meaning of a program. 
+ Examples of static semantics include 
+ type checking and 
+  the location of declarations. BNF/Context-free grammars (CFGs) are 
+  well-suited to describe the context-free syntax of programming languages 
+  but not easily context-sensitive information without becoming large 
+  & clumsy. Since the size of a grammar determines the size of the parser, 
+  attribute grammars enhance compilers with static semantics checking.
+<p>
+  An <u>attribute grammar</u> is a generative grammar that can describe both 
+  the context-free and the context-sensitive syntax of a language. Attribute 
+  grammars add context-sensitive information to CFGs by transporting semantic 
+  information in a controlled fashion up and down the parse tree. Information
+  is passed through synthesized and inherited attributes that are attached to
+  the nodes of the parse tree.
+
+
+<p>
+  <u>Synthesized attributes</u> pass information from child to parent up the 
+  tree. The parse tree is "decorated" with synthesized attributes in a 
+  bottom-up fashion. If the value of a synthesized attribute on a leaf node
+  is assigned before parsing begins (hence outside the parse tree), the 
+  attribute is called intrinsic.
+
+<p>
+  <u>Intrinsic attributes</u> are synthesized attributes of leaf nodes, the
+  value of which is known before the sentence is parsed. These attributes pass 
+  external information (such as from the symbol table) up the parse tree. 
+
+<p>
+  <u>Inherited attributes</u> pass information from parent to child and from
+  sibling to sibling. The overall effect is to move information down the 
+  parse tree. The parse tree is "decorated" in a top-down fashion for inherited
+  attributes. Each grammar symbol may have inherited or synthesized
+  attributes, or both.
+
+<p>
+  Note: If the tree contains both inherited and synthesized attributes, a 
+  combination of top-down and bottom-up order is used to decorate the tree.
+<p>
+<h4>Attribute Grammar Formal Definition </h4>
+<pre>
+  An attribute grammar is a context-free grammar G = &lt;S, N, T, P&gt; 
+  with four additions:
+ 
+ 1. For each grammar symbol X &isin; N &cup; T, there is a set A(X) of 
+    attribute values 
+
+ 2. Each rule has a set of functions that define certain attributes of the 
+    nonterminals in the rule (also called semantic rule or semantic function)
+
+ 3. For each syntactic category X &isin; N, there are two finite disjoint sets
+    I[X] and S[X] of inherited and synthesized attributes. For X = S, 
+    I[X] = &empty;
+
+ 4. Each rule has a (possibly empty) set of predicates to check for attribute 
+    consistency. Predicates (which return TRUE or FALSE) check semantic meaning,
+    such as type rules. Predicates are inserted into the attribute grammar
+    at any point in which you can determine whether the sentential form 
+    conforms to the semantic rules of the grammar.
+
+Example.
+  Let   X_0 -> X_1 X_2... X_n  be a rule
+
+  Functions of the form S(X_0) = f(A(X_1), ... , A(X_n)) define synthesized 
+  attributes.
+
+    In this case attributes for X_0 can be synthesized from any of X_0's 
+    children; i.e., the terms  X_1 ... X_n in the production rule
+     
+      *synthesized attributes pass semantic information up a parse tree*
+
+  Functions of the form I( X_j ) = f(A(X_0)), ... , A(X_n)), 1 &lt;= j &lt;= n, 
+  define inherited attributes
+
+  In this case attributes can be inherited from the parent and all siblings.
+
+  Functions of the form I(X_j) = f(A(X_0)), ... , A(X_j-1)), 
+  for 1 <= j <= n, can also define inherited attributes (to eliminate self 
+  and siblings to the right)
+
+     *inherited attributes pass information down and across the parse tree*
+</pre> 
+<h4>Attribute Grammar Example</h4>
+<pre>
+  A BNF grammar for a simple assignment statement:
+
+  1. &lt;assign> -> &lt;var> = &lt;expr>
+  2. &lt;expr> -> &lt;var> + &lt;var> 
+  3.              | &lt;var>
+  4. &lt;var> -> A | B | C
+
+  This context-free grammar is limited: cannot check type rules. To check
+  type, this grammar needs two predicates, one for each statement type:
+
+  A = B
+  A = B + C
+
+  This grammar has two attributes:
+
+  o actual_type: a synthesized attribute for nonterminals &lt;var> and &lt;expr>
+                 used to store the actual type; e.g., int or real
+
+  o expected_type: an inherited attribute for nonterminal &lt;expr>  
+ 
+  1. Syntax rule:  &lt;assign> -> &lt;var> =  &lt;expr>
+
+     Semantic rule: &lt;expr>.expected_type <- &lt;var>.actual_type (inherited)
+
+  2. Syntax rule:  &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+    ([2] and [3] differentiate the three &lt;var> nonterminals)
+
+     Semantic rule: &lt;expr>.actual_type <- 
+                          if &lt;var>[2].actual_type == int) and
+                             &lt;var>[3].actual_type == int)
+                          then int else real        (synthesized)
+
+     <b>Predicate:</b> &lt;expr>.actual_type == &lt;expr>.expected_type
+
+  3. Syntax rule:  &lt;expr> -> &lt;var>
+     Semantic rule: &lt;expr>.actual_type <- &lt;var>.actual_type 
+
+     <b>Predicate:</b> &lt;expr>.actual_type == &lt;expr>.expected_type
+
+  4. Syntax rule:  &lt;var> -> A | B | C 
+
+     Semantic rule: &lt;var>.actual_type <- lookup (&lt;var>.string)
+
+         <b>The parse tree for A = B + C</b>
+
+                      &lt;assign>
+                        /         \    
+                  &lt;var>  =    &lt;expr>
+             .actual_type      .actual_type 
+                  |               .expected_type
+                  A               /           \    
+                            &lt;var>   +     &lt;var>
+                          .actual_type    .actual_type
+                              |                   |
+                              B                   C 
+
+        <b>The parse tree for A = C</b>
+                      &lt;assign>
+                      /           \  
+                  &lt;var>  =  &lt;expr>
+             .actual_type   .actual_type 
+                  |            .expected_type
+                  B             |    
+                             &lt;var>   
+                             .actual_type  
+                               |      
+                               C     
+Assume:
+   int A, B; real C
+   A = B + C
+   B = C 
+   What happens?
+</pre>
+* <b>How are attribute values computed?</b>
+<p>
+  Initially, there are only intrinsic attributes on the leaves...
+
+<pre>
+  1. &lt;var>.actual_type <- look-up(A)     (Rule 4) 
+  2. &lt;expr>.expected_type  <- &lt;var>.actual_type (Rule 1)
+
+  3. &lt;var>[2].actual_type  <- lookup (A)   (Rule 4)
+     &lt;var>[3].actual_type  <- lookup (B)   (Rule 4)
+  4. &lt;var>[1].actual_type <- either int or real (Rule 2) 
+
+  5. &lt;expr>.expected_type == &lt;expr>.actual_type is either TRUE or FALSE 
+
+</pre>
+<a href="example03b.txt">Another Example</a>
+<hr>
+<span style="background-color: yellow"> Everything below is optional.
+
+ If you are considering graduate school you may want to review this material
+  -- we will not cover it in class.
+ </span>
+
+<h3>Describing the Meaning of Programs: Dynamic Semantics</h3>
+<p>
+   Dynamic semantics is strictly concerned with
+ the behavior of a running program.
+   There is no single widely acceptable notation or formalism for 
+   dynamic semantics.
+   There are three primary methods: Operation, Axiomatic, Denotational. 
+
+<h4> Axiomatic Semantics </h4> 
+<a name="axiomatic"></a>
+<!-- <a href="#top">top</a> -->
+<p>
+  <u>Axiomatic Semantics</u>, which is based on formal logic, was designed
+  as a means of formal program verification. The "view of a system" is 
+  essentially a set of invariants (assertions) that hold or don't hold 
+  throughout program execution. The meaning of a program is ultimately whether 
+  the program is correct (all assertions hold) or not correct (at least 
+  assertion fails). The set of predefined assertions (invariants) may be 
+  deliberately selected to prove whatever is desired. 
+<p>
+ To prove the "correctness" of a programming language...
+<p>
+  Axioms and inference rules must be defined for each statement type 
+ in the language
+<p>
+  An axiom is a logical statement that is taken to be true. 
+<p>
+ An inference rule is a way of  describing a transformation from one 
+ assertion to the next.
+<p>
+  An assertion before a statement (a precondition) states the relationships 
+  and constraints among variables that are true at that point in execution
+ 
+<p>
+  An assertion following a statement is a postcondition
+  
+<p>
+  A weakest precondition is the least restrictive precondition that will 
+  guarantee the postcondition
+<p>
+  Axiomatic Semantics Form:
+<pre>
+     {P} statement {Q}, 
+</pre>
+where {P} is the 
+      pre-condition and {Q} is the post-condition
+<p>
+  An example:
+<p>
+
+  a = b + 1  {a > 1}
+<p>
+
+  One possible precondition: {b > 10}
+  Weakest precondition:      {b > 0}
+<p>
+<b>Start by building an axiomatic semantics for assignment statements ...</b>
+<p>
+    An axiom for assignment statements:
+
+<p>
+    Let x = E denote an assignment statement
+<p>
+    {P} x = E {Q}
+<p>
+
+    The precondition is defined by the axiom:
+<p>
+
+    P = Q<sub>x->E</sub>
+<p>
+
+  Which means P is computed as Q with all instances of x in Q replaced by E.
+   Example:
+<pre>
+        x = b / 2  {x < 5} 
+
+      b / 2 < 5
+      b < 5 * 2
+      P = {b < 10}   <=this is the weakest precondition
+</pre>
+    
+    Thus, the axiom for (x = E) is: 
+<p>
+    {Q<sub>x->E</sub>} x = E {Q}
+<p>
+ Next you need inference rules to prove the correctness of sequences of statements.
+<p>
+  1. The Rule of Consequence (where '=>' is "implies" and 'S' is "statement")
+ 
+<pre>
+      {P} S {Q}, P' => P, Q => Q'   <= antecedent
+      --------------------------
+            {P'} S {Q'}             <= consequence
+    
+ </pre> 
+       example:
+<pre>
+       {P}  x > 5       {Q} x > 5 
+       {P'} x > 10      {Q} x > 5  (still true)
+
+       {P} x > 5       {Q}  x > 5 
+       {P} x > 5       {Q'} x > 0  (still true)
+ 
+</pre>
+    This shows that a precondition can always be strengthened and a 
+    postconditon can always be weakened!
+<p>
+   2. An Inference Rule for Sequences:
+<pre>
+       {P1} S1 {P2}
+       {P2} S2 {P3}
+
+       {P1} S1 {P2}, {P2} S2 {P3}
+       --------------------------
+           {P1} S1; S2 {P3}         <= relies on the Rule of Consequence
+</pre>
+   3. An inference rule for logical pretest loops (while loops)
+<pre>
+           {P} while B do S end {Q}
+
+
+                (I and B) S {I}
+         ------------------------------------
+          {I} while B do S end {I and (not B)}
+
+   where I is the loop <b>I</b>nvariant and must meet the following conditions:
+   
+   P => I               - the loop invariant must be true initially
+  {I} B {I}             - evaluation of Boolean must not change validity of I
+  {I and B} S {I}       - I is not changed by executing statements in the loop
+  (I and (not B)) => Q  - if I is true and B is false, Q is implied
+</pre>
+  The loop terminates when (not B) is true
+<p>
+  The loop invariant <b>I</b> is a weakened version of the loop 
+  postcondition, and also a precondition.
+<p>
+<b>I</b> must be weak enough to be satisfied prior to the beginning of 
+the loop, but when combined with the loop exit condition, it must be 
+strong enough to force the truth of the postcondition
+<p>
+<b>Another example...</b> <p>
+<p>
+The rules and axioms above can be used to define a rule for a repeat command.
+<pre>
+      { P } repeat C until B { Q and B }
+</pre>
+   "repeat C until B" is operationally equivalent to:
+<pre>
+      C; while (not B) do C end while
+</pre>
+   Making use of this fact, the proof rule for a repeat until is a
+   combination of the rules for a sequence and a while loop:
+<pre>
+       { P } C { Q }, { Q and (not B) } C { Q }
+      -----------------------------------------
+        { P } repeat C until B { Q and B }
+</pre>
+
+   The loop invariant is Q, which is the postcondition of C.
+<p>
+<i>In similar fashion, an axiomatic semantics can be defined for 
+ all constructs in the language!</i>
+<p>
+<b>Program Proof Process </b>
+<p>
+    The postcondition for the entire program is the desired result
+<p>
+ Work back through the program to the first statement.  If the precondition 
+ on the first statement is the same as the program specification, the 
+ program is correct.
+<p>
+ <b>Evaluation of Axiomatic Semantics</b>
+<p>
+  A good tool for correctness proofs and for reasoning about compact programs
+<p>
+  Developing axioms or inference rules for all statements in a language 
+  is difficult
+<p>
+  A 2006 article in Scientific American discusses Alloy, a tool based on 
+  axiomatic semantics, that can verify the safety of a cancer therapy machine. 
+<p>
+
+  For language users or compiler writers - usefulness in describing the 
+   meaning of an entire programming language is limited 
+
+<h4>Operational Semantics </h4>
+
+  An operational semantics is a formal (mathematical) or an informal model of 
+  the behavior of a programming language at execution. 
+<p>
+  The goal of an operational semantics is to precisely define the *behavior* of 
+  a language; i.e., how the interpreter should work.
+<p>
+
+  An operational semantics of a programming language can be used during the 
+  design process of the language or during the process of writing a compiler 
+  or interpreter. 
+
+<p>
+  The first formal operational semantics was <a href="http://en.wikipedia.org/wiki/Lambda_calculus">Lambda Calculus</a> (<a href="./curry.txt">reduction example</a>)
+
+<p>
+  Operational semantics can be implemented as an interpreter on an actual or on
+  a simulated machine. 
+<p>
+
+  The change in the state of the machine (memory, registers, etc.) defines 
+  the meaning of the statement
+
+<p>
+  A hardware pure interpreter would be too expensive
+<p>
+
+  A software pure interpreter also has problems:
+     -detailed characteristics of the particular computer would make actions 
+        difficult to understand
+     -Such a semantic definition would be machine-dependent
+<p>
+  
+  A better alternative: A complete computer simulation
+<p>
+
+  <b>The process:</b>
+<p>
+
+  Build a translator (translates source code to the machine code of an 
+  idealized computer)
+<p>
+
+  Build a simulator for the idealized computer
+<p>
+
+  To use operational semantics for a high-level language, use a virtual machine 
+  
+<p>
+  <b>Evaluation of operational semantics: </b>
+<p>
+
+  Good if used informally (language manuals, etc.)
+
+<p>
+  Extremely complex if used formally (e.g., VDL), it was used for describing 
+     semantics of PL/I (which is nearly dead).
+ 
+<p>
+  <b>Example:</b>
+
+<p>
+  An informal example using virtual machine instructions to describe the 
+  operational semantics (pp. 149):
+<pre>
+  <i>C for Statement                    Virtual machine instructions  </i>
+                                              
+  for ( expr1; expr2; expr3) {                expr1;
+      ....                              loop: if expr2 == 0 goto out
+  }                                            ...
+                                              expr3;
+                                              goto loop
+                                        out:  ...    
+
+  * assume (expr2 == 0) means expr2 is false 
+
+
+  <i>Fortran Do Statement                  Virtual machine instructions  </i>
+             
+  do i = start, end, step                         i = start 
+      ...                                   loop: if  i > end goto out  
+  end do                                          i = i + step 
+                                                  goto loop
+                                            out:
+</pre>
+
+<h4> Denotational Semantics </h4>
+
+  Concerned with semantics, assumes syntax and static semantics has been 
+  verified elsewhere
+<p>
+  Based on recursive function theory
+
+<p>
+  The most abstract semantics description method
+<p>
+
+  Originally developed by Scott and Strachey (1970)
+<p>
+
+  The process of building a denotational specification for a language 
+<p>
+
+  Define a mathematical object for each language entity
+
+<p>
+  Define a function that maps instances of the language entities onto 
+  instances of the corresponding mathematical objects.
+<p>
+
+  The meaning of language constructs are defined by only the values of 
+  the program's variables.
+
+<p>
+  <b>Denotational Semantics vs. Operational Semantics </b>
+
+<p>
+  In operational semantics, the state changes are defined by coded algorithms.
+<p>
+  
+  In denotational semantics, the state changes are defined by rigorous 
+      mathematical functions.
+
+<p>
+  The components of a denotational specification:
+<pre>
+  (1) Syntactic categories and abstract production rules (enough to identify
+      syntactic constructs -- not to parse them)
+  (2) Semantic domains -- sets of mathematical objects
+      A -> B is the set of functions with domain A and codomain B
+  (3) Semantic functions to map objects of syntactic world to objects in 
+      semantic world; e.g. &lt;bin_num> -> <b>N</b> is a function that maps
+      the syntactic category &lt;bin_num> to the set of nonnegative decimal 
+      integers. 
+  </pre>   
+  Note: The subscripts in the examples of denotational semantics are used
+  to identify a particular mapping function; e.g., M<sub>dec</sub> refers to the mapping 
+  function for decimal numbers; e.g.  M<sub>dec</sub>( &lt;dec_num> -> N ), which maps from 
+  the abstract domain of &lt;dec_num> to the real domain of integers. </i>
+<p> 
+  <b>Denotational Semantics: Program State </b>
+<p>
+  The state of a program <b>s</b> is the values of all its current variables.
+  <b>s</b> is a set of ordered pairs, where i is the name of a variable and v 
+  is its current value:
+<p>
+
+   s = {&lt;i<sub>1</sub>, v<sub>1</sub>>, &lt;i<sub>2</sub>, v<sub>2</sub>> . . . , &lt;i<sub>n</sub>, v<sub>n</sub>>}
+
+<p>
+  Let VARMAP be a function that, when given a variable name and a state, 
+       returns the current value of the variable
+<p>
+
+  VARMAP(i<sub>j</sub>, s) = v<sub>j</sub>
+<p>
+
+  <b>Example 1:</b> <b>Decimal Numbers</b>
+<pre>
+
+  The syntax:
+  &lt;dec_num> ->   0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+                 | &lt;dec_num> (0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9)
+
+
+  Denotational mappings, from &lt;dec_num> -> <b>N</b>, for above rules:
+ 
+  M<sub>dec</sub>('0') = 0,  M<sub>dec</sub>('1') = 1, . . . , M<sub>dec</sub>('9') = 9
+  M<sub>dec</sub>(&lt;dec_num> '0') = 10 * M<sub>dec</sub> (&lt;dec_num>)
+  M<sub>dec</sub>(&lt;dec_num> '1) = 10 * M<sub>dec</sub> (&lt;dec_num>) + 1
+  . . .
+  M<sub>dec</sub> (&lt;dec_num> '9') = 10 * M<sub>dec</sub> (&lt;dec_num>) + 9
+
+</pre>
+<b>Example 2: Expressions </b>
+<p>
+  Syntactic component:
+
+<pre>
+  &lt;expr> -> &lt;dec_num> | &lt;var> &lt;binary_expr>
+  &lt;binary_expr> -> &lt;left_expr> &lt;op> &lt;right_expr> 
+  &lt;left_expr> -> &lt;dec_num> | &lt;var> 
+  &lt;right_expr> -> &lt;dec_num> | &lt;var> 
+  &lt;op> ->  + | * 
+</pre>
+  Expressions are decimal numbers, variables, or binary expressions having one 
+  arithmetic operator and two operands, each of which can be an expression; e.g.
+  786, NUM, A + 3, 768 * A + B
+<p>
+  Map expressions onto N &cup; {error}, were N is the set of integers and
+  {error} is an error value (in this case undefined)
+<p>
+  &Delta;= denotes the definition of a mathematical function
+  <b>.</b> (dot) refers to the child nodes of a node.
+<p>
+  The mapping function for expression <b>E</b> and state s:
+<pre>
+  M<sub>e</sub>(&lt;expr>, s) &Delta=
+      case &lt;expr> of
+        &lt;dec_num> => M<sub>dec</sub>(&lt;dec_num>, s)
+        &lt;var> => 
+             if VARMAP(&lt;var>, s) == undef
+                  then error
+                  else VARMAP(&lt;var>, s)
+       &lt;binary_expr> => 
+            if (M<sub>e</sub>(&lt;binary_expr>.&lt;left_expr>, s) == undef
+                  OR Me(&lt;binary_expr>.&lt;right_expr>, s) == undef)
+                 then error
+            else
+            if (&lt;binary_expr>.&lt;operator> == + then
+                 M<sub>e</sub>(&lt;binary_expr>.&lt;left_expr>, s) + 
+                 M<sub>e</sub>(&lt;binary_expr>.&lt;right_expr>, s)
+            else M<sub>e</sub>(&lt;binary_expr>.&lt;left_expr>, s) * 
+                 M<sub>e</sub>(&lt;binary_expr>.&lt;right_expr>, s)
+</pre>
+
+ <b>Example 3: Assignment Statements</b>
+<p>
+  An expression (as defined above) is denoted by <b>E</b>
+  The state is denoted by s
+  := denotes the assignment operator
+  Maps a state to a state
+<pre>
+  M<sub>a</sub>(x := E, s) &Delta;=
+      if M<sub>e</sub>(E, s) == error
+         then error
+      else s' = {&lt;i'<sub>1</sub>,v'<sub>1</sub>>,&lt;i'<sub>2</sub>,v'<sub>2</sub>>,...,&lt;i'<sub>n</sub>,v'<sub>n</sub>>}, where 
+             for j = 1, 2, ..., n, v'<sub>j</sub> = VARMAP(i<sub>j</sub>, s) if i<sub>j</sub> != x;
+              M<sub>e</sub>(E, s) if i<sub>j</sub> == x
+</pre>
+  notes: i<sub>j</sub> and x refer to variable names, not values
+         s' is the state that is mapped from state s after the assignment
+         operation x = E.
+<p>
+  <b>Example 4: Logical Pretest Loops (while loops)</b>
+<pre>
+  Assume:
+  M<sub>sl</sub>(statement lists -> states)
+  M<sub>b</sub>(Boolean expressions -> Boolean values)
+
+   M<sub>l</sub>(state sets -> state sets)
+
+   M<sub>l</sub>(while B do L, s) &Delta;= 
+      if M<sub>b</sub>(B, s) == undef
+          then error
+          else if M<sub>b</sub>(B, s) == false
+              then s
+              else if M<sub>sl</sub>(L, s) == error
+                    then error
+                    else M<sub>l</sub>(while B do L, M<sub>sl</sub>(L, s))
+</pre>
+  <b>Loop Meaning</b>
+<p>
+  The meaning of the loop is the value of the program variables after the 
+  statements in the loop have been executed the prescribed number of times, 
+  assuming there have been no errors.
+<p>
+
+  In essence, the loop has been converted from iteration to recursion, where 
+  the recursive control is mathematically defined by other recursive state 
+  mapping functions
+<p>
+ 
+  Recursion, when compared to iteration, is easier to describe with 
+  mathematical rigor
+
+
+<p>
+<b>  Evaluation of Denotational Semantics</b>
+
+<p>
+  * Can be used to prove the correctness of programs
+<p>
+
+  * Provides a rigorous way to think about programs
+
+<p>
+  * Can be an aid to language design
+
+<p>
+  * Has been used in compiler generation systems 
+
+<p>
+  * Because of its complexity, they are of little use to language users
+<a href="#top">top</a>
+
+</body>
+</html>

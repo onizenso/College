@@ -1,0 +1,177 @@
+                            DATA TYPES FAQ
+
+1. How is the 'int' data type implemented in C/C++? How is a negative integer 
+   stored in this implementation?
+
+   Type 'int' is implemented in C as 4 bytes ; see sizeof(int);
+
+   A negative integer is the two's complement of the positive integer. In
+   two's complement you flip all bits and add 1 to the result.
+ 
+2. Compare Perl's method of handling a character string data type with that
+   of C.
+
+   In C, strings are arrays of chars and not a scalar type. Strings in C 
+   have a fixed maximum size with the actual end marked by the null character;
+   i.e., dynamic w/i a fixed size. Manipulation functions are in string.h 
+
+   Strings in Perl are dynamic length scalar types, with no limit.  This
+   requires the overhead of dynamic storage allocation and deallocation. 
+   Perl also has built-in functions for strings such as pattern matching
+   through regular expressions.
+
+3. Define ordinal, enumeration and subrange types.
+
+   An ordinal type is a type in which the range of possible values can be 
+   easily associated with ordinal numbers; i.e., the set of positive integers 
+   ex. int, char, boolean. (ordinal numbers have order and are countable; real 
+   numbers are not countable)
+
+   An enumeration type is an ordinal type in which all possible values are 
+   named constants and provided in the definition. ex. enum days {mon,tue,wed};
+
+   A subrange type is a contiguous subsequence of an ordinal type, ex. 
+   (12..14) is a subrange of integer type.
+
+4. Define static, fixed stack-dynamic, stack-dynamic, fixed heap-dynamic, and
+   heap-dynamic arrays.
+
+   In a static array the subscript range are statically bound and storage 
+   allocation is static (done before runtime).
+
+   In fixed stack-dynamic the subscript ranges are statically bound, but the 
+   allocation is done at declaration elaboration time during execution
+
+   In stack-dynamic the subscript ranges are dynamically bound and the storage 
+   allocation is dynamic
+
+   In fixed heap-dynamic the subscript ranges are dynamically bound and the 
+   storage binding is dynamic
+
+   In heap-dynamic the binding of subscript ranges and storage allocation is 
+   dynamic.
+
+5. Define associative array.
+
+   An unordered collection of data elements that is indexed by keys and not 
+   by position.
+
+6. Define the term aggregate constant.
+
+   An aggregate constant is a set of constants. They are used to initialize 
+   arrays; e.g. int list [] = {4, 5, 7, 83}    
+
+7. Define row major order and column major order.
+
+   This pertains only to multi-dimensional arrays. In row major order the array
+   is ordered by rows before columns. Column major order is the reverse.
+
+                  1 2 3 
+                  4 5 6 
+                  7 8 9 
+
+    Row Major: 1 2 3 4 5 6 7 8 9 
+    Col Major: 1 4 7 2 5 8 3 6 9
+
+8. Define union, free union, and discriminated union.
+
+   A Union is a type that may store different type values at different times 
+   during program execution (only one at a time).
+
+   A free union is one without type checking.
+
+   A discriminated union enforces type checking using a tag (type indicator).
+
+9. Name two common problems with pointers and a third possible problem.   
+
+   Memory leaks and dangling pointers are two common problems. A possible 
+   problem is cross-linked pointers. This is a *possible* problem since in
+   some cases you may want two pointers referencing the same memory location.
+
+10. What are reference variables in C++. Are reference variables better than 
+    pointers? Is there any disadvantage?
+
+    A reference variable is an implicit pointer but you never see the address. 
+    Reference variables are safer than pointers because you can never change
+    the pointer address incorrectly (dangling pointer) or deallocate memory
+    incorrectly (leak). Reference variables are aliases that are implicitly 
+    dereferenced and assigned. The disadvantage is no direct access into memory.
+
+11. Describe lazy and eager garbage collection.
+
+    Eager garbage collection uses reference counters, and reclamation is done
+    in stages throughout program execution. Lazy garbage collection is 
+    reclamation that occurs only when the list of variable space is completely 
+    empty.
+
+12. What is the tombstone method of avoiding dangling pointers?
+
+    In the tombstone method every heap-dynamic variable includes a special
+    cell, called a tombstone, that is itself a pointer to the heap-dynamic
+    variable. The actual pointer variable points only at the tombstone and 
+    never to heap-dynamic variables.  When a heap-dynamic variable is 
+    deallocated, the tombsone remains but is set to nil, indicating that the 
+    heap-dynamic variable no longer exist. This is explicitly enforcing what
+    good programmers should do anyway, which is to set all pointers to null
+    after deallocation.
+
+12. What is the locks-and-keys method of avoiding dangling pointers?
+
+    The locks-and-keys method of avoiding dangling pointers is where pointer 
+    values are represented as ordered pairs (key,address), key is an integer 
+    value. Heap-dynamic variables are represented as the storage for the 
+    variable plus a header call that stores an integer lock value. When a 
+    heap-dynamic variable is allocated, a lock value is created and placed 
+    both in the lock cell of the heap-dynamic variable and in the key cell of 
+    the pointer that is specified in the call new. A call to the dereference 
+    pointer requires a comparison between the lock and key.  If they match,
+    access is allowed, else run-time error.
+
+
+13. Name a disadvantage of implicit dereferencing of pointers.
+
+    You lose the ability to control whether you are accessing a memory address
+    or a value; e.g. you lose low-level access into memory. Double pointers 
+    are also not possible, which allows the ability to explicitly move 
+    pointers around without changing values (often more efficient).
+
+    Ex. 
+    There is no implicit dereferencing of pointers in C/C++ (array names are
+    a fuzzy exception). Implicit dereferencing is for reference types only, 
+    which are strictly aliases. 
+
+14. What is the purpose of the -> operator in C/C++?
+
+    assume px->name
+
+    The -> operator provides a clear way of indicating that you are most
+    likely accessing memory from the heap and, more importantly, that px is 
+    a pointer. The '->' operator automatically dereferences the pointer. 
+
+15. What is the difference between the union type and the record type in C?
+    
+    A record type in C (structure) consolidates a fixed number of heterogenous 
+    data types and holds multiple values.
+
+    A union holds a single member that may be different types at different 
+    times.
+
+16. Write code to declare a 2x3x4 array of ints in C. Write a loop to
+    initialize each cell in the cube with its offset into the array. Recall 
+    that C stores 3-dimensional arrays in row-column-depth order.
+
+ /* 3-dimen arrays are in x,y,z order; e.g. row,col,depth */ 
+  int cube[2][3][4];
+  int x,y,z;
+  printf("2x3x4 dimensional array:\n");
+  for ( x = 0; x < 2; x++ ) 
+     for ( y = 0; y < 3; y++ )  {
+        for ( z = 0; z < 4; z ++ ) { 
+            // insert the offset as the value into the cube 
+           cube[x][y][z] = (x*(3*4))+(4*y)+ z;
+           printf("%4d ", cube[x][y][z]);
+        }
+        printf("\n");
+      }
+   printf("\n");
+

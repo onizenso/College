@@ -1,0 +1,4 @@
+ file:hw06.cpp ,function:main ,line:13 start of logging
+ file:string_map.cpp ,function:string_map ,line:97 create new array
+ file:string_map.cpp ,function:string_map ,line:99 copy capacity and position
+ file:string_map.cpp ,function:string_map ,line:104 copying the array over

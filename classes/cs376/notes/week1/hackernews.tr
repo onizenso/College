@@ -1,0 +1,13 @@
+traceroute to news.ycombinator.com (198.41.190.47), 30 hops max, 60 byte packets
+ 1  136.168.201.1 (136.168.201.1)  0.290 ms  0.271 ms  0.299 ms
+ 2  bak-11-r100a-fw0fw1eth1p2.csub.edu (136.168.249.1)  1.147 ms  1.133 ms  1.107 ms
+ 3  bak-11-r100a-rt0gig0p0.csub.edu (136.168.248.1)  1.090 ms  1.073 ms  1.053 ms
+ 4  dc-bak-dc2--bak-csu-egm.cenic.net (137.164.41.129)  1.619 ms  1.607 ms  1.587 ms
+ 5  dc-riv-core1--bak-agg2-1.cenic.net (137.164.46.246)  9.526 ms  9.609 ms  9.584 ms
+ 6  dc-lax-core1--riv-core1-10ge-2.cenic.net (137.164.46.57)  9.993 ms  11.058 ms  11.031 ms
+ 7  dc-lax-px1--lax-core1-10ge-2.cenic.net (137.164.46.151)  6.788 ms  6.616 ms  6.558 ms
+ 8  xe-9-2-0.0.lsan0.tr-cps.internet2.edu (64.57.20.226)  6.698 ms  6.728 ms  6.765 ms
+ 9  equinix.xe-0-3-0.cr1.lax1.us.nlayer.net (206.223.123.61)  7.982 ms  7.973 ms  7.959 ms
+10  ae1-50g.ar1.lax1.us.nlayer.net (69.31.127.138)  8.890 ms  8.876 ms ae2-50g.ar1.lax1.us.nlayer.net (69.31.127.142)  8.762 ms
+11  as13335.xe-11-0-6.ar1.lax1.us.nlayer.net (69.31.125.106)  8.677 ms as13335.xe-12-0-3.ar1.lax1.us.nlayer.net (69.31.124.118)  8.663 ms as13335.xe-9-0-7.ar1.lax1.us.nlayer.net (69.31.127.62)  8.196 ms
+12  198.41.190.47 (198.41.190.47)  7.829 ms  7.493 ms  7.390 ms

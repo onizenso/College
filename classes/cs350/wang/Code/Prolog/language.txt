@@ -1,0 +1,97 @@
+Examples taken from:
+
+Formal Syntax and Semantics of Programming Languages by Kenneth Slonneger
+
+Ch 2.2 LOGIC GRAMMARS
+
+BNF Grammar:
+<sentence> ::= <noun phrase> <verb phrase> .
+<noun phrase> ::= <determiner> <noun>
+<verb phrase> ::= <verb> | <verb> <noun phrase>
+<determiner> ::= a | the
+<noun> ::= boy | girl | cat | telescope | song | feather
+<verb> ::= saw | touched | surprised | sang
+
+Given a string from the language, say "the girl sang a song", we want
+Prolog to determine whether the string is a valid sentence or not. 
+
+Most implementations of Prolog have a preprocessor that translates BNF-type 
+grammar rules into regular Prolog clauses using the infix operator '-->'.
+This allows the recognition of BNF specified languages. E.g.
+
+PROLOG LOGIC GRAMMAR 
+sentence --> nounPhrase, predicate, ['.'].
+nounPhrase --> determiner, noun.
+predicate --> verb, nounPhrase.
+predicate --> verb.
+determiner --> [a].
+determiner --> [the].
+noun --> [boy] ; [girl] ; [cat] ; [telescope] ; [song] ; [feather].
+verb --> [saw] ; [touched] ; [surprised] ; [sang].
+
+Prolog queries can now identify whether a sentence is valid (note the
+syntax of the query includes a null string):
+
+%  | ?- nounPhrase(X,[the,boy,and,the,girl],[]).
+%   true ?
+%   yes
+
+%   an illegal noun phrase:
+%   | ?- nounPhrase(X,[the,boy,and],[]).
+%   no
+
+
+
+It is also nice to have Prolog parse a string. Prolog first produces
+a list structure, which is equivalent to a parse tree in linear form:
+
+sent(nounph(det(the), noun(girl)), pred(verb(sang), nounph(det(a),noun(song)))).
+
+
+                    sent
+               /            \
+          nounph              pred  .
+         /     \              /     \
+       det     noun        verb     nounph
+     /          \           /        /    \
+  the           girl      sang     det    noun
+                                    /       \
+                                   a        song
+
+
+
+This requires the use of parameters in the Prolog Grammar. The next grammar
+looks like this:
+
+% logic grammar with parameters
+nounPhrase( NP ) --> determiner(D), noun(N).
+nounPhrase( NP ) --> determiner(D), noun(N), [and], nounPhrase(T).
+determiner(det(the)) --> [the].
+determiner(det(a)) --> [a].
+noun(noun(boy)) --> [boy].
+noun(noun(boy)) --> [girl].
+
+% This grammar will generate an infinite number of sentences as shown by
+% this query (which I stopped after 12 matches):
+%   | ?- nounPhrase(X,Y,[]).
+%   X = [the,boy] ? ;
+%   X = [the,girl] ? ;
+%   X = [a,boy] ? ;
+%   X = [a,girl] ? ;
+%   X = [the,boy,and,the,boy] ? ;
+%   X = [the,boy,and,the,girl] ? ;
+%   X = [the,boy,and,a,boy] ? ;
+%   X = [the,boy,and,a,girl] ? ;
+%   X = [the,boy,and,the,boy,and,the,boy] ? ;
+%   X = [the,boy,and,the,boy,and,the,girl] ? ;
+%   X = [the,boy,and,the,boy,and,a,boy] ?.
+%   etc. 
+
+It is also possible to add constraint rules to a grammar (static semantics)
+with the use of predicates enclosed in curly braces (see language2.pl):
+ 
+% <low tens> ::= <empty> | X <low tens>; where x's <= 3
+lowtens(LTC) --> [x], lowtens(LTC1), {LTC is LTC1 + 1, LTC =< 3}.
+lowtens(0) --> [].
+
+

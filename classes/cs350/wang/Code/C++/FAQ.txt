@@ -1,0 +1,58 @@
+Exception Handling in C++ FAQ
+
+Q:    What is exception handling and what is its purpose?
+
+A:    Exception handling allows a programmer to control program flow after 
+      an error condition occurs at runtime. The general idea is to avoid 
+      program crashes that leave no indication of why the crash occurred.
+
+Q:    How is exception handling provided in C++?
+
+A:    The mechanism for exception handling uses try, catch and throw operators. 
+      The try operator defines an area in which exceptions will be monitored,
+      throw sends the exception object to a catch routine that will handle it.
+ 
+      C++ provides several pre-defined exception classes. Exception is the base
+      class for all exceptions thrown by the standard library. Exception classes
+      are also defined in new, stdexcept, iosbase, and typeinfo.
+
+      It is also possible to create user-defined exception classes that use 
+      the try, catch and throw operators.
+ 
+Q:    Describe the program flow when an error exception is thrown.
+
+A:    If the exception is thrown in a try block, execution is passed to
+      the mandatory catch block within the same function. There cannot be any 
+      code between the throw and the catch. All code within the catch block 
+      is executed unless the exception is thrown again. In this case the 
+      function stack is unwound until a catch is found for the exception. 
+      If no catch is found the program is aborted with a 10T/Abort message. 
+      If the catch does not re-throw the exception, program execution 
+      continues as normal after the catch routine.
+
+Q:    Should you rethrow an exception that is caught in main?
+
+A:    No. It makes no sense to re-thrown an exception in main. It will
+      also give you a 10T/IO core dump.
+
+Q:    What system info can I use in my user defined exception classes?
+
+A:    The global environment variables are compiler specific. There are
+      three that gcc provides that will be most useful:
+
+       __FILE__               const char *
+      the filename in which the error occurred
+
+       __LINE__              unsigned
+      the line number in which the error occurred
+
+       __FUNCTION__               const char *
+      the function in which the error occurred
+
+ 
+Q: When might it make sense to NOT throw an exception back to the calling
+   routine?
+
+A: You may want to handle non-critical errors locally and continue
+   executing the code. Tossing the error immediately back to the calling
+   routine is generally reserved for critical errors.

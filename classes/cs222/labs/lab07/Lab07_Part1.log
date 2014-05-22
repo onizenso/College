@@ -1,0 +1,14 @@
+ file:Lab07_Part2.cpp ,function:main ,line:70 start of logging
+ file:Lab07_Part2.cpp ,function:PrintUnionPet ,line:51 start of function
+ file:Lab07_Part2.cpp ,function:main ,line:83 setting Dipstick.age
+ file:Lab07_Part2.cpp ,function:GetRandomAge ,line:45 start of function
+ file:Lab07_Part2.cpp ,function:PrintUnionPet ,line:51 start of function
+ file:Lab07_Part2.cpp ,function:main ,line:87 setting Dipstick.type
+ file:Lab07_Part2.cpp ,function:SetRandomType ,line:28 start of function
+ file:Lab07_Part2.cpp ,function:PrintUnionPet ,line:51 start of function
+ file:Lab07_Part2.cpp ,function:main ,line:91 setting Dipstick.name
+ file:Lab07_Part2.cpp ,function:SetRandomName ,line:19 start of function
+ file:Lab07_Part2.cpp ,function:PrintUnionPet ,line:51 start of function
+ file:Lab07_Part2.cpp ,function:main ,line:95 setting Dipstick.gender
+ file:Lab07_Part2.cpp ,function:GetRandomGender ,line:37 start of function
+ file:Lab07_Part2.cpp ,function:PrintUnionPet ,line:51 start of function

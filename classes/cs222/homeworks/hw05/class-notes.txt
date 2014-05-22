@@ -1,0 +1,82 @@
+class animal
+{
+Private:
+int legs;
+int toes;
+int fingers;
+bool feathers;
+bool egglayer;
+
+Public:
+string name;
+void SetLegs(int in)
+{
+  if ( in < 0)
+	legs = 0;
+  else if ( in > 100 )
+	legs = 100;
+  else
+	legs = in;
+}
+};
+
+int mark()
+{
+animal a,b,c;
+a.legs =2
+b.legs =4;
+c.legs =100;
+b.name = "bobcat";
+a.legs = -2;
+
+return 0;
+}
+
+three cases:
+public
+private
+protected
+
+don't forget the semicolon after class definition!!!
+
+stack.h
+
+class superstack
+{
+	Private:
+	int * data;
+	int capacity;
+	int count;
+	
+	Public:
+	superstack ();
+	superstack (int cap);
+	void Add (int input);
+	~superstack();
+};
+
+Constructor:
+superstack::superstack()
+{
+	data = new int[20];
+	capacity = 20;
+	count = 20;
+}
+superstack::superstack(int cap)
+{
+	count++;
+	capacity = cap;
+	data = new int[200];
+}
+
+Destructor:
+superstack::~superstack()
+{
+	delete [] data;
+}
+
+int main()
+{
+	superstack x;
+	int temp;
+}	

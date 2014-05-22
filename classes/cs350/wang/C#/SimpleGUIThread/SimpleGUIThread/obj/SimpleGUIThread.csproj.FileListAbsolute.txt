@@ -1,0 +1,8 @@
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\ResolveAssemblyReference.cache
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\SimpleGUIThread.Form1.resources
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\SimpleGUIThread.Properties.Resources.resources
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\SimpleGUIThread.csproj.GenerateResource.Cache
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\bin\Debug\SimpleGUIThread.exe
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\bin\Debug\SimpleGUIThread.pdb
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\SimpleGUIThread.exe
+E:\School Work\Application Programs\Visual Studio .Net 2005\SimpleGUIThread\SimpleGUIThread\obj\Debug\SimpleGUIThread.pdb

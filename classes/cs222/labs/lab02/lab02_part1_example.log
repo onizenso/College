@@ -1,0 +1,23 @@
+ file:lab02_part1.cpp ,function:main ,line:36 start of logging
+ file:lab02_part1.cpp ,function:main ,line:51 start entering int values 
+ file:lab02_part1.cpp ,function:PromptForInt ,line:14 
+ file:lab02_part1.cpp ,function:PromptForInt ,line:14 
+ file:lab02_part1.cpp ,function:PromptForInt ,line:14 
+ file:lab02_part1.cpp ,function:PromptForInt ,line:14 
+ file:lab02_part1.cpp ,function:PromptForInt ,line:14 
+ file:lab02_part1.cpp ,function:main ,line:58 start entering char values 
+ file:lab02_part1.cpp ,function:PromptForChar ,line:21 
+ file:lab02_part1.cpp ,function:PromptForChar ,line:21 
+ file:lab02_part1.cpp ,function:PromptForChar ,line:21 
+ file:lab02_part1.cpp ,function:PromptForChar ,line:21 
+ file:lab02_part1.cpp ,function:PromptForChar ,line:21 
+ file:lab02_part1.cpp ,function:main ,line:68 start dump int array position->0
+ file:lab02_part1.cpp ,function:main ,line:68 start dump int array position->1
+ file:lab02_part1.cpp ,function:main ,line:68 start dump int array position->2
+ file:lab02_part1.cpp ,function:main ,line:68 start dump int array position->3
+ file:lab02_part1.cpp ,function:main ,line:68 start dump int array position->4
+ file:lab02_part1.cpp ,function:main ,line:78 start dump char array position->0
+ file:lab02_part1.cpp ,function:main ,line:78 start dump char array position->1
+ file:lab02_part1.cpp ,function:main ,line:78 start dump char array position->2
+ file:lab02_part1.cpp ,function:main ,line:78 start dump char array position->3
+ file:lab02_part1.cpp ,function:main ,line:78 start dump char array position->4

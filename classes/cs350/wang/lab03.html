@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+
+<TITLE>Lab Assignment 3: CS 350</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FEFDE7" LINK="#FB6A2D" VLINK="#993300" ALINK="#FF6600">
+Computer Science 350 
+<font size=+1> 
+<h3>CMPS 350: lab 03 Introduction to Java</h3>
+<font color=red>Due: before next lab</font>
+<p>
+Goal: Write, compile and execute entry-level Java programs 
+</p>
+<p>
+<table border=1 bgcolor="white"><tr><td>
+<b>resources:</b><br>
+<a href="http://www.tutorialspoint.com/references.htm">developer's references</a><br>
+<a href="http://www.rosettacode.org/wiki/Category:Java">Rosetta Code</a><br/>
+<a href="./Code/Java">sample code</a><br>
+<a href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">Java Language Specification (3rd edition)</a><br>
+<a href="http://java.sun.com/docs/books/jls/third_edition/html/lexical.html#95413">Java Lexical Structure</a> (ch. 3 of Java Language Specification)<br>
+<a href="http://java.sun.com/j2se/1.5.0/docs/api/java/io/PrintStream.html">Java
+ PrintStream Class</a> <br>
+<a href="./Code/C/printf.txt">printf manpage</a>
+</td> </tr> </table>
+<p>
+<p>
+ Java code is compiled into <a href="http://en.wikipedia.org/wiki/Bytecode">byte code</a> not *machine code*.
+ Byte code is portable--it is not machine code but it is somewhere between
+ source and machine code.
+ Bytecode is executed by the Java virtual machine on the particular
+ machine. Java, unlike C++, is not a procedural language
+ but is completely object-oriented. That means that no procedure (function)
+ can exist outside a class. Exception handling (unlike C++) is built-in to the 
+ language. That means that exceptions will be thrown without you
+ explicitly coding exception handling in. Finally, (unlike C/C++) there are
+ no pointers in Java. 
+<h3>Step 1.</h3>
+
+
+ If you are on a machine other than sleipnir,
+ follow the instructions in 
+ <a href="./Code/Java/readme.txt">this readme file</a> to set
+  your environment for the correct version of Java. To run your
+ first Java program, copy two
+ files 
+ into your lab03 directory:
+<pre>
+   $ cp /home/fac/donna/public_html/cs350/Code/Java/Test.java .
+   $ cp /home/fac/donna/public_html/cs350/Code/Java/FormatWriteFileApp.java .
+</pre>
+ Follow the instructions in the readme file above
+ to compile and execute the Test class. Do the same with the FormatWriteFileApp
+ class. Everything you need to know to
+ complete this lab is somewhere
+ in Test.java and FormatWriteFileApp.java. 
+
+ 
+<h3>Program I.</h3>
+
+Once you know you can compile and execute the Test class, you can begin
+ working on the CoinToss class. This class will use an existing Coin class
+ and a CoinGame class.
+You are going to add a Java class  to
+ simulate a series of coin tosses. 
+ Copy the Coin and the CoinGame class files into your directory. 
+<pre>
+      cp /home/fac/donna/public_html/cs350/Code/Java/Coin.java .
+      cp /home/fac/donna/public_html/cs350/Code/Java/CoinGame.java .
+</pre>
+ Compile and execute the code. Because the CoinGame class includes the
+ Coin class, compiling the CoinGame class into byte code will 
+ compile the Coin class as well. A sample session is provided below.
+<pre>
+bash-2.03$ javac CoinGame.java
+bash-2.03$ java CoinGame
+Coin 1: Heads   Coin 2: Tails
+Coin 1: Tails   Coin 2: Heads
+Coin 1: Heads   Coin 2: Tails
+Coin 1: Tails   Coin 2: Tails
+Coin 1: Heads   Coin 2: Tails
+Coin 1: Heads   Coin 2: Heads
+Coin 1: Tails   Coin 2: Heads
+Coin 1: Tails   Coin 2: Heads
+And the Winner is:
+Coin #2.
+</pre>
+Next, create a new class named  CoinToss that uses Coin to 
+simulate a series of random tosses. 
+This class is a simplified version of the
+ CoinGame class, so you can start by modifying CoinGame.java. 
+ In particular, you must keep the format of a main function
+ embedded in the outer class.
+
+ Read the number of times to toss the coin
+ from the command line. If the user doesn't enter a command line argument,
+ prompt the user for the number of times to toss the coin. 
+ Your game will display the face of the coin after each toss,
+ and the totals at the end. You do not need to make any changes to
+ the Coin class. 
+ Since Java control structures 
+ <b>(if, for, while, etc.)</b> are identical to C, you will
+ be able to write lots of code without looking at any Java
+ documentation. However, I/O and keywords pertaining to classes
+ are not similar. Look at the Test.java file (which
+ you also copied over) for sample code to read from stdin and write 
+ to stdout. For I/O you must include this line at the top of your file:<pre>
+     import java.io.*;     
+</pre> 
+For more thorough documentation, 
+the <a href="http://java.sun.com/docs/books/jls/third_edition/html/j3TOC.html">Java Language Specification</a> provides a complete listing
+ of the Java language.
+ Sample output of the completed assignment is shown below:
+<pre>
+bash-2.03$ javac CoinToss.java
+bash-2.03$ java CoinToss 10
+Heads
+Tails
+Heads
+Tails
+Tails
+Tails
+Tails
+Heads
+Tails
+Heads
+The number of tosses: 10
+The number of heads: 4
+The number of tails: 6
+</pre>
+<h3>Program II.</h3>
+ Create a Compute class that will 
+ read in <a href="./lab03.txt">this data</a> from an external file, display the data and compute the mean for each column to
+ the screen. Exclude 0 entries from the computation. <i>You can assume that
+ you will have 4 columns in your input file.</i>
+  See Test.java (you should have copied it in Step 1) 
+  for  
+ the syntax necessary to set up a buffered input stream from an external file. 
+ <p>
+ Once you get your array of lines, how do you parse the line into 
+ individual values? In Test.java look for how the 'split' method
+ is used. Split parses a line according to a regular expression into
+ an array of Strings. Then you can process the String objects
+  as you walk through
+  the array. For example, this splits the line
+  by one or more whitespace characters:<pre>
+     String[] line_values = line.split("\\s+");
+    </pre>
+ </p>
+ <p>
+ Sample output:
+<pre>
+
+        Exam1   Exam2   Exam3   Final
+        =====   =====   =====   =====
+        62      78      94      80
+        54      72      74      72
+        64      66      50      64
+        60      78      66      72
+        72      70      72      84
+        66      76      84      80
+        96      86      80      96
+        62      64      70      56
+        96      92      78      84
+        100     74      0       78
+        80      72      56      74
+        74      82      78      94
+        90      82      80      78
+        78      90      92      92
+        60      66      60      74
+        82      96      92      96
+        54      56      68      56
+        =====   ======  ======  ======
+Mean:   73      76      74      78
+</pre>
+
+ Once you have successfully achieved the steps above, add code to write
+ the output to a file (in addition to the screen). Name the
+ file outputFile.txt or something similar. Try to format the output
+ into columns as  shown above.  See FormatWriteFileApp.java (you copied it
+ in Step 1) for help.
+ 
+<p>
+<SPAN STYLE="Background-Color : yellow">
+<b>what to submit for this lab</b>
+</SPAN>
+<p>
+ Tar and send the following files to donna@cs.csub.edu. 
+<pre>
+  CoinToss.java
+  Coin.java
+  Compute.java
+  your input file
+</pre>
+
+</body> 
+</html>

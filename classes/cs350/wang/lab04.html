@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<TITLE>Lab Assignment 4: CS 350</TITLE>
+
+<BODY TEXT="#000000" BGCOLOR="#FEFDE7" LINK="#FB6A2D" VLINK="#993300" ALINK="#FF6600">
+<font size=+1>
+Computer Science 350 
+
+<h3>CMPS 350 Lab 04: Introduction to Prolog</h3>
+<font color=red>Due: next tues, feb 02 2010, 12:20 pm <br> </font>
+<p>
+<b>resources:</b><table border=1 bgcolor="white"><tr><td>
+<a href="http://en.wikibooks.org/wiki/Prolog/Introduction_to_logic">wiki</a><br>
+<a href="http://www.cs.csubak.edu/~donna/cs295/Material/ch01/inference_rules.txt">Inference Rules</a><br>
+<a href="./Code/Prolog/logic.txt">Logical Equivalences</a><br>
+<a href="./Solutions/lab04">solutions</a><br>
+<P >
+</tr></td></table>
+<p>
+<h3>Background</h3>
+Read the <a href="./Code/Prolog/readme.txt">quick guide</a> to Prolog and the 
+ comments in <a href="./Code/Prolog/test.pl.txt">test.pl</a> (propositional
+  logic) and
+  <a href="./Code/Prolog/test2.pl.txt">test2.pl</a> (predicate logic). 
+
+  before beginning the lab. You may also find the overview of the
+ Prolog language in <a href="ch16_notes.txt">ch. 16.4 - 16.6.6</a> of the text
+ helpful.  This <a href="./Code/Prolog/docs.pdf">documentation</a> will also
+ be useful for the lab on Prolog (22 pg. PDF).
+ If your logic is a bit rusty, see 
+ <a href="http://www.cs.csub.edu/~donna/cs295/Material/ch01/ch1.2.notes.html">propositional logic</a>
+  and 
+ <a href="http://www.cs.csub.edu/~donna/cs295/Material/ch01/ch1.3.notes.html">predicate logic</a>.
+
+
+<p>
+The file test.pl contains facts and rules for constructing a logic-based
+ a family tree. To experiment with Prolog, copy test.pl into your directory:
+<pre>
+    cp /home/fac/donna/public_html/cs350/Code/Prolog/test.pl  .
+</pre>
+Start the interactive Prolog interpreter:
+<pre>
+    prolog
+</pre>
+Load and compile test.pl into bytecode:
+<pre>
+    |-? [test]. 
+</pre>
+List the facts and rules:
+<pre>
+    |-? listing. 
+</pre>
+Execute these three queries:
+<pre>
+    |-? female(X). 
+
+    |-? closeRelative(elizabeth,ken).
+
+    |-? ancestor(irvin,Y).
+
+</pre>
+Confirm that the queries return what you think they should return.
+ Note that if a rule on a single line contains ',' AND and ';' OR, AND
+takes precedence over OR.
+<p>
+Hit CTRL-D to exit the Prolog interpreter.
+<p>
+ For more work on predicate logic, copy test2.pl from /Code/Prolog into your directory. Follow the instructions in the file. 
+<p>
+No need to submit anything for Part I - this is just to get you used to
+ Prolog syntax.
+ 
+<h3>PART I</h3>
+   Copy <a href="./lab04a.pl.txt">this file</a>
+  into your directory:<pre>
+      cp /home/fac/donna/public_html/cs350/lab04a.pl .
+</pre>
+ You job is to is convert the arguments in 
+ lab04a.pl into propositional logic following the syntax of
+ Prolog rules and facts. 
+ You are, in essense, constructing an inference
+ engine of simple propositional
+ logic. (Prolog is really based on predicate logic, but propositional
+ logic will introduce you to how the inference engine works.)
+ <p>
+Follow the instructions
+ in the file.
+ If your engine is working correctly you should be
+ able to enter the queries (argument conclusions) as requested in the
+ file at the interactive prompt.
+ If the argument is valid, Prolog will respond 'yes.'
+ If the argument is a fallacy, Prolog will respond 'no.'
+
+
+<h3>PART II </h3>
+ The goal of this part of the lab is to write a prolog program that will
+ apply inferences rules to arguments based on predicate
+ logic.
+ All you need to do is convert the arguments listed in 
+ <a href="lab04b.pl.txt">this file</a>
+ into
+ Prolog rules and facts. First copy the file into your directory:<pre>
+     cp /home/fac/donna/public_html/cs350/lab04b.pl .
+</pre>
+ Follow the instructions in the file.
+<p>
+<span STYLE="background-color:yellow">
+What to Submit for This Lab</span>
+<p>
+ Attach both files (lab04a.pl and lab04b.pl) and send to <pre>
+
+     donna@cs.csubak.edu
+
+</pre>
+</body> 
+</html>

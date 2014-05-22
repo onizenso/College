@@ -1,0 +1,10 @@
+
+
+                         CMPS 350  - WTR 2011
+
+                       FINAL EXAM CODING SECTION
+
+
+For the coding section of the final you will have 2.5 hours to complete a
+programming assignment in Python. You will have one problem on coroutines
+and one problem on function mapping, both similar to what you did in lab 09.

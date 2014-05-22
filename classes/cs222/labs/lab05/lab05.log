@@ -1,0 +1,29 @@
+ file:lab05.cpp ,function:main ,line:39 start of logging
+ file:lab05.cpp ,function:main ,line:52 defining strings
+ file:lab05.cpp ,function:main ,line:60 end string definition
+ file:lab05.cpp ,function:main ,line:64 printing strings
+ file:lab05.cpp ,function:main ,line:72 end printing strings
+ file:lab05.cpp ,function:main ,line:85 string length So, so you think you can tell
+ file:lab05.cpp ,function:main ,line:88 string length Heaven from Hell,
+ file:lab05.cpp ,function:main ,line:91 string length Blue skys from pain.
+ file:lab05.cpp ,function:main ,line:94 string length Can you tell a green field
+ file:lab05.cpp ,function:main ,line:97 string length From a cold steel rail?
+ file:lab05.cpp ,function:main ,line:100 string length A smile from a veil?
+ file:lab05.cpp ,function:main ,line:103 string length Do you think you can tell?
+ file:lab05.cpp ,function:SortAscending ,line:15 start of SortAscending()
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 0 and 1
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 1 and 2
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 2 and 3
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 3 and 4
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 4 and 5
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 5 and 6
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 0 and 1
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 1 and 2
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 2 and 3
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 3 and 4
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 4 and 5
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 2 and 3
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 3 and 4
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 1 and 2
+ file:lab05.cpp ,function:SortAscending ,line:24 swapping positions 0 and 1
+ file:lab05.cpp ,function:SortAscending ,line:32 end of SortAscending()

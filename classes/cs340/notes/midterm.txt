@@ -1,0 +1,12 @@
+.:Midterm:.
+    Lab time May 2nd
+        Multiple choice/short answer Quiz
+        Timed to end at end of lab
+        Restricted to lab IP address
+ 
+        Will be questions on Storage Fundamentals & Forensic Duplication
+            Read chapters 8 & 10 and extra notes on Moodle
+
+        Take-home based on Labs 1 & 2
+            due before class on Monday
+            Will be enabled later this evening

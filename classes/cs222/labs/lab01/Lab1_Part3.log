@@ -1,0 +1,40 @@
+ file:Lab1_Part3.cpp ,function:main ,line:30 start of logging
+ file:Lab1_Part3.cpp ,function:main ,line:41 creating the array
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:13 start AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 99
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 88
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:21 end AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:13 start AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 99
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 88
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 777
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 3
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:21 end AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:13 start AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 99
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 88
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 777
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 3
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 55
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 76
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 23
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:21 end AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:13 start AddArrayElements( int * input, int count)
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 99
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 88
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 777
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 3
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 55
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 76
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 23
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 1562609600
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 32767
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 0
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 513158221
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:18  adding in 32614
+ file:Lab1_Part3.cpp ,function:AddArrayElements ,line:21 end AddArrayElements( int * input, int count)

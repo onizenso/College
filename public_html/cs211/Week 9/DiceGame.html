@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+  <head>
+    <title>Dice Game</title>
+    <link href="DiceGame.css" type="text/css" rel="stylesheet" /> 
+	
+	<STYLE type='text/css'>
+		div.result { background-color: #A0D0E0; width: 30px; outline: 1px solid black;
+             position: relative; left: 120px; top: -35px; }
+		div.score { position: relative;}
+	</STYLE>
+
+  </head>
+  <body>
+  
+    <div id='human' class='playerArea'>
+      <h3>Human</h3>
+      <div id='humanDice'>
+      </div>
+      <p id='humanTotal' class='total'></p>
+	  <p><h3>Overall Score</h3></p>
+	  <p id='humGameTot' class='total'></p>
+    </div>
+    
+	<div id='wins' class='playerArea'>
+	<div class='score'> 
+		<p>Human Wins: 
+			<div class='result' id='humWin'>
+			0 
+			</div>
+		</p>
+		
+		<p>Computer Wins: 
+			<div class='result' id='compWin'>
+			0
+			</div>
+		</p>
+		
+		<p>Tie: 
+			<div class='result' id='draw'>
+			0
+			</div>
+		</p>
+	</div>
+	</div>
+	
+    <div id='computer' class='playerArea'>
+      <h3>Computer</h3>
+      <div id='computerDice'>
+      </div>
+      <p id='computerTotal' class='total'></p>
+	  <p><h3>Overall Score</h3></p>
+      <p id='compGameTot' class='total'></p>
+      </div>
+   
+    
+    <div id='roll'>
+      <a href='#' onclick='play(); return false;'>Roll</a>
+    </div>
+    
+	<div id='stop'>
+      <a href='#' onclick='stop(); return false;'>Stop</a>
+    </div>
+	
+    <script type='text/javascript' src='lib.js'></script>
+    <script type='text/javascript' src='DiceGame1.js'></script>
+    
+  </body>
+
+</html>   
+

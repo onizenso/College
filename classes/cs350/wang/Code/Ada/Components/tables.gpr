@@ -1,0 +1,67 @@
+project Tables is
+
+   for Source_Files use
+      (  "tables-names.adb",
+         "tables-names.ads",
+         "tables.adb",
+         "tables.ads"
+      );
+
+   type Development_Type is ("Debug", "Release");
+   type Legacy_Type is ("Ada95", "Ada2005");
+
+   Development : Development_Type := external ("Development", "Debug");
+   Legacy      : Legacy_Type := external ("Legacy", "Ada2005");
+
+   package Compiler is
+      case Development is
+         when "Debug" =>
+            case Legacy is
+               when "Ada2005" =>
+                  for Default_Switches ("ada") use
+                     ("-gnato", "-gnatf", "-g", "-fstack-check", "-gnat05");
+               when "Ada95" =>
+                  for Default_Switches ("ada") use
+                     ("-gnato", "-gnatf", "-g", "-fstack-check");
+            end case;
+         when "Release" =>
+            case Legacy is
+               when "Ada2005" =>
+                  for Default_Switches ("ada") use
+                     ("-gnato", "-gnatf", "-O2", "-gnatn", "-gnat05");
+               when "Ada95" =>
+                  for Default_Switches ("ada") use
+                     ("-gnato", "-gnatf", "-O2", "-gnatn", "-gnat95");
+            end case;
+      end case;
+   end Compiler;
+
+   package Binder is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-E");
+         when "Release" =>
+            for Default_Switches ("ada") use ();
+      end case;
+   end Binder;
+
+   package Builder is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-g");
+         when "Release" =>
+            for Default_Switches ("ada") use ("-s");
+      end case;
+   end Builder;
+
+   package Linker is
+      case Development is
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-g");
+         when "Release" =>
+            for Default_Switches ("ada") use ("-O2", "-s");
+      end case;
+   end Linker;
+
+end Tables;
+

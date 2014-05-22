@@ -1,0 +1,11 @@
+ file:Lab1_Part1.cpp ,function:main ,line:16 start of logging
+ file:Lab1_Part1.cpp ,function:main ,line:30 creating the array
+ file:Lab1_Part1.cpp ,function:main ,line:33 creating an int pointer and set it to the beginning of the array
+ file:Lab1_Part1.cpp ,function:main ,line:36 starting to loop through the array
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83d0 , the value stored there is  99
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83d4 , the value stored there is  88
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83d8 , the value stored there is  777
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83dc , the value stored there is  3
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83e0 , the value stored there is  55
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83e4 , the value stored there is  76
+ file:Lab1_Part1.cpp ,function:main ,line:39 pointer temp has address of 0x7fffdcce83e8 , the value stored there is  23

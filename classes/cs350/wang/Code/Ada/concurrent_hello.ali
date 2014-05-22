@@ -1,0 +1,83 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnvnnnnnnnnnnnnnvvvnvnnnnnnnnnnvnnnvnnnvnvnnnnnnnnnnnnnnnnnnnnv1+nnnnnn
+
+U concurrent_hello%b	concurrent_hello.adb	932fa043 NE SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-calend.ads		20070912131154 e18fa1bf
+D a-caldel.ads		20050905080700 c565f6eb
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-numeri.ads		20070406091342 1cf3e608
+D a-nuflra.ads		20060215092843 3fd6d45e
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-textio.ads		20071213102052 bc6e78fe
+D a-unccon.ads		20070406091342 51e09df2
+D concurrent_hello.adb	20110223212020 10970ce3
+D interfac.ads		20051209172227 a69cad5c
+D i-c.ads		20070406091342 bc3ef662
+D i-cstrea.ads		20070406092312 e1e064a9
+D system.ads		20090104120524 28071540
+D s-atacco.ads		20061031181603 60789a20
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-osinte.ads		20071213101844 d8d17ef4
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stausa.ads		20071213103435 653209dc
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-tasinf.ads		20071213101844 268f0cd4
+D s-taspri.ads		20050905074606 5ce832d1
+D s-taskin.ads		20070814085009 07168b8a
+D s-tassta.ads		20070406091910 93202c70
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+X 1 ada.ads
+16K9*Ada 19e8 14|1r6 1r23 2r6 2r37
+X 8 a-numeri.ads
+16K13*Numerics 32e17 14|2r10 2r41
+X 9 a-nuflra.ads
+50K22*Float_Random 101e30 14|2w19 2r50
+54R9*Generator 14|7r14
+56F12*Uniformly_Distributed{float}
+58V13*Random{56F12} 14|10r23
+60U14*Reset 14|9r7
+X 12 a-textio.ads
+50K13*Text_IO 482e16 14|1w10 1r27
+265U14*Put_Line 14|11r7
+X 14 concurrent_hello.adb
+4U11*Concurrent_Hello 4b11 22l5 22t21
+5T14 Writer 5d22 6b14 12l8 12t14 17r9 18r9 19r9
+7r7 Seed{9|54R9} 9r14 10r31
+14a4 S1{string} 17m17
+15a4 S2{string} 18m17
+16a4 S3{string} 19m17
+17t4 T1{5T14}
+18t4 T2{5T14}
+19t4 T3{5T14}
+

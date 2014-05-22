@@ -1,0 +1,33 @@
+ procedure <program name> is
+       <declarative part>
+    begin 
+       <executable part>
+    end <optional repeat of program name>;
+
+
+A Regular expression for Ada identifiers:
+
+   [a-zA-Z]([a-zA-Z0-9_][a-zA-Z0-9])*{_[a-zA-Z0-9]}
+
+In English:
+An identifier must start with a letter, followed by zero or more letters, 
+digits or underscores, and where an underscore cannot be the final symbol or be 
+followed by another underscore.
+
+=============================
+ Regular expression symbols
+=============================
+Square brackets mark a choice of characters to match a single character. The
+dash denotes a range in the ASCII table. A choice means or:
+[ abc ]    :  a or b or c 
+[ a-z ]    :  a or b or c or d or ... or z
+[ a-z0-9 ] :  a .. z or 0 .. 9 
+
+Parenthesis mark multiple characters; i.e., a substring. A substring means and: 
+( hello )   : matches 'h' and 'e' and 'l' and 'l' and 'o'
+
+Curly braces mark an optional component:
+{ ( hello ) }  : optional string hello
+
+Asterisk means "zero or more times"
+ 

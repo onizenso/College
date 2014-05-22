@@ -1,0 +1,7 @@
+Triggers are stored events executed on certain conditions.
+
+e.g. when a record is deleted, perform updates or deletions on other records
+
+Indexes will cause insertions and lookups to take longer.
+
+

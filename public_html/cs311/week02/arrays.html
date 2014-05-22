@@ -1,0 +1,73 @@
+<html>
+<head>
+<title> a simple form </title>
+
+<style type="text/css">
+
+  label, textarea, select
+  {
+     display: block; width: 180px; float: left; margin-bottom: 10px;
+  }
+  label 
+  { 
+     text-align: right; width: 95px; padding-right: 20px; font-weight:bold;          font-size:83%;
+  }
+  br 
+  {
+     clear: left;
+  }
+  #subbut 
+  {
+     width:100px; margin-top:10px; border:thin solid black; position:relative; 
+     left:115px; font-size:70%;
+  }
+  .req 
+  {
+    color:#a00;
+  }
+  #note 
+  {
+     width:180px; color:#a00; margin-left:115px; font-size:83%;
+  }
+</style>
+</head>
+
+
+<body>
+    <h1>Your Favorite Things</h1>
+
+<FORM method="post" action="arrays.php">
+<div>
+<p>
+<label for="favnum">Favorite Number: </label>
+<input type="text" name="favnum" id="favnum">
+</p>
+
+<p>
+Select two or more favorite activities:<br>
+
+<select multiple name="favs[]" id="favs[]">
+    <option>read a book</option>
+    <option>play video games</option>
+    <option>shop at the mall</option>
+    <option>watch scifi</option>
+    <option>listen to music</option>
+    <option>eat</option>
+</select>
+</p>
+
+<p>
+Pick One or More Favorite Animals: </p>
+<li>dogs <INPUT type="checkbox" name="animals[]" value="dogs">  </li>
+<li>cats <INPUT type="checkbox" name="animals[]" value="cats">  </li>
+<li>ducks <INPUT type="checkbox" name="animals[]" value="ducks">  </li>
+<li>birds <INPUT type="checkbox" name="animals[]" value="birds"> </li>
+</p>
+<p>
+<input id="subbut" type="submit" value="Submit FORM">
+<INPUT ID="subbut" TYPE="reset" VALUE="Clear FORM">
+</p>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,98 @@
+Brandon Hinesley
+CMPS 350 Dr. Wang
+02/02/12
+
+
+1)
+    <DecimalFloatingPointLiteral> :=
+	    <Digits> [.] [<Digits>] [<ExponentPart>] [<FloatTypeSuffix>]
+	   | . <Digits> [<ExponentPart>] [<FloatTypeSuffix>]
+    <ExponentPart> := <ExponentIndicator> <SignedInteger> 
+    <ExponentIndicator> := e | E
+    <SignedInteger> := [<Sign>] <Digits>
+    <Sign> := + | - 
+    <FloatTypeSuffix> := f | F | l | L /* Floating point and Long double */
+    <Digits> := {0 | 1 | 2 | 3 | 5 | 6 | 7 | 8 | 9}
+
+2)
+  <BooleanExpr> := <BoolComparison> [ (&& | ||) <BoolComparison>]
+  <BooleanComparison> := <Bool> [(== | != | <= | >=) <Bool>]
+  <Bool> := [!] (true | false | id | ( <BooleanExpr> ) )
+  
+3)
+
+  <VariableDecl> := <Prefix> <Variable> [<ConstructorArgs> | <ArrayInit>]
+  <Prefix> := [const] <TypePrefix> <Type> {*} [const]
+              | <TypePrefix> [const] <Type> {*} [const]
+  <Variable> := id { [ <Digits> ] } /* support for arrays but not expressions */ 
+               | ( * id { [<Digits> ] }) ( <Type> {, <Type>} ) /* support for arrays of func ptrs*/
+  <Digits> := {0 | 1 | 2 | 3 | 5 | 6 | 7 | 8 | 9}
+  <ConstructorArgs> := ( <Arg> {, <Arg>} ) /* common constructor style */
+                       | = <Arg>; /* assignment style */
+  <ArrayInit> := = { <Expression> {, <Expression> }
+  <Arg> := <Expression>
+  <Type> := boolean | <Char> | wchar_t | <Int> | float | [long] double | void
+           | <Class> | <Struct> | <Enum> | <TypeDef>
+  <TypePrefix> := static | register
+  <Sign> := signed | unsigned
+  <Char> := [<Sign>] char
+  <Int> := [<Sign>] (<IntMod> | int)
+  <IntMod> := short [int]
+	     | long [long] [int]
+  <Class> := id
+  <Struct> := struct id
+             | union id
+  <Enum> := enum id
+  <TypeDef> := id
+
+4)
+  /* Either side can be an expression, as long as the LHS is a reference */
+  <Assignment> := <LHS> = <RHS>
+  <LHS> := <Expression>
+  <RHS> := <Expression>
+
+5)
+  <FunctionCall> := <FunctionName> ( [<ParameterList>] )
+  <ParameterList> := <Parameter> {, <Parameter>}
+  <Parameter> := <Expression>
+
+6)
+   <FunctionHeader> := <ReturnType> id ( [<ParameterList>] )
+   <ParameterList> := <Parameter> [= <Expression>] {, <Parameter> [= <Expression>]}
+   <Parameter> := <Type> id
+   <ReturnType> := [const] [static] <Type> {*} [const]
+              | [static] [const] <Type> {*} [const]
+   <Type> := boolean | <Char> | wchar_t | <Int> | float | [long] double | void
+            | <Class> | <Struct> | <Enum> | <TypeDef>
+   <Sign> := signed | unsigned
+   <Char> := [<Sign>] char
+   <Int> := [<Sign>] (<IntMod> | int)
+   <IntMod> := short [int]
+	     | long [long] [int]
+   <Class> := id
+   <Struct> := struct id
+             | union id
+   <Enum> := enum id
+   <TypeDef> := id
+
+7)
+  /* ClassBody part is optional since this could be a forward decl */
+
+   <ClassHeader> := <Template> class id [: <Inheritance>] [<ClassBody>];
+   <Inheritance> := <Access> id {, Inheritance}
+   <Access> := protected | private | public
+   <Template> := template < class id {, class id} > 
+
+8)
+
+   <ForLoop> := for ( <Control> ) <Body>
+   <Control> := [<Expression>] ; [<Expression>] ; [<Expression>]
+   <Body> := <Statement> | { <StatementList> }
+   <StatementList> := <Statement> {<Statement>}
+
+9) 
+
+   <SwitchStatement> :=  switch ( <Expression> ) { <CaseList> }
+   <CaseList> := case <Constant>: <StatementList> {CaseList}
+                | default: <StatementList>
+   <StatementList> := <Statement> {<Statement>}

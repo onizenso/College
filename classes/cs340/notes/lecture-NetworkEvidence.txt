@@ -1,0 +1,93 @@
+.:Collecting Network-based Evidence:.
+
+Networking Basics
+    TCP, UDP, IP Headers
+        Layers 4, 4, 3 respectively
+    Ethernet/WiFi Headers
+        Layer 2
+    Application headers may also be present
+
+    Can capture just specific headers or all headers
+        "trap-and-trace" capture
+            wont get specifics of conversations, but will get source/dest info
+        "full content" capture
+            Captures while:
+                There are packets to capture
+                Up to X bytes of packet ("snaplen" option in Wireshark)
+
+    Common tools are based on PCAP library
+        tcpdump - command line
+        Wireshark - GUI 
+            By default captures the entire packet
+            Snaplen option allows restriction of size of captured packets
+            Go through documentation to enable user to enter
+                "Promiscuous Mode" for packet capture
+            Could also do capturing with tcpdump, and analyze with
+                Wireshark as normal user
+
+        Using Tcpdump to Create Capture File
+            tcpdump -w <capture file> -i eth0 -s 1548
+                -s gives size of packets to capture
+                     1500 bytes is max-size, plus size of headers/footers
+            
+        Can also filter the packets captured with both tools
+            Usually based off of header information
+            Interactive mode: tcpdump -i eth0 -n -s 1548 -XX port 53
+                -XX extended printout
+                filter by port 53 (DNS port)
+                will go more into filter syntax in Packet Capture Lab
+
+        Packet capturing is a passive tool when name lookups disabled
+        
+    Port Scanning
+        Actively seek information about machine or network
+            Probe system & see response
+            Different TCP/IP protocol stacks respond differently
+                to "fingerprinting" scans
+            Also allows inventory of listening network servers
+        Falls into the Information Gathering phase of investigation
+        Common tool: nmap
+            Tests nmap supports
+                List listening ports
+                OS fingerprinting
+                MAC addresses & reverse DNS
+                Systems w/ ecidence of being on but w/ no active ports
+                Traceroute to discovered systems
+                Look up documentation online for more supported tests
+            Has a scripting language available for user customization
+            Supports many addressing methods for "target" machines
+                Ex: domain name                 www.google.com
+                    domain w/ subnet            google.com/24
+                    IP address                  127.0.0.1
+                    IP address w/ subnet        127.0.0.1/24
+                    IP address w/ range         127.0.0.0-128
+                        any part of the IP address can be a range
+            Specify test(s) to run on target in command line
+                vmnet1 - bridged mode :::: vmnet8 - NAT mode
+            
+    Vulnerability Scanner
+        Variation of port scanner
+        Looks for know vulnerabilities on system
+        Can be host-based (more information) or network based
+        Used by SysAdmins as part of Cost-Benefit analysis b4 system hardening
+        Probes are typically separated into "safe" and "unsafe" probes
+            Safe probes usually don't cause system glitches (gives less info)
+            Unsafe scans give more info, but could cause substantial damagei
+
+    Network Monitoring Tools
+        Used to monitor various aspects of network
+            Data usage, watching for attack attempts, etc.
+            Network SysAdmins use a wide range of tools for monitoring
+        Charting Tools: MRTG & RRDtool
+            Builds graphical representation of information fed to the tool
+        Network Usage: ntop & variants (look for one on Android)
+        Intrusion Detection/Prevention System (IDS/IPS)
+            has database of know network attacks using signatures/heuristics
+            Alerts on packets that appear to be attack (IDS)
+            Attempts to prevent a detected attack (IDS)
+            Can be configured to run in stealth mode on some LAN protocols
+                Protocol needs a physical or logical read-only mode
+                Needs to be configured to never send packets over LAN
+                Can use "monitoring port" available on certain switches
+                Only for IDS (IPS actually needs to transmit)
+

@@ -1,0 +1,280 @@
+CMPS 350 EXAM 2 - WTR 2011                                             /26
+
+The next questions are based on the recursive Attribute Grammar shown here: 
+
+    type - an attribute to store the data type of variables or expressions
+    lookup (<var>.id) returns the variable's type from the symbol table 
+
+    <assign> ::= <var> = <expr> 
+    PREDICATE: <var>.type == <expr>.type
+    
+    <expr> ::= <var> + <expr>[2] 
+    Semantic Rule #1: if (<expr>[2] == REAL or <var> == REAL)
+                           <expr>.type <- REAL 
+                       else
+                           <expr>.type <- INT 
+
+    <expr> ::= <var>
+    Semantic Rule #2: <expr>.type <- <var>.type
+
+    <var> -> A | B | C | D
+    Semantic Rule #3: <var>.type <- lookup (<var>.id)
+
+01. The Attribute Grammar utilizes 
+    A. inheritance       B. synthesis    
+
+Below is an undecorated parse tree for the statement 'A = B + C + D', where 
+A is INT, B is INT, C is REAL and D is INT. 
+    
+                           <assign>
+                       /             \
+                  <var>       =        <expr>
+                 .type INT             .type
+                    |                 /         \ 
+                    A             <var>    +    <expr>
+                   INT          .type           .type  
+                                  |             /     \
+                                  B         <var>  +  <expr>
+                                 INT       .type     .type 
+                                              |         |
+                                              C       <var>
+                                             REAL      .type 
+                                                         |
+                                                         D
+                                                        INT
+       
+02. In an inorder traversal, which semantic rule is applied first?
+    A. Rule #1         B. Rule #2      C. Rule #3 for variable A
+
+03. The value of <expr>.type after the last application of Semantic Rule #1 is
+    A. INT         B. REAL
+
+04. The predicate in the Attribute Grammar
+    A. will return false          B. will return true 
+
+05. What is true concerning static variables, such as 'x' in this C function?
+      void fun () {
+          static int x = 5;
+      }
+   A. x is bound to value 5 throughout program execution 
+   B. x is bound to the same memory address throughout program execution 
+   C. both are true
+ 
+   Prog 1. The following C code will compile, link and execute.
+   ---------------------------------  ----------------------
+   | // filename: file1.c          |  |// filename: file2.c |
+   |                               |  |                     |
+   | static int x = 10;            |  | static int x = 20;  |
+   | void fun(char *);             |  | int y = 5;          |
+   |                               |  |                     |
+   | int main( )                   |  | void fun()          |
+   | {                             |  | {                   |
+   |     extern y;                 |  |    print(y);        |
+   |     y = 15;                   |  |                     |
+   |     fun();                    |  | }                   |
+   |     print(x);                 |  |                     | 
+   |   }                           |  |                     |
+   | return 0;                     |  |                     |
+   | }                             |  |                     |
+   |-------------------------------   -----------------------
+   
+06. Select the false statement regarding Prog 1.
+    A. The compiler will bind two instances of x to a memory address.
+    B. The linker will bind the reference to y in file1 to a static address.
+    C. At runtime the reference to y in main will be bound to a stack address. 
+    D. The linker is responsible for binding y only in this program. 
+
+07. Based on the fact that Prog1 compiles, what is true about the C language? 
+    A. static variables outside a function have global scope within their
+       compilation unit
+    B. static variables outside a function have global scope across all
+       compilation units
+
+Prog 2. Ada program 
+ |----------------------------------------| 
+ |   procedure Main is                    |
+ |   X : Integer;                         |
+ |   procedure Sub3;  (forward reference) |
+ |   ---------------------------------|   |
+ |  |  procedure Sub1 is              |   |
+ |  |  --------------------------     |   |
+ |  |  |  procedure Sub2 is     |     |   |
+ |  |  |  X : Integer;          |     |   |
+ |  |  |  begin                 |     |   |
+ |  |  |    X := 5;             |     |   |
+ |  |  |  end;                  |     |   |
+ |  |  --------------------------     |   |
+ |  |  begin                          |   |
+ |  |   Sub2;                         |   |
+ |  |   X := 10;                      |   |   
+ |  |  end;                           |   |
+ |  |----------------------------------   |
+ |                                        |
+ |  |----------------------------------   |
+ |  |  procedure Sub3 is              |   |
+ |  |  begin                          |   |
+ |  |    X := 15;                     |   | 
+ |  |  end;                           |   |
+ |  |----------------------------------   |  
+ |   begin                                | 
+ |     Sub3;                              |
+ |     Sub1;                              |
+ |     Put(X);                            | 
+ |   end;                                 |
+ |----------------------------------------| 
+ 
+
+08. Assuming static scope, how many nonlocal variable references are in Prog 2?
+     A.  1       B.  2       C.  3
+
+09. Assuming static scope, what is displayed from Put(X) in Prog 2's Main?
+    A.  5       B.  10       C.  15 
+
+Prog 3.
+   Procedure JUNK is
+   X:INTEGER:= 0;
+   procedure SUB2;   -- forward reference
+
+   Procedure SUB1 is
+   X:INTEGER;
+
+   BEGIN
+      X := 10;
+      SUB2;
+   END;
+
+   Procedure SUB2 is
+   BEGIN
+      X := X + 15;
+   END;
+
+   BEGIN
+      SUB2;
+      SUB1;
+      Put(X);  // print X 
+   END;
+
+10. Under dynamic scoping rules, what value of X is printed in procedure JUNK?
+    A. 0        B. 5        C. 15       D. 30
+ 
+11. The lifetime of a variable is ultimately determined by 
+    A. how long that variable is bound to a memory address
+    B. the scope of the variable
+ 
+12. If the 'int' data type is implemented in 4 bytes, with negative integers
+    stored as the two's complement of the positive integer, what is -5?
+    A. 11111111111111111111111111111101
+    B. 11111111111111111111111111111010
+    C. 11111111111111111111111111111011
+
+13. What type of array allocation is performed in this C code?
+          int sd_array[size];   
+    A. fixed heap-dynamic
+    B. heap-dynamic 
+    C. stack-dynamic
+    D. fixed stack-dynamic
+
+14. What is displayed on the screen in the following C code?
+       bits.a = 4;   // size 4 bit field
+       bits.b = 5;   // size 4 bit field
+       printf("%d", bits.a | bits.b);     // '|' is bitwise or 
+    A. 0       B. 1       C. 4        D. 5
+
+15. In the IEEE standard, single precision floating point numbers are stored
+    in the format s * 2^e, where 'e' is the stored value of the exponent 
+    minus 127, and 's' is 1 + the stored value of the fraction. Under this 
+    encoding, what is the decimal value of the following?
+
+    0    10000100  01000000000000000000000
+    -    --------  -----------------------
+    sign exponent  fraction
+         8 bits    23 bits
+
+   A. 1.4 * 2^-5          B. 1.25 * 2^5          
+
+16. The C code below declares a 2x3x4 array of ints. Complete the statement
+    to initialize each cell in the cube with its offset into the array. Recall
+    that C stores 3-dimensional arrays in row-column-depth order.
+    /* 3-dimen arrays are in x,y,z order; e.g. row,col,depth */
+    int cube[2][3][4];
+    int x,y,z;
+    for ( x = 0; x < 2; x++ )
+      for ( y = 0; y < 3; y++ )  
+        for ( z = 0; z < 4; z ++ ) 
+           // which statement will insert the offset?
+      }
+    }
+    A. cube[x][y][z] = (z*(2*3))+(y*4)+ x;
+    B. cube[x][y][z] = (x*(2*3))+(y*4)+ z; 
+    C. cube[x][y][z] = (x*(3*4))+(y*4)+ z;
+
+17. Under binary coded decimal (BCD) encoding, decimal 35 needs how many bits?
+    A. 6        B. 8   
+
+18. The following Ada code compiles. Since Ada includes implicit runtime 
+    index boundary checking, will a CONSTRAINT_ERROR be raised at runtime?
+         type AN_ARRAY is array(1..10) of INTEGER;   
+         myArray : AN_ARRAY;
+         myArray(99) := 0;    // is this a problem? 
+     A. True       B. False
+
+19. C employs eager garbage collection and calls to malloc always allocate 
+    multiple bytes of storage in contiguous memory locations. Recurrent calls
+    to a function will cause heap fragmentation under what conditions?
+    A. if you allocate a small chunk of memory, then allocate a large chunk
+       of memory, then deallocate both, and repeat the process
+    B. if you allocate lots of small chunks of memory, deallocate every other 
+       one of those chunks, and then allocate several large chunks
+    C. if you alternate allocating small chunks of memory with large chunks of
+       memory
+
+20. What happens at Line 3 in the following C++ code? 
+         int stuff[2] = {5,10};
+         int & iref = stuff;
+         iref++;   // line 3 
+   A. stuff[0] is incremented from 5 to 6
+   B. iref now points to stuff[1] 
+
+21. Under what conditions might the following statement result in an unwanted
+    functional side effect? 
+          c = a + foo(a) + a; 
+    A. if 'a' is a global variable and its value is modified in foo
+    B. if 'a' is a 2-way parameter and its value is modified in foo
+    C. both conditions could cause a problem 
+
+22. What will happen in this code if && is a short circuit operator?
+      int list[MAX];    // list indices are 0..MAX-1
+      index = 0;      
+      while ( (index < MAX ) && (LIST[index] != value) )   {
+          index++;
+      }
+    A. When the loop exits, the index will be one past the range of the array.
+    B. The loop will exit without an out-of-range error.
+    C. both A and B are true.  
+
+23. After executing the following legal GNU C code, what is the value of 
+    smin, assuming that a signed short int takes 16 bits and the value
+    of smax is 32767?
+       signed short int smax = SHRT_MAX;  // largest signed short int
+       signed short int smin = SHRT_MIN;  // smallest signed short int
+   A. -32767             B. -32768
+
+24. What bitwise operation do you need to apply to 11 (1011) to produce 
+    4 (0100)? Hint: this is used to 'flip' the bits of a binary number.
+    A.  & 15     B. | 15      C. ^ 15      
+
+25. If (7 & 3) results in 3, and if the operation occurs from the most 
+    significant bit to the least significant bit, what do you know about the 
+    & operator? 
+    A. bitwise & is a short-circuit operator 
+    B. bitwise & is not a short-circuit operator 
+
+26. Assume num and num2 are ints under C (32 bits). You assign num to the 
+    largest positive integer on the system. 
+          01111111111111111111111111111111    <= num = INT_MAX
+    You assign num2 to the result of num+1: 
+          10000000000000000000000000000000    <= num2 = num + 1
+    If your language interprets num2 as the largest negative int on the system,
+    what do you know?
+    A. the absolute value of num2 is the largest positive integer on the system
+    B. num + num2 is not zero.

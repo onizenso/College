@@ -1,0 +1,10 @@
+40 points from questions
+basic concepts from chapter 1 and 2
+
+2 entities and relationships
+5 questions answered in relational algebra, tuple calculus and domain calculus
+
+Phase 2 will be due on Sunday
+Phase 3 is to create a physical database
+
+May need to install ODBC 5 if ODBC 6 complains about connecting to the server

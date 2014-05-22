@@ -1,0 +1,721 @@
+(note: this is the man page for the linker on pegasus)
+ld(1)									ld(1)
+
+NAME
+  ld, uld - link editor and ucode link editor
+
+SYNOPSIS
+
+  ld [ option ... ] file ...
+  uld [ option ... ] file ...
+
+DESCRIPTION
+
+  The ld command invokes the DIGITAL UNIX link editor ("linker") which links
+  extended COFF object files.
+
+  The ld command combines several object files into one, performs relocation,
+  resolves external symbols, builds tables and relocation information for
+  run-time linkage in case of doing a shared link, and supports symbol table
+  information for symbolic debugging.  In the simplest case, the names of
+  several object files are specified on the command line.  The ld command
+  combines them, producing an object module that can be executed or used as
+  input by a subsequent ld command.  (In the latter case, the -r option must
+  be given to preserve the relocation entries.) The output of ld is left in
+  a.out.  By default, this file is a dynamic executable if no errors occurred
+  during the load.
+
+  The object files are concatenated in the order specified.  The entry point
+  of the output is the beginning of the text segment (unless the -e option is
+  specified).
+
+  The uld command combines several ucode object files and libraries into one
+  ucode object file.  It "hides" external symbols for better optimizations by
+  subsequent compiler passes.  The symbol tables of COFF object files loaded
+  with ucode object files are used to determine what external symbols not to
+  "hide" along with files specified by the user that contain lists of symbol
+  names.
+
+  If any argument is a library, it is searched exactly once at the point it
+  is encountered in the argument list.	There are two kinds of libraries,
+  archives and dynamic shared objects:
+
+  - Archives are used if the output is to be static.  In that case, only
+    those object files defining an unresolved external reference are loaded.
+    The archive symbol table (see ar(1)) is searched to resolve external
+    references that can be satisfied by archive library members.  The order-
+    ing of library members is important (see lorder(1)).
+
+  - Shared objects are normally used if the output is to be dynamic.  In that
+    case, only the name is used for external resolution; no object is
+    included as part of the output object file.
+
+  All options are recognized by both ld and uld .  Those options used by one
+  and not the other are ignored.  Any option can be preceded by a k (for
+  example -ko outfile) and, except for -klx, have the same meaning with or
+  without the preceding k.  This is done so that these options can be passed
+  (through compiler drivers) to both link editors.
+
+  Position-sensitive options affect link behavior for objects and libraries
+  that follow the option in the command.  These options include -L, -all,
+  -exclude, -exported_symbol, -hidden, -hidden_symbol, -kl, -l, -none,
+  -non_hidden, -no_archive, -no_so, and -so_archive.  They are described in
+  detail in the Flags section in this reference page.
+
+  The symbols _etext, _edata, _end, _ftext, _fdata, _fbss, _gp, .fini, .data,
+  .text, .init, .rdata, .sdata, .sbss, .bs, .lit4, .lit8, .comment, __istart,
+  __fstart, data_init_table, _DYNAMIC, _DYNAMIC_LINK, _BASE_ADDRESS,
+  _GOT_OFFSET, _procedure_tabl, _procedure_table_size,
+  _procedure_string_table, _cobol_main, and _unwind are reserved.  If the
+  -std1 flag is not set (see the cc(1) reference page), the symbols etext,
+  edata, end, and unwind are also reserved.  These linker-defined symbols, if
+  referred to, are set to the values described in end(3).  Undefined results
+  may occur if user code defines any of these symbols.
+
+  Symbol names that start with __init_ and __fini_ have special meaning to
+  the linker:
+
+  - All routines that start with __init_ are treated, by default, as initial-
+    ization routines.  These are routines that are called without an argument
+    when the file that contains them is loaded or when the program that con-
+    tains them is started.
+
+  - All routines that start with __fini_ are treated by default as termina-
+    tion routines, which are routines that are called without an argument
+    when the file that contains them is unloaded or when the program that
+    contains them exits.
+
+  Any executable program that references the builtin symbol _fpdata_size
+  (either directly or through a shared object) and all shared objects,
+  regardless of whether they reference the builtin symbol, causes the linker
+  to generate and include code and data to support exception handling.	For
+  shared objects, this is always done because the programmer creating the
+  shared object might not know whether the program referencing the shared
+  object uses exception handling.  This support is needed so that the excep-
+  tion handling system can unwind stack frames and find handlers for excep-
+  tions (see exception_intro(3)).
+
+  Exception support consists of the following:
+
+  - Generating data structures that the exception system can use to perform
+    unwinds
+
+  - Generating .init and .fini section calls to register the exception data
+    structures within the exception system
+
+  - Linking libexc_init.a, which contains a set of bridge routines that call
+    the exception system registration routines
+
+  The libc library has a set of dummy routines that replace the exception
+  routines when the exception system is not present.  By default, this
+  replacement works because libc is generally specified last on the link
+  line.	 The cc(1) command ensures that libc is the last library on the com-
+  mand line unless otherwise specified.	 Users requiring the exception system
+  must not explicitly specify libc before libexc on the command line.
+
+FLAGS
+
+  When searching for libraries, ld looks for them, by default, in the follow-
+  ing directories in the order shown:
+
+   1.  /usr/shlib
+
+   2.  /usr/ccs/lib
+
+   3.  /usr/lib/cmplrs/cc
+
+   4.  /usr/lib
+
+   5.  /usr/local/lib
+
+   6.  /var/shlib
+
+  You can use the following position-dependent qualifiers to alter the ld
+  command's library directory search order for all libraries subsequently
+  referenced on the command line.  Note that any of these options is effec-
+  tive only if it precedes the -l option on the command line for the
+  libraries it is meant to affect.
+
+  -Ldir
+      Change the library directory search order for shared object and archive
+      libraries (libx.{so|a}) and ucode object libraries (libx.b) so that ld
+      looks for them in dir before looking in the default library direc-
+      tories.
+
+  -L  Change the library directory search order for shared object and archive
+      libraries (libx.{so|a}) and ucode object libraries (libx.b) so that ld
+      never looks for them in the default library directories.	Use this
+      option when the default library directories should not be searched and
+      only the directories specified by -Ldir are to be searched.
+
+  -Kdir
+      Eliminate the search of the default library directories and instead
+      cause ld to search the single directory dir.  Instead of using this
+      option, which is intended exclusively for the compiler driver, you
+      should use the -L and -Ldir options in combination to obtain a similar
+      effect.
+
+  When linking a shared object, ld searches all library directories for the
+  shared object library (libx.so). If it cannot find the shared object
+  library, it again searches all library directories for the archive library
+  (libx.a).
+
+  You use the following switches to alter the manner in which ld searches
+  library directories for shared object and archive libraries and the manner
+  in which ld establishes the order of initialization routines in the image:
+
+  -oldstyle_liblookup
+      Cause ld to search each library directory, first for the shared object
+      library (libx.so) and then for the archive library (libx.a).
+
+  -old_init_order
+      Request that the execution order of init routines match the link order
+      of the objects and archive libraries from which the routines are
+      loaded.  This ordering might not match the execution order used when
+      archive libraries are replaced with shared libraries.
+
+  -reverse_init_order
+      Reverse the execution order of init routines.  This option does not
+      affect init routines identified by the -init option; nor does it affect
+      fini routines.  This option also does not change the relative order of
+      groups of init routines linked in from archive libraries, but it does
+      affect the relative order of init routines within those groups.
+
+  The library search can be restricted to shared libraries by the -no_archive
+  option or to archive libraries by the -no_so option.	The -so_archive
+  option removes either of these search restrictions.
+
+  When linking a ucode object library, ld searches the library directories
+  for libx.b.
+
+  Use the following position-dependent qualifiers to determine which
+  libraries ld searches for in the library directories when resolving symbol
+  names.  The order of these options is significant because ld searches for a
+  shared object or archive library (or ucode object library) when it
+  encounters its name on the command line.
+
+  -lx Search a library, libx.{so|a}, where x is a string.
+
+  -qlx
+      This option is identical to the -lx option in usage and behavior except
+      for the following difference: if the library specified by -qlx is not
+      found, the linker does not produce error or warning messages.  However,
+      the linker reports unresolved symbol errors and other link-time errors
+      normally.
+
+  -klx
+      Search a ucode object library, libx.b, where x is a string. In all
+      other respects, this option is the same as the -lx option.
+
+  The ld command also accepts the following options:
+
+  -input filename
+      Direct the linker to read the contents of file filename as if the con-
+      tents had been supplied on the command line.
+
+      Inside file filename, lines ending with \ are treated as continuation
+      lines, and lines starting with # are treated as comment lines and
+      ignored.	The -v flag can be used to display the expansion of files
+      specified in a -input file. The files can be nested up to 20 levels.
+
+  -o outfile
+      Produce an output object file with the name outfile. The name of the
+      default object file is a.out.
+
+  -p file
+      Preserve (not "hides") the symbol names listed in file when loading
+      ucode object files.  The symbol names in the file are separated by
+      blanks, tabs, or newlines.
+
+  -s  Strip the symbolic information from the output object file.
+
+  -x  Do not preserve local (non-.globl) symbols in the output symbol table;
+      enter external and static symbols only.  This option reduces the size
+      of the output file.
+
+  -r  Retain relocation entries in the output file.  Relocation entries must
+      be saved if the output file is to become an input file in a subsequent
+      ld run.  This option also prevents final definitions from being given
+      to common symbols and suppresses "undefined symbol" diagnostics.
+
+  -d  Force definition of common storage and define linker-defined symbols
+      even if -r is present.
+
+  -dc Force definition of common storage. (Linker-defined symbols are not
+      defined.)
+
+  -u symname
+      Enter symname in the symbol table as an undefined symbol. This is use-
+      ful for loading entirely from a library because the symbol table is
+      initially empty and an unresolved reference is needed to force the
+      loading of the first routine.
+
+  -F or -z
+      Create a ZMAGIC (demand paged) output file.  Text and data segments are
+      aligned on page boundaries and their sizes are a multiple of the page
+      size.  This is the default.
+
+  -msym
+      Produce an msym table for a dynamic executable or shared object.	This
+      table contains additional dynamic symbol information.  If an executable
+      or shared library is built without an msym table, the loader creates
+      one each time the executable or shared library is loaded.	 Use of the
+      -msym option causes the linker to create the msym table, thus reducing
+      load time and the amount of dynamic memory allocated by the loader.
+      Unlike the loader-generated msym tables, the linker produces msym
+      tables that are shared between processes.
+
+  -n  Create an NMAGIC (shared text) output file.  Text and data segment
+      addresses are 0x20000000 and 0x40000000 respectively.  The text and
+      data segments sizes are a multiple of the page size.
+
+  -nN Create an NMAGIC (shared text) output file.  Text and data segments are
+      aligned on page boundaries and their sizes are a multiple of the page
+      size.  The data segment immediately follows the text segment in the
+      address space.
+
+  -N  Create an OMAGIC (impure) output file.  Text and data segments are
+      aligned on 16-byte boundaries and their sizes are a 16-byte multiple.
+      The data segment immediately follows the text segment in the address
+      space.
+
+  -T num
+      Set the text segment origin.  The argument num is a hexadecimal number.
+      See the Notes section for restrictions.
+
+  -D num
+      Set the data segment origin.  The argument num is a hexadecimal number.
+      See the Notes section for restrictions.
+
+  -B num
+      Set the bss segment origin.  The argument num is a hexadecimal number.
+      This option can be used only if the final object is an OMAGIC file.
+
+  -e epsym
+      Set the default entry point address for the output file to be that of
+      the symbol epsym.
+
+  -m  Produce a map or listing of the input/output sections on the standard
+      output (UNIX System V-like map).
+
+  -M  Produce a primitive load map, listing the names of the files to be
+      loaded (UNIX 4.3BSD-like map).
+
+  -S  Set silent mode and suppress nonfatal errors.
+
+  -v  Set verbose mode.	 Print the name of each file as it is processed.
+
+  -ysym
+      Indicate each file in which sym appears, sym's type, and whether the
+      file defines or references sym.  To allow you to trace multiple sym-
+      bols, this option can be specified many times on a command line.
+
+  -V  Print a message that provides information about the version of ld being
+      used.
+
+  -VS num
+      Use num as the decimal version stamp to identify the a.out file that is
+      produced.	 The version stamp is stored in the optional and symbolic
+      headers.
+
+  -f fill
+      Set the fill pattern for "holes" within an output section.  The argu-
+      ment fill is a four-byte hexadecimal constant.
+
+  -b  Do not merge the symbolic information entries for the same file into
+      one entry for that file.	This is needed only when the symbolic infor-
+      mation from the same file appears differently in any of the objects to
+      be linked.  This can occur when object files are compiled, by means of
+      conditional compilation, with an apparently different version of an
+      include file.
+
+  -g or -g[23]
+      Perform additional type processing to provide improved symbolic debug-
+      ging information.
+
+  -A file
+      Perform incremental loading, that is, do linking in a way that allows
+      the resulting object to be read into an already executing program.  The
+      next argument, file, is the name of a file whose symbol table will be
+      taken as a basis on which to define additional symbols.  Only newly
+      linked material will be entered into the text and data portions of
+      a.out, but the new symbol table will reflect every symbol defined
+      before and after the incremental load.  This argument must appear
+      before any other object file in the argument list. The -T option can be
+      used as well and will be taken to mean that the newly linked segment
+      will commence at the corresponding address (which must be a correct
+      multiple for the resulting object type).	The default resulting object
+      type is an OMAGIC file, and the default starting address of the text is
+      the old value of _end rounded to SCNROUND as defined in the include
+      file <scnhdr.h>.	Using the defaults, when this file is read into an
+      already executing program, the initial value of the program break (see
+      brk(2)) must also be rounded.
+
+  -non_shared
+      Produce a static executable.  The output object created will not use
+      any shared objects during execution.  The -init and -fini switches can-
+      not be used in combination with the -non_shared switch.  This is the
+      default.
+
+  -noprefix_recognition
+      Disable the automatic recognition of symbols prefixed with __init_ as
+      initialization routines as well as disabling the automatic recognition
+      of symbols prefixed with __fini_ as termination routines.	 This option
+      is only for applications that already have defined symbols with the
+      prefixes __init_ or __fini_.
+
+  -shared
+      Produce a shared object.	This includes creating all of the tables for
+      run-time linking and resolving references to other specified shared
+      objects.	The object created may be used by the linker to produce
+      dynamic executables.
+
+  -call_shared
+      Produce a dynamic executable.  The object created may use shared
+      objects at run time.
+
+  -hidden_symbol symbol
+      Convert the symbol following this flag into a local symbol.  This flag
+      is position independent.	(Used for shared linkage only.)
+
+  -hidden
+      Convert all external symbols from objects following this flag into
+      local symbols. (Used for shared linkage only.)
+
+  -non_hidden
+      Turn off the -hidden option.  To turn off the -hidden option for a sin-
+      gle symbol, use the -exported_symbol option.
+
+  -exported_symbol pattern
+      Turn off the -hidden option for a single symbol, specified by pattern.
+      Pattern matching uses shell wildcard characters (?, *, [, ]).  For more
+      information, see sh(1).
+
+  -expect_unresolved pattern
+      Ignore any unresolved symbols matching pattern.  Such symbols are not
+      displayed and are not treated as errors or warnings.  You can enter
+      this option multiple times on a command line.  The patterns use shell
+      wildcard characters (?, *, [, ]).	 The wildcard characters must be
+      properly quoted to prevent them from being expanded by the shell.	 For
+      more information, see sh(1).
+
+  -warning_unresolved
+      Produce a warning message when unresolved symbols are encountered,
+      except for those matching -expect_unresolved.  This is the default
+      behavior for building shared libraries.
+
+  -error_unresolved
+      Produce an error message and cause the link to fail when unresolved
+      symbols are encountered, except for those matching -expect_unresolved.
+      This is the default behavior for linking executable programs.
+
+  -all
+      Link in all of the objects from the archives following this flag.	 This
+      option is used in conjunction with the -shared option to create a
+      shared object.
+
+  -none
+      Turn off the -all option.
+
+  -exclude object
+      Exclude the specified object from the shared object being created by
+      the linker.  Used in conjunction with -all and -shared.
+
+  -no_archive
+      Require -l references to resolve to shared objects.  Normally, if the
+      shared object as specified by the -l is not found, the linker attempts
+      to find the corresponding archive to resolve undefined symbols.  This
+      option disallows using those archives.  Note that this option is posi-
+      tional and can be used more than once on a command line.	It affects
+      only those options that follow it, and it is turned off by the next
+      occurrence of a -no_so or -so_archive option.
+
+  -no_so
+      Require -l references to resolve to archive libraries.  Note that this
+      option is positional and can be used more than once on a command line.
+      It affects only those options that follow it, and it is turned off by
+      the next occurrence of a -no_archive or -so_archive option.
+
+  -so_archive
+      Turn off either the -no_archive or -no_so options allowing -l refer-
+      ences to resolve to either shared objects or archive libraries in
+      shared or call_shared links.
+
+  -check_registry location_file
+      Check the location of this shared object's segments and make sure they
+      stay out of the way of other object's segments in the location_file.
+      Multiple instances of this option are allowed.  This option is used
+      with -shared.
+
+  -update_registry location_file
+      Register the location of this shared object's segments and make sure
+      they stay out of the way of others in the location_file.	Location_file
+      is updated if it is writable.  This option is used with -shared.
+
+  -no_library_replacement
+      Set a flag in the dynamic section of the output object so that rld does
+      not allow exec-time or run-time changing of the path (except for super
+      user) to find the shared objects. Typically, the option is used by sys-
+      tem utilities for security purposes.
+
+  -rpath path
+      Create an rpath record containing the specified path string.  The path
+      string is a colon-separated list of directories that is meaningful only
+      when creating an executable with shared linkage.	If an item in the
+      path supplied to -rpath is of the form $VARNAME or ${VARNAME}, the
+      linker interprets it as an environment variable.
+
+      Additional rpath directories found in shared objects on the link com-
+      mand line are appended to path.  Duplicate entries are excluded.	The
+      loader uses the rpath record to search for shared libraries at run
+      time.
+
+  -soname shared_object_name
+      Set DT_SONAME for a shared object.  The name can be a single component
+      name (for example, libc.a), a full pathname (starting with a slash), or
+      a relative pathname (containing a slash).	 The default DT_SONAME used
+      for shared objects is the filename component of the output file name.
+      Specify the output file name using the -o	 option as described previ-
+      ously.  Used in conjunction with -shared option.
+
+  -init symbol
+      Make the procedure represented by the symbol into an initialization
+      routine. An initialization routine is a routine that is called without
+      an argument when either the file that contains the routine is loaded or
+      the program that contains the routine is started.
+
+  -fini symbol
+      Make the procedure represented by the symbol into a termination rou-
+      tine. A termination routine is a routine that is called without an
+      argument when either the file that contains the routine is unloaded or
+      the program that contains the routine exits.
+
+  -transitive_link
+      Cause ld to link in any shared object that occurs in the dependency
+      list in addition to those shared objects on the link command line.  If
+      ld cannot find the shared object in the dependency list, it will cause
+      a fatal error.
+
+  -O0 Turn off all code optimizations performed by the linker.	This is the
+      default.
+
+  -O1 Turn on the code optimizations that can be performed quickly with lit-
+      tle additional time and memory overhead during the link.	Note that
+      cc(1) passes -O1 as the default when linking.
+
+  -O2, -O3
+      Turn on all code optimizations that can be performed by the linker.
+
+  -exact_version
+      Set a flag in the dynamic section of the object produced by the linker.
+      The flag directs the loader to ensure that the shared libraries used by
+      this dynamic object at run time match the shared libraries referenced
+      at link time.  By default, a shared library's version is included in
+      the match test.  This option requires a stricter test that includes
+      shared library checksums and timestamps.
+
+      This option is used when building a dynamic executable file (with
+      -call_shared) or a shared library (with -shared).
+
+  -set_version version-string
+      Establish the version identifier (or identifiers) associated with a
+      shared library.  The string version-string is either a single version
+      identifier or a colon-separated list of version identifiers.  No
+      restrictions are placed on the names of version identifiers; however,
+      it is highly recommended that UNIX directory naming conventions be fol-
+      lowed.
+
+      If a shared library is built with this option, any executable built
+      against it will record a dependency on the specified version or, if a
+      list of version identifiers is specified, the rightmost version speci-
+      fied in the list.	 If a shared library is built with a list of version
+      identifiers, the loader will allow any executable to run that has a
+      shared library dependency on any of the listed versions.
+
+      This option is only useful when building a shared library (with
+      -shared).
+
+  -depth_ring_search
+      Set a flag in the dynamic section in output objects requesting a
+      depth_first, ring_search method for resolving symbol references between
+      shared objects.  See loader(5) for a complete description of this
+      alternate symbol resolution policy.  This option is used in conjunction
+      with -call_shared.
+
+  -taso
+      Direct the linker to load the executable in the lower 31-bit address-
+      able virtual address range.  The -T and -D options to the ld(1) command
+      can also be used to ensure that the text and data segments addresses,
+      respectively, are loaded into low memory.	 The -taso option, however,
+      in addition to setting default addresses for text and data segments,
+      also causes shared libraries linked outside the 31-bit address space to
+      be appropriately relocated by the loader.	 If you specify -taso and
+      also specify text and data segment addresses with -T and -D, those
+      addresses override the -taso default addresses.  The -taso flag can be
+      helpful when porting programs that assume address values can be stored
+      in 32-bit variables (that is, programs that assume that pointers are
+      the same length as int variables).
+
+  -om Generates an OMAGIC file suitable for input to the om post-link optim-
+      izer.  This flag should be used only with the cc command.
+
+OBJECT AND LIBRARY ORDERING
+
+  The ordering of object files, archive libraries, and shared libraries on
+  the command line affects how symbols are resolved.  For example, if an
+  archive library appears before an object file or shared library that refer-
+  ences one of its symbols, the linker may report that symbol as unresolved.
+
+  Unresolved symbol errors can be avoided by adhering to the following
+  suggestions:
+
+  - Object files should be ordered before all archive libraries and shared
+    libraries.
+
+  - If archives and shared libraries cannot be specified in dependency order,
+    shared libraries should be ordered before archive libraries.
+
+  - If necessary, archives can be specified more than once on the ld command
+    line to handle unresolved symbols that were encountered after previous
+    symbol-resolution passes through the archives.
+
+  Symbols defined in object files are always included in the output object.
+  Ordering object files first might prevent the inclusion of conflicting
+  symbols that are also defined in archive libraries or shared libraries
+  specified on the ld command line.
+
+  As each object, archive library, and shared library is processed by the
+  linker, new symbol definitions and references are added to the output
+  object.  If a symbol reference is added for a symbol that does not yet have
+  an associated symbol definition, it is an "undefined" symbol.	 The linker
+  must find a definition of every undefined symbol.  The definition must
+  exist in either an object, archive, or shared library specified on the com-
+  mand line.  Archives and shared libraries are processed in the following
+  ways:
+
+  - When the linker processes an archive library, it extracts objects from
+    the archive that define any symbols that are currently undefined.  As
+    each object is extracted from an archive library, the linker processes
+    the object, identifies any additional undefined symbols, and extracts the
+    objects that define those symbols.
+
+  - When the linker processes a shared library, it extracts symbol defini-
+    tions from the shared library for symbols that are currently undefined.
+    These symbol definitions are added to the output object.  The shared
+    library might also define many symbols that are not added to the output
+    object.  These symbols will not be considered as additional objects
+    (archive libraries and shared libraries) are processed; however, the
+    linker does not report these symbols as unresolved if they are referenced
+    in objects ordered after the shared library on the command line.
+
+    The linker also identifies new undefined symbols while processing a
+    shared library.  These undefined symbols are not added to the output
+    object and are not reported as unresolved, but the linker does consider
+    these undefined symbols as it processes additional objects on the command
+    line.
+
+COMMON SYMBOL RESOLUTION
+
+  A symbol's class determines how the linker will resolve it, particularly
+  when there are multiple objects, archives and shared libraries on the com-
+  mand line that define the same symbol.  In general, if the linker processes
+  more than one object defining the same text or data symbol, it report an
+  error indicating that the symbol is multiply defined.	 On the other hand,
+  certain classes of symbols such as commons and allocated commons can be
+  defined in multiple objects and libraries without causing multiple-
+  definition errors.
+
+  The linker uses symbol class, size, and command-line ordering to determine
+  which symbol definition to use in the output object.	Symbols are selected
+  according to the following precedence, in descending order:
+
+   1.  Data or text
+
+   2.  Largest allocated common
+
+   3.  Largest common
+
+  Common symbols are characterized by their size and type only.	 These sym-
+  bols are displayed as type C in nm output.
+
+  Allocated common symbols are commons that have an address as well as a size
+  and type.  These symbols are displayed as type S or B in nm output.
+
+  All other symbols are either data, text, or undefined.
+
+  The linker searches archive libraries only to extract definitions for sym-
+  bols that are undefined.  It does not replace an existing symbol definition
+  with a symbol of higher precedence extracted from an archive.	 The linker
+  applies the precedences rules only when choosing between multiple symbol
+  definitions in object files and shared libraries.
+
+NOTES
+
+  Any of the three types of objects (ZMAGIC, NMAGIC, OMAGIC) can be run on
+  DIGITAL UNIX systems.	 Within the objects, segments must not overlap and
+  all addresses must be less than 0x40000000000:
+
+  - For ZMAGIC files, the default text segment address is 0x120000000 and the
+    default data segment address is 0x140000000.  (If -taso is specified the
+    default addresses for the text and data segments are 0x12000000 and
+    0x14000000, respectively.)
+
+  - For NMAGIC files, the default text segment address is 0x20000000 and the
+    default data segment address is 0x40000000.
+
+  - For OMAGIC files, the default text segment address is 0x10000000, with
+    the data segment following the text segment.
+
+  The stack starts below the text segment and grows through lower addresses,
+  so space should be left for it.
+
+  An additional constraint is that all addresses within an executable's data
+  segment must not be any farther than 0x7fff8000 from all addresses within
+  the text segment.
+
+  For all types of files, the bss segment follows the data segment by
+  default.  For OMAGIC files, the -B flag should not be used because the bss
+  segment must always follow the data segment.	For NMAGIC and ZMAGIC files,
+  the location of the bss segment does not have any distance requirements.
+
+FILES
+
+  /usr/shlib/lib*.so
+	       shared libraries
+
+  /usr/ccs/lib/*
+	       libraries, include files, and other files
+
+  /usr/lib/cmplrs/cc/*
+	       compiler executable files
+
+  /usr/lib     directory
+
+  /usr/local/lib
+	       directory
+
+  a.out	       output file
+
+RELATED INFORMATION
+
+  as(1), ar(1), cc(1), end(3), loader(5)
+  Programmer's Guide
+  Assembly Language Programmer's Guide
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

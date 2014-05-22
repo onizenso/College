@@ -1,0 +1,154 @@
+<html>
+<head>
+<title> CMPS 350 FINAL EXAM - JavaScript </title>
+</head>
+<!-- 
+ **************
+ * JavaScript *                                            / 15
+ **************
+
+For the JavaScript portion, add 6 events to this js.html file. 
+Everything you need to complete this assignment is either explained 
+in this file or is found in the code of these two files:
+
+   /usr/users/donna/public_html/cs350/Code/JavaScript/events.html    
+   /usr/users/donna/public_html/cs350/Exams/Exam2/e2.html 
+
+ ==================================
+ EMAIL SCRIPT TO ME WHEN COMPLETE 
+ ==================================
+ 
+In this HTML file you will call a JavaScript function display() when a 
+form button is clicked. A stub for the function and the form button is
+in the file already. You need to add the event to call the function and
+finish writing the function to meet the requirements below. You will
+also add a few events to the file.
+
+Use only existing HTML for this assignment-do NOT add more. Your job:
+
+1. add an onClick event to the FORM BUTTON to call the display function  (1 pts)
+2. complete the requirements in the display function                     (12 pts)
+3. add an onClick event to the CLEAR FORM button to clear the DIV AREA   (1 pts)
+4. add an onChange event to SELECT box to call the display function      (1 PTS)
+
+SAMPLE OUTPUT FROM DISPLAY()
+
+Name: donna meyers
+Class: 351
+Q2: Asia
+Q2: Africa
+Radio: false
+Radio: false
+Radio: true
+Radio: false
+Image1: file:///C:/Temp/croc.jpg
+Image2: file:///C:/Temp/elephant.jpg
+
+Things you need to know:
+o area.innerHTML is a string
+o you can concatenate strings with the '+' operator 
+
+o all form elements can be accessed through the DOM tree. Generally you grab a 
+  value or a checked field. For example, to add name to the string:
+  
+area.innerHTML=area.innerHTML+'Name:'+window.document.myForm.name.value+'<br>';
+
+o you also need to know:
+
+  the radio button elements are stored in an array named Q1
+  elements that are either on or off have a '.checked' field  
+  images have a .src field that holds the filename
+-->
+
+<BODY>
+<h1>CS 350 FINAL EXAM - JAVASCRIPT</h1>
+
+<SCRIPT language = "JavaScript">
+
+function display()
+{
+  // assign a variable to point to myArea 
+  area=document.getElementById('myArea');
+
+  // display the value of the name field (1 pt) 
+  area.innerHTML='Name: '+window.document.myForm.name.value+'<br>';
+
+   // display the value of class (1 pt)
+   area.innerHTML= area.innerHTML+'Class: '+window.document.myForm.class.value+'<br>';    
+
+   // display the checked field of the radio buttons  (4 pts)
+   area.innerHTML=area.innerHTML+'Q1: '+window.document.myForm.Q1[0].checked+'<br>';
+   area.innerHTML=area.innerHTML+'Q1: '+window.document.myForm.Q1[1].checked+'<br>';
+   area.innerHTML=area.innerHTML+'Q1: '+window.document.myForm.Q1[2].checked+'<br>';
+   area.innerHTML=area.innerHTML+'Q1: '+window.document.myForm.Q1[3].checked+'<br>';
+
+
+  // display the value(s) of the check boxes for those that are checked (4 pts)  
+  if (window.document.myForm.Q2A.checked)
+      area.innerHTML=area.innerHTML+'Q2: North America<br>';
+  if (window.document.myForm.Q2B.checked)
+      area.innerHTML=area.innerHTML+'Q2: Asia<br>'; 
+  if (window.document.myForm.Q2C.checked)
+      area.innerHTML=area.innerHTML+'Q2: Africa<br>';
+  if (window.document.myForm.Q2D.checked)
+      area.innerHTML=area.innerHTML+'Q2: South America<br>';
+
+
+  
+   // display the filenames of the images (1 pts)
+ area.innerHTML=area.innerHTML+'Img1: '+window.document.myForm.image1.src+'<br>';    
+   area.innerHTML= area.innerHTML+'Img2: '+window.document.myForm.image2.src+'<br>';    
+}
+  
+
+</SCRIPT>
+
+<FORM name="myForm" method="post" action="display()">
+<DIV>
+Name: <input type="text" name="name"> <p>
+
+Class: <SELECT name="class" onChange="display();
+                                                  
+   <option value = "150" >150
+   <option value = "251" >251
+   <option value = "352" >352
+   <option value = "453" >453
+</SELECT>
+<P>
+
+<img src="./croc.jpg" NAME="image1"></A><p>
+1. Crocodiles are native to which continent? 
+<p>
+A. North America <input type="radio" name="Q1" value="A"> <br>
+B. Australia <input type="radio" name="Q1" value="B"> <br>
+C. Africa <input type="radio" name="Q1" value="C"> <br> 
+D. Las Vegas<input type="radio" name="Q1" value="D"><br>
+<p>
+
+<img src="./elephant.jpg" NAME="image2"></A><p>
+2. Elephants are native to which continents?  Select  all
+that apply.  <p>
+
+A. <input type = "checkbox" name = "Q2A"> North America<br> 
+B. <input type = "checkbox" name = "Q2B"> Asia<br>
+C. <input type = "checkbox" name = "Q2C"> Africa<br>
+D. <input type = "checkbox" name = "Q2D"> South America<br>
+
+<p>
+<DIV id="myArea">
+
+</DIV>
+<p>
+
+<INPUT TYPE="RESET" VALUE="CLEAR FORM" 
+   onClick="area=document.getElementById('myArea'); area.innerHTML='';">
+
+<input type="button" value="display values" onClick="display()">
+
+</DIV>
+</FORM>
+<pre>
+
+</pre>
+</BODY>
+</HTML>

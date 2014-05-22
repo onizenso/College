@@ -1,0 +1,14 @@
+ file:lab08.cpp ,function:main ,line:24 start of logging
+ file:lab08.cpp ,function:main ,line:32 create an instance of the person class
+ file:lab08.cpp ,function:main ,line:34 set all the member values with Homers stats
+ file:lab08.cpp ,function:main ,line:35 set f_name
+ file:lab08.cpp ,function:main ,line:37 set m_initial
+ file:lab08.cpp ,function:main ,line:39 set l_name
+ file:lab08.cpp ,function:main ,line:41 set phone
+ file:lab08.cpp ,function:main ,line:43 set ssn
+ file:lab08.cpp ,function:main ,line:45 set address.number
+ file:lab08.cpp ,function:main ,line:47 set address.street
+ file:lab08.cpp ,function:main ,line:49 set address.city
+ file:lab08.cpp ,function:main ,line:51 set addresss.state
+ file:lab08.cpp ,function:main ,line:53 set addresss.zip
+ file:lab08.cpp ,function:main ,line:55 test the ToString() Function

@@ -1,0 +1,43 @@
+with "gnade-odbc.gpr";
+with "components.gpr";
+
+project Components.GNADE is
+
+   for Source_Files use
+   (  "gnu-db-sqlcli-api-keys-arrays.ads", 
+      "gnu-db-sqlcli-api-keys-edit.ads", 
+      "gnu-db-sqlcli-api-keys-sets.ads", 
+      "gnu-db-sqlcli-api-keys.adb", 
+      "gnu-db-sqlcli-api-keys.ads", 
+      "gnu-db-sqlcli-api-links.adb", 
+      "gnu-db-sqlcli-api-links.ads", 
+      "gnu-db-sqlcli-api-tracing.adb", 
+      "gnu-db-sqlcli-api-tracing.ads", 
+      "gnu-db-sqlcli-api.adb", 
+      "gnu-db-sqlcli-api.ads", 
+      "persistent-odbc.adb", 
+      "persistent-odbc.ads"
+   );
+
+   package Compiler is
+      for Default_Switches ("ada") use
+         Components.Compiler'Default_Switches ("ada");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use
+         Components.Binder'Default_Switches ("ada");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use
+         Components.Builder'Default_Switches ("ada");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use
+         Components.Linker'Default_Switches ("ada");
+   end Linker;
+
+end Components.GNADE;
+

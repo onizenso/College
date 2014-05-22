@@ -1,0 +1,158 @@
+CMPS 350 Exam 1  WTR 2011        ONE EXTRA CREDIT                    /25
+
+01. In C++, how do you throw an exception back to the calling function?
+    A. put a throw in the try block
+    B. put a throw in the catch block
+    C. omit the catch block
+<!-- 1. ANS: B --!>
+
+02. When will Hello be printed from this C++ catch block? 
+    catch (...) {
+          throw 5;
+          cout << "hello\n";
+    }
+    A. When an exception does not occur.    B. Hello will never be printed.
+
+<!-- 2. ANS: B; an exception has been thrown if you are in a catch block --!>
+
+03. Fortran was the first widely used time-sharing language.
+    A. true        B. false
+<!-- 3. ANS: B - BASIC was time-sharing and developed for non-science types--!>
+
+04. Having multiple ways to do the same thing in a language decreases what?
+    A. readability      B. writeability
+<!-- 4. ANS: A (different subsets of a language is like multiple languages)--!>
+
+05. The primary operation in an imperative language is
+    A. the if statement    B. the assignment statement    C. the loop   
+<!-- 5. ANS: B --!>
+
+06. Dynamic memory leaks are eliminated in Java. This was achieved
+    A. by eliminating pointers.    B. through automatic garbage collection.
+<!-- 6. ANS: B (you can have memory leaks without pointers)--!>
+
+07. Which imperative language was designed to be a 'swiss-army knife'?
+    A. Ada     B. Lisp    C. PL/1     D. Prolog 
+<!-- 7. ANS: C --!>
+
+08. Java is a non-procedural language. That means that 
+    A. methods may not exist outside classes.  B. Java is not imperative. 
+<!-- 8. ANS: A --!>
+
+09. In Java, all non-scalar data are 
+    A. objects.    B. created on the heap.    C. both statements are true.
+<!-- 9. ANS: C (we discussed this in class)--!>
+
+10. What will this Lisp function return if you call it with (foo '(1 2 3))?
+      (defun foo (x)
+        (if (null x) 0 (+ (foo (cdr x)) 1))) 
+    A.  6            B. 3          C.  0 
+<!-- 10. ANS: B --!>
+
+11. Ada includes which of the following features?
+    A. dynamic typing     B. concurrancy    C. both statements are true 
+<!-- 11. ANS: B; ADA is the most strongly typed language on the planet  --!>
+
+12. The most expensive language design effort to date was for
+    A. Java     B. Fortran    C. Ada    D. Cobol
+<!-- 12. ANS: C (Ada was developed by DoD) --!>
+
+13. In this C code, what does function g return? (C uses lexical scoping rules)
+        x = 0;
+        int f () { return x; }
+        int g () { int x = 1; return f(); }
+     A. 0          B. 1         C. f()  
+<!-- 13. ANS: A --!>
+
+14. Fortran was initially designed to
+    A. solve problems in artificial intelligence    B. crunch numbers.
+<!-- 14. ANS: B (Lisp was for AI - Fortran for scientific programming) --!>
+
+15. Following the rules in this BNF Grammar 
+        <expr> ::= <expr> * <term> | <term> + <term>  | <term>
+        <term> ::= <var> | const 
+        <var> ::= a | b | c | d
+    and given the expression 5 * 3 * 2,
+    A. 5 * 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 * 3.
+    C. either 5 * 3 or 3 * 2 could occur first - the grammar is ambiguous.
+<!-- 15. ANS: A (the rule is left recursive thus left associative) --!>
+
+16. Following the rules in the grammar from #15, and the expression 5 + 3 * 2, 
+    A. 5 + 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 + 3.
+    C. either 5 + 3 or 3 * 2 could occur first - the grammar is ambiguous.
+<!-- 16. ANS: A (+ will be lower than * on the parse tree)--!>
+
+17. A grammar is ambiguous if and only if
+    A. one or more rules in the grammar use recursion. 
+    B. a sentence in the language can be derived with two distinct parse trees. 
+<!-- 17. ANS: B --!>
+
+18. The statement 
+            A =  ( A *  B ) + ( C + A )
+     is valid in the language defined by this grammar
+        <assign> -> <id> = <expr>  
+        <expr>   -> <id> + <expr> | <id> * <expr> | ( <expr> ) | <id>
+        <id>     -> A | B | C 
+    A. true                 B. false 
+<!-- 18. ANS: B --!>
+
+19. The following grammar is ambiguous.
+     <S> -> <A>
+     <A> -> <A> + <A>  | <id>
+     <id> -> a | b | c
+   A. true              B. false 
+<!-- 19. ANS: A --!>
+	
+20. Which string cannot be derived by the grammar below?
+     <S> -> <A> <B> <C>
+     <A> -> a<A> | a 
+     <B> -> b<B>c | b 
+     <C> -> c<C> | c  
+   A. abbbbcc              B. aaaabbcc
+<!-- 20. ANS: A --!>
+
+21. Consider the grammar:
+    <S> -> <A> a <B> b
+    <A> -> <A> b | b 
+    <B> -> a <B> | a
+   Which of these strings is in the language defined by the above grammar?
+   A. ababbab        B. bbaaaaa         C. bbaabb      D. baaaaab         
+<!-- 21. ANS: D --!>
+
+22. This grammar
+    <S> -> <A> b <B>  
+    <A> -> <A> b | a 
+    <B> -> a <B> | c 
+    defines the set of all strings starting with a single 'a' and followed by 
+    2 or more 'b's and ending with one 'c' and no other strings. 
+    A.  true     B. false 
+<!-- 22. ANS: B ( the regex is /ab+a*c/ which is slightly different ) --!>
+
+23. The length of the bitstrings produced by this grammar will always be what?
+    (the terminal characters are 0 and 1)
+           A -> 1 |  00A  | 1AA
+    A. odd      B. even   
+<!-- 23. ANS: A --!>
+
+24. What will this C++ code result in?
+         Shape * s = new Shape();
+         Shape * t = new Shape();
+         s = t;
+    A. a cross-linked pointer    B. a memory leak    C. both are true   
+<!-- 24. ANS: C --!>
+
+25. If you want to ensure that ^ takes precedence over * in the grammar below, 
+    what new rule would you add to the grammar?
+          <stuff> ::= <stuff> * <junk>  
+    A. <stuff> ::= <junk> ^ <term>
+    B. <junk> ::= <junk> ^ <term>
+<!-- 25. ANS: B (you want ^ lower on the parse tree and this will do it) --!>
+ 
+26. This BNF grammar
+          <cmdlist> ::= <cmd> | <cmdlist>; <cmd>
+   is equivalent to this EBNF grammar, where { } denotes 0 or more times.
+          <cmdlist> ::= <cmd> {; <cmd> }
+   A.  true      B. false 
+<!-- 26. ANS: A --!>

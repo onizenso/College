@@ -1,0 +1,381 @@
+printf(1)							    printf(1)
+
+NAME
+
+  printf - Writes formatted output
+
+SYNOPSIS
+
+  printf format [argument ...]
+
+FLAGS
+
+  None
+
+PARAMETERS
+
+  format   A string describing the manner of writing the output.  This string
+	   is explained in the DESCRIPTION section.
+
+  argument The strings to be written under the control of the format.  These
+	   strings are explained in the DESCRIPTION section.
+
+DESCRIPTION
+
+  The printf command converts, formats, and writes its arguments to the stan-
+  dard output. The values specified by the argument variable are formatted
+  under control of the format variable.
+
+  Syntax of the argument Variable
+
+
+  The argument variable is a list of one or more strings to be written to the
+  standard output under the control of the format variable.  These are
+  treated as strings if the corresponding conversion character is b, c, or s;
+  otherwise, it is evaluated as a C constant, with the following extensions:
+
+  A leading + (plus sign) or - (minus sign) is allowed.
+
+  If the leading character is a ' (single quote) or " (double quote), the
+  value is the numeric value in the underlying code set of the character fol-
+  lowing the single quote or double quote.
+
+
+
+
+  Syntax of the format Variable
+
+
+  The format variable is a character string that contains three types of
+  objects:
+
+    +  Plain characters that are copied to the output stream.
+
+    +  The following escape sequences are both copied to the output stream
+       and cause the associated action to occur on display devices that are
+       capable of the action.
+
+       \\  Backslash
+
+       \a  Alert
+
+       \b  Backspace
+
+       \f  Formfeed
+
+       \n  Newline
+
+       \r  Carriage Return
+
+       \t  Tab
+
+       \v  Vertical Tab
+
+       \ddd
+	   Where ddd is a one-, two-, or three-digit octal number.  These
+	   escape sequences are displayed as a byte with the numeric value
+	   specified by the octal number.
+
+    +  A delta character in the format string is treated as a delta charac-
+       ter, rather than as a space character.
+
+  The format variable is reused as often as necessary to satisfy the
+  arguments. Any extra c or s conversion specifications are evaluated as if a
+  null string argument were supplied; other extra conversion specifications
+  are evaluated as if a zero argument were supplied.
+
+  Each conversion specification in the format variable has the following syn-
+  tax:
+
+   1.  A % (percent sign).
+
+   2.  Zero or more options, which modify the meaning of the conversion
+       specification.  The option characters and their meanings are as fol-
+       lows:
+
+       -   The result of the conversion is left aligned within the field.
+
+       +   The result of a signed conversion always begins with a + (plus) or
+	   - (minus).
+
+       blank
+	   If the first character of a signed conversion is not a sign, a
+	   blank is prefixed to the result. If both the blank and + options
+	   appear, then the blank option is ignored.
+
+       #   The value is converted to an alternative form.  For c, d, i, u,
+	   and s conversions, the option has no effect. For o conversion, it
+	   increases the precision to force the first digit of the result to
+	   be a 0 (zero). For x and X conversions, a nonzero result has 0x,
+	   or 0X prefixed to it, respectively.	For e, E, f, g, and G conver-
+	   sions, the result always contains a radix character, even if no
+	   digits follow the radix character. For g and G conversions, trail-
+	   ing zeros are not removed from the result as they usually are.
+
+       0   For d, i, o, u, x, X, e, E, f, g, and G conversions, leading zeros
+	   (following any indication of sign or base) are used to pad to the
+	   field width, no space padding is performed.	If the 0 (zero) and -
+	   options appear, the 0 (zero) option is ignored. For d, i, o, u, x,
+	   and X conversions, if a precision is specified, the 0 (zero)
+	   option is ignored.
+
+   3.  An optional decimal digit string that specifies the minimum field
+       width. If the converted value has fewer characters than the field
+       width, the field is padded on the left to the length specified by the
+       field width. If the left-adjustment option flag (-) is specified, the
+       field is padded on the right.
+
+   4.  An optional precision. The precision is a . (dot) followed by an
+       asterisk (*), or a decimal digit string. If no precision is given, it
+       is treated as 0 (zero).	The precision specifies:
+
+	 +
+	 The minimum number of digits to appear for the d, o, i, u, x, or X
+	 conversions.
+
+	 +
+	 The number of digits to appear after the radix character for the e
+	 and f conversions.
+
+	 +
+	 The maximum number of significant digits for the g conversion.
+
+	 +
+	 The maximum number of bytes to be printed from a string in the s
+	 conversion.
+
+   5.  A character that indicates the type of conversion to be applied, as
+       follows:
+
+       %   Performs no conversion. Prints a % (percent sign).
+
+       b   Accepts a value as a string that may contain backslash-escape
+	   sequences. Bytes from the converted string are printed until the
+	   end of the string or number of bytes indicated by the precision
+	   specification is reached. If the precision is omitted, all bytes
+	   until the first null character are printed.
+
+	   The following backslash-escape sequences are supported:
+
+	     +
+	     The \Oddd sequence, where ddd is a one-, two-, or three-digit
+	     octal number that is converted to a byte with the numeric value
+	     specified by the octal number.
+
+	     +
+	     The escape sequences previously listed under the description of
+	     the format variable. These are converted to the individual char-
+	     acters they represented.
+
+	     +
+	     The \c sequence, which is not displayed and causes the printf
+	     command to ignore any remaining characters in the string parame-
+	     ter containing it, any remaining string parameters, and any
+	     additional characters in the format variable.
+
+       c   Prints the first character of the argument.
+
+       d, i
+	   Accepts an integer value and converts it to a signed decimal nota-
+	   tion in the style [-]dddd.  The precision specifies the minimum
+	   number of digits to appear. If the value being converted can be
+	   represented in fewer digits, it is expanded with leading zeros.
+	   The default precision is 1. The result of converting a 0 (zero)
+	   value with a precision of 0 (zero) is a null string. Specifying a
+	   field width with a 0 (zero) as a leading character causes the
+	   field to be padded with leading zeros.
+
+       e, E
+	   Accepts a float or double value and converts it to the exponential
+	   form [-] d.dde +|- dd. There is one digit before the radix charac-
+	   ter (shown here as the decimal point), and the number of digits
+	   after the radix character is equal to the precision specification.
+	   The LC_NUMERIC locale category determines the radix character to
+	   use in this format. If no precision is specified, then six digits
+	   are output. If the precision is 0 (zero), then no radix character
+	   appears.  The E conversion character produces a number with E
+	   instead of e before the exponent. The exponent always contains at
+	   least two digits.  However, if the value to be printed requires an
+	   exponent greater than two digits, additional exponent digits are
+	   printed as necessary.
+
+       f   Accepts a float or double value and converts it to decimal nota-
+	   tion in the format [-] ddd.ddd.  The number of digits after the
+	   radix character (shown here as the decimal point) is equal to the
+	   precision specification. The LC_NUMERIC locale category determines
+	   the radix character to use in this format.  If no precision is
+	   specified, then six digits are output. If the precision is 0
+	   (zero), then no radix character appears.
+
+       g, G
+	   Accepts a float or double value and converts it in the style of
+	   the f or e conversion characters (or E in the case of the G
+	   conversion), with the precision specifying the number of signifi-
+	   cant digits.	 Trailing zeros are removed from the result. A radix
+	   character appears only if it is followed by a digit.	 The style
+	   used depends on the value converted. Style g results only if the
+	   exponent resulting from the conversion is less than -4, or if it
+	   is greater than or equal to the precision.
+
+       o   Accepts an integer value and converts it to unsigned octal nota-
+	   tion.  The precision specifies the minimum number of digits to
+	   appear. If the value being converted can be represented in fewer
+	   digits, it is expanded with leading zeros. The default precision
+	   is 1.  The result of converting a 0 (zero) value with a precision
+	   of 0 (zero) is a null string. Specifying a field width with a 0
+	   (zero) as a leading character causes the field width value to be
+	   padded with leading zeros.  An octal value for field width is not
+	   implied.
+
+       s   Accepts a value as a string, and bytes from the string are printed
+	   until the end of the string is encountered or the number of bytes
+	   indicated by the precision is reached. If no precision is speci-
+	   fied, all characters up to the first null character are printed.
+
+       u   Accepts an integer value and converts it to unsigned decimal nota-
+	   tion. The precision specifies the minimum number of digits to
+	   appear. If the value being converted can be represented in fewer
+	   digits, it is expanded with leading zeros. The default precision
+	   is 1.  The result of converting a 0 (zero) value with a precision
+	   of 0 (zero) is a null string. Specifying a field width with a 0
+	   (zero) as a leading character causes the field width value to be
+	   padded with leading zeros.
+
+       x, X
+	   Accepts an integer value and converts it to unsigned hexadecimal
+	   notation. The letters abcdef are used for the x conversion and the
+	   letters ABCDEF are used for the X conversion. The precision speci-
+	   fies the minimum number of digits to appear. If the value being
+	   converted can be represented in fewer digits, it is expanded with
+	   leading zeros. The default precision is 1.  The result of convert-
+	   ing a 0 (zero) value with a precision of 0 (zero) is a null
+	   string. Specifying a field width with a 0 (zero) as a leading
+	   character causes the field width value to be padded with leading
+	   zeros.
+
+       If the result of a conversion is wider than the field width, the field
+       is expanded to contain the converted result. No truncation occurs.
+       However, a small precision may cause truncation on the right.
+
+ENVIRONMENT VARIABLES
+
+  The following environment variables affect the execution of printf:
+
+  LANG	   Provides a default value for the internationalization variables
+	   that are unset or null. If LANG is unset or null, the correspond-
+	   ing value from the default locale is used. If any of the interna-
+	   tionalization variables contain an invalid setting, the utility
+	   behaves as if none of the variables had been defined.
+
+  LC_ALL   If set to a non-empty string value, overrides the values of all
+	   the other internationalization variables.
+
+  LC_CTYPE Determines the locale for the interpretation of sequences of bytes
+	   of text data as characters (for example, single-byte as opposed to
+	   multibyte characters in arguments).
+
+  LC_MESSAGES
+	   Determines the locale for the format and contents of diagnostic
+	   messages written to standard error.
+
+  NLSPATH  Determines the location of message catalogues for the processing
+	   of LC_MESSAGES.
+
+  LC_NUMERIC
+	   Determines the locale for numbers written using the e, E, f, g, or
+	   G conversion characters.
+
+EXAMPLES
+
+   1.  The following printf command formats a series of numbers:
+
+
+	    printf "%5d%4d\n" 1 21 321 4321 54321
+
+       This command produces the following output:
+
+
+		1  21
+	      3214321
+	    54321   0
+
+       The format variable is used three times to print all of the given
+       strings. The 0 (zero) is supplied by the printf command to satisfy the
+       last %4d conversion specification.
+
+   2.  The following script includes printf commands to alert the user (sound
+       a beep) and to display prompts for entering a name and phone number.
+       The script then appends the user entries to a file.
+
+
+	    printf "\aPlease fill in the following: \nName: "
+	    read name
+	    printf "Phone number: "
+	    read phone
+	    echo $name "  " $phone >> phone_list
+	    echo "" >> phone_list
+
+RELATED INFORMATION
+
+  Commands:  awk(1), bc(1), echo(1), read(1)
+
+  Functions:  printf(3)
+
+  Standards:  standards(5)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

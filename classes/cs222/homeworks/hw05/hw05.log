@@ -1,0 +1,36 @@
+ file:hw05.cpp ,function:main ,line:15 start of logging
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number

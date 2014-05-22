@@ -1,0 +1,38 @@
+		Sizes of int, float, and unsigned long, int *:  4, 4, 8, 8
+
+
+
+	Variable Name       Address         Offset
+
+	fun3_p_q           140735137163900      8   uncountable 4 bytes between parameter and locals
+
+	fun3_l_z           140735137163908      4   
+	fun3_l_y           140735137163912      4
+	fun3_l_x           140735137163916      32  after fun3_l_x (4) dynamic link and address 8 each
+						    there are 12 uncountable bytes.
+
+	fun2_p_x           140735137163948      16  There are 16-4 bytes uncountable btw par and locals.
+
+	fun2_l_y           140735137163964      32  There are 12 uncountable bytes btw calls.
+
+
+	fun1_p_r           140735137163996      12  There 8 uncountable bytes betwee pars and locals
+
+	fun1_l_t           140735137164008      4
+	fun1_l_s           140735137164012      32  There are 12 uncountable bytes between 2 ARIs
+
+	main_l_p           140735137164044      0
+
+
+
+    It looks like:
+
+       1. Between two ARIs, there are 12 byte uncountable which are used for some other purpuses,
+          with 8 bytes counted for dynamic link and return addresses.
+	   
+       2. Between  parameters and local variables of the same function, there are variable number of
+          bytes uncountables.
+
+       3. In another example, the non-fixed dynamic arrays are allocated last (on the top), and fixed
+          stack-dynamic array are allowed along with scalar local variables.
+

@@ -1,0 +1,680 @@
+<html>
+<head>
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 28;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+
+<style type=text/css>
+      body
+   {
+      margin : 2% 5% 5% 5%;
+   }
+</style>
+</head>
+<body bgcolor="white">
+<h3>CMPS 350: hw 08 Statement-Level Control Structures </h3>
+<font color=red>DUE: next monday before lecture </font>
+<p>
+<a href="./Code/C/hw08.c">hw08.c</a><br>
+<a href="./Code/Ada/lab08.adb">lab08.adb</a>
+<p>
+<font face="courier" style="font-size: 11pt; font-weight: 500"> 
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre>
+01. An implicit branch in a multiple selection statement ensures that only one 
+    selection will be executed.
+    A. true       B. false </pre> 
+   A<input type="radio" name="Q1" value="1"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: C does not have an implicit branch; if you do not put a break in - flow through occurs.'; } "
+>
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+02. Select the statement that is NOT true of C's multiple selection statement 
+   (the switch) or select D if all statements are true. 
+    A. C supports implicit flow through 
+    B. there is a mechanism for a default choice
+    C. the branch is explicit
+    D. all statements are true </pre>
+   A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="1">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: if A is true then C must be true also.'; } "
+>
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+03. Unlike C, C#'s switch statement syntax requires an explicit break statement:
+    <font size=-1>
+   switch (expression)
+   {
+      case constant-expression:
+         statement
+         jump-statement  
+      [default:
+         statement
+         jump-statement]
+   } </font>
+   What can you conclude?
+   A. C#'s switch statement does not support flow through.
+   B. C#'s switch statement can result in redundant code.
+   C. both A and B are true.</pre>
+   A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="1"> D<input type="radio" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Flow through means that multiple value can end up in the same case - if you do not have flow through you will have to repeat that code for each case.'; } "
+>
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+04. Select the statement that is NOT true concerning user-located loop control 
+    structures (or D if all statements are true).
+    A. You can jump out somewhere other than at the top or the bottom. 
+    B. You can jump in somewhere other than at the top.
+    C. C unconditional labeled branch statements implement this control .
+    D. All statements are true  </pre>
+   A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the C goto can jump in and out of loops at any location in the loop body.'; } "
+>
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+05. What is NOT true regarding break, continue and goto statements? 
+    A. they are all unconditional control statements 
+    B. the goto statement requires a label 
+    C. the continue allows you to exit a loop prematurely 
+    D. all statements are true </pre>
+   A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="1"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: continue means to continue what you are currently doing (the loop)- not to continue what you were doing before .'; } "
+>
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+06. What is true in this Perl loop mechanism? (select C if both are true)
+          foreach ( @words )  {....}
+   A. the number of iterations is the number of elements in the array 
+   B. this mechanism is called an iterator    
+   C. both statements are true   </pre>
+   A<input type="radio" name="Q6" value="0"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="1"> D<input type="radio" name="Q6" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: an iterator controls a loop by traversing a data structure or a file.'; } "
+>
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+07. This Fortran code is equivalent to two nested while loops. 
+      i = 5
+      j = 5
+   10 PRINT "foo"
+   15 PRINT "bar" 
+      i = i - 1
+      IF (i .gt. 0) GOTO 15        // .gt. is "greater than"
+      j = j - 1
+      IF (j .ne. 0) GOTO 10       // .ne. is "not equal to"
+
+   A. true        B. false </pre>
+   A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: trace what happens just before and just after the conditions evaluate to false.'; } "
+>
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+08. Reading from a file with an unknown number of lines must be solved with 
+    what type of looping mechanism?
+    A. counter controlled 
+    B. logically controlled </pre>
+   A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="1"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: if you change the stopping condition inside a for loop when you hit EOF you can do it - but this is really turning a counter controlled loop into a logic controlled loop .'; } "
+>
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+09. Reading values from an array of integers on unknown size until you hit a 
+    flag (say -999) must be solved with what type of looping control mechanism?
+    A. counter controlled      B. logically controlled  </pre>
+   A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="1"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: modifying the stopping condition in a for loop turns it into a logic controlled loop.'; } "
+>
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+10. Assume this is a legal statement in your language, where '=' is assignment
+    and i can be any numeric variable type. What do you know about the language?
+
+          while (i = 0)    
+  
+   A. a condition statement may be any arithmetic expression
+   B. a condition statement may be any boolean expression
+   C. both A and B are true   </pre>
+   A<input type="radio" name="Q10" value="1"> B<input type="radio" name="Q10" value="0"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: one thing you know for sure is that arithmetic expressions are supported - the language may or may not support a boolean data type (C is one such language).'; } "
+>
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+11. Assume this is a legal statement in your language, where '=' is assignment
+    and i can be any numeric variable type. What is true? 
+                  while (i = 5)  {
+                      i--;
+                  }
+    A. the loop will execute 5 times 
+    B. the loop will execute 6 times 
+    C. neither option is correct </pre>
+   A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="1"> D<input type="radio" name="Q11" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: this is why many modern languages do not allow arithmetic expressions in conditions.'; } "
+>
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+12. What is not true about the default enumeration value option in a switch?
+    A. all unrepresented enumeration values will be caught by this option 
+    B. this option should be omitted only if all possible enumeration values 
+       have been tested
+    C. it can lead to programmer laziness
+    D. all statements are true </pre>
+   A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="0"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: secure coding best practices recommends that all case values be tested for; short of this - use a default case to catch untested values.'; } "
+>
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+13. The following two control structures in C share the same semantics.
+
+     // #1
+     k = 1;
+     loop:
+     if ( k > 10 ) then goto out
+     k = k + 1;
+     goto loop
+     out: 
+
+     // #2
+     for ( k = 1; k <=10; k++ ) 
+         ;
+
+   A. true        B. false </pre>
+   A<input type="radio" name="Q13" value="1"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: compare values of k and the number of times both loops execute.'; } "
+>
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+14. The following two control structures (both written in C) share the same 
+    semantics.
+<font size = -1>
+     int i;
+     int j = 0;
+     // #1
+     for ( i = 0; i < 3; i++) {
+       switch (j+2) {
+         case 3:
+         case 2: j--; break;
+         case 0: j++; break;
+         default: j = 0;
+       }
+       if ( j > 0 ) break;
+       j = 3 - i;
+     }
+
+     // #2
+     i = 0;
+     while ( i < 3 ) {
+        if ( (j+2 == 3) || (j+2 == 2) )
+           j--;
+        else if ( j+2 == 0 )
+           j++;
+        else
+           j = 0;
+        if ( j > 0 )  
+           break;
+        j = 3 - i;
+        i++;
+     }</font>
+    A. true         B. false </pre>
+   A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: do not try to understand what this algorithm is doing - just compare all aspects of the control structure - how many times does the loop execute - are the values of j handled the same? etc..'; } "
+>
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+15. What does the following C code do? (X has been initialized with ints)
+<font size = -1>
+    for ( i = 0; i < n; i++ ) {
+       for ( j = 0; j < n; j++ ) {
+          if ( X[i][j] != 0)
+             goto reject;
+       }
+       printf ("Found it at: %d\n", i);
+       break;
+       reject: 
+     }
+</font>
+   A. finds the first row of all zeros
+   B. finds the first row that contains no zeros
+   C. finds all rows that contain all zeros</pre>
+   A<input type="radio" name="Q15" value="1"> B<input type="radio" name="Q15" value="0"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the loop control structure is exited when reject is not hit in the inner loop'; } "
+>
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+16. The following C code will accomplish what?
+<font size = -1>
+    while ( i < n ) {
+       flag = 0;
+       for ( j = 0; j < n; j++ ) {
+          if ( X[i][j] < 0 )        // assume X contains integers
+             flag = 1;
+       }
+       if ( flag == 1)  {
+           printf ("value: %d\n", i);
+           i = n ;  
+       } 
+       i++;
+    }
+</font>
+   A. exit the while loop upon encountering a negative value 
+   B. display the row containing the first negative value
+   C. both A and B will occur  </pre>
+   A<input type="radio" name="Q16" value="0"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="1"> D<input type="radio" name="Q16" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: just look closely at the control structures for the loop - in particular this statement controlling the exit: i = n;.'; } "
+>
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+
+17. What is true regarding the use of negative logic in a control structure? 
+    A. control is released when the condition becomes false 
+    B. control is released when the condition becomes true </pre>
+   A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="1"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: negative logic is not the norm - an example is while ( ! condition ) { .... } '; } "
+>
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+18. This code is an example of a dangling else. Under C's static semantics, 
+    which 'if' gets the 'else'?  (C++,Java and C# share the same semantics)
+
+      if (sum == 0)    // first 
+      if (count == 0)  // second 
+      result = 0;
+      else result = 1;  
+   A. the first if          B. the second if   </pre> 
+   A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="1"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the most intuitive answer is correct.'; } "
+>
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+19. C's switch statement does not have an implicit break but supports flow
+    through (also called fall through). What will be printed when this C code 
+    is executed for num = 2?
+<font size = -1>
+   switch (num) {
+      case 1: printf("one ");   
+      case 2: printf("two ");   
+      case 3: printf("three ");   
+      default: printf("whatever "); 
+   }
+</font>
+   A. one two three whatever    B. two three whatever    C.  two three  </pre>
+   A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="1"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: fall through starts after hitting the first valid case.'; } "
+>
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+20. This function is tail-recursive.
+  <font size=-1>
+   int stuff (int n) {
+       if (n == 0) return 1
+       else
+          return n * stuff (n-1);
+   } </font>
+   A. true         B. false </pre> 
+   A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: in tail recursion the last statement executed is the recursive call - nothing occurs on the way back as you unwind the runtime stack.'; } "
+>
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+21. What is always true regarding counter-controlled loops regardless of the 
+    language?
+    A. The loop variable must be an integer.
+    B. The loop variable cannot be changed in the loop.
+    C. The loop variable is evaluated within the loop control no more than once
+       per iteration.
+    D. There must be an explicit loop variable. </pre>
+   A<input type="radio" name="Q21" value="0"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="1"> D<input type="radio" name="Q21" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: three of these items do not need to be true in C.'; } "
+>
+<DIV id="Q21Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+22. What is true concerning the output of the three chunks of code below for 
+    n = 4?
+   <font size=-1>
+    // #1 
+    void junk1 (int n) {
+        print n;
+        if ( n > 0)
+           junk1 (n-1);
+    }
+    // #2 
+    void junk2 (int n) {
+        if ( n > 0)
+           junk2 (n-1);
+        print n;
+    }
+    // #3 
+    while (n > 0) {
+         print n;
+         n--;
+    }
+</font>
+   A. #1 and #3 are identical
+   B. #2 and #3 are identical
+   C. #1, #2 and #3 are identical
+   D. the output is different in all cases  </pre>
+   A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="0"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: you should trace it - your first guess is probably wrong.'; } "
+>
+<DIV id="Q22Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+23. The following pseudo-code describes the control structure of a pre-test 
+    loop. 
+
+     start 
+     if (ctrl_expr)  
+     do loop body
+     goto start
+
+   A. true       B. false </pre> 
+   A<input type="radio" name="Q23" value="1"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: compare it to a while loop.'; } "
+>
+<DIV id="Q23Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+24. What is the next line executed in this C code for value = -1?
+    <font size=-1>
+     1 while (sum < 1000) {
+     2     getnext(value);
+     3     if (value < 0) 
+     4        break;
+     5     sum := value;
+     6 }
+     7 printf("Value: %d",value);
+   </font>
+   A. Line 1       B. Line 5      C. Line 7 </pre>
+   A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="1"> D<input type="radio" name="Q24" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: you just need to know the meaning of break .'; } "
+>
+<DIV id="Q24Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+25. Which of the following cannot be accomplished without the use of an 
+    unconditional labeled jump (a goto)?
+    A. multiple entry points in a loop 
+    B. multiple exit points in a loop
+    C. both require a goto  </pre>
+   A<input type="radio" name="Q25" value="1"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a break -- an unconditional *unlabeled* jump - will get you out of a loop.'; } "
+>
+<DIV id="Q25Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+</pre>
+The next questions refer to the Ada selective accept statement and specifically
+the code provided below.
+(<a href="./Code/Ada/hw08.adb">see more extensive code</a>). 
+<pre>
+    loop
+       select                                
+          when x =>          
+              accept pickup;
+       or
+          when y =>          
+              accept dropoff;
+       or 
+         terminate;
+       end select;
+    end loop;
+
+26. It is an error if a selective accept statement in Ada has a guard on each 
+    of its alternatives and all the guards evaluate to false. 
+    A. true        B. false </pre>
+   A<input type="radio" name="Q26" value="1"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the purpose of a selective accept is to process a selection requests in any order -  at least one better be open or you have a hanging process.'; } "
+>
+<DIV id="Q26Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+27. Select the false statement or D if all statements are true. 
+    A. x and y are guards 
+    B. x and y are both evaluated when the select statement is hit
+    C. if x and y are both true, the pickup request is selected first
+    D. all statements are true  </pre>
+   A<input type="radio" name="Q27" value="0"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="1"> D<input type="radio" name="Q27" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the purpose of guarded commands is to support asynchronousity in concurrent threads - if multiple guards are true and only one has a request pending, that request is selected; if both have requests pending then the request is non-deterministically selected.'; } "
+>
+<DIV id="Q27Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+28. The terminate occurs when 
+    A. there are no more requests pending  
+    B. both guards evaluate to false
+    C. either A or B   </pre>
+   A<input type="radio" name="Q28" value="1"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the state of the guards is inconsequential to termination - terminate is selected when the main program (task master) stops sending requests to the task.'; } "
+>
+<DIV id="Q28Area" STYLE="background-color: white" >
+</DIV>
+<p>
+
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 8">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+
+</body>
+</html>

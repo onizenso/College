@@ -1,0 +1,93 @@
+CMPS 350 Lab 02  SOLUTIONS
+
+#1. What happens when the following expressions are evaluated? 
+
+  (a) > (* (+ 5 2) (- 7 5))
+      > 14
+
+  ANS: (+ 5 2) yields 7; (- 7 5) yields 2; (* 7 2) yields 14
+
+  (b) > (list 1 (+ 2 3))
+      > (1 5) 
+
+   ANS: (+ 2 3) yields 5; (list 1 5) yields (1 5)
+
+  (c) > (if (listp 1) (+ 1 2) (+ 3 4))
+      > 7 
+
+   ANS: (listp 1) returns NIL; (if (NIL) 7) returns 7.
+
+  (d) > (list (and (listp 3) t) (+ 1 2))
+      > (NIL 3)
+
+    ANS: (listp 3) returns NIL; (and NIL t) returns NIL; (list NIL (+ 1 2))
+    creates the list (NIL 3)
+
+#2. Replace the 'x' in the following statements with a Lisp operator or value
+    that will produce the outcome as shown.
+
+  (a) (car (x (cdr '(a (b c) d))))
+      > B
+      ANS: (car (car (cdr '(a (b c) d))))
+
+
+  (b) (x 13 (/ 1  0))
+      > 13
+     ANS: (or 13 (/ 1 0))  
+     (if (listp NIL) 13 (/ 1 0))  ; another solution
+
+   (c) > ((lambda (y) (* y 2)) x)  
+         6  
+   ANS: 3 
+
+#3. Use car and cdr to return the fourth element of a list.
+
+   ANS:
+   > (car (cdr (cdr (cdr '(a b c d e)))))
+  
+   > (car (cdddr '(a b c d)))   ; another solution
+
+#4. Find three distinct cons expressions that return (a b c). Since Lisp is 
+    case insensitive, (A B C) is identical. However, the list ((A B C)) is 
+    not equivalent to (A B C). One list has one element and the other list has 
+    three.
+
+   ANS:
+  > (cons 'a '(b c))
+
+  > (cons 'a (cons 'b '(c)))
+
+  > (cons 'a (cons 'b (cons 'c NIL)))
+
+  > (cons (car (cdr '(c a))) '(b c))     ; another solution
+ 
+  
+
+#5. Given this Lisp function definition
+
+   (defun test (n)
+     (if (<= n 1)
+        1
+     (+ n (test (- n 1)))))
+
+    Trace this function for the initial call (test 3).
+
+    ANS: "Backwards substitution" is one way to demonstrate how a Lisp 
+    recursive function is evaluated:
+
+     (test 3)
+  => ( + 3 (test 2))
+  => ( + 3 (+ 2 (test 1)))
+  => ( + 3 (+ 2 1))
+  => ( + 3  3)
+  =>  6  
+     
+ 
+#6. Explain how this function will be evaluated. 
+
+    (list (or t (listp 3)) (+ 1 2))
+
+    ANS: Since OR is a short-circuit operator (listp 3) is not evaluated; 
+    (or t) returns T; (+ 1 2) returns 3; (list T 3) returns (T 3)
+
+

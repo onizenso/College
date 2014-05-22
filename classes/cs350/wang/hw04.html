@@ -1,0 +1,501 @@
+<html>
+<head>
+<STYLE type=text/css>
+DIV {
+  font-family: helvetica;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #FF0000;
+  background-color: "yellow";
+  padding-right: 20px;
+}
+
+BODY {
+  margin: 2% 15% 5% 5%;
+  font-family: helvetica;
+  background-color: #DDEEEE;
+  color: #19193A;
+  font-size: 10pt;
+}
+</STYLE>
+
+
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 20;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 0; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if (j == 4 ) break;
+           var myvalue = parseInt(document.quizform.elements[index].value);
+           var ischecked = document.quizform.elements[index].checked;
+           if ( (ischecked && myvalue != 1) || (!ischecked && myvalue == 1) ) {
+              err_flag = 1;
+              question = i + 1;
+              err_str = err_str + question + ",";
+              wrong++;
+              break;
+           }
+       }
+       if ( !err_flag ) right++;
+       err_flag = 0;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+</head>
+<body bgcolor="papayawhip">
+<h3>CMPS 350 HW 04: Attribute Grammars (Ch 3.4) </h3>
+<font color=red>DUE: next monday before lecture </font>
+<form name="quizform" METHOD="POST" ACTION="emailme.php">
+<font color=red> </font>
+<pre class=verbatim>
+01. This BNF grammar
+
+  &lt;cmdlist> ::= &lt;cmd> | &lt;cmdlist>; &lt;cmd>
+
+     is equivalent to this EBNF grammar, where { } denotes 0 or more times.
+
+  &lt;cmdlist> ::= &lt;cmd> | {;&lt;cmdlist>}
+
+  A. true     B. false</pre>
+  &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="1"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try generating the shortest list in both grammars.'; } "
+>
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+02. Under C's syntax, which problems need an attribute grammar?  
+    A. Preventing the dangling else problem. 
+    B. Preventing duplicate identifier names in the same block.
+    C. Controlling naming, so that a variable name does not begin with a digit. 
+    D. Enforcing strict type checking for scalars in parameter passing.</pre>
+   &nbsp;&nbsp;&nbsp;A<input type="checkbox" name="Q2" value="1"> B<input type="checkbox" name="Q2" value="1"> C<input type="checkbox" name="Q2" value="0"> D<input type="checkbox" name="Q2" value="1">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[0].checked  
+               && document.quizform.Q2[1].checked 
+               && !document.quizform.Q2[2].checked 
+               && document.quizform.Q2[3].checked 
+              )  
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Find the problems that are context sensitive. The dangling else problem is: if (test1) if (test2) x=1 else x=3. Where does the else go? Is this problem context-senstive? Perl solves the problem by forcing curly braces on single statements but you do not want to change C syntax.'; } " 
+>
+
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+03. An attribute grammar
+    A. adds context-sensitive information to a context-free grammar. 
+    B. describes semantics; i.e., the behavior of a program at runtime.
+    C. Both statements are true. </pre>
+  
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q3" value="1"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If the compiler is involved with the grammar - it cannot be involved with runtime behavior.'; } "
+>
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+04. What is Size in the following attribute grammar? ('&lt;-' denotes assignment
+    from right to left)
+
+       &lt;astring> ::= &lt;astring>[2] a
+       Size(&lt;astring>) <- Size(&lt;astring>[2]) + 1  
+
+   A. a synthesized attribute        B. an inherited attribute </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q4" value="1"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Look at the direction information is flowing in the parse tree of this rule.'; } "
+>
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+05. What is the false statement concerning attribute grammars?
+    A. The values of intrinsic attributes are assigned before parsing begins.
+    B. Inherited attributes are decorated in a bottom-up fashion.
+    C. Synthesized attributes carry information up the parse tree.
+    D. Intrinic attributes are a type of synthesized attributes. </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="1"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Think about the movement of information in the parse tree to assign attribute values.'; } "
+>
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+Questions #6 - #9 concern Attribute Grammar 1.
+  
+  ATTRIBUTE GRAMMAR 1.
+  Attribute:
+  o actual_type: stores actual data type
+
+  BNF Grammar Rules with semantic functions and predicates added: 
+  1.  &lt;assign> -> &lt;var> =  &lt;expr>
+  2.  &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+    Predicate: &lt;var>[2].actual_type == &lt;var>[3].actual_type
+  3.  &lt;expr> -> &lt;var>
+  4.  &lt;var> -> A | B | C 
+    Semantic rule: &lt;var>.actual_type &lt;- lookup (&lt;var>.string)
+
+06. The predicate in this attribute grammar ensures what?
+    A. Data types cannot be mixed in expressions.
+    B. Assignment statements need not have the same types on both sides of the 
+       assignment operator. </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: There is no predicate involving the assignment operator.'; } "
+>
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+07. Grammar 1 uses inheritance to pass information from &lt;var>[3].actual_type 
+    to &lt;var>[2].actual_type.
+    A. true         B. false </pre>
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q7" value="0"> B<input type="radio" name="Q7" value="1"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Is there a semantic rule in the attribute grammar that does this?'; } "
+>
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+08. The attribute actual_type in Grammar 1 is assigned a value before parsing 
+    begins.
+    A. true        B. false  </pre> 
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q8" value="1"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Look at the rules controlling actual_type.'; } "
+>
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+09. What is true concerning the decorated parse tree for the assignment 
+    statement below, assuming B is type 'int' and C is type 'real'?
+
+        A = B + C
+                          &lt;assign>
+                         /          \
+                     &lt;var>   =     &lt;expr>
+                      |           /         \ 
+                      A      &lt;var>     +    &lt;var>
+                        .actual_type=int   .actual_type=real
+                               |                |
+                               B                C
+
+   A. The parse tree is missing some attributes.
+   B. The parse tree is correct. </pre>
+ 
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q9" value="1"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the parse tree must show all the attributes specified by the attribute grammar.'; } "
+>
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV><p>
+Questions #10 - #14 concern this attribute grammar (from text Ch 3):
+<pre>
+   o actual_type: an attribute for nonterminals &lt;var> and &lt;expr>
+                  that stores the actual type; e.g., int or real
+
+   o expected_type: an attribute for nonterminal <expr>
+
+   1. Syntax rule:  &lt;assign> -> &lt;var> =  &lt;expr>
+      Semantic rule: &lt;expr>.expected_type &lt;- &lt;var>.actual_type 
+
+   2. Syntax rule:  &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+      Semantic rule: &lt;expr>.actual_type &lt;- 
+                       if (&lt;var>[2].actual_type == int) and 
+                          (&lt;var>[3].actual_type == int) then int else real      
+      Predicate: &lt;expr>.actual_type == &lt;expr>.expected_type
+
+   3. Syntax rule:  &lt;expr> -> &lt;var>
+      Semantic rule: &lt;expr>.actual_type &lt;- &lt;var>.actual_type
+
+      Predicate: &lt;expr>.actual_type == &lt;expr>.expected_type
+   4. Syntax rule:  &lt;var> -> A | B | C
+      Semantic rule: &lt;var>.actual_type &lt;- lookup (&lt;var>.string)
+
+    Assume these values in the symbol table: int A; real B, real C
+
+10. What is true if you parse B = A + C with the attribute grammar above?
+    A. Information is carried from the left hand side of the = operator to the 
+       right hand side.
+    B. Information is carried from the right hand side of the = operator to the
+       left hand side. 
+    C. Both are correct.</pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q10" value="1"> B<input type="radio" name="Q10" value="0"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Parse the statement and follow the grammar to assign the attributes on the parse tree.'; } "
+>
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+11. If you parse C = A with the attribute grammar above, what does the semantic
+    rule shown below achieve?
+ 
+        &lt;expr>.actual_type &lt;- &lt;var>.actual_type  (Rule #3)
+
+    A. &lt;expr>.actual_type is synthesized from &lt;var>.actual_type
+    B. &lt;var>.actual_type is synthesized from &lt;expr>.actual_type
+    C. &lt;expr>.actual_type is inherited from &lt;var>.actual_type </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q11" value="1"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Look at the parse tree to see which direction attributes move.'; } "
+>
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+12. What is true if you parse C = A, given the symbol table values?
+    A. This statement violates the predicate rule that applies to
+       &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+    B. This statement violates the predicate rule that applies to
+       &lt;expr> -> &lt;var>
+    C. This statement does not violate a predicate rule. </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: This statement does not use Syntax Rule #2.'; } "
+>
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+13. What is true about the statement B = A + C, given the values in the symbol
+    table?
+    A. This statement violates the predicate rule that applies to
+       &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+    B. This statement violates the predicate rule that applies to
+       &lt;expr> -> &lt;var>
+    C. This statement does not violate a predicate rule. </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="1"> D<input type="radio" name="Q13" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A(int) + C(real) becomes real.'; } "
+>
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+14. What is true when this predicate is evaluated? (see Attribute Grammar above)
+
+      Predicate: &lt;expr>.actual_type == &lt;expr>.expected_type
+
+   A. The value of expected_type has been inherited from the left-hand side of 
+      the assignment statement.
+   B. The value of expected_type has been synthesized from the right-hand side 
+      of the assignment statement.  </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Look at the rules controlling the assignment of these attributes - no need to look at a parse tree.'; } "
+>
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+15. Prolog is based on the closed world assumption. This means that 
+    A. predicates are true unless shown to be false.
+    B. predicates are false unless shown to be true.</pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: This means that you must *prime the pump* by putting in at least one true fact concerning a predicate.'; } "
+>
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+16. What does this prolog rule mean?
+            loves(jack,X) :- rich(X).
+    A. Jack loves everyone who is rich.
+    B. If jack loves you then you are rich.
+    C. Both are true. </pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q16" value="1"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='The head of a prolog clause is the consequence - is p -> q does not mean q -> p.'; } "
+>
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+17. What is the correct form of a definite clause? 
+    Notation: '^' is AND;   'v' is OR;  '~' is NOT
+    A.  p ^ q ^ r ^ ... w ^ ~z
+    B.  ~p v ~q v ~r v ... v ~w v z
+    C.  ~p ^ ~q ^ ~r ^ ... ^ ~w ^ z </pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="1"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Take p^q->r and eliminate the implication.'; } "
+>
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+
+
+<pre>
+18. A definite clause without a body is a fact in prolog.
+    A. true       B. false  </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q18" value="1"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The body is the right hand side of :-.'; } "
+>
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+19. What does this Prolog rule mean? (universe of discourse is all widgets)
+
+          alsoRelated(X,Y) :- related(Z,X), related(Z,Y).
+
+    A. If every widget that is related to X is also related to Y, then widgets 
+       X and Y are alsoRelated.
+    B. If there is a widget Z that is related to widget X and widget Y, then
+       X and Y are alsoRelated.
+</pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="1"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Variables first introduced in the body are existential and variables first introduced in the head are universal.'; } "
+>
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+20. Which is the correct recursive rule after this rule to define ancestors?
+            ancestor(X,Y) :- parent(X,Y).
+
+    A. ancestor(X,Y) :- ancestor(Z,Y), parent(X,Z).
+    B. ancestor(X,Y) :- parent(X,Z), ancestor(Z,Y).
+</pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If you put ancestor first it will result in an infinite loop.'; } "
+>
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="backgroun
+d-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 4">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+  <head>
+    <title>Poker Game</title>
+
+<STYLE type='text/css'>
+p           { font-family: Verdana, Arial, Helvetica, sans-serif; 
+              font-size: 12px; color: #000000; }
+
+div.card   { background-color: #FFF; width: 72px; height: 100px;
+              outline: 2px solid black; position: relative; float: left;
+              border: solid 2px white; margin: 4px; }
+
+input       { background-color: #FA0; }
+
+div.buttons { background-color: #FFF; width: 600px; height: 28px;
+              position: absolute; left:10px; top:200px;}
+			  
+div.instructions {position: absolute; left: 10px; top:220px;}
+
+</STYLE>
+
+  <script type='text/javascript' src='lib.js'>
+  </script>
+  <script type='text/javascript' src='poker.js'>
+  </script>
+  <script type='text/javascript'>
+     // create some global variables
+     var deck = new Array();
+     var top_card = 0;
+     var initDeck = false;
+  </script>
+
+</head>
+  <body>
+  
+    <div id='player' class='playerArea'>
+      <h3>Let's Play Poker</h3>
+	  
+      <div class='card' id='card_area'>
+      <img alt="card one" name="card1_img"
+          onclick='exchange(document.card1_img); return false;'>
+      </div>
+    
+	<div class='card' id='card_area2'>
+      <img alt="card two" name="card2_img"
+          onclick='exchange(document.card2_img); return false;'>
+      </div>
+	  
+	<div class='card' id='card_area3'>
+      <img alt="card three" name="card3_img"
+          onclick='exchange(document.card3_img); return false;'>
+      </div>  
+	
+	<div class='card' id='card_area4'>
+      <img alt="card four" name="card4_img"
+          onclick='exchange(document.card4_img); return false;'>
+      </div>
+	  
+	<div class='card' id='card_area5'>
+      <img alt="card five" name="card5_img"
+          onclick='exchange(document.card5_img); return false;'>
+      </div>
+	  
+    </div>
+
+   
+  <div class="buttons">
+
+    <input type=button value='get a deck'
+       onclick=' init(deck);
+                 initDeck = true;
+                 top_card = 0;
+                 card1_img.src = deck[52].src;
+                 return false;
+    '>
+
+    <input type=button value='check cards'
+       onclick='if ( !initDeck ) 
+                    init(deck);
+                if (top_card == 51)
+                    top_card = 0;
+                else {
+                    card1_img.src = deck[top_card].src;
+                    top_card++; 
+               }
+               return false;
+    '>
+  
+	<input type=button value='shuffle deck'
+       onclick='if ( !initDeck ) 
+                    init(deck);
+                 
+                shuffle(deck);
+                return false;
+    '>
+	
+	<input type=button value='deal 5 cards'
+       onclick='if ( !initDeck ) 
+                    init(deck);
+
+                deal(deck);
+                return false;
+    '>
+	
+	<input type=button value='start new game'
+       onclick='startgame();
+				init(deck);
+				'>
+				
+
+    </div>
+
+    </div>
+<div class="instructions">
+	<h1>Instructions:</h1>
+	<ol>
+	<li>Click "Get a Deck" to get your deck of cards.</li>
+	<li>Click "Shuffle deck" to shuffle your deck. To get a good shuffle, click the shuffle button four times.</li>
+	<li>Click "Deal 5 Cards" to deal yourself a hand.</li>
+	<li>Click on whichever cards you would like to exchange. Note: you can only exchange 3 cards.</li>
+	<li>Click on "start new game" to begin again. Note: you will have to reshuffle the deck.</li>
+	</ol>
+	
+  </div>
+  </body>
+
+</html>   
+

@@ -1,0 +1,39 @@
+.:Filesystem & Networking Basics:.
+    Common file systems
+        Windows
+            FAT32
+            NTFS
+            CIFS
+        Linux
+            EXT2/EXT3/EXT4
+            REISERFS
+            ISO9660 (CDROM)
+
+Disk Forensic Analysis
+    Looking for data hiding b/w logical interpretation of disk & 
+        actual phsical space on disk
+
+Networking Basics
+    Layered Protocol Model (Protocol Stack)
+        Applications
+            HTTP, SSH, SMTP, etc.
+        Transport
+            TCP, UDP, ICMP 
+                can invent your own protocol (gonna be really noticeable)
+        Network
+            IP
+        Data Link |
+        Physical  | ---- Host-to-Network
+            Ethernet, WiFi, etc.
+
+Each layer has a header and/or footer to logically organize the data
+    data captures can capture:
+        header only
+        portion of header only
+        everything that crosses through the layer
+
+     ------------------------------------------------------------------------
+    | Ethernet Header | IP | TCP | HTTP | Transaction Data | Ethernet Footer |
+     ------------------------------------------------------------------------
+
+

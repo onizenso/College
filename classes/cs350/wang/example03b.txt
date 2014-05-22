@@ -1,0 +1,189 @@
+Example of an Attribute Grammar.
+
+Given the language a^n b^n c^n:
+
+abc
+aabbcc
+aaabbbccc
+....
+
+We know this language cannot be described with a context-free grammar.
+
+An attempt:
+
+<string> ::= <astring> <bstring> <cstring>
+<astring> ::= a | <astring>a
+<bstring> ::= b | <bstring>b
+<cstring> ::= c | <cstring>c
+ 
+Parse Tree for aaabbbccc:
+
+                   <string> 
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         /   \      /     \    /      \ 
+   <astring>  a  <bstring> b  <ctring> c
+    /    \       /      \      /     \ 
+<astring> a  <bstring>   b   <ctring> c
+   |            |             |
+   a            b             c
+
+
+Parse Tree for aaabbbbcc:
+
+                   <string> 
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         /   \      /     \    /      \ 
+   <astring>  a  <bstring> b  <ctring> c
+    /    \       /      \       |      
+<astring> a  <bstring>   b      c
+   |          /     \               
+   a     <bstring>   b 
+             |
+             b      
+
+This grammar is complete but not accurate.
+
+Adding a synthesized attribute Size associated with <astring><bstring><cstring>
+and a condition (predicate) that the Size of each must be equal will fix the
+problem:
+
+=============================================================================
+Synthesized Attribute grammar:
+
+<string> ::= <astring> <bstring> <cstring>
+
+Condition (predicate function): 
+       Size(<astring>) == Size(<bstring>) == Size(<cstring>)   
+
+<astring> ::= a 
+      Size(<astring>) <- 1       
+
+
+<astring> ::= <astring>[2]   a
+
+       Size(<astring>) <- Size(<astring>[2]) + 1 
+
+<bstring> ::= b 
+             Size(<bstring>) <- 1
+          | <bstring>[2] b 
+             Size(<bstring>) <- Size(<bstring>[2]) + 1
+         
+<cstring> ::= c 
+             Size(<cstring>) <- 1
+          | <cstring>[2] a
+             Size(<cstring>) <- Size(<cstring>[2]) + 1
+=============================================================================
+
+Decorated Parse Tree for aaabbbccc (satisfies Condition):
+
+                   <string> 
+              Condition: TRUE
+    Size(<astring>) == Size(<bstring>) == Size(<cstring>)
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         Size: 3    Size: 3    Size: 3
+         /   \      /     \    /      \ 
+   <astring>  a  <bstring> b  <ctring> c
+   Size: 2       Size: 2      Size:2 
+    /    \       /      \      /     \ 
+<astring> a  <bstring>   b   <ctring> c
+Size: 1       Size: 1        Size:1 
+   |            |             |
+   a            b             c
+
+Decorated Parse Tree for aaabbbbcc (fails Condition):
+
+                   <string> 
+              Condition: False 
+    Size(<astring>) == Size(<bstring>) == Size(<cstring>)
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         Size: 3    Size: 4    Size: 2 
+         /   \      /     \    /      \ 
+   <astring>  a  <bstring> b  <ctring> c
+   Size: 2       Size: 3      Size:1 
+    /    \       /      \       | 
+<astring> a  <bstring>   b      c
+Size: 1       Size: 2        
+   |           /    \           
+   a    <bstring>    b          
+         Size: 1
+            |
+            b
+=============================================================================
+In the above grammar Size is a synthesized attribute for <astring> <bstring> 
+and <cstring>. Another option is to use Size as a synthesized attribute for
+<astring> and InSize as inherited attributes for <bstring> and <cstring>. 
+
+Grammar using Synthesized and Inherited Attributes:
+
+<string> ::= <astring> <bstring> <cstring>
+    inSize(<bstring>) <- Size(<asequence>)
+    inSize(<cstring>) <- Size(<asequence>)
+
+<astring> ::= a                         
+             Size(<astring>) <- 1
+           | <astring>[2] a
+             Size(<astring>) <- Size(<astring>[2]) + 1  <= synthesized function
+
+<bstring> ::= b                        <= this rule uses inherited attributes
+       Condition: inSize(<bstring>) == 1
+          | <bstring>[2] b 
+             inSize(<bstring>[2]) <- inSize(<bstring>) - 1 <=inherited function
+         
+<cstring> ::= c 
+       Condition: inSize(<bstring>) == 1
+          | <cstring>[2] a
+             inSize(<cstring>[2]) <- Size(<cstring>) - 1
+
+==============================================================================
+
+In this grammar Size is synthesized up the left branch and passed over to the 
+center and right branches below the root, and inherited down the center and
+right branches below root. This is shown in the parse tree for aaabbbccc:
+
+Decorated Parse Tree for aaabbbccc (satisfies all Conditions):
+
+                   <string> 
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         Size: 3    inSize: 3  inSize: 3
+         /   \      /     \     /     \ 
+   <astring>  a  <bstring> b  <ctring>  c
+   Size: 2       inSize: 2     inSize:2 
+    /    \       /      \      /     \ 
+<astring> a  <bstring>   b   <ctring> c
+ Size: 1     inSize: 1       inSize:1 
+   |      Condition: true  Condition: true  
+   a        inSize == 1      inSize == 1 
+                |              |
+                b              b 
+
+Decorated Parse Tree for aaabbbbcc (fails Condition):
+
+                   <string> 
+                 /    |     \
+               /      |       \ 
+         <astring> <bstring> <cstring>
+         Size: 3    inSize: 3   inSize: 3
+         /   \      /     \      /     \ 
+   <astring>  a  <bstring> b  <ctring>  c
+   Size: 2       inSize: 2     inSize:2 
+    /    \       /      \    Condition: FALSE 
+<astring> a  <bstring>   b    inSize == 1 
+Size: 1      inSize: 1            |     
+   |          /    \              c 
+   a     <bstring>   b
+         inSize: 0
+       Condition: FALSE 
+        inSize == 1
+             |
+             b  
+                              

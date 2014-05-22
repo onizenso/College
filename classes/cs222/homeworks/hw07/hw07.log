@@ -1,0 +1,53 @@
+ file:main.cpp ,function:main ,line:25 start of logging
+
+
+
+testing animal file:animal.cpp ,function:animal ,line:22 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:animal.cpp ,function:Move ,line:39 start of function
+ file:animal.cpp ,function:MakeNoise ,line:45 start of function
+ file:animal.cpp ,function:GetType ,line:11 start of function
+ file:animal.cpp ,function:ToString ,line:51 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:animal.cpp ,function:Move ,line:39 start of function
+ file:animal.cpp ,function:MakeNoise ,line:45 start of function
+
+
+
+testing vertebrata file:animal.cpp ,function:animal ,line:17 start of function
+ file:vertebrata.cpp ,function:vertebrata ,line:15 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:animal.cpp ,function:Move ,line:39 start of function
+ file:animal.cpp ,function:MakeNoise ,line:45 start of function
+ file:animal.cpp ,function:GetType ,line:11 start of function
+ file:vertebrata.cpp ,function:ToString ,line:28 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:animal.cpp ,function:MakeNoise ,line:45 start of function
+
+
+
+testing mammalia file:animal.cpp ,function:animal ,line:17 start of function
+ file:vertebrata.cpp ,function:vertebrata ,line:9 start of function
+ file:mammalia.cpp ,function:mammalia ,line:16 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:mammalia.cpp ,function:Move ,line:35 start of function
+ file:mammalia.cpp ,function:MakeNoise ,line:41 start of function
+ file:animal.cpp ,function:GetType ,line:11 start of function
+ file:mammalia.cpp ,function:ToString ,line:48 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:mammalia.cpp ,function:Move ,line:35 start of function
+ file:mammalia.cpp ,function:MakeNoise ,line:41 start of function
+
+
+
+testing reptilia file:animal.cpp ,function:animal ,line:17 start of function
+ file:vertebrata.cpp ,function:vertebrata ,line:9 start of function
+ file:reptilia.cpp ,function:reptilia ,line:13 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:reptilia.cpp ,function:Move ,line:29 start of function
+ file:reptilia.cpp ,function:MakeNoise ,line:35 start of function
+ file:animal.cpp ,function:GetType ,line:11 start of function
+ file:reptilia.cpp ,function:ToString ,line:41 start of function
+ file:animal.cpp ,function:GetFormattedName ,line:31 start of function
+ file:reptilia.cpp ,function:Move ,line:29 start of function
+ file:reptilia.cpp ,function:MakeNoise ,line:35 start of function

@@ -1,0 +1,35 @@
+This is everything that I could find with "objc" in the name that looked 
+like it was actually related to Objective C.  It's apparently related to 
+GnuStep, which is a FOSS variation of NeXtStep (where Apple's 
+implementation came from.)
+
+/usr/share/doc/libobjc2
+/usr/share/doc/gobjc-4.4
+/usr/share/doc/gcc-4.3-base/test-summaries/objc.sum.gz
+/usr/share/doc/gobjc
+/usr/share/doc/gcc-4.4-base/test-summaries/objc.sum.gz
+/usr/share/doc/gcc-4.4-base/ObjC/changelog.libobjc.gz
+/usr/share/mime/text/x-objcsrc.xml
+/usr/share/vim/vim72/syntax/objcpp.vim
+/usr/share/vim/vim72/syntax/objc.vim
+/usr/share/vim/vim72/indent/objc.vim
+/usr/share/vim/vim72/ftplugin/objc.vim
+/usr/share/a2ps/sheets/objc.ssh
+/usr/share/GNUstep/Makefiles/Master/objc.make
+/usr/share/GNUstep/Makefiles/Instance/objc.make
+/usr/share/GNUstep/Makefiles/objc.make
+
+/usr/lib/libobjc_gc.so.2.0.0
+/usr/lib/libobjc.so.2
+/usr/lib/libobjc_gc.so.2
+/usr/lib/gcc/x86_64-linux-gnu/4.4/include/objc
+/usr/lib/gcc/x86_64-linux-gnu/4.4/include/objc/objc-api.h
+/usr/lib/gcc/x86_64-linux-gnu/4.4/include/objc/objc-decls.h
+/usr/lib/gcc/x86_64-linux-gnu/4.4/include/objc/objc-list.h
+/usr/lib/gcc/x86_64-linux-gnu/4.4/include/objc/objc.h
+/usr/lib/gcc/x86_64-linux-gnu/4.4/libobjc_gc.a
+/usr/lib/gcc/x86_64-linux-gnu/4.4/libobjc.a
+/usr/lib/gcc/x86_64-linux-gnu/4.4/libobjc_gc.so
+/usr/lib/gcc/x86_64-linux-gnu/4.4/libobjc.so
+/usr/lib/libobjc.so.2.0.0
+

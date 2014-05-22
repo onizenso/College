@@ -1,0 +1,55 @@
+<HTML>
+<TITLE>Fibonacci Sequence using Recursion Algorithm</TITLE>
+<HEAD>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function fib(n) {
+
+if ((n == 0) || ( n == 1)) {
+  return(n);
+  }
+else {
+  return(fib(n - 1) + fib(n - 2));
+  }
+}
+
+function show(n) {
+
+var i;
+for(i = 0; i <= n; i++) {
+   window.document.the_form.s.value += "  " + fib(i);
+   }
+}
+
+</script>
+</HEAD>
+
+<BODY>
+<H3>Fibonacci Sequence using Recursive Algorithm</h3>
+<form name="the_form"><font size=+1>
+How Many Terms? <input type=text size=4 name="num"> 
+<input type=button value="Compute" onClick="show(the_form.num.value);"> 
+<input type=reset value="Reset"><p>
+<font size=+1>Sequence: <input type=text size="100" name="s">
+<p>
+</form>
+
+
+<pre>
+THE ALGORITHM:
+
+function fib(n) {
+
+if ((n == 0) || ( n == 1)) {
+  return(n);
+  }
+else {
+  return(fib(n - 1) + fib(n - 2));
+  }
+}
+
+
+</pre>
+</BODY>
+</HTML>

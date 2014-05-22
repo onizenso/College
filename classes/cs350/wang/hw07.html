@@ -1,0 +1,633 @@
+<html>
+<head>
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 30;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+</head>
+<body bgcolor="white">
+<h3>CMPS 350: HW 07 Data Types and Expressions </h3>
+<font color=red>DUE: next monday before lecture </font>
+<br><b>resources:</b><br>
+<a href="./Code/C/hw07.c">hw07.c</a><br>
+<a href="http://www.cs.csub.edu/index.php?t=1&p=technical_info/howto/precedence_chart&prnt=1">C/C++ precedence chart</a><br>
+<a href="http://techpubs.sgi.com/library/dynaweb_docs/0650/SGI_Developer/books/CLanguageRef/sgi_html/index.html">C ref manual</a><br>
+<font face="Courier" style="font-size: 12pt; font-weight: 500">
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre>
+01. Which of the following is not a consideration in the design of arithmetic 
+    expressions?
+    A. operator associativity rules
+    B. operation heirarchy rules
+    C. whether to support user-defined operator overloaded 
+    D. whether array elements can be operands </pre>
+  A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="1">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: an array element is treated like any other variable.'; } "
+>
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+02. The semantics of an arithmetic expression is determined by which of these?
+    A. whether the language includes pointers or references or both
+    B. operator precedence and associativity
+    C. the number of different integer data types in the language </pre>
+   A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="1"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: semantics involves the runtime behavior of the expression .'; } "
+>
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+03. Which of these operators is right associative? (you don't need a precedence
+    table to figure this out)
+    A. = (assignment)       B. ++ (unary postincrement)    </pre>
+   A<input type="radio" name="Q3" value="1"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Right associative means evaluation occurs right to left. How should A = B = C be evaluated? How should A++ ++ be evaluated?'; } "
+>
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+04. Under what conditions might the following statement result in an unwanted
+    functional side effect? 
+      C = A + fun(A) + A; 
+    A. if A is a global variable and its value is modified in function fun
+    B. if A is a 2-way parameter its value is modified in function fun
+    C. either one could cause a problem </pre>
+   A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="1"> D<input type="radio" name="Q4" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a functional side effect in a procedural language is any change to the program state; an unwanted side effect is unintended, unwanted or results in unpredictable behavior. '; } "
+>
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+05. Which of the following statements is false?
+    A. a widening conversion is always safe
+    B. a narrowing conversion is always safe</pre>
+    A<input type="radio" name="Q5" value="1"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A narrowing conversion reduces either precision or the range of possible values.'; } "
+>
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+06. Unwanted functional side effects can be prevented by what?
+    A. eliminating two-way parameters and access to non-local variables
+    B. precisely defining the evaluation order of operands in expressions 
+    C. both A and B are correct </pre>
+   A<input type="radio" name="Q6" value="0"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="1"> D<input type="radio" name="Q6" value="0">
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A purely functional language has no unwanted side-effects because it has no side-effects. '; } "
+>
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+07. What is true regarding this loop if '&&' is not a short-circuit operation?
+
+      int list[MAX]; // list indices are 0..MAX-1
+      index = 0;      
+      while ( (index < MAX ) && (LIST[index] != value) )   {
+          index++;
+      }
+
+   A. LIST[index] will eventually cause an out-of-range runtime error 
+   B. The loop will successfully terminate without a problem</pre>
+   A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: what happens the first time index < MAX is false?'; } "
+>
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+08. What will happen to the code in #7 if && is a short circuit operator?
+    A. When the loop exits, the index will be one past the range of the array.
+    B. The loop will exit without an out-of-range error.
+    C. both A and B are true.</pre>  
+   A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="1"> D<input type="radio" name="Q8" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Trace the loop for an array of size 2.'; } "
+>
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+ The relational operators (<,>,<=,>=,==,!=) in C are left associative. C 
+ returns 1 for T and 0 for F.
+
+09. What is the result of this relational expression in C?
+        int a = 5, b = 6, c = 6; 
+        a <= b == c;
+   A. 0       B. 1 </pre>
+   A<input type="radio" name="Q9" value="1"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the result of the first operation (0 or 1) becomes the left operand of the second operation.'; } "
+>
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+10. This code will not produce a runtime error in C. From this you know that C 
+    supports short-circuit evaluation of Boolean expressions.
+
+          while ( ( 20 < 15 ) && ( 5/0 ) )
+             ;
+
+    A. true      B. false   </pre> 
+    A<input type="radio" name="Q10" value="1"> B<input type="radio" name="Q10" value="0"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: AND short-circuits on FALSE ; OR short-circuits on TRUE.'; } "
+>
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+
+11. The following chunk of C code is an example of the ternary conditional 
+    operator used in an assignment statement. What is the result?
+       int flag = 1;
+       count1 = 0; count2 = 0;
+       count1 = (flag) ? 100 : 200;
+    A.  count1 = 1     B. count1 = 100     C. count1 = 200  </pre>
+    A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="1"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='syntax of ternary condition operator: condition ? value if true : value if false;. The conditional target assignment operator mentioned in text is not supported in ANSI C.'; } "
+>
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+12. What is this code an example of?
+       float x;
+       int i = 3;
+       x = i;
+    A. mixed mode assignment with a narrowing coercion  
+    B. a coercion of int to float 
+    C. both A and B </pre>
+    A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a coercion is an implicit conversion. Widening coercions are always safe so, generally, always supported.'; } "
+>
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+13. The function prototype of the pow function is
+         double pow(double,double);    
+    What is happening in this statement, where offset, i and j are all ints
+    and i_array is a pointer to int?
+           *(i_array + offset) = pow(2,i) + j;
+    A. all coercions are widening 
+    B. all coercions are narrowing 
+    C. widening and narrowing conversions are both occurring    </pre>
+    A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="1"> D<input type="radio" name="Q13" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the return type of pow is double and the lvalue is an integer. '; } "
+>
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+14. The following code compiles, and unary minus has precedence over unary 
+    postincrement. Under Gnu gcc the result is -4 and under Digital C the 
+    result is 6. What is happening?
+
+        count = 5;
+        count = -count++;  
+  
+    A. modifying a variable twice in the same operation is undefined
+    B. there is a bug in the Digital C compiler - this should not be a problem </pre>
+    A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: applying two unary operations to the same variable at the same time is a problem - think about this operation in terms of lvalues and rvalues.'; } "
+>
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+15. This code compiles and runs under gnu C. What do you now know?
+        m = 2;         // m is an int
+        n = 32.345;   // this is a double
+        m = n;
+        n = m;
+    A. C supports both widening and narrowing coercions in assignments.  
+    B. After execution, the value of m and n are both 32. </pre>
+    A<input type="radio" name="Q15" value="1"> B<input type="radio" name="Q15" value="0"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the value of a float always includes the digits past the decimal point.'; } "
+>
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+16. The following C code compiles and runs. What is true concerning Line 3?
+
+        short s_short;            // a 2 byte signed integer
+        int i_int = __INT_MAX__;  // largest 4 byte signed integer 
+        s_short = i_int;          // <== line 3
+
+   A. this is a narrowing coercion 
+   B. s_short is assigned the value of -1 
+   C. both statements are true</pre>
+   A<input type="radio" name="Q16" value="0"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="1"> D<input type="radio" name="Q16" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: _INT_MAX__ is all bits flipped on except the sign bit.'; } "
+>
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+17. Given this code, what is true after returning from swap?
+     int n1 = 10, n2 = 20;
+     int *ptr1 = &n1;
+     int *ptr2 = &n2;
+     swap(&ptr1, &ptr2);
+     void swap( int ** ptr1, int ** ptr2){
+         int * tmp_ptr = *ptr1;
+         *ptr1 = *ptr2;
+         *ptr2 = tmp_ptr; 
+      }
+   A. *ptr1 is 20 and *ptr2 is 10
+   B. the value of ptr1 and the value of ptr2 have been swapped
+   C. both statements are true  </pre>
+   A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="1"> D<input type="radio" name="Q17" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: draw a diagram of what is happening in memory.'; } "
+>
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+18. Given these values for X and Y 
+       X: 0000000100
+       Y: 0000000101
+    What is  X & Y in decimal?
+    A. 4     B. 5     C. 0    D. 1  </pre>
+    A<input type="radio" name="Q18" value="1"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: bitwise operators are not short circuit and can be applied left to right or right to left; e.g. 101 & 011 is 001.'; } "
+>
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+19. Given these values for X and Y 
+       X: 00000100
+       Y: 00000111
+    What is  X ^ Y in binary?   ( ^ is xor )
+    A. 011    B. 000   C. 100  </pre>
+    A<input type="radio" name="Q19" value="1"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: p xor q is false when p and q are both true or both false.'; } "
+>
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+20. How can you flip the last 4 least significant bits of an integer X?
+    A. X & 15
+    B. X ^ 15
+    C. X | 16 </pre>
+    A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: 15 is 1111; using this against the last four bits, test each possibility.'; } "
+>
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+21. How could you test if two integers X and Y are equal?
+    A. if (X & Y) is false 
+    B. if (X ^ Y) is false  </pre>
+    A<input type="radio" name="Q21" value="0"> B<input type="radio" name="Q21" value="1"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: try (1010 ^ 1010) and (1010 & 1010).'; } "
+>
+<DIV id="Q21Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+22. An example of the conditional target assignment statement is
+       (7 > 4) ? i : j = 5;    // this compiles under gnu c++
+    What is the meaning of the statement? 
+    A. If 7 is greater than 4 then return i otherwise assign 5 to j 
+    B. If 7 is greater than 4 assign 5 to i otherwise assign 5 to j </pre>
+    A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="1"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: this code compiles but does not run as expected - not sure why - just follow the syntax for this statement given in the text.'; } "
+>
+<DIV id="Q22Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+23. If (7 & 3 ) results in 3, and if the operation occurs from the most 
+    significant bit to the least significant bit, what do you know about the 
+    bitwise & operator? 
+    A. bitwise & is a short-circuit operator 
+    B. bitwise & is not a short-circuit operator </pre>
+    A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="1"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: perform 111 & 011. if & is short-circuit what would the answer be?.'; } "
+>
+<DIV id="Q23Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+24. Assume you execute this C code, where C uses two's complement for integers.
+      int num = MAX_INT;   // the largest positive integer on the system
+      int num2 = num + 1; 
+    The bit-by-bit contents of num and num2 are now this:
+          01111111111111111111111111111111    // num
+          10000000000000000000000000000000    // num2
+    According to two's complement representation, what is the value of num2?
+    A. the largest negative integer on the system 
+    B. -0 
+    C. -1 </pre>
+    A<input type="radio" name="Q24" value="1"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: 0 is represented as all bits flipped off - including the sign bit. there is no -0 on any system' } "
+>
+<DIV id="Q24Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+25. What is true after executing this Javascript code?
+         var junk = 55;
+         junk  = "" + junk; 
+    A. junk now contains ""55
+    B. junk now contains a string of two numeric characters   </pre>
+    A<input type="radio" name="Q25" value="0"> B<input type="radio" name="Q25" value="1"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: two quotes with nothing between is a null string - so + in this context is not addition of two numbers but concatentation of two strings. To make the operation work, JavaScript must coerce the variable into a string type.'} "
+>
+<DIV id="Q25Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+26. The onLoad event in an HTML document (as shown below) is triggered when?
+ 
+          &lt;BODY onLoad="window.document.bgColor='#FF33FF'">
+
+    A. each time the browser client loads/reloads the document in the window
+    B. before any JavaScript code in the document is executed
+    C. Both A and B are true </pre>
+    A<input type="radio" name="Q26" value="1"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: this should be intuitive - if not - put a JavaScript alert in the head of the document and see if it executes before the onLoad event is triggered'; } "
+>
+<DIV id="Q26Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+27. Select the false statement concerning this code: 
+    
+        var circle        = new Image(50,50);
+        circle.src        = "circle.gif";
+
+    This JavaScript code will
+    A. display the image circle.gif in the document window at location (50,50).
+    B. create an Image object named circle and link it to an image file.
+    C. load the image circle.gif in the browser's cache. </pre>
+    A<input type="radio" name="Q27" value="1"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: there is no HTML in this code -' ; } "
+>
+<DIV id="Q27Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+28. How do you make this function an event handler for an onClick event?
+  
+       function stuff( in )
+       {
+          if ( in == 0 )
+              return in;
+          else return 
+              9/in;
+       }
+
+    
+    A. Put the function definition inside the quotes of onClick="...."
+    B. Put the function definition into the HEAD and call stuff inside onClick="...." </pre>
+    A<input type="radio" name="Q28" value="0"> B<input type="radio" name="Q28" value="1"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: this is a function definition - in an HTML file, function definitions are put between SCRIPT tags and generally located in the HEAD of the document; to be a handler - the function must actually be called.;'} "
+>
+<DIV id="Q28Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+An HTML radio button lets the user select one choice ONLY out of many. The HTML
+and a JavaScript onClick handler to access the button are shown below: 
+
+    &lt;FORM name="myForm">
+    cat A&lt;input type="radio" name="pet" value="cat"> 
+    dog B&lt;input type="radio" name="pet" value="chimpanzee"> 
+    bat C&lt;input type="radio" name="pet" value="fish"> 
+ 
+    &lt;input type="button" value="checkIT" onClick="
+          len = document.myForm.pet.length;
+          var myChoice = 0;
+          for (i = 0; i < len; i++){
+             if (myForm.pet[i].checked)
+                 myChoice = i;
+          }
+        alert('you have a ' + myForm.pet[myChoice].value + ' for a pet.');"
+
+29. From the above code, you can see that the values from the radio form
+    element pet are stored in an associate array named pet.
+    A.  true      B.  false</pre>
+    A<input type="radio" name="Q29" value="0"> B<input type="radio" name="Q29" value="1"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q29Area');
+          if ( document.quizform.Q29[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: look at how elements in pet are accessed.' ; } "
+>
+<DIV id="Q29Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+30. If the user selects fish, what happens?
+    A. myForm.pet[2].checked is assigned the value fish
+    B. myForm.pet[2].value is assigned the value 1 
+    C. myForm.pet[2].checked is assigned the value 1 and all other checked
+       variables are set to 0 </pre>
+    A<input type="radio" name="Q30" value="0"> B<input type="radio" name="Q30" value="0"> C<input type="radio" name="Q30" value="1"> D<input type="radio" name="Q30" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q30Area');
+          if ( document.quizform.Q30[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: look at the behavior of the loop and the relationship between the loop and the variables in myForm.pet.' ; } "
+
+<DIV id="Q30Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 7">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+
+</form>
+</body>
+</html>

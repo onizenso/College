@@ -1,0 +1,430 @@
+<html>
+<head>
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 26;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+ }
+</script>
+</head>
+<body bgcolor="white">
+<font face="Courier" style="font-size: 11pt; font-weight: 500">
+<h3>HW 10: Implementing Subprograms </h3>
+<font color=red>DUE: next monday before lecture</font><br>
+resources: <a href="./Code/C/hw10.c">hw10.c</a>
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre class=verbatim>
+01. What is false concerning a static activation record? (D if all are true)
+    A. recursion is not possible with static activation records
+    B. static activation records are loaded onto the runtime stack, but their
+       size never changes
+    C. static activation records are part of the data segment in the executable 
+    D. all statements are true
+</pre>    A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="1"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="1">  <input type="button" value="check" onClick="x=document.getElementById('x1'); 
+  if (document.quizform.Q1[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: static activation records are created by the compiler -- the initial purpose of the runtime stack was to support recursion.'; } ">  
+<DIV id="x1" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+02. Select the true statement concerning the dynamic link in a stack frame
+    (called the frame pointer in gdb) or D if none are true.
+    A. The dynamic link points to the top of the activation record of the 
+       previous procedure on the stack. 
+    B. The dynamic link points to the top of the activation record of the 
+       current procedure on the stack. 
+    C. The dynamic link points to the location of the local dynamic variables
+       of the current procedure on the stack.
+    D. none of these statements are true
+</pre>   A<input type="radio" name="Q2" value="1"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="0">  <input type="button" value="check" onClick="x=document.getElementById('x2'); 
+  if (document.quizform.Q2[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the dynamic link becomes the top of the runtime stack when the current procedure ends. The dynamic links are followed when you unwind the runtime stack'; } ">  
+<DIV id="x2" STYLE="background-color: white"> </DIV>  
+<pre> 
+03. Why are dynamic links necessary in a language such as C? (select the false 
+    statement otherwise D)
+    A. The space allocated to a procedure on the runtime stack depends on what 
+       happens during that procedure's execution.
+    B. If you declare a stack dynamic structure, the size of an activation 
+       record is not known at compile time.
+    C. Subtracting the size of the stack frame from the top of the stack may
+       not take you to the top of the previous stack.
+    D. all statements are true
+</pre>   A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="1"> <input type="button" value="check" onClick="x=document.getElementById('x3'); 
+  if (document.quizform.Q3[3].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: Dynamic links are optional in a language like Java, where are non-static locals are allocated from the heap, the size of a stack frame is known at compile time and is fixed.'; } ">  
+<DIV id="x3" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+04. The call chain of the stack (the chain of dynamic links) traces
+    A. back through the activation records of each function called, starting 
+       with the most recent function and ending in the main function.
+    B. forward through the activation records of each function called, starting 
+       with the main function and ending with the most recent function.
+</pre>   A<input type="radio" name="Q4" value="1"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x4'); 
+  if (document.quizform.Q4[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: The call chain is used to unwind the runtime stack in the case of an exception.'; } ">  
+<DIV id="x4" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+05. What happens when foobar is called in a static scoped language that does 
+    not support nested subroutines? 
+      void foobar () {
+         X = 10;   // a non-local reference 
+      } 
+    A. the reference to X is bound to the instance of X on the runtime stack
+       that corresponds to foobar's closest static ancestor.  
+    B. the reference to X is bound to the closest activation record to foobar
+       on the runtime stack that contains an instance of X.
+    C. the reference to X is bound to an instance of X by the compiler/linker.
+</pre>   A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="1"> D<input type="radio" name="Q5" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x5'); 
+  if (document.quizform.Q5[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: references to non-locals in static scoped languages that do not support nested subroutines are resolved before runtime.  '; } ">  
+<DIV id="x5" STYLE="background-color: white"> </DIV>  
+<p>
+The next questions refer to this GNU C code and gdb trace for the call fac(3).
+In gdb, $sp points to the top of the stack and $fp points to the bottom of the 
+current frame (the top of the previous stack).<pre> 
+<div STYLE="border: 2px dashed;">
+   int fac ( int n ) {
+      if ( n <= 1 ) return 1;
+      else return n * fac ( n - 1 );
+   }
+   (gdb) break fac
+   (gdb) run
+   Breakpoint 2, fac (n=3) at hw10.c:120
+   (gdb) p &n
+   $7 = (int *) 0xffbefa04
+   (gdb) cont
+   Breakpoint 2, fac (n=2) at hw10.c:120
+   (gdb) p &n
+   $8 = (int *) 0xffbef98c
+   (gdb) cont
+   Breakpoint 2, fac (n=1) at hw10.c:120
+   (gdb) info stack
+   #0  fac (n=1) at hw10.c:120
+   #1  0x0001090c in fac (n=2) at hw10.c:121
+   #2  0x0001090c in fac (n=3) at hw10.c:121
+   #3  0x000108bc in main () at hw10.c:114
+   (gdb) x/i 0x0001090c    # i displays memory in instruction code format
+   0x1090c <fac+60>:       mov  %o0, %g1
+   (gdb) p $sp
+   $9 = (void *) 0xffbef858
+   (gdb) p $fp
+   $10 = (void *) 0xffbef8d0
+   (gdb) info frame
+   Stack level 0, frame at 0xffbef8d0:
+    pc = 0x108d8 in fac (hw10.c:120); saved pc 0x1090c
+    source language c.
+   
+   (gdb) quit
+</div>
+06. As you move from stack frame #3 to stack frame #0, what happens to memory
+    addresses in the stack?
+    A. addresses are decreasing         B. addresses are increasing
+</pre>   A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x6'); 
+  if (document.quizform.Q6[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: most runtime stacks grow upside down in memory.'; } ">  
+<DIV id="x6" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+07. From the above information, what is the size of the activation record 
+    (stack frame) for fac?
+    A. 0x68 bytes      B. 0x78 bytes
+</pre>   A<input type="radio" name="Q7" value="0"> B<input type="radio" name="Q7" value="1"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+<input type="button" value="check" onClick="x=document.getElementById('x7'); 
+  if (document.quizform.Q7[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: 0xffbef8d0-0xffbef858 = 0x78  .'; } ">  
+<DIV id="x7" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+08. Select the false statement regarding this line in the debugger output (or 
+    D if all are true). 
+         #1  0x0001090c in fac (n=2) at hw10.c:121
+    A. 0x0001090c is an address in the code section of the executable.
+    B. 0x0001090c is the address of the call statement for fac.
+    C. Frame #1 is in higher memory than frame #0. 
+    D. all statements are true 
+</pre>   A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="1"> <input type="button" value="check" onClick="x=document.getElementById('x8'); 
+  if (document.quizform.Q8[3].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: if A is true then B is true.'; } ">  
+<DIV id="x8" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+09. What is the size of the current frame?
+    A. $fp - $sp            B. $sp - $fp   
+</pre>   A<input type="radio" name="Q9" value="1"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x9'); 
+  if (document.quizform.Q9[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: which number is larger?'; } ">  
+<DIV id="x9" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+10. When is static chaining necessary for a function call to foobar? 
+        void foobar () {
+            X = 10;
+        }
+    A. If the language uses static scoping and X is a static variable.
+    B. If the language uses static scoping and foobar is a nested function. 
+    C. both statements are true 
+</pre>    A<input type="radio" name="Q10" value="0"> B<input type="radio" name="Q10" value="1"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x10'); 
+  if (document.quizform.Q10[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: If a static scoped language does not support nested subroutines, all non-local references are resolved by the compiler or the linker.'; } ">  
+<DIV id="x10" STYLE="background-color: white"> </DIV>  
+
+<p> 
+The next question refers to the output of this GNU C program: <pre>
+<div STYLE="border: 2px dashed;">
+int main(void) {
+   int b=4;  
+   {
+     int b = 5;  
+     printf("Where is inner b?: %p\n", &b);
+   }
+
+   printf("Where is outer b?: %p\n", &b);
+   return 0;
+}
+Output:
+Where is outer b?: ffbef994
+Where is inner b?: ffbef990
+</div>
+11. Based on the output, how does GNU C handle blocks?
+    A. Each function block has a new activation record.
+    B. Each function block uses the same activation record as the function.
+</pre>   A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="1"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x11'); 
+  if (document.quizform.Q11[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: stack frames are larger than 4 bytes.'; } ">  
+<DIV id="x11" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+12. Since blocks are executed in strict textual order, it is possible for 
+    multiple blocks to share the same variable space on the stack.
+    A.  true     B.  false
+</pre>    A<input type="radio" name="Q12" value="1"> B<input type="radio" name="Q12" value="0"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x12'); 
+  if (document.quizform.Q12[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: once you leave a block the variables die.'; } ">  
+<DIV id="x12" STYLE="background-color: white"> </DIV>  
+<pre> 
+13. If this is the output of gdb on a running C program, what do you know?
+       (gdb) info local
+        b = 6
+        b = 5
+        b = 4
+    A. The reference to b(value 4) is nested inside the reference to b(value 5).
+    B. A reference to b at this point will resolve to the b of value 6.
+    C. both statements are true 
+</pre>    A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="1"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x13'); 
+  if (document.quizform.Q13[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the local variable stack follows the textual order of variable references.'; } ">  
+<DIV id="x13" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+14. Dynamic scoping is only an issue in languages that support nested 
+    subroutines.
+    A. true      B. false 
+</pre>    A<input type="radio" name="Q14" value="0"> B<input type="radio" name="Q14" value="1"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x14'); 
+  if (document.quizform.Q14[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: dynamic scoping means variable resolution is dependent on procedure call order - not the textual layout of procedures. A language can be dynamic scoped an not support nested subroutines.'; } ">  
+<DIV id="x14" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+15. The two methods of implementing dynamic scoping--deep access and shallow 
+    access--follow the same semantics.
+    A. true     B. false 
+</pre>    A<input type="radio" name="Q15" value="1"> B<input type="radio" name="Q15" value="0"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x15'); 
+  if (document.quizform.Q15[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the semantics of dynamic scoping should be the same regardless of the implementation.'; } ">  
+<DIV id="x15" STYLE="background-color: white"> </DIV>  
+<p>
+The next questions pertain to the use of static chaining to support nested 
+subroutines in static-scoped languages.
+<pre> 
+16. The static link in the current stack frame points to
+    A. the activation record of the static parent.
+    B. the activation record of the calling program unit.
+</pre>    A<input type="radio" name="Q16" value="1"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x16'); 
+  if (document.quizform.Q16[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the purpose of the static link is to connect a procedure with its textual scope.'; } ">  
+<DIV id="x16" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+17. Select the FALSE statement concerning nesting depth (or D if all are true).
+    A. Nesting depth is the chain_offset in the chain_offset/local_offset pair.
+    B. Nesting depth refers to how many procedures a procedure is nested in.
+    C. Nesting depth is 0 if a procedure is not nested.
+    D. all statements are true 
+</pre>    A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="1"> <input type="button" value="check" onClick="x=document.getElementById('x17'); 
+  if (document.quizform.Q17[3].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: All you need to know is if C is true.'; } ">  
+<DIV id="x17" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+18. Static semantic rules guarantee that all non-static variables that can be 
+    referenced are located in an activation record instance on the stack 
+    when the reference is made.
+    A. true     B. false
+</pre>    A<input type="radio" name="Q18" value="1"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x18'); 
+  if (document.quizform.Q18[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: a nested subroutine can only be called from within its parent procedure.'; } ">  
+<DIV id="x18" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+19. What does the static chain reference (1,2) mean in the stack frame for 
+    function foo?
+    A. the variable is the third declared variable in foo's static parent.
+    B. the variable is the third declared variable in foo itself.
+    C. the variable is the first declared variable in foo's static grandparent.
+</pre>    A<input type="radio" name="Q19" value="1"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x19'); 
+  if (document.quizform.Q19[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: A reference to a local variable in a subroutine has a static chain beginning with zero: (0,x).'; } ">  
+<DIV id="x19" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+The next questions pertain to the use of the deep and shallow access methods to 
+support nested procedures in dynamic scoped languages.
+
+20. Select the most accurate statement concerning the deep access method.
+    A. In deep access, variable names must be stored in the stack frame.
+    B. In deep access, the length of the chain is known at compile time.
+    C. both statements are true 
+    D. both statements are false 
+</pre>    A<input type="radio" name="Q20" value="1"> B<input type="radio" name="Q20" value="0"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x20'); 
+  if (document.quizform.Q20[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint:in a static scoped language, variable names do not need to be stored since the compiler generates the chain offset/local offset pair.'; } ">  
+<DIV id="x20" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+21. In the deep access method, the dynamic chain links together all subprogram
+    activation instances in the reverse order to which they were called. 
+    A. true     B. false 
+</pre>    A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x21'); 
+  if (document.quizform.Q21[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: this follows the definition of a stack.'; } ">  
+<DIV id="x21" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+22. Which of the following statements is true?
+    A. Access to nonlocals is faster with the shallow access method.
+    B. The upfront cost is higher with the shallow access method.
+    C. both statements are true
+</pre>    A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="0"> C<input type="radio" name="Q22" value="1"> D<input type="radio" name="Q22" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x22'); 
+  if (document.quizform.Q22[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: in shallow access, variables are stored in a separate structure - no need to resolve each address in the dynamic chain - but maintaining the structure is more costly than dynamic chains.'; } ">  
+<DIV id="x22" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+23. Given this gdb trace, what can you say about MAX?
+      (gdb) p &MAX
+      $2 = (int *) 0x20bb4
+      (gdb) info frame
+      Stack level 0, frame at 0xffbefa60:
+      A. MAX is a variable in another stack frame.
+      B. MAX is a static variable in the data section of the executable.
+</pre>   A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="1"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x23'); 
+  if (document.quizform.Q23[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the addresses are very far apart.'; } ">  
+<DIV id="x23" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+24. You execute the following GNU C function and the user enters something at 
+    the prompt.
+    1 void foo ( ) {
+    2     printf("Enter size for stack dynamic array:");
+    3     scanf ("%d",&size);
+    4     int A[size];
+    5     A[0] = 0; 
+    6}
+    The debugger trace at line 2 is:
+       (gdb) p $sp
+       0xffbef9d8
+       (gdb) p $fp
+       0xffbefa60
+    The debugger trace at line 5 is:
+       (gdb) p $sp
+       0xffbef848
+       (gdb) p $fp
+       0xffbefa60
+   What can you say about foo's stack frame? 
+   A. The top of the stack moved down 0x190 bytes.
+   B. The offset to A is known at compile time.
+   C. both statements are true
+</pre>   A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="1"> D<input type="radio" name="Q24" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x24'); 
+  if (document.quizform.Q24[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: subtract $sp at line 5 from $sp at line 2.'; } ">  
+<DIV id="x24" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+25. Assume this GNU C program and debugger trace from a break point in foobar:
+    int main () {
+       int x = 1;
+       void foo ( int i ) {
+            int y = 1;
+            void foobar () {
+               x = 5;          
+               y = 5;       
+           }
+           foobar();
+      }
+      foo(a);
+      return 0;
+   }
+   from main's frame:        $fp = 0xffbefa60  
+   from foo's frame:         $fp = 0xffbef9a8
+   from foobar's frame:      $fp = 0xffbef930 
+   Given the frame pointers above, the references to x and y in foobar are 
+   bound to what addresses?  
+   A. x is bound to 0xffbefa3c and y is bound to 0xffbef990.
+   B. y is bound to 0xffbefa3c and x is bound to 0xffbef990.
+</pre>   A<input type="radio" name="Q25" value="1"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x25'); 
+  if (document.quizform.Q25[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: x is in the frame of main and y is in the foo frame.'; } ">  
+<DIV id="x25" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+26. In a dynamic-scoped language, the dynamic link is used to access nonlocals 
+    on the stack. The dynamic link points to
+    A. the activation record instance of the static parent.
+    B. another dynamic link in an activation record on the runtime stack.
+    C. the activation record instance of the calling program unit.
+</pre>  A<input type="radio" name="Q26" value="0"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="1"> D<input type="radio" name="Q26" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x26'); 
+  if (document.quizform.Q26[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the purpose of the link is to trace back through the stack frames to the first instance of the variable in question.'; } ">  
+<DIV id="x26" STYLE="background-color: white"> </DIV>  
+
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 10">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+</body>
+</html>

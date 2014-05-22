@@ -1,0 +1,17 @@
+
+Stack static array 
+   text	   data	    bss	    dec	    hex	filename
+   1892	    532	     16	   2440	    988	a.out
+
+Stack dynamic array 
+   text	   data	    bss	    dec	    hex	filename
+   1940	    532	     16	   2488	    9b8	a.out
+
+
+Static array 
+   text	   data	    bss	    dec	    hex	filename
+   1876	    532	    432	   2840	    b18	a.out
+
+No array 
+   text	   data	    bss	    dec	    hex	filename
+   1876	    532	     16	   2424	    978	a.out

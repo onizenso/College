@@ -1,0 +1,4 @@
+Size of StrA {int a; } = 4
+Size of ClassA {int a; } = 4
+Size of ClassAF {int a; int f() } = 4
+Size of ClassAVF {int a; virtual int f() } = 16

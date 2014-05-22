@@ -1,0 +1,19 @@
+V "GNAT Lib v4.3"
+P ZX
+R nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnnvnnnnnnnnnnnnnnnn
+
+U synchronization%s	synchronization.ads	2ce7d859 EE PK
+W system%s		system.ads		system.ali
+W system.exception_table%s  s-exctab.adb	s-exctab.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-unccon.ads		20070406091342 51e09df2
+D synchronization.ads	20090117012641 2ce7d859
+D system.ads		20090104120524 28071540
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-stalib.ads		20070912115821 9ac44ca2
+X 3 synchronization.ads
+31K9*Synchronization 35l5 35e20
+33X4*Ownership_Error
+

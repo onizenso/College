@@ -1,0 +1,36 @@
+1. MIPS being a load/store architecture means that all operations must work on data loaded from memory, and store persistent results into memory.
+
+2. Data alignment refers to the start and end of an elements block of memory must line up on 4-byte boundaries.
+
+3. Labels just can't match any opcodes or begin with numbers.
+
+4. The directive stores the characters a, b, c, d, e, and g as bytes starting at the address pointed to by the label 'stuff'
+
+5. "stuff: .space 15" allocates 15 bytes of space in memory and is pointed to by the label stuff
+
+   "stuff2: .word 0:10" allocates 10 words of space in memory (40 bytes), intitializes each word with '0' and is pointed to by the label stuff2
+
+6. Address 2: 0x00400028, Address 3: 0x0040002c
+
+7. 001000 00000 01001 0000000000001101
+
+8. add $t1, $s3, $zero
+
+9. beq $t0, $s2, Next 
+   slt $at, $s2, $t0
+   bne $at, $zero, Label 
+
+10. 
+
+ 1       li    $s0, 5              # load 5 into $s0
+ 2       move  $v0, $zero          # zero out $v0
+ 3       move  $t0, $zero          # zero out $t0
+ 4 Loop: beq   $t0, $s0, Exit      # exit when $t0 meets $s0
+ 5       sll   $t1, $t0, 2         # multiply $t0 by 4 and store in $t1
+ 6       add   $t1, $t1, $s2       # add $s2 to $t1, store in $t1
+ 7       lw    $t2, 0($t1)         # load word at base offset of $t1
+ 8       add   $v0, $v0, $t2       # add $t2 to $v0, store in $v0
+ 9       addi  $t0, $t0, 1         # add 1 to $t0, step to next loop iteration
+10       j Loop                    # jump back to the beginning of the Loop
+11 Exit:                           # Exit the program
+

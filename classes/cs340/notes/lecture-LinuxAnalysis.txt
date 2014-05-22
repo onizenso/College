@@ -1,0 +1,175 @@
+.: Linux Analysis :.
+
+Steps are similar to Windows Analysis
+    Difference is in how to actually do each step
+
+Log Files
+    Typically located in /var/log
+        /var/adm also used, particularly by some Unix OSes
+    Unified logging service: syslog
+        configuration is in /etc/syslog.conf
+        tells where to log messages
+            facility
+            priority
+        facility is one of the following:
+            auth     authpriv     cron     daemon     kern     lpr
+            mail     mark         news     syslog     user     uucp
+            local0-7
+        priority: severity of event
+            low to high: debug, info, notice, warning, err, crit, alert, emerg
+            
+        files created by syslog can be altered by anyone w/ write permissions
+            look for remote logging in config file
+                important when investigating compromised system
+
+        Important Logs:
+            auth logs (auth authpriv facilities)
+                usually /var/log/auth.log
+                    shows attempts to use 'su' commmand
+            sudo log (may not echo to syslog)
+                shows commands run/attempted to run as root
+            utmp & wtmp (another log of logins)
+                binary files accessed with last command
+            messages & syslog (general log messages)
+                /var/log/syslog
+                /var/log/messages
+
+        Another good command to run as root: dmesg
+            shows latest kernel log messages
+            some systems send dmesg output right after bootup
+                /var/log/dmesg
+
+        Systems may have log rotation enabled
+            copies current log to backup & resets it
+                may compress old logs
+            may see:
+                messages           current log
+                messages.1         1 rotation back
+                messages.2         2 rotations back
+                messages.3.gz      3 "" compressed
+                messages.4.gz      4 "" compressed
+
+            rotation period is system specific
+                # of rotations to keep is as well
+
+Configuration Files
+    Common locations:
+        /etc                        primarily human-readable config files
+        /sys (new) or /proc (old)   primarily config for kernel options
+
+        most cases looking at config files in etc is good enough
+            except for more modern distros like Ubuntu which are moving 
+            away from the /etc config model
+
+        Important System Files:
+            /etc/hosts             statix IP <-> host mappings
+            /etc/host.allow ----|___TCP/IP wrapper files to allow/deny hosts
+            /etc/host.deny  ----|
+            /etc/resolv.conf       DNS servers    
+                created by DHCP automatically from ISP router
+            /etc/udev.d            device config/rules
+                only on more modern Linux kernels
+                purely for devices/interfaces
+            /etc/modprobe.conf     kernel module config (replaced by udev.d)
+
+User-specific Files
+    Login information files:
+        /etc/passwd
+            username, UID, shell
+            check that users are configured correctly,
+            bin and shell should not allow login capability
+            only root user should have UID == zero
+            if second value on line is 'x' password is stored in /etc/shadow
+        /etc/shadow
+            hashes of passwords
+        /etc/group
+            defines user groups and their members
+
+    User's Home Directory
+        next-to-last field in /etc/passwd
+        where all of their files should live
+        important files to look at:
+            used at login---|.bash_profile
+                            |.bashrc
+            
+            used at logout--|.bash_logout
+                not there by default
+                sets scripts to run on logout
+            
+            .bash_history
+                stores commands run from the command line
+                only stores commands that are typed
+                does not store commands run from a shell script
+
+            .ssh/ 
+                stores ssh-related information
+
+        /etc/skel contains system default user files 
+
+    Look at user's login history
+        last [-n #] [username]
+            -n 15 
+                limits the output of last to the last 15 logins on the system
+            -n 15 user
+
+    System Start-Up Files
+        Programs & servers run when system boots, shuts down, 
+            or changes runlevel
+            -runlevel indicates "interactivity" of system
+        Files:
+            /etc/inittab
+                programs to run at each runlevel
+            /etc/rc.d or /etc/init.d
+                startup scripts (found in one or the other)
+            /etc/rc0.d - /etc/rc6.d runlevel specific scripts(SystemV variants)
+        
+Application Data
+    /var/spool    contains mail & printer data
+        /var has most of the log & runtime data for most major Unix/Linux apps
+            /var/log/exim4         mail logs
+            /var/log/apache[2]     web server logs
+    /opt is the new Linux "standard" directory for system applications
+        many apps still use old directories:
+            /usr/bin
+            /usr/share
+            /usr/local/{bin, share}
+            /bin
+
+    /tmp is used for temprorary data for many apps
+         common to have files world readable
+         dir itself has to allow all to read/write
+         need to turn on option to make written files only readable by owner
+         can also make /tmp its own partition
+
+Special File Permissions in Unix/Linux
+    SETUID & SETGID permissions
+        run as owner (UID) or group (GID) of executable
+        ex: passwd needs to check & update /etc/shadow
+                but normal users can't write/read /etc/shadow
+        be cautious of sticky bit programs that use SETUID to get root
+            permissions on other parts of the machine
+
+        use find command to get folders with sticky bit set
+            find / -perm -4000        (SETUID)
+            find / -perm -6000        (SETGID)
+
+Loadable Kernel Modules (LKMs)
+    Linux kernel allows addition/removal of modules
+    Used by rootkits to hide presence on machine
+        LKMs can intercept system calls & modify data returned
+        Examples:
+            Adore - privelege escalation, file hiding, process hiding
+            Knark - file hiding, TCP/UDP connection hiding, 
+                privilege escalation, redirect execution, 
+                change process UID/GID, process hiding
+
+    Rootkit detection:
+        Forensic analysis may give better results than live analysis
+            look for source code (present in filesystem or deleted)
+                known strings in binaries, unknown files, etc.
+        Tools:
+            chkrootkit - classic tool
+                many derivatives have been made since 
+            try to filter through /proc/kmem
+                beware of dummy /proc/kmem provided by an attacker
+

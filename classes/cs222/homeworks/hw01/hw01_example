@@ -1,0 +1,233 @@
+ file:hw01.cpp ,function:main ,line:49 start of logging
+ file:hw01.cpp ,function:main ,line:59 filling the array with random numbers
+ file:hw01.cpp ,function:main ,line:68 starting to move forward through the array
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)
+ file:hw01.cpp ,function:PrintArray ,line:15 starting PrintArray()
+ file:hw01.cpp ,function:PrintArray ,line:16 clear the screen
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 0
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 1
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 2
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 3
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 4
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 5
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 6
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 7
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 8
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 9
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 10
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 11
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 12
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 13
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 14
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 15
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 16
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 17
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 18
+ file:hw01.cpp ,function:PrintArray ,line:25 printing position 19
+ file:hw01.cpp ,function:PrintArray ,line:36  calling WaitHundredth(25)

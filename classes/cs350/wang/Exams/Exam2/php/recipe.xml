@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<recipebook>
+<recipe category="bread" level="easy" time="2 hrs." name="Quick Bread">
+   <ingredients>
+      2 cups flour, 1 egg, 1/2 cup milk, 2 TBLS yeast
+   </ingredients>
+
+   <instructions>
+       <step>Measure the flour, salt, and yeast.</step>
+       <step>Mix all ingredients together, and knead thoroughly.</step>
+       <step>Cover with a cloth, and leave for one hour in warm room.</step>
+       <step>Knead again, place in a tin, and then bake in 400 degree oven for 45 min.</step>
+    </instructions>
+</recipe>
+
+<recipe category="seafood" level="easy" time="30 minutes" name="SweetnSour Salmon">
+   <ingredients>
+      2 wild salmon steaks, 1/2 teas. soy sauce, 1/2 teas. ginger, 1 TBSP. honey, 2 cloves garlic 
+   </ingredients>
+
+   <instructions>
+       <step>mash the garlic</step>
+       <step>Mix all wet ingredients together, and mix thoroughly.</step>
+       <step>Put salmon steaks in the broiler - cook halfway.</step>
+       <step>Remove steaks from the broiler.</step>
+       <step>Cover steaks with marinade - finish cooking - turning once</step>
+    </instructions>
+</recipe>
+
+
+</recipebook>

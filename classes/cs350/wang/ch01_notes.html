@@ -1,0 +1,717 @@
+<html>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="./notes.css" title="style1">
+<script language="JavaScript" >
+<!--
+
+function stat()
+{
+  var x = document.getElementById("myDiv")
+  var ht = x.style.height
+  var tp = x.style.top
+  tp = pageYOffset + window.innerHeight - (ht-30);
+  x.style.left=(window.innerWidth - x.style.width)/2;
+  setTimeout('stat()',200)
+}
+
+function positionne()
+{
+  Navig = navigator.appName
+  if( Navig == 'Microsoft Internet Explorer')
+  {
+ myDiv.style.top = 
+      document.body.scrollTop+document.body.clientHeight - document.all.myDiv.offsetHeight+10;
+   myDiv.style.left = 
+      (document.body.clientWidth - document.all.myDiv.offsetWidth) / 2;
+  }
+  else
+  {
+     stat()
+  }
+}
+//-->
+</script>
+</head>
+<body>
+<a name="top"></a>
+</span>
+<DIV id="myDiv" style="position:absolute; left:8px; top:10px; height:45px; z-index:9" >
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0  HEIGHT=30 BGCOLOR="#254117" BORDERCOLOR="#FF0000">
+  <TR ALIGN="center" >
+    <TD WIDTH=200 ALIGN=center>
+<a href="./index.html">home</a></TD>
+    <TD WIDTH=200 ALIGN=center>
+<a href="#background">background</a></TD>
+    <TD WIDTH=200 ALIGN=center>
+<a href="#evaluation">evaluation</a></a></TD>
+    <TD WIDTH=200 ALIGN=center>
+<a href="#design">design</a></a></TD>
+    <td width=200 ALIGN=center>
+<A HREF="#implementation">implementation</A></TD>
+    <td width=200 ALIGN=center>
+<A HREF="#terminology">terminology</A></TD>
+  </TR>
+</TABLE>
+</DIV>
+
+<center>
+<pre>
+
+</pre>
+<h3>Introduction</h3>
+</center>
+<i>
+It is essential for anyone who wants to be considered a professional in the 
+areas of software to know several languages and several programming paradigms 
+. . . it's not a good idea to know just C++, let alone to know just a 
+single-paradigm language. Much of the inspiration in good programming comes 
+from having learned and appreciated several programming styles. 
+</i> &nbsp;&nbsp;--Bjarne Stroustrup, C++ author 
+<p>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>r e s o u r c e s</b> </font>
+</center></div> 
+<p>
+<a href="http://www.levenez.com/lang/">historyChart</a> |
+<a href="./languages.html">350</a>  | 
+<a href="http://www.tiobe.com/tpci.htm">popularity index</a> |
+<a href="http://www.levenez.com/lang/history.html#05">genealogy</a> |
+<a href="http://en.wikipedia.org/wiki/Programming_language"> wiki</a> |
+<a href="http://www.rosettacode.org/wiki/Main_Page">rosetta code</a> |
+ <a href="http://www.99-bottles-of-beer.net/">99 bottles</a> |
+<a href="http://dmoz.org/Computers/Programming/Languages/">open directory</a> |
+<a href="http://mindprod.com/jgloss/unmain.html">unmaintainable code</a> 
+
+
+<p>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="background"></a>
+<a href="#top">&uarr;</a>
+<font color=papayawhip><b>p r o g r a m m i n g &nbsp; l a n g u a g e &nbsp; c o n c e p t s
+</font> </b>
+<a href="#evaluation">&darr;</a>
+</center></div> 
+<p>
+<ul>
+ This course covers the high-level concepts of programming languages - 
+ the focus is on development and design. The concepts in the course
+  are implemented in CMPS 450 "Compilers".
+ Since one of the best ways to learn language design is
+ to program in that language, this course will include LOTS of programming.
+ Topics:<p>
+o syntax & semantics<p>
+o variables, identifiers, scope and lifetime <p>
+o data types<p>
+o expressions and assignment statements<p>
+o control statements<p>
+o functions, subroutines & parameter passing<p>
+o object oriented constructs<p>
+o implementation
+<p></ul> 
+Learning high-level concepts of programming languages will help you to. . .
+<p><ul>
+o be a better programmer<p>
+o evaluate and select best language for a particular task<p>
+o learn new languages more quickly<p>
+o better understand language implementation<p>
+o understand programming language evolution
+</ul>
+<p>
+Programming languages are developed to solve a particular task; the 
+ programming domains are <p><ul>
+o Scientific applications 
+(large number of floating point computations - Fortran)
+<p>o Business applications
+    (reports, decimal numbers and characters - COBOL)
+<p>o Artificial intelligence (symbols rather than numbers - Lisp and Prolog)
+<p>o Systems programming (tight, efficient code, low-level - C )
+<p>o Text processing (process line by line, manipulate strings, 
+pattern matching - SNOBOL and awk)
+<p>o Scripting ( quick, easy - Perl, Python, Ruby )
+<p>o Web ( client-side scripting - JavaScript; markup - XHTML, 
+server-side scripting - PHP, Python )
+<p>o General Purpose ( C++,  Java, Visual Basic, Python )
+<p>o Educational ( Pascal, Scheme )
+</ul>
+<a name="evaluation"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip>
+<a href="#top">&uarr;</a>
+l a n g u a g e 
+&nbsp;&nbsp;&nbsp;
+e v a l u a t i o n 
+&nbsp;&nbsp;&nbsp;
+c r i t e r i a 
+</b> </font>
+<a href="#design">&darr;</a>
+</center></div> 
+ What makes a language good? <p> 
+ <a href="http://www.rosettacode.org/wiki/Bubble_Sort#C">bubble-sort example</a><p>
+<p>READABILITY ( CODING EFFICIENCY )<p> 
+<ul>
+Def: the ease with which programs can be read and understood; note: this 
+ attribute pertains to what the language supports and not on the quality of 
+ the program; i.e., assuming
+ a program is well-written (big assumption), how long does it take to 
+ understand a program if you are unfamiliar with the code and possibly
+ even the language?  ability to see the forest instead of just the trees 
+
+<p>o  Overall simplicity - ( support for static modularity and
+        encapsulation via enforcement of scope and lifetime rules;
+        restrictions on global variables; 
+       manageable set of features and constructs -- too many features mean
+      programmers learn different subsets of language, reducing 
+     readability; 
+         little feature multiplicity - how many ways of doing the same 
+         operation; minimal operator overloading -- 
+       user-defined overloading can reduce readability )
+
+<p>o  Orthogonality ( having a relatively small set of primitive constructs 
+ combined in a relatively small number of ways; every possible 
+       combination is legal with no exceptions )
+
+<p>o  Control statements ( support for all widely used control structures - 
+            while, if, for, repeat, etc. )
+
+<p>o  Data types and structures ( support for data types that improve
+ readability: boolean, strings, decimal, associative arrays, etc. )
+
+
+<p>o  Syntax ( support for expressive identifiers; consistent method for
+             ending compound statements - unlike C's "{ }"; rich set of 
+               special words - Ada's "end if" and "end loop" in this Ada code 
+<div style="border:1px dashed; background-color:white"> <pre>
+   begin
+      if Container'Length > 0 then
+         loop
+            Mid := (Low + High) / 2;
+            if Value < Container (Mid) then
+               exit when Low = Mid;
+               High := Mid - 1;
+            elsif Container (Mid) < Value then
+               exit when High = Mid;
+               Low := Mid + 1;
+            else
+               return Mid;
+            end if;
+         end loop;
+      end if;
+      raise Not_Found;
+   end Search;
+</pre>
+</DIV>
+<p>o Form and meaning ( consistent constructs;
+       context-free keywords - unlike "static" in C, support for programming
+    conventions; force indentation as in Python ) 
+<div style="border:1px dashed; background-color:white">
+<pre>
+    #  In Python,code blocks are defined by : 
+    #  consistent indentation is MANDATORY 
+    def sort(list):
+      for first in range(len(list)):
+        minimum = first
+        for index in range(first,len(list)):
+          if list[minimum] > list[index]:
+            minimum = index
+        temp = list[first]
+        list[first] = list[minimum]
+        list[minimum] = temp
+   
+ 
+    // the same thing in C without indentation will compile but good luck reading it
+    sort(list) {
+    int size = 5, first, minimum, temp, index;
+    int list[size];
+    for (first = 0; first < size; first++){
+    minimum = first;
+    for (index = first; index < size; index++)
+    if (list[minimum] > list[index]);
+    minimum = index; temp = list[first]; list[first] = list[minimum];
+    list[minimum] = temp; } }
+</pre>
+</div>
+</ul>
+WRITABILITY ( CODING EFFICIENCY )
+<p><ul>
+Def: Ease of learning a language; ease of writing a program; how long it
+ takes to write code once you know the language
+<p>o  A language can be easy to read but difficult to write or easy to write but difficult to read
+
+<p>o Often corresponds to the number of keywords in a language ( more keywords
+  means language may be more difficult to learn )
+
+<p>o Code reusability and extensibility - reusing code means quicker coding
+
+<p>o Simplicity and orthogonality ( few constructs, small number of 
+          primitives, small set of rules for combining them with no exceptions;
+   non-orthogonality is an exception to the rule  )
+
+<p>o Support for abstraction ( the ability to define and use complex structures 
+          for operations that allow details to be ignored - C++ String and
+          STL classes, Perl's array operations )
+
+<p>o  Expressiveness ( a set of relatively convenient ways of specifying 
+       operations - ability to express conceptual abstractions directly 
+      and simply; Ex. Scheme: Perl: ($a,$b) = swap($a,$b); - support
+      for a standard library?)
+ )
+</ul>
+<p>
+RELIABILITY ( conformance to specification without fault )
+<p>
+<ul>
+<p>o     Faults ( fatal crashes, freezes, or erroneous results; solid, 
+            intermittent, or  transient )
+<p>o     Fault prevention ( goal to catch faults before run-time; static 
+        type checking; use of const in C++ to protect data )
+<p>o     Exception handling (intercept run-time errors and gracefully
+         recover - not core dump )
+<p>o     Aliasing  ( two or more references to the same 
+          memory location; very problematic; cross-linked pointers in C/C++ )
+<p>o     Pointers ( generally problematic - buffer overruns, illegal access, 
+            etc. ) 
+<p>o     Readability and writability  ( natural, intuitive ways of expressing 
+        an algorithm )
+</ul>
+COST ( total cost of a language throughout language lifecycle )
+<ul> 
+<p>o  Initial cost to develop and implement the language ( Ada vs. Ruby )
+<p>o  Cost to train programmers to use language ( writability, widely used? )
+<p>o  Portability ( cost to migrate to new OS and/or new hardware platforms ) 
+<p>o  Cost to write programs ( coding rate; fitness for particular 
+         application )
+<p>o  Cost to compile, execute and maintain code ( proprietary or GPL ?
+      compiler and runtime license fees; availability and reliability of
+       free compilers; access to good documentation and support )
+<p>o   Reliability ( poor product reliability leads to high maintenance costs )
+</ul>
+<p>
+OTHER CRITERIA 
+<p> 
+<ul>
+o    Portability ( the ease of porting from one platform to 
+         another; somewhat compiler specific; standardized library 
+            routines across multiple hardware platforms - Java )
+<p>o    Generality  ( applicability to a wide range of applications 
+         and problem domains - Java, C++, Python )
+<p>o    Well-definedness ( standards; completeness and precision of 
+        the language's official definition )
+<p>o    Efficiency ( compiled / interpreted runtime performance, library size, 
+          dynamic and static memory management, 
+           code optimization capabilities; benchmark testing )
+<p>o    Diagnosability ( ease of testing and finding faults; compiler 
+        and runtime error messages, debugging capabilities; fault 
+         coverage  - % of faults found )
+<p>o    Maintainability ( ease of fixing faults and modifying code )
+
+<p>o Dynamic Memory Management ( automatic; no segmentation faults 
+                            or memory leaks - C/C++ poor )
+
+<p>o    Security ( protection against unauthorized intrusions or attacks;
+          ability to prevent illegal code or data modification - 
+           C is poor - buffer overflow problem )
+<p>o    Network Support ( support for network features - RPCs, concurrency;
+         ease of writing network applications )
+</ul>
+<p>
+<a href="./PDFs/language_comparisons.pdf">Prescelt's Comparison Study</a>
+<p><ul>
+o C/C++, Java, Perl, Python, Rexx, and Tcl 
+
+<p>o experiment uses a group of programmers to reduce variation 
+ among individual programmers
+
+<p>o same set of requirements implemented in each language
+
+<p>o Prescelt's criteria: runtime efficiency, memory consumption, source text 
+    length, comment density, program structure, reliability, amount of 
+    effort to write the program 
+
+<p>o LOC/hr (coding rate) is poor metric for measuring the writability of a
+language - coding rate is more dependent on the programmer and less
+dependent of the language; fast programmers write more quickly regardless
+of the language.
+
+<p> o scripting languages are more productive than conventional languages
+
+<p> o "differences between languages tend to be smaller than differences
+       between programmers.."; poor code can be written in any language
+
+<div style="border:1px dashed; background-color:white">
+<pre>
+       int things = 0
+       const sTuff = 5;
+       int Stuff[sTuff] = things,
+           stufF[sTuff] = things,
+           STUFF[sTuff] = things;
+
+       for ( int stuFf = 0; stuFf < sTuff; stuFf++ ) {
+          for ( int stuFF = 0; stuFF < stuFf; stufF++ ) {
+             ( Stuff[stuFf] * stufF[stuFF] ) + ( Stuff[stuFF ] * stuf[stuFf]);
+</pre>
+</div>
+<p>
+</ul>
+<a name="design"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a href="#top">&uarr; </a>
+<font color=papayawhip><b>
+l a n g u a g e 
+&nbsp;&nbsp;&nbsp;
+d e s i g n   
+</b> </font>
+<a href="#implementation">&darr; </a>
+</center></div> 
+<p>
+Influences on Language Design 
+<p><ul>
+o  #1: Computer Architecture (imperative languages model von Neumann 
+  architecture - variables model memory cells; assignment statements 
+  model memory storage; iteration most common control mechanism ) 
+
+<p>o parallelism attempts to overcome von Neumann bottleneck: 5-stage pipeline -
+     InstructionFetch InstructionDecode EXecute MEMory WriteBack - and
+ the use of cache have not significantly impacted language design
+<p>
+o  High-level Programming Methodology - functional, 
+ object oriented, structured programming - has only recently impacted language 
+  design
+</ul>
+<p>
+Evolution of Language Design 
+<p>
+<ul> 
+ 1950s and early 1960s: Simple applications; maximize machine efficiency
+<p>Late 1960s: maximize people efficiency; readability, better control 
+     structures; structured programming; top-down design and 
+      step-wise refinement
+<p>o Late 1970s: Process-oriented to data-oriented; data abstraction
+<p>o Middle 1980s: Object-oriented programming
+      Data abstraction + inheritance + polymorphism
+  </ul>
+  <p>
+  <b> Language  Classifications</b>
+  <p>
+
+  Programming languages are often categorized into "generations" as follows: 
+  <p>
+  first generation - machine code; second generation - assembly; 
+  third generation - C, Fortran; fourth generation - C++, Java; 
+   fifth generation  - logic and contraint languages such as prolog
+
+
+<p>
+Languages are also classified into one of several primary design paradigms:
+<p>
+<ul> 
+o Imperative ( Central features are variables, assignment statements, and 
+       iteration;
+       Statements are executed sequentially; a program evolves from an 
+       initial state to a final state through a series of
+       state changes; 
+       Criticism: von Neumann bottleneck
+       Examples: everything but logic and functional languages )
+
+<p>o Declarative ( the opposite of imperative - any language that
+       does NOT follow a step by step algorithm ; examples are logic
+       and functional languages )
+
+<p>o Functional (
+       No traditional variables, no assignments statements, no iteration;
+       Main means of making computations is by applying functions to given 
+          parameters;
+       No side effects  - any changes to the state of the program;
+       Examples: LISP, Scheme)
+
+<p> o Procedural (
+      A paradigm based on the concept of a procedure call -- AKA subroutine, 
+      function, method, routine ;
+      structured, modular, scoping - no spaghetti code;
+      All modern imperative languages are also procedural - early Basic and
+      Fortran was not procedural
+
+      
+<p>o Logic ( Based on symbolic logic and logical inferencing;
+       Data are facts;
+       Rule-based - rules are specified in no particular order;
+       no assignment statement:
+          z = y + 3 ;
+       does not store a value in the variable z, but means "z is 3 plus the
+       value of y" ;
+       Examples: Prolog and XSLT )
+
+<p>o Object-oriented
+       ( Extended the procedural paradigm; The focus is not on process but
+        on data and  the operations performed on the data; 
+   Classes, objects, Data 
+        abstraction and encapsulation, inheritance, late binding;
+        Java is object-oriented only - C++ is procedural and object-oriented;
+       Examples: Java, C++, C#, Delphi)
+
+<p>o Scripting (
+       "A slick solution to a difficult problem";
+       Reduces the complexity and time to solve a problem;
+       Targets a particular environment;
+       Interpreted;
+       Examples: perl, JavaScript, PHP, python, sh, awk )
+
+<p>o Markup  (
+       New; not a programming language per se, but used to specify the layout 
+          of information in Web documents;
+       Minimal control features;
+       Examples: CSS, XHTML, XML )
+
+<p>o Multi-Paradigm (
+      Many modern languages are multi-paradigm  - C++, Python, Ruby, Perl, 
+       Scheme )
+</ul>
+Language Design Trade-Offs
+<p><ul>
+o      Reliability vs. Cost ( improving reliability will increase 
+       development costs but reduce maintenance costs;
+      Example: Java demands all references to array elements be checked for 
+      proper indexing but that leads to increased execution costs  )
+
+<p>o      Readability vs. writability ( 
+         Examples: APL provides many powerful operators and a large number of 
+         new symbols - allowing complex computations to be written in a 
+         compact program, but with poor readability;
+         using the same closing symbol or keyword for multiple control
+         statements is easy to write but difficult to read - 
+        determining what is terminated requires searching 
+        previous code; LISP is easy to write but more difficult to read )
+    
+<p>o   Writability vs. reliability ( C's pointers are powerful and 
+        flexible but not reliably used )
+ 
+<p>o   Cost vs. everything else ( 
+           Moore's Law = tremendous pressure to get software to market
+           Testing phase left to the end user; e.g., at release Windows 2000 
+           had 64,000 documented errors, 32,000 of which were problematic  )
+</ul>
+<a name="implementation"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>
+<a href=#top>&uarr;</a>
+i m p l e m e n t a t i o n 
+</b> </font>
+<a href=#terminology>&darr;</a>
+</center></div> 
+<p>
+Three Methods
+<p>
+<ul>
+  o   Compilation (source code is translated into machine language by
+            a compiler to produce an executable; slow translation, 
+        fast execution)
+<p>o   Interpretation (source code is translated and executed line by
+          line by an interpreter at runtime)
+<p>o   Hybrid Implementation Systems (part compilation / part interpretion
+ or the option to do one or the other)
+</ul>
+Preprocessors
+<p><ul>
+o Used in both compilation and interpretation
+<p>
+o Preprocessor macros (instructions) are commonly used to specify that code 
+       from another file is to be included
+<p>o   A preprocessor processes a program immediately before the program is 
+       compiled to expand embedded  preprocessor macros
+<p>o   A well-known example: C preprocessor
+       expands #include, #define, and similar macros
+</ul>
+Compilation and Execution Phases 
+<p>
+<ul>
+ Lexical analysis ( converts characters in the source program into lexical 
+                       units called lexemes )
+<p>Syntax analysis ( transform lexical units into parse trees to 
+                    represent the syntactic structure of program - multiple 
+                      passes - create symbol table for each compilation unit )
+
+<p> Semantics analysis ( generate machine code )
+
+<p> Linking ( collecting system programs and linking them to user programs -
+     resolving symbols across compilation units )
+
+<p> Load module (load executable image into memory)
+</ul>
+<p>
+Pure Interpretation
+<p>
+<ul>
+ No translation into loadable machine code
+<p> Easier implementation of programs (run-time errors can easily and 
+      immediately displayed)
+<p>   Slower execution ( 10 to 100 times slower than compiled programs )
+<p>    Often requires more space
+<p>    Often now given choice to compile or interpret 
+<p>  Significant comeback with Web scripting languages ( JavaScript, Php )
+</uL>
+
+Hybrid Implementation Systems
+<p><ul>
+  o A compromise between compilers and pure interpreters
+  <p>o A high-level language program is translated to an intermediate language 
+      that allows easy interpretation
+ <p>o  Faster than pure interpretation
+  <p>o Perl programs are partially compiled to detect errors before 
+         interpretation
+ <p>o Initial implementations of Java were hybrid; the intermediate form, byte 
+         code, provides portability to any machine that has a byte code 
+         interpreter and a run-time system (together, these are called Java 
+         Virtual Machine)
+
+<p>o Just-in-Time (JIT) hybrid implementation process
+<p>o Initially translate programs to an intermediate language then compile 
+     intermediate language into machine code;
+   Machine code version is kept for subsequent calls
+<p>o JIT widely used for Java programs; .NET languages implemented as JIT system
+</ul>
+<ul>
+Development Environments
+<p>
+o a collection of tools vs. integrated development environment (IDE)
+
+<p>o Unix  (a collection of separate command-line tools - vi, cc, gcc, make, 
+      tar, gzip, ... - not integrated but similar across all Unix platforms) 
+
+<p>o Borland JBuilder ( IDE for Java )
+
+<p>o Microsoft Visual Studio.NET ( A large, complex GUI IDE
+     for C#, Visual BASIC.NET, Jscript, J#, or C++ )
+</ul>
+<a name="terminology"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>
+<a href=#top>&uarr;</a>
+t e r m i n o l o g y 
+</b> </font>
+</center></div> 
+<p>
+ <u>Programming Methodology</u> refers to the overall 
+ approach that a programmer takes to write software in
+ a programming language. In the abstract, methodology is 
+ not dependent upon a language. In reality, programming methodology is
+ directly linked to language design. New methodologies (e.g., object-oriented) 
+ result in new language designs and, likewise, the language design 
+ determines the methodology that a programmer can
+ follow with that language.
+<p>
+<u>Von Neumann architecture</u> is the prevalent design of modern computer
+ systems. In this design data and programs are stored in memory, memory 
+ is separate from the CPU, instructions and data  are piped from memory to 
+ the CPU. Execution of machine code on a von Neumann architecture follows
+ this fetch-execute cycle:
+<pre>
+      initialize the program counter
+      repeat forever
+         fetch the instruction pointed by the counter
+         increment the counter
+         decode the instruction
+         execute the instruction
+      end repeat
+</pre>
+<p>
+The <u>Von Neumann Bottleneck</u> is the primary limiting factor in the 
+ speed of computers today (not processor speed). 
+ The bottleneck occurs because the
+  connection speed between  memory and the processor 
+ is slower than the speed at which instructions 
+  can be executed by the CPU. Parallelism and the use of
+ cache attempt to solve this problem.
+<p> 
+
+A <u>side effect</u> is any modification to the state of a running program.
+ Side effects may be intentional
+ (imperative languages depend on side effects in the form of mutable data and 
+ changes to input and output) or unintentional
+ (generally a fault).  A purely functional language has no
+  side effects. Functional programs will behave the same in any context and
+  can be executed in parallel without interference. Such programs 
+ are easily verified and optimized.
+ This is a big advantage and may outweight the limitations of a 
+ functional language for some applications.
+<p>
+A <u>pointer</u> is a  reference (address) to a memory location. In C a
+  pointer is a primitive data type that stores a memory address. 
+ (see <a href="./Code/C/pointers.c">code</a>) <pre>
+     int * stuff;
+     int num = 5;
+     stuff = &num;
+     printf(%p %d,stuff, *stuff);
+     stuff++; // what does this do?
+     stuff = stuff/2;   // pointer division is not legal  </pre>  
+<p>  
+An <u>alias</u> is two or more references to the same memory location.
+ Pointers can be used as aliases in C/C++, which most consider 
+ to be the language's biggest liability. Aliasing can
+ violate both reliability and readability.  Assume you have a class Student 
+ that uses dynamic memory allocation for the student's name:<pre>
+  char * name;
+</pre>
+If an overload assignment operator is not coded, these statements will produce
+cross-linked pointers:<pre>
+  Student a("Sam Spade");
+  Student b("Joe Smoo")
+  a = b;  // two pointers are now pointing to the same memory location
+</pre>
+<p>
+<u>Orthogonality</u> means non-interference (an example is orthogonal vectors).
+ At a low-level, orthogonality in a computer
+ instruction set means that all instructions can be uniquely combined with all 
+ registers and addressing modes. At a high-level, orthogonality 
+ means that all language features can be combined in all possible ways
+ without interference.
+ (i.e., no exceptions to the general language rules).
+ Non-orthogonality makes a language harder to learn but
+ complete orthogonality results in meaningless constructs (such as
+ pointer division). Orthogonality requires a small set of primitives--the 
+ larger the set, the more difficult it is to maintain orthogonality.
+<p>
+For example, the primitive constructs in C/C++ include arithmetic operators
+   ( + , -, * , / ) and scalar data types int, float, double, pointer.
+   In a completely orthogonal language it should be feasible to combine
+   all operators with all data types.
+<p>
+   C/C++ is not orthogonal because
+   arithmetic operators do not consistently work on pointers. <pre> 
+  int  a = 5 ;
+  int  b = 10;
+  int  c = 15 ;
+
+  int * aptr = & a;
+  int * bptr = & b;
+  int * cptr = & c;
+
+  a++; // legal but does not behave like increment on integers 
+  a = b * c;  // OK
+  aptr = bptr;  // OK
+  aptr = bptr + cptr;  // illegal
+  aptr = bptr * cptr;  // illegal
+</pre>
+The overloaded << and >> operators are also non-orthogonal constructs in C++:
+  they can mean bit shifting or output/input depending on the context.
+<p>
+   Other examples of non-orthogonality in C:
+<p>
+   1. C has two kinds of built-in data structures, arrays and records (structs).
+      Records can be returned from functions, but arrays cannot.
+<br>
+   2. A member of a struct can have any type except void or a structure of the
+      same type.
+<br>
+   3. An array element can be any data type except void or a function.
+<br>
+   4. Parameters are passed by value, unless they are arrays, in which case
+      they are passed by reference.
+<p>
+A <u>scalar</u> data type is one that cannot be divided into other data types.
+ Examples of scalars are int, char, double, char *. Scalars are addressed by
+ a single memory address. Examples of non-scalars
+ are arrays, classes, and records. Non-scalars are addressable by more than
+ one memory address. In the beginning, all data were scalars - arrays were
+ added next.
+<a href="#top>&uarr;</a>
+</body>
+</html>

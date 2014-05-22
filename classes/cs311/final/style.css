@@ -1,0 +1,46 @@
+/* File: style.css
+   Purpose: This is the CSS stylesheet for the store.
+   To do's: You do not need to change this file, but you may if you'd like to 
+            make things look nicer. */
+
+div#wrapper 
+{
+    width:900px; 
+    margin: auto;
+    background-color:#CCC;
+    min-height: 700px;
+    padding: 10px 10px;
+}
+
+div#left 
+{
+    padding: 10px 10px;
+    left:0px; 
+    max-width:300px; 
+    float:left; 
+    background-color: #BBB;
+    margin-right:20px;
+    font-size: 11px;
+}
+
+div#left li 
+{
+    list-style-type:none;
+}
+
+div#main 
+{
+    margin-left: 10px;
+}
+
+table
+{
+  border-collapse:collapse;
+}
+
+th, td
+{
+  padding: 5px 5px;
+  border: 1px solid black;
+  background-color:white;
+}

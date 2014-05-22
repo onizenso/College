@@ -1,0 +1,354 @@
+<html>
+<h3>Lambda Calculus</h3>
+<pre>
++++++++++++++++++++++++++++++++ 
++    The Lambda Calculus      +  
++++++++++++++++++++++++++++++++ 
+
++ lambda is a Greek symbol (denoted in these notes by '\')
+
++ lambda calculus is the underlying mathematical formalism of LISP
+
++ the lambda calculus is powerful enough to define any mathematical function
+  AND is a universal model of computation - any computation that can be 
+  expressed in a Turing machine can be expressed in the lambda calculus.
+  (see <a href="./curry.txt">curry</a>)
+
++ the BNF syntax of lambda expressions is defined by 3 simple rules:
+
+&lt;lambda-expression> ::=&lt;variable>                            ;; identifier
+               | &lt;constant>                                   ;; predefined
+               | ( &lt;lambda-expression> <lambda-expression> )  ;; combination 
+               | (\ &lt;variable> . &lt;lambda-expression> )        ;; abstraction
+
+
+
++ lambda expressions describe nameless functions
+
++ lambda expressions are applied to parameter(s) by placing the parameter(s) 
+  after the expression; e.g.,   
+
+     ( (\x. (x * x * x)) 2 ) 
+  
+    evaluates to 8
+
++ a mathematical function is a mapping from the domain set to the codomain set:
+
+   f: N -> N
+   f(x) = x^2 - 4
+   f(3) = 5
+
++ the equivalent lambda expression is
+
+   N -> N
+
+  ((\x. (- (* x x) 4)) 3 ) yields 5
+
++ a lambda expression can have more than one variable
+
+   N -> (N -> N)
+   (\m. (\n. (- n m)))
+
+   (((\m. (\n. (- n m))) 5) 3)
+   (( (\n. (- n 3))) 5)  
+   (( (- 5 3)))   
+    5 - 3 = 2   
+
++ the equivalent function g is: 
+
+   N -> (N -> N)
+   g(m,n) = n - m
+   g(5,3) = 5 - 3 
+          = 2
+
++ the syntax for a lambda expression makes no distinction between functions
+  and values:
+
+  lambda-expression ::=	variable | constant | application | abstraction
+
++ the lambda calculus supports higher-order functions
+
++ a higher-order function is one that either takes functions as parameters or 
+  yields a function as its result, or both
+  
++ function composition is a functional form that takes two functions as 
+  parameters and yields a function whose value is the first actual parameter 
+  function applied to the application of the second
+
+     Form: h = f  o  g    // h (x) is defined as  f ( g ( x ))
+     Given, where Z is the set of integers and R is set of real numbers  :
+     g: Z -> R                     f: R -> Z 
+     g(x) = .5 * x                 f(x) = ceiling(x)
+  
+     h = f o g is now defined as:
+     Z -> R -> Z 
+     h(x) = ceiling(.5 * x)   
+
++ apply-to-all is a functional form that takes a single function as a 
+  parameter and yields a list of values obtained by applying the given 
+  function to each element of a list of parameters
+
+      Form: alpha
+ 
+      For h (x)  x * x
+      alpha( h, (2, 3, 4))  yields  (4, 9, 16)
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
++   Fundamentals of Functional Programming Languages +
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
++ imperative languages are based on von Neumann model of computer architecture
+
++ functional languages are based on a theoretical model of mathematical 
+  functions - the lambda calculus
+
++ functional languages are designed to mimic mathematical functions 
+
++ the basic process of computation differs fundamentally from imperative model 
+
++ imperative languages rely on assignment operator (storing the results of
+  operations in variables for later use) - managing variables is main concern
+
++ functional programming languages use function application, conditional 
+  expressions, recursion, and functional forms to control program execution
+  instead of variables and assignment statements
+
++ the evaluation of a function always produces the same result given the 
+  same parameters  (referential transparency)
+
++ imperative Languages have efficient execution, complex semantics, complex 
+  syntax, concurrency must be programmer designed
+
++ functional Languages have simple semantics, simple syntax, but inefficient 
+  execution due to the high overhead of function calls; programs are 
+  concurrent by nature (concurrency at the hardware level is not implemented
+  in cLISP but it is in clojure and multiLISP - see <a href="http://en.wikipedia.org/wiki/List_of_programming_languages_by_category#Concurrent_languages">wiki</a>
+
++ functions are "first class entities" in a functional language - functions are
+  treated just like data
+
++ lambda notation specifes functions and function definitions
+ 
++ function applications and data have the same form; e.g., If the list 
+  (A B C) is interpreted as data it is a list of three atoms, A, B, and C
+  If it is interpreted as a function application, it means that the function 
+  named A is applied to the two parameters, B and C
+
++ the first LISP interpreter appeared as a demonstration of the universality 
+  of the computational capabilities of lambda notation
+
++ applications of Functional Languages: (artificial intelligence, knowledge 
+  representation, machine learning, natural language processing, modeling of
+  speech and vision 
+
++ purely functional languages have advantages over imperative alternatives, 
+  but lower efficiency on all but recent machine architectures has prevented 
+  widespread use
+
++ functional capabilities added to many multi-paridigm languages such as Python
+  and Ruby
+
+
+++++++++++++++++++++++++++++++++++++++++++
++    LISP Data Types and Structures      +
+++++++++++++++++++++++++++++++++++++++++++
+
++ LISP began as a pure functional language but now includes imperative features
+
++ LISP is case insensitive
+
++ Data object types: originally only atoms and lists
+
++ List form: parenthesized collections of sublists and/or atoms
+       e.g., (A B (C D) E)
+
++ Originally, LISP was a typeless language
+
++ LISP lists are stored internally as single-linked lists
+
++++++++++++++++++++++++
++ Primitive Functions +
++++++++++++++++++++++++
+
+ (tested under cLISP)
+
++ mathematical operators
+
+       (+ 5 2) yields 7
+       (- 5 2) yields 3 
+       (* 5 2) yields 10 
+       (/ 10.3 2) yields 5.15
+       (rem 10.3 2) yields 0.3000002 
+       (min 5 2) yields 2
+       (max 5 2) yields 5 
+       (abs -25) yields 25
+       (sqrt 25) yields 5
+
++ you can re-apply a function any number of times:
+   (+ 5  2.1  3  5.5) yields 15.6    //5+2.1=7.1, 7.1+3=10.1, 10.1+5.5 = 15.6 
+   (max 5 11 4 13 2) yields 13       // max 5 11 is 11, max 11 4 is 11, .... 
+ 
++ QUOTE - takes one parameter; returns the parameter without evaluation ;
+  required because the Lisp interpreter, named EVAL, always evaluates
+  parameters to function applications before applying the function ;
+  QUOTE is used to avoid parameter evaluation when it is not appropriate ;
+  QUOTE can be abbreviated with the apostrophe prefix operator
+
+      		'(A B) is equivalent to (QUOTE (A B)) 
+   
++ Function Definition: LAMBDA
+   
+   A lambda expression is an unnamed function whose form is lambda notation
+
+        e.g., (LAMBDA (x) (* x x)) is a function where x is a bound variable
+
+   Lambda expressions can be applied
+
+      ((LAMBDA (x) (* x x)) 7) yields 49
+      ((lambda (x) (+ x 100)) 1)  yields 101
+
++ List Functions: CONS, LIST, APPEND
+
+  CONS takes two parameters: the first is an atom or a list and the second is
+  a list; returns a new list that includes the first parameter as its first 
+  element and the second parameter as the remainder of the list 
+
+      (CONS 'A '(B C)) yields (A B C)
+      (CONS 'a '())    yields (A)
+ 
+  LIST takes any number of parameters; returns a list with parameters as 
+  elements
+
+  (LIST '(A B) 'C)  yields ((A B) C)
+  (LIST 1 2 'foo) yields (1 2 FOO)             // don't need to quote numbers
+  (LIST 1 'a (LIST 2 'b)) yields (1 a (2 b))   // functions are treated as data 
+  (LIST (read) (read) (read))                 // reads 3 elements from stdin 
+
+
+  APPEND takes two lists and joins them 
+  (APPEND '(a b c) '(1 2 (3))) yields (A B C 1 2 (3))  
+
++ List Functions: CAR, CDR, CADR, CDDR, CXR, where X is an combination of D,A 
+
+  CAR takes a list and returns the first element of that list
+
+      (CAR '(A B C)) yields A
+      (CAR '((A B) C D)) yields (A B)
+ 
+  CDR takes a list and returns the list after removing its first element 
+
+      (CDR '(A B C)) yields (B C)
+      (CDR '((A B) C D)) yields (C D)
+
+  CADR takes a list and returns the CAR of the CDR
+      (cadr '(a b c d))  yields B 
+
+  CDDR takes the cdr of the cdr 
+      (CDDR '(A B C D)) yields (C D)
+
+
++ Predicate Functions: EQUAL, LISTP, ATOM, NULL
+
+   EQUAL takes two symbolic parameters; it returns #T if both parameters 
+   are atoms and the two are the same
+
+   (EQUAL 5 5) yields T
+   (EQUAL 'A 'A) yields T
+   (EQUAL 'A '(B)) yields NIL 
+
+   ATOM takes one parameter; it returen T if the parameters is an atom else NIL
+
+   (atom 'a) yields T
+   (atom '() ) yields T   // note result here
+   (atom '(a) ) yields NIL 
+
+   LISTP takes one parameter; it returns T if the parameter is a list; 
+   otherwise NIL  
+
+   (listp 'a) yields NIL 
+   (listp '() ) yields T  // note result here 
+   (listp '(a) ) yields T 
+
+   NULL takes one parameter; it returns T if the parameter is the empty list;
+   otherwise NIL; (NULLP '()) returns T 
+
++ Control structures (special operators) IF, COND, DO
+
+  IF takes three arguments 
+  (IF first second third)  // if first is true do second else do third
+
+  (IF (< 5 3) (list 'a 'b) (list 'b 'c))  yields (b c)
+
+   DO can be compared to C 'for' where control and update are reversed
+   (DO                          ; for
+       ( ( i 1                  ; i = 1;
+         (+ i 1) ))             ; i++
+         ((> i n) )             ; i <= 10
+          ( print i )           ; printf("\n%d", i);
+    )
+
+   COND is a switch; i.e., if-then-else 
+   ( cond 
+      ( (< n 0 ) nil )                 ; if n < 0 return false
+      ( (eq n 0) (car l) )             ; else if n==0 return car of list
+      ( t (cdr l)))                    ; else return cdr of list
+
+
++ Scoping with LET
+  (let ( (j 10) (k 20) ) (+ j k))  yields 30    // bound in parallel
+ 
++ Imperative features SETQ
+
+  (let ( (j 10) (k 20) ) (setq j (+ j k) )) yields 30   // binds and unbinds j
+  > (setq  x '(a b c))                                 // binds x to (a b c)
+  > (setf (cadr x) 10) 
+  > x  yields (a 10 c)
+               
+ 
+++++++++++++++++++
++   COMMON LISP  +
+++++++++++++++++++
+
++ combined many features of popular dialects of LISP around the early 1980s
+
++ a large and complex language--the opposite of Scheme
+
++ features include: records, arrays, complex numbers, character strings,
+  powerful I/O capabilities, packages with access control, iterative control 
+  statements
+
++++++++++++++++++++
++     Scheme      +
++++++++++++++++++++
+
++ mid-1970s dialect of LISP, designed to be cleaner, more modern, and 
+  simpler version than the contemporary dialects of LISP
+
++ Scheme is used to teach intro programming at many universities (Berkeley)
+
++ uses static scoping exclusively
+
++ functions are first-class entities - can be the values of expressions and 
+  elements of lists or assigned to variables and passed as parameters 
+
++ parameters are evaluated in no particular order
+
++ the values of the parameters are substituted into the function body
+
++ the function body is evaluated
+
++ the value of the last expression in the body is the value of the function
+   
+++++++++++++++++++++
++  Other Dialects  +
+++++++++++++++++++++
+
++ ML is a static-scoped and strongly typed functional language which includes 
+  type inference, exception handling, and a variety of data structures and 
+  abstract data types
+
++ Haskell is a lazy functional language supporting infinite lists and set 
+  comprehension (Lazy evaluation is to only compute what is necessary).
+  
++ Clojure is a dialect of Lisp for the Java virtual machine ; Clojure supports 
+  concurrency 

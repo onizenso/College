@@ -1,0 +1,38 @@
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> soa 224.9.209.in-addr.arpa
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 11269
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 8, ADDITIONAL: 8
+
+;; QUESTION SECTION:
+;224.9.209.in-addr.arpa.		IN	SOA
+
+;; ANSWER SECTION:
+224.9.209.in-addr.arpa.	3071	IN	SOA	ns01.eng01.latisys.net. dns-admin.latisys.net. 382385556 3600 1800 3600000 86400
+
+;; AUTHORITY SECTION:
+224.9.209.in-addr.arpa.	3071	IN	NS	ns01.oak01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns02.eng01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns02.oak01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns01.irv01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns02.ash01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns01.eng01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns02.irv01.latisys.net.
+224.9.209.in-addr.arpa.	3071	IN	NS	ns01.ash01.latisys.net.
+
+;; ADDITIONAL SECTION:
+ns01.ash01.latisys.net.	370	IN	A	67.217.164.34
+ns01.eng01.latisys.net.	370	IN	A	65.38.161.20
+ns01.irv01.latisys.net.	3283	IN	A	209.80.45.2
+ns01.oak01.latisys.net.	30883	IN	A	208.78.168.154
+ns02.ash01.latisys.net.	370	IN	A	67.217.164.35
+ns02.eng01.latisys.net.	370	IN	A	65.38.161.21
+ns02.irv01.latisys.net.	3283	IN	A	207.38.45.140
+ns02.oak01.latisys.net.	30883	IN	A	208.78.168.155
+
+;; Query time: 1 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Tue Jan  7 16:44:38 2014
+;; MSG SIZE  rcvd: 401
+

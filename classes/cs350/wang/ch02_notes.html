@@ -1,0 +1,620 @@
+<html>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="./style.css" title="style1">
+</head>
+<body bgcolor=papayawhip>
+<a name="top"></a>
+<DIV id="myDiv" style="position:absolute; left:4px; top:15px; height:45px; z-index:9" >
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0  HEIGHT=30 BGCOLOR="#FFFFFF" BORDERCOLOR="#FF0000">
+  <TR ALIGN="center" >
+    <TD WIDTH=100 ALIGN=center>
+<a href="./index.html">home</a></TD>
+    <TD WIDTH=100 ALIGN=center>
+<a href="#1945">1945</a></TD>
+    <TD WIDTH=100 ALIGN=center>
+<a href="#1950">1950</a></a></TD>
+    <TD WIDTH=100 ALIGN=center>
+<A HREF="#1960">1960</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#1970">1970</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#1980">1980</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#1990">1990</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#2000">2000</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#evaluation">evaluation</A></TD>
+    <td width=100 ALIGN=center>
+<A HREF="#terminology">terminology</A></TD>
+  </TR>
+</TABLE>
+</DIV>
+<center>
+<pre>
+
+</pre>
+
+<h3>Chapter 2:  Evolution of the Major Programming Languages </h3>
+<p>
+<i>"Much of my work has come from being lazy."</i><br>
+-- John Backus, co-designer of IBM 704 architecture and developer of FORTRAN 
+<p> 
+</center>
+<p>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>r e s o u r c e s</b> </font>
+</center></div> 
+<br>
+<a href="./history.gif">brief history</a> |
+<a href="./languages.html">TOP 25 </a> |
+<a href="./timeline.txt">Language Timeline</a> |
+
+<a href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html">TIOBE index</a> | 
+
+<a href="http://www.thocp.net/timeline/timeline.htm">The History of Computing</a> |
+<a href="http://en.wikipedia.org/wiki/Category:Programming_languages">PL (wiki)</a> |
+<a href="http://www.levenez.com/lang/history.html">chronology chart</a> | 
+<a href="http://www.levenez.com/lang/">complang history</a>
+<p>
+<p>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1945"></a>
+<font color=papayawhip><b>( 1 9 4 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+Zuse's Plankalkul (1945)
+   Never implemented
+   Advanced data structures
+   floating point, arrays, records
+   Invariants
+
+Short Code (1949) 
+   A "pseudocode" developed by Mauchly for BINAC computers  
+   1) The poor readability and writability of machine code
+   2) Machine deficiencies 
+     - no index registers (required absolute addressing in code) 
+     - no floating point hardware
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1950"></a>
+<font color=papayawhip><b>( 1 9 5 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+Speedcoding  (1954)
+   A "pseudocode" developed by Backus for IBM 701 
+   Index registers became standard (1955-1964) 
+   Pseudo operations for arithmetic & math functions
+   Pseudo operations for conditional & unconditional branching
+   Auto-increment registers for array access
+   Slower than machine code
+
+Fortran "0" (1954)
+   language specification only - John Backus at IBM  - no subroutines
+   <a href="http://www.ibiblio.org/pub/languages/fortran/ch1-1.html">(see a brief history of FORTRAN)</a>
+
+Fortran I (1956 - 1957) 
+   First implemented version of FORTRAN compiler (released 1957)
+   Designed for IBM 704 with index registers and floating point hardware
+   Environment of development:
+     Primitive operating systems or no OS 
+     No programming methodology or tools
+     Computers were small and unreliable
+     Scientific applications and efficiency primary concern
+
+   Impact of environment on design:
+     No need for dynamic storage (no heap)
+     Need good array handling and counting loops
+     No string handling, decimal arithmetic, or powerful I/O (commercial stuff)
+   Overview:
+     Names could have up to six characters
+     Post-test counting loop (DO)
+     Formatted I/O
+     User-defined subprograms
+     Three-way selection statement ( arithmetic IF - <, >, = )
+     No data typing statements
+     Programs larger than 400 lines rarely compiled correctly, mainly due to 
+        poor reliability of 704
+     Code was very fast - quickly became widely used
+
+Fortran II (1958)
+   Independent compilation of subroutines (reduced development time)
+
+LISP (1958)
+   LISt Processing language; Designed at MIT by McCarthy (1958)
+   First functional language
+   AI applications process data in lists rather than arrays
+   Symbolic computation rather than numeric
+   Originally only two data types: atoms and lists
+   Syntax based on lambda calculus
+   No need for variables or assignment (as in imperative languages)
+   Control via recursion and conditional expressions
+   Still the dominant language for AI
+   ML, Miranda, and Haskell are related languages
+   
+ALGOL 58 (1958)
+   The First Step Toward Sophistication
+   Close to mathematical notation -- Good for describing ALGOrithms
+   FORTRAN had (barely) arrived for IBM 70x
+   Language development up to now was for specific machines
+   No portable or universal language -- all were machine-dependent 
+   No easy way to communicate algorithms
+   ACM and GAMM met for four days on design (May 27 to June 1, 1958)
+   Must be translatable to machine code
+   Formalized Concept of "type" 
+   Names could be any length
+   Arrays could have any number of subscripts
+   Parameters were separated by mode (in & out)
+   Subscripts were placed in brackets
+   Compound statements (begin ... end)
+   Semicolon as a statement separator
+   Assignment operator was :=
+   if had an else-if clause
+   No I/O - would make it machine dependent
+   IBM initially enthusiastic -- all support dropped by mid 1959
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1960"></a>
+<font color=papayawhip><b>( 1 9 6 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+COBOL (COmmon Business-Oriented Language)
+   Design Process (late 1959 - )
+   Names up to 12 characters, with embedded hyphens
+   English names for arithmetic operators (no arithmetic expressions)
+   Verbs the first word in every statement
+   Design committee members from computer manufacturers and DoD 
+   Design goals:
+      to work for business applications (based on FLOW-MATIC)
+      to look like simple English -- easy to use at expense of being powerful
+      to broaden the base of computer users
+
+Fortran IV (1960-62)
+   Explicit type declarations
+   Logical selection statement
+   Subprogram names could be parameters
+
+ALGOL 60  (1960)
+   an effort to design a universal language - portability
+   New features:
+   Block structure (local scope)
+   Two parameter passing methods
+   Subprogram recursion
+   Stack-dynamic arrays
+   No I/O or string handling
+
+APL: A Programming Language (1960)
+   Early dynamic language
+   Designed as a hardware description language at IBM by Ken Iverson
+   Highly expressive (many operators for scalars and arrays of n-dimensions)
+   Programs are very difficult to read
+   Still in use; minimal changes
+
+SNOBOL (1962)
+   Early dynamic language
+   Designed as a string manipulation language at Bell Labs
+   Powerful operators for string pattern matching
+   Slower than alternative languages (no longer used for writing editors)
+   Still used for certain text processing tasks
+
+BASIC (1964)
+   The beginning of timesharing  - Free and private access
+   Designed at Dartmouth for non-science students - First widely used language for time sharing   
+   User time more important than computer time - Fast turnaround for homework
+   Easy to learn and use for non-science students: pleasant and friendly
+   Current popular dialect:  Visual BASIC   
+
+PL/I (1964)
+   Initially called NPL (New Programming Language) changed to PL/I in 1965
+   Designed by IBM and SHARE: Everything for Everybody 
+   Computing situation in 1964 (IBM's point of view)
+   1) Scientific computing IBM 1620 and 7090 computers FORTRAN
+   2) SHARE user group Business computing IBM 1401, 7080 computers COBOL
+   
+   By 1963 scientific users began to need more elaborate I/O like COBOL  
+   and business users began to need floating point and arrays 
+   Two kinds of computers, languages, and support staff--too costly
+   The solution: Build a new computer to do both <a href="http://en.wikipedia.org/wiki/IBM_360">(IBM 360)</a>
+   and design a new language for it 
+   PL/I designed in 5 months by 3 members from IBM, 3 members from SHARE
+   Initial concept - an extension of Fortran IV
+
+Fortran 66 - First ANSI standard for a high level language 
+
+SIMULA 67 (1967)
+   Historical Importance: designed for system simulation 
+   Introduced concept of data abstraction
+   Designed primarily for system simulation in Norway by Nygaard and Dahl
+   Based on ALGOL 60 and SIMULA I
+   Primary Contributions:
+   Co-routines - a kind of subprogram
+   Implemented in a structure called a class
+   Classes are the basis for data abstraction
+   Classes are structures that include both local data and functionality
+
+ALGOL 68 (1968)
+   Orthogonal Design
+   From ALGOL 60 but not a superset of that language
+   Source of several new ideas but language never achieved widespread use
+   Design is based on the concept of orthogonality
+   A few principle concepts, few combining mechanisms
+   Contributions:
+   User-defined data structures
+   Reference types
+   Dynamic arrays (called flex arrays)
+   Comments
+
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1970"></a>
+<font color=papayawhip><b>( 1 9 7 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+Prolog (1970)
+   Programming Based on Formal Logic 
+   Developed at University of Aix-Marseille, France 
+   Non-procedural; declarative rather than imperative
+   Can be summarized as being an intelligent database system that uses an 
+      inferencing  process to infer the truth of given queries
+   Highly inefficient, small application areas -- formal language research; AI
+
+Pascal (1971)
+   Developed by Wirth (a member of the ALGOL 68 committee)
+   Designed for teaching structured programming
+   Small, simple, nothing really new
+   Largest impact on teaching programming
+   From mid-1970s to late 1990s the most widely used language for teaching 
+
+Smalltalk (1971)
+   Developed at Xerox PARC, initially by Alan Kay, later by Adele Goldberg
+   First full implementation of an object-oriented language (data abstraction, 
+       inheritance, and dynamic type binding)
+   Pioneered the graphical user interface design
+   Promoted OOP
+
+C (1972)
+   Designed for systems programming (at Bell Labs by Dennis Richie)
+   Evolved primarily from BCLP, B, but also ALGOL 68
+   Powerful set of operators, but poor type checking
+   Initially spread through UNIX
+   Many areas of application
+
+Ada (1975 - )
+   History's Largest Design Effort 
+   Huge design effort, hundreds of people, much money, and about eight years
+   Strawman requirements (April 1975)
+   Woodman requirements (August 1975)
+   Tinman requirements (1976)
+   Ironman equipments (1977)
+   Steelman requirements (1978)
+   Named Ada after Augusta Ada Byron - the first programmer
+   Contributions:
+   Packages - support for data abstraction
+   Exception handling - elaborate 
+   Generic program units
+   Concurrency - through the tasking model
+
+Scheme (1975)
+   contemporary dialect of LISP; Developed at MIT in mid 1970s; extensive 
+   static scoping; functions as first-class entities; simple 
+   syntax and small size-educational use
+
+Fortran 77 (1977)
+   Character string handling/ Logical loop control statement/ IF-THEN-ELSE
+
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1980"></a>
+<font color=papayawhip><b>( 1 9 8 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+C++ (1980)
+   Developed at Bell Labs by Stroustrup 
+   Combining Imperative and Object-Oriented Programming 
+   Evolved from C and SIMULA 67 
+   Facilities for object-oriented programming, taken partially from SIMULA 67
+   Provides exception handling
+   A large and complex language - supports both procedural and OOP programming
+   Rapidly grew in popularity, along with OOP
+   ANSI standard approved in November 1997
+   Microsoft's version (released with .NET in 2002): Managed C++
+       delegates, interfaces, no multiple inheritance
+
+COMMON LISP  (1984)
+   combines features of several dialects of LISP into a single language; 
+   large, complex; commercially used - Yahoo interface written in CLISP
+
+Perl (1987)
+   Developed by Larry Wall at NASA's Jet Propulsion Lab
+   Related to ALGOL only through C
+   A scripting language
+   A script (file) contains instructions to be executed
+   Other examples: sh, awk, tcl/tk
+   Perl variables are statically typed and implicitly declared
+   Three distinctive namespaces, denoted by the first character of a 
+      variables name
+   Powerful but somewhat dangerous
+   Widely used as a general purpose language
+
+Ada 95 (1988-)
+   Support for OOP through type derivation
+   Better control mechanisms for shared data
+   New concurrency features
+   More flexible libraries
+   Popularity shrinking - DoD no longer requires it and replaced by C++
+
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="1990"></a>
+<font color=papayawhip><b>( 1 9 9 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+Fortran 90 (1990)
+   Modules / Dynamic arrays / Pointers / Recursion / CASE statement 
+   Parameter type checking
+
+Java (early 1990s)
+   An Object-Oriented Language Developed at Sun; based on C and C++ 
+   C/C++ not satisfactory for embedded electronic devices
+   Significantly simplified (does not include struct, union, enum, pointer 
+       arithmetic, and half of the assignment coercions of C++) 
+   Supports only OOP
+   Portable: Java Virtual Machine concept, JIT compilers
+   Has references, but not pointers
+   Includes support for a form of  concurrency
+   Libraries for applets, GUIs, database access
+   Eliminates unsafe features of C/C++ (see <a href="http://en.wikipedia.org/wiki/International_Obfuscated_C_Code_Contest">IOCCC</a>)
+   Widely used for WWW and embedded into network devices (PDAs, cell phones...)
+   Use for other areas increased faster than any other language
+   Most recent version, 5.0, released in 2004
+
+Visual Basic (1991)
+   Microsoft's BASIC dialect; Windows; event-driven
+
+Python (1991)
+   An OOP interpreted scripting language
+   Type checked but dynamically typed
+   Supports CGI and form processing
+
+Eiffel (1992)
+   Related OOP Languages
+   Designed by Bertrand Meyer 
+   Not directly derived from any other language
+   Smaller and simpler than C++, but still has most of the power
+   Lacked popularity of C++ because C programmers migrate to C++ 
+
+PHP (1995)
+   PHP: Hypertext Preprocessor
+   Used for Web applications (server side); produces HTML code as output
+
+Delphi (1995)
+   Borland
+   Pascal plus features to support OOP
+   More elegant and safer than C++
+
+JavaScript (1995)
+   Joint venture of Netscape and Sun Microsystems
+   Used in web programming (client-side) to create dynamic HTML documents
+   Related to Java only through similar syntax
+
+Ruby (1995)
+   Developed and designed by Matsumoto in Japan; open source; dynamic;
+   Multiparadigm: functional, OO, imperative, interpretive. Designed on
+   the "Principle of Least Surprise" -- language should behave so as to
+   minimize surprise by experienced users.
+</pre>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<a name="2000"></a>
+<font color=papayawhip><b>( 2 0 0 0 - )</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+C# (2000)
+   A C-Based Language for the New Millennium
+   Part of the .NET development platform
+   Based on C++ , Java, and Delphi
+   Provides a language for component-based software development
+
+.NET languages (2001)
+   (C#, Visual BASIC.NET, Managed C++, J#.NET, and Jscript.NET) 
+   Use Common Type System (CTS), which provides a common class library
+   widely used
+
+Markup/Programming Hybrid Languages (2000)
+   World Wide Web Consortium (W3C) Standards; eXtensible Markup Language (XML)-
+   a metamarkup language; eXtensible Stylesheet Language (XSL) - formatting; 
+   eXtensible Stylesheet Language Transformation (XSLT) transforms XML 
+   documents for display; declarative with functional & procedural features
+
+JSP (2005)
+   Java Server Pages: a collection of technologies to support dynamic Web 
+   documents; JSPs are compiled into Java Servlets by a JSP compiler. A JSP 
+   compiler may generate a servlet in Java code to be compiled by the Java 
+   compiler or it may generate byte code for the servlet directly. JSPs can 
+   also be interpreted on-the-fly.
+</pre>
+<a name="evaluation"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>
+e v a l u a t i o n 
+</b> </font>
+</center></div> 
+<a href="#top">top </a>
+<pre>
+Fortran 
+  Highly optimizing compilers (all versions before 90)
+  Types and storage of all variables are fixed before run time
+  Dramatically changed forever the way computers are used
+  The lingua franca of the computing world for many decades
+
+ALGOL 60 
+   Successes:
+   First machine-independent language
+   Standard way to write algorithms for over 20 years
+   All subsequent imperative languages are based on it
+   First language whose syntax was formally defined (BNF)
+   Never widely used, especially in U.S.
+   Reasons for Failure:
+   Lack of I/O and the character set made programs non-portable
+   Too flexible--hard to implement
+   Entrenchment of Fortran and COBOL
+   ==> Lack of support from IBM <==
+
+COBOL 
+   Contributions:
+   First macro facility in a high-level language
+   Hierarchical data structures (records)
+   Nested selection statements
+   Long names (up to 30 characters) with hyphens
+   Separated data and code in memory
+   First language required by DoD (would have failed without DoD)
+   Still the most widely used business applications language 
+       (1997 - Gartner Group survey - 80%) <==
+
+PL/I: 
+   Contributions:
+   First unit-level concurrency
+   First exception handling
+   Switch-selectable recursion
+   First pointer data type
+   First array cross sections
+   Downsides:
+   Many new features were poorly designed
+   Too large and too complex
+
+ALGOL 68 
+   Less usage than ALGOL 60 but source of new ideas
+   Had strong influence on all imperative languages  (Pascal, C, 
+   Modula/Modula 2, Ada, Oberon, C++/Java, Perl)
+
+Ada
+   Competitive design
+   Included latest research on software engineering and language design
+   First compilers were very difficult; the first usable compiler came 
+   nearly five years after the language design was completed
+
+</pre>
+<a name="terminology"></a>
+<div style="border:1px dashed; background-color:teal"> <center> 
+<font color=papayawhip><b>
+t e r m i n o l o g y 
+</b> </font>
+</center></div> 
+<a href=#top>top</a>
+<p>
+See (<a href="http://techpubs.sgi.com/library/dynaweb_docs/0650/SGI_Developer/books/CLanguageRef/sgi_html/index.html">ANSI C docs</a>) for a good introduction to
+ programming language terminology.
+ <P>
+An <u>invariant</u> is a statement that is always true. Invariants are
+ used to verify program correctness. For example:<pre>   
+        // loop invariant:  i <= 10 
+        const int MAX = 10;
+        int stuff[MAX];
+        int i = MAX; 
+        while ( i )    
+            stuff[--i] = 0;
+</pre>
+<p>
+In computer architecture, an <u>index register</u> is a processor register
+ that holds the base
+ memory address of a structured variable such as an array. Addresses into
+ the array can then be stored as offsets from the base address. Index 
+ registers
+ improve code flexibility and maintainability. Index registers were not 
+ standard in early computers, but became standard in the IBM 704 and after.
+ An <u>autoincrement register</u> implements an addressing mode in which the
+ base address is incremented as elements in the array are accessed. 
+ This is not a popular design - computers with autoincrementing registers 
+ have had trouble recovering from interupts.
+<p>
+<u>Static</u> has multiple meanings, depending
+  on the language and on the context. 
+ Static scoping means that scoping rules are set during
+ compilation and do not change during runtime. In dynamic scoping,
+ scoping rules are not set at compilation and may change during code
+ execution. <pre>
+     // an example of static vs. dynamic scoping
+      int x = 0;
+      int f () { return x; }
+      int g () { int x = 1; return f(); }
+</pre>
+ Static can also define the storage allocation (lifetime) of a variable
+ as well as its scoping. 
+In C, the keyword 'static' defines a variable with 
+ visibility within a compilation
+ unit and lifetime of program execution. In C++, a static variable or a static
+ method means that one entity exists for all instantiations of the class.
+  Static does not mean immutable -- do not confuse 'static' with 'const'.
+<p>
+ Do not confuse the two terms with their usage in computer memory. In 
+ this context, static RAM (SRAM) refers to  a type of
+  memory chip that holds its data without external refresh as long as
+ power is supplied to the circuit. Dynamic RAM (DRAM) chips must be refreshed
+ several times per second to hold data.
+<p>
+In programming languages, <u>dynamic</u> refers to something that occurs
+ at runtime; i.e., during program execution. For example, a <u>dynamic language</u> is 
+ characterized by dynamic typing and dynamic storage allocation. Variables 
+ are untyped until code execution. A variable 
+ is bound to a type only when it is assigned a value. Storage is allocated to a 
+variable when it is assigned a value. For example, if a user enters a digit 
+ the variable becomes a number. While dynamic typing offers flexibility, 
+ illegal statements based on datatype are not caught until code execution.
+Two early dynamic languages are APL (1960) and SNOBOL (1962).  Modern dynamic 
+ languages also include facilities for automatic garbage collection -- handling
+ dynamic memory deallocation.
+ more often
+<p>
+The <u>heap</u> is a memory store from which blocks can be allocated and 
+ deallocated during program execution in arbitrary sizes and arbitrary order. 
+ Allocation
+ and deallocation from the heap is called dynamic memory management.
+ Reallocation of the heap is called garbage collection. 
+ Dynamic memory has been part of most computer systems since 
+ around 1961, requiring both compiler and
+ operating system support. Dynamic memory allocation was added
+ to Fortran 90.
+<p>
+<u>Automatic Memory Allocation</u> refers to memory storage that is
+ allocated on the runtime stack. Auto-allocation is dynamic.
+<p> 
+A <u>scalar</u> is a variable that holds a single entity. Examples are<pre>
+    int x = 5;
+    float y = 3.4;
+    char ch = 'a';</pre>
+A non-scalar (structured) variable holds multiple entities. An example is
+ an array. 
+<p>
+ A <u>typeless language</u> is one in which there is no differentiation among 
+data types. User interfaces for typeless languages are generally easier to
+ implement. The original specification for Lisp is an example of a typeless 
+ language. (Lisp is no longer typeless).
+<p>
+A <u>parameter</u> is an object that is passed into a function. 
+ Parameters are specified in a function definition. Parameters can
+ have a type and a mode. In-mode refers to  a parameter whose value
+ is passed into the function. Out-mode refers to a parameter whose value is
+  passed out of the function. The <u>argument</u> is the name of the 
+ variable used in the function call; e.g. int n=5; fun(n); // num is an argument
+
+<p>
+A <u>post-test loop</u> is an iteration statement in which the termination 
+ condition is tested at the bottom of the loop rather than at the top. 
+ The body in a post-test loop is always executed at least once.
+An example is the 'do' in C:<pre>
+     do {
+        num++;
+        i++;
+     }
+     while (i < MAX);
+</pre>
+<p>
+<a href="#top>top</a>
+</body>
+</html>

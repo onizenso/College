@@ -1,0 +1,24 @@
+  9
+  0    nodeA
+  1    nodeB
+  2    nodeC
+  3    nodeD
+  4    nodeE
+  5    nodeF
+  6    nodeG
+  7    nodeH
+  8    nodeI
+a_comment:_from__to_____metric__capacity
+               0    1       2        2
+               1    2       7        9
+               2    3       3        4
+               3    7       2        2
+               7    6       4        5
+               6    0       6        8
+               1    4       2        2
+               4    6       1        2
+               4    5       2        1
+               2    5       3        4
+               5    7       2        2
+               0    8       8        9
+               8    2       7        5

@@ -1,0 +1,17 @@
+1. The operand 0x2 takes the last position in the instruction code.
+
+2. MIPS handles the difference between bitlengths by padding the smaller
+   operand with leading zeros.
+
+3. ori $8, $0, 0x2, performs bitwise OR immediate between $0 and 0x2 and stores
+   the result in register $8.
+
+     0000 0000 0000 0000 0000 0000 0000 0010 (0x2)
+||   0000 0000 0000 0000 0000 0000 0000 0000 ($0)
+_____________________________________________
+     0000 0000 0000 0000 0000 0000 0000 0010 (stored in $8)
+
+4. Yes as long as the signed integer is positive. Negative numbers cannot be 
+   loaded with ori
+
+5. $0 is not available to store values in.             

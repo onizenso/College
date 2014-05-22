@@ -1,0 +1,113 @@
+<html>
+<body>
+<h3>CS 350: Lab 10 "Introduction to C#"</h3>
+
+<p>
+<font color=red>Due: last day of classes</font><br/>
+
+ Note: this lab is extra credit. That means that if you complete the
+ lab you will have 10 extra points added into your
+ lab grade  which will then be added into your overall grade. 
+<p>
+<b>resources:</b><br>
+<a href="http://www.csharpfriends.com/statics/syntaxcard.aspx">C# reference card</a><br>
+<a href="http://msdn.microsoft.com/en-us/library/yyaad03b%28v=vs.71%29.aspx">MSDN .Net</a><br/>
+
+<a href="http://www.go-mono.com/docs/index.aspx?link=T%3aSystem.Console%2f*">System.Console:Members</a><br>
+<a href="./Code/C_sharp">sample code</a><br>
+<a href="./Code/C_sharp/readme.txt">getting started</a><br>
+<p>
+ Before starting this lab you should read and understand the
+ code in <a href="./Code/C_sharp">sample1.cs through sample6.cs</a>
+ (you don't need sample7.cs on event handling
+ for this lab). Copy the code into your working directory:<pre>
+
+    $ cp /home/fac/donna/public_html/cs350/Code/C_sharp/* .
+</pre>
+ In particular, you need to understand the concepts of
+ properties and interfaces in C#. Properties are like  short-cut get and
+ set methods in C++.
+ Interfaces are like C++ abstract classes. Recall that an abstract class
+ is one with at least one pure virtual function and, because of this, 
+ can never be instantiated. In C# - an abstract class is formalized 
+ and denoted by the keyword 'interface.' In an interface,
+  all methods must be implemented in the derived class (i.e., all
+ pure virtual methods).
+ Start with this code below. It will not compile until you make
+ the additions as listed:
+<pre>
+<div style="border: dashed 2px; margins: 5 5 5 5; padding: 5px"> 
+namespace Assignment
+{
+  public class Application
+  {
+    static void Main()    
+    {
+      double rectWidth = 8.75f, rectHeight = 20.5f;
+      IShape shape1 = new Rectangle(rectWidth, rectHeight);
+
+      double triBase = 5.5, triHeight = 12.25f;
+      IShape shape2 = new Triangle(triBase, triHeight);
+
+      Console.WriteLine("area of type '{0}': {1}", shape1, shape1.Area);
+      Console.WriteLine("area of type '{0}': {1}", shape2, shape2.Area);
+    }
+  }
+
+  public interface IShape
+  {
+    double Area
+    {
+      get;  // concrete classes must implement IShape.Area.Get{}
+    }
+  }
+}
+</div>
+</pre>
+ Make these additions to the above code. <i>You do not need to change any of
+ the existing code.</i> After making the necessary changes, your code
+ should compile.
+ Put all your code in the Assignment namespace and
+ in the same file:
+<ol>
+<li>Add a virtual method <pre>
+      void Display();
+  </pre>
+  to the IShape interface. Display will write 
+ all attributes particular to each IShape object. For example, for a 
+ rectangle object you should display this: <pre>
+    I'm a rectangle! I have width 30 and height 40.
+</pre>
+<p>
+<li>Add three public derived classes: Rectangle, Triangle, and Circle. 
+ These three classes will inherit from 
+ the IShape interface. Rectangle has a height and width, Triangle has
+ a base and height, and Circle has a radius.
+  In each class you must implement the
+  IShape.Area property's implicit Get{} method. Get{} will 
+ calculate and return the respective area of the IShape type.
+ <p>
+<li> Add a Radius property to Circle to both set and get the radius value. 
+ Test it with<pre>
+      shape3.Radius = 3.5f;
+      Console.WriteLine("I just set my Radius to '{0}'.", shape3.Radius);
+</pre>
+<li> Add some code to Main to test every thing. For example, 
+ construct a Circle object and test Circle's Radius property for both 
+ set and get.  Add calls to Display() for each object. Your output
+ should look something like this:<pre>
+
+   I just set my Radius to '3.5'.      
+ 
+   I'm a rectangle!I have width 8.75 and height 20.5
+   I'm a triangle! I have base 5.5 and height 12.25
+   I'm a Circle!   I have radius 3.5
+
+   area of type 'Assignment.Rectangle'     : 179.375
+   area of type 'Assignment.Triangle'      : 33.6875
+   area of type 'Assignment.Circle'        : 38.465
+
+</pre>
+ </ol>
+</body>
+</html>

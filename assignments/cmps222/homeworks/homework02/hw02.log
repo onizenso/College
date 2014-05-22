@@ -1,0 +1,103 @@
+ file:hw02.cpp ,function:main ,line:71 start of logging
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 4array count is: 0 value to add: 10
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 4 array current count: 0 adding: 10
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 4array count is: 1 value to add: 20
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 4 array current count: 1 adding: 20
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 4array count is: 2 value to add: 30
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 4 array current count: 2 adding: 30
+ file:hw02.cpp ,function:PrintArray ,line:20 starting PrintArray();
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 0
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 1
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 2
+ file:hw02.cpp ,function:PrintArray ,line:33 ending PrintArray();
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 4array count is: 3 value to add: 40
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 4 array current count: 3 adding: 40
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 4array count is: 4 value to add: 50
+ file:hw02.cpp ,function:addAnInteger ,line:43 resize forced
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 8 array current count: 4 adding: 50
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 8array count is: 5 value to add: 60
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 8 array current count: 5 adding: 60
+ file:hw02.cpp ,function:PrintArray ,line:20 starting PrintArray();
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 0
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 1
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 2
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 3
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 4
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 5
+ file:hw02.cpp ,function:PrintArray ,line:33 ending PrintArray();
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 8array count is: 6 value to add: 70
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 8 array current count: 6 adding: 70
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 8array count is: 7 value to add: 80
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 8 array current count: 7 adding: 80
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 8array count is: 8 value to add: 90
+ file:hw02.cpp ,function:addAnInteger ,line:43 resize forced
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 8 adding: 90
+ file:hw02.cpp ,function:PrintArray ,line:20 starting PrintArray();
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 0
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 1
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 2
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 3
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 4
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 5
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 6
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 7
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 8
+ file:hw02.cpp ,function:PrintArray ,line:33 ending PrintArray();
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 9 value to add: 100
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 9 adding: 100
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 10 value to add: 110
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 10 adding: 110
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 11 value to add: 120
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 11 adding: 120
+ file:hw02.cpp ,function:PrintArray ,line:20 starting PrintArray();
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 0
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 1
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 2
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 3
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 4
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 5
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 6
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 7
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 8
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 9
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 10
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 11
+ file:hw02.cpp ,function:PrintArray ,line:33 ending PrintArray();
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 12 value to add: 130
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 12 adding: 130
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 13 value to add: 140
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 13 adding: 140
+ file:hw02.cpp ,function:addAnInteger ,line:38 start of addAnInteger
+ file:hw02.cpp ,function:addAnInteger ,line:39 array capacity is: 16array count is: 14 value to add: 150
+ file:hw02.cpp ,function:addAnInteger ,line:59 array capacity is: 16 array current count: 14 adding: 150
+ file:hw02.cpp ,function:PrintArray ,line:20 starting PrintArray();
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 0
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 1
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 2
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 3
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 4
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 5
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 6
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 7
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 8
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 9
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 10
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 11
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 12
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 13
+ file:hw02.cpp ,function:PrintArray ,line:24 printing position 14
+ file:hw02.cpp ,function:PrintArray ,line:33 ending PrintArray();

@@ -1,0 +1,36 @@
+Chapter 14.5 - 14.6  Introduction to Event Handling
+
+An event is created by an external action such as a user interaction 
+through a GUI ( much of Windows programming is event-driven )
+
+The event handler is a segment of code called in response to an event
+
+************************
+* The Java Event Model *
+************************
+
+User interactions with GUI components create events that can be caught by 
+event handlers, called event listeners
+
+An event generator tells a listener of an event by sending a message 
+An interface is used to make event-handling methods conform to a standard 
+protocol
+
+A class that implements a listener must implement an interface for the listener 
+Event Classes
+Semantic Event Classes
+ActionEvent
+ItemEvent
+TextEvent
+Lower-Level Event Classes
+ComponentEvent
+KeyEvent
+MouseEvent
+MouseMotionEvent
+FocusEvent
+
+**************************
+* JavaScript Event Model *
+**************************
+
+Most of JavaScript's interaction with the user is event-driven.

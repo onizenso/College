@@ -1,0 +1,24 @@
+.:Design Models:.
+
+Waterfall
+
+'V' model
+
+Spiral Model:
+    Four Phases:
+        Planning
+        Risk Analysis
+        Engineering Phase
+        Validation
+
+    Cycle through four phases until reaching the final deliverable. 
+
+Prototype: product that meets/exemplifies the requirements set forth by the 
+User, but may/should not include any of the full-fledged features of a 
+final deliverable. Prototypes are used to refine User needs. 
+
+Prototypes may be: 
+    Throw-away - large unknowns are being tested 
+    Evolutionary - small unknowns are being tested, core is functional/known
+
+

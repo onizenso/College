@@ -1,0 +1,1 @@
+-DDEBUG -DDEBUG2 -g -Wall -funsigned-char -D__linux

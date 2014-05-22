@@ -1,0 +1,103 @@
+/=======================\
+| 1.6                   |
+\=======================/
+
+01) n^2 = 2k(2k) == 4k^2 == 2(k^2) if n = k^2 then 2n
+
+02) n^2 = 2k(2k) = 2k+1 = 2k^2 then k^2 = k+1/2 and k = sqrt(k+1/2)
+
+03) 
+a) If you choose 25 random days out of the year, then at least three of them 
+fall in the same month.
+
+b) Assume you choose 25 random days out of the year, then less than three of 
+them will be in the same month.
+
+Jan |||
+Feb ||
+Mar ||
+Apr ||
+May ||
+Jun ||
+Jul ||
+Aug ||
+Sep ||
+Oct ||
+Nov ||
+Dec ||
+
+When distributed evenly across the months, there will be 3 days in one of the 
+months.
+
+04) (2k+1)(2k+1) == 4k^2 + 4k + 1 == 2(2k^2 + 2k) + 1 if n = 2k^2 + 2k
+then 2n + 1
+
+05) 4 = 2 + 2
+
+/======================\
+| 1.7                  |
+\======================/
+
+01) n = 2k + 1; n^2 = 2(2k^2 + 2K) + 1; 1mod8 = 1;
+i)   n   = 1
+ii)  n^2 = 1
+iii) 1mod8 = 1
+.:. n^2 is == 1mod8
+
+02) 5y^2 = -2x^2 + 14; y^2 = (-2/5)(x^2) + (14/5); 
+y = sqrt[(-2/5)(x^2) + (14/5)]
+if x is in integer then y will never be an integer
+
+03) 2(1)^2 + 5(1)^2 = 7; 2(2)^2 + 5(1)^2 = 13; 2(1)^2 + 5(2)^2 = 22 all other 
+combination of integers are greater than 14
+
+04) n == (kmod7 = 0)
+
+05) 
+n = (kmod3 > 0)
+
+06) 10
+
+07) 
+a) n = 5k + 1; n = 5k + 2; n = 5k + 3; 5k + 4;
+b) (5k+1)mod5 = 0 + 1 = 1
+c) (5k+2)mod5 = 0 + 2 = 2
+d) (5k+3)mod5 = 0 + 3 = 3
+e) (5k+4)mod5 = 0 + 4 = 4
+
+only cases b) and e) hold for the statement
+
+08)
+a) [(xmod5)(xmod5)]mod5 == (1*1)mod5 = 1
+b) [(xmod5)(xmod5)]mod5 == (2*2)mod5 = 4
+c) [(xmod5)(xmod5)]mod5 == (3*3)mod5 = 1
+d) [(xmod5)(xmod5)]mod5 == (4*4)mod5 = 1
+
+09) (n^2)-1  = (n + 1)(n - 1)
+
+10) (2^23)-1 = 8338608 - 1 = 8338607 factors are 1 47 178481 and 8388607
+
+11) x^2 + 3x + 3 == 1mod2 == (x+1)(x+2)mod2 = 0 because the product of consecutive integers is even, and all even integers are divisible by 2.
+
+12) Assume in a group of 8 people that there are no two people born 
+on the same day of the week
+
+Sun    ||
+Mon    |
+Tues   |
+Wed    |
+Thurs  |
+Fri    |
+Sat    |
+
+There must be at least two people born on the same day of the week, or the last person in the group will have been born on a day that is not a day of the week.
+
+13) Cases for mod5 = {0,1,2,3,4}, given six random numbers, at least two will have the same remainder when divided by five
+
+14) k(k+1)mod2 == (k^2 + k)mod2 == k^2mod2 + kmod2 = 0
+
+15) m = 2k+1, n = 2j+1; 
+mn = (2k+1)(2j+1) = 4kj+ 4k + 4j + 1 = 2(2kj + k + j) + 1
+
+For n = 2kj + 2k + 2j then 2n + 1, therefore for any odd integer m and n, their 
+product is odd.

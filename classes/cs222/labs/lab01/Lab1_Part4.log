@@ -1,0 +1,26 @@
+
+ file:Lab1_Part4.cpp ,function:main ,line:31 start of logging
+
+ file:Lab1_Part4.cpp ,function:main ,line:41 creating the array
+
+ file:Lab1_Part4.cpp ,function:main ,line:45 Fill the array with 10 random numbers
+ file:Lab1_Part4.cpp ,function:main ,line:49 Printing out the array
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:12 start SortIntArray( int * input, int count)
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 1 and 2
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 2 and 3
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 3 and 4
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 4 and 5
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 5 and 6
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 6 and 7
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 8 and 9
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 2 and 3
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 3 and 4
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 4 and 5
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 5 and 6
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 7 and 8
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 1 and 2
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 2 and 3
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 4 and 5
+ file:Lab1_Part4.cpp ,function:SortIntArray ,line:21  swaping elements at position 3 and 4
+
+ file:Lab1_Part4.cpp ,function:main ,line:57 Printing out the array

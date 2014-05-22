@@ -1,0 +1,172 @@
+.:Analyzing a Disk Image:.
+
+How will image be accessed?
+    Restore to a physical drive
+    Mount in read-only mode
+    Use a commercial tool (enCase, VMware, etc.)
+
+Restoring to physical drive
+    Drive needs to be large enough after accounting for geometry differences
+    Shoot for a drive that exceeds the size of the drive being copied
+    
+    Steps:
+        1) Wipe destination drive (at least dd with /dev/null
+            preferrably make multiple passes with 1-bits and 0-bits
+        2) Verifying checksum(s) of image file(s)
+        3) Use tool to restore image to drive
+            dd if=image.dd of=/dev/sdb           (copy entire drive)
+            dd if=partition1.dd of=/dev/sdc1     (copy partition)
+            
+            *best to use enCase if unsure about differences in drive geometries
+             between source and destination drives
+         
+        4) Verify the restore 
+            (can use md5sum unless partition table was modified)
+
+Mount Drive as Read-only
+    Easily done for Linux, harder to do w/out enCase on Windows
+    
+    Linux Loopback Devices
+        Allows a file to be mounted as long as its a valid 
+            Partition Image (!important!)
+        Have to extract a partition out of a whole disk image
+            must know the partition table of source image
+        Mounting a file via Loopback
+            mount -o ro,loop portion2.dd /mnt/hd
+                 ^- may need to specify filesystem if DD cannot figure it out
+                    -t vfat         FAT/FAT32
+                    -t ntfs         NTFS
+                    -t iso9660      CD/DVD
+
+        Whole Disk Image
+            If using mount need to determine offset of partition
+            Determining Offset
+                1) Get the output of fdisk -l from notes/logs
+                    -info needed: # of cylinders
+                                  sector size
+                2) Additional data gathering step:
+                    determine cylinder offsets of partitions (can do from image)
+                    fdisk -l -u -C <cylinders> image.dd
+                    will list row offsets for partitions
+                3) Convert raw offset to actual offset by 
+                    multiplying by sector size (get sector size from fdisk)
+                4) Can now use actual offset in mount command
+                    mount -o ro,loop,offset=<offset*> image.dd /mnt/hd
+                        *calculated in step 3
+
+            Another option: losetup (if installed)
+                Quicker way to map entire image
+                Steps:
+                    1) Prepare loopback device
+                        losetup -d /dev/loopa
+                    2) Map loopback device to image file
+                        losetup /dev/loopa image.dd
+                    3) Mount partitions using loopa1, loopa2, ...
+                        mount -o ro /dev/loopa2 /mnt/hd
+        
+        Limitation of Mounting a Partition Image
+            Can only see partition data on mounted device
+            Have to go back to image file w/image analysis tools for more info
+
+Using Tools to Restore Image
+    Exact steps depend on the tool
+    VMware Brief Steps:
+        1) Add image file as another disk to VM
+            -use existing file instead of making blank disk
+            -"non-persistent" is VMware lingo for read-only
+        2) Boot virtual machine and access device 
+
+Terminology for Disk Analysis
+    Slack Space
+         OS-level: each OS has a minimum block size
+             file rarely ends on block boundary
+             Slack Space is space b/w EOF and the block boundary
+             Can contain old file info, passwords, login/user info, hidden info
+         Drive-level: similar, but for sectors instead of blocks
+    Unallocated Space
+        OS-level: part of filesystem but not currently part of a file
+        Disk-level: part of partition but not filesystem (rare)
+    Free Space (only disk-level meaning)
+        Sectors that are not part of a partition
+        Commonly at start of drive
+            -disk alignment & MBR leave sectors free at start
+        Can also be at other locations other than start of drive
+            End of the drive is next-most-common location
+
+Quick Graphics on File Storage
+          _______________________________________  ______
+    File |                                       ||Slack |
+          ---------------------------------------  Space
+          ______________________  _______________________
+    OS   |   block              ||   block               |
+          ----------------------  -----------------------
+          ___________  _________  ____________  _________
+    Disk |  Sector   ||  Sector || Sector     || Sector  |
+          -----------  ---------  ------------  ---------
+
+    When a file is deleted, it is usually NOT wiped off drive, just marked
+        as available to be overwritten
+
+File Deletion for Various Filesystems
+    FAT32
+        Fast Deletion (Recycle Bin)
+            Hidden folder on filesystem called "RECYCLED"
+                Contains a reference to file table entrees of "deleted" files
+                File table changes first character of filename to 0xE5(hex)
+                    Rendered as a tilde(~) or sigma
+            All blocks allocated to file are marked as allocated 
+                (will not be overwritten)
+            Entire contents can ve retrieved
+        Full Deletion
+            Still changes first character in file table
+            Also marks file blocks as available
+                will only be overwritten when allocated to new file &
+                    new file completely fills block(s)
+            Retrieval depends on how much of deleted file has been overwritten
+            
+    NTFS
+        Similar to FAT32 in concept, but different implementation
+            e.g. Master File Table (MFT) instead of File Allocation Table
+        
+    ext2 - older Linux filesystem
+        Files have a link count associated with them
+            allows hard links (aliases) to be established
+            does not reflect any symlinks
+        Files not deleted until hard link count reaches zero
+        Linux doesn't use the shitty Recycle Bin metaphor, when hard link count
+            reaches zero, the blocks for that file are marked as available
+        Blocks tend to have a faster reuse time, making recovery of full
+            deleted files more difficult than on a Windows system
+
+    ext3/4 - Journaled Linux Filesystem
+        Similar to ext2, with:
+            zeroes out file size entry in inode
+            zeroes out block list in inode
+            inode/filename pairs left in journal
+        Much harder to recover data on ext3/4
+            have to manually patch together the sectors
+
+Secure Deletion Tools
+    Exist for many different filesystems
+    Will usually overwrite file's blocks with passes of random data
+    After multiple passes with random info, uses regular system tools to
+        delete the file
+    Recovery is nearly impossivle on HDDs
+        May still hace some data on SDDs since OS tools cannot access
+            backup blocks or bad blocks (can still read, but cannot write)
+            Must hack firmware for the SSD, since OS cannot access such blocks
+    Similar to encrypted folders, w/o the decryption key the data looks random
+
+Data to Recover
+    OS-level:
+        Deleted files (full/most of file)
+        Recycled files
+        Data from file slack space  | - might just be pieces of files
+        Data from unallocated space | - might be hidden files
+    
+    Disk-level:
+        Data from free space - hidden data
+            may be disk-level slack space of unallocated space to 
+            check for hidden data
+        If free space is being used for anything but the boot-loader or OS stuff
+            then there is probably info that has been intentionally hidden

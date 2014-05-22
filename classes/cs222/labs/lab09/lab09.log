@@ -1,0 +1,116 @@
+ file:lab09.cpp ,function:main ,line:17 start of logging
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:person ,line:20 start of function
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetFName ,line:31 start of function
+ file:person.cpp ,function:SetMInitial ,line:40 start of function
+ file:person.cpp ,function:SetLName ,line:49 start of function
+ file:person.cpp ,function:SetPhone ,line:58 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:SetAddress1 ,line:76 start of function
+ file:person.cpp ,function:SetAddress2 ,line:85 start of function
+ file:person.cpp ,function:SetCity ,line:94 start of function
+ file:person.cpp ,function:SetState ,line:103 start of function
+ file:person.cpp ,function:SetZip ,line:112 start of function
+ file:person.cpp ,function:is_number ,line:8 start of function is_number
+ file:person.cpp ,function:operator> ,line:202 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Homer . Simpson
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Barny . Gumble
+
+Question is, will Homer . Simpson
+ > Barny . Gumble
+
+I'm gonna return this shiz true
+
+
+ file:person.cpp ,function:operator> ,line:202 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Barny . Gumble
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Moe . Syzlak
+
+Question is, will Barny . Gumble
+ > Moe . Syzlak
+
+I'm gonna return this shiz false
+
+
+ file:person.cpp ,function:operator> ,line:202 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Homer . Simpson
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Barny . Gumble
+
+Question is, will Homer . Simpson
+ > Barny . Gumble
+
+I'm gonna return this shiz true
+
+
+ file:person.cpp ,function:operator< ,line:175 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Homer . Simpson
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Barny . Gumble
+
+Question is, will Homer . Simpson
+ < Barny . Gumble
+
+I'm gonna return this shiz false
+
+
+ file:person.cpp ,function:operator< ,line:175 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Barny . Gumble
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Moe . Syzlak
+
+Question is, will Barny . Gumble
+ < Moe . Syzlak
+
+I'm gonna return this shiz true
+
+
+ file:person.cpp ,function:operator< ,line:175 
+ some biznitch is attempting to compare two persons using < operator 
+ this function is a member of the class on the left side of the < operator, the input parameter is the person object on the right side.
+my FormattedName() returns Homer . Simpson
+
+ The lone parameter to this function is the address reference of the person object, its FormattedName() returns Barny . Gumble
+
+Question is, will Homer . Simpson
+ < Barny . Gumble
+
+I'm gonna return this shiz false
+
+

@@ -1,0 +1,186 @@
+<html>
+<style type=text/css>
+    body
+   { margin : 3% 3% 3% 3%; }
+   </style>
+<body>
+<h3>CS 350: Lab 09 "Functions, Coroutines and Concurrent Programming"</h3>
+<p>
+<font color=red>Due: before next lab </font>
+<p>
+resources:<br>
+<a href="http://en.wikipedia.org/wiki/List_of_programming_languages_by_category#Concurrent_languages">concurrent languages</a><br>
+
+<h3>PART I. Functions as Parameters in Python</h3>
+<b>resources:</b><br>
+<a href="http://docs.python.org/tut/tut.html">Python Tutorial</a><Br>
+<a href="http://en.wikibooks.org/wiki/Python_Programming/Functions">Python functions</a><br>
+<p>
+ Python was voted Programming Language of the Year in 2007 and 2010 by
+<a href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html">TIOBLE software Index</a> and is currently the 4th
+  most widely used language in the world. 
+ Python is a multi-paradigm language - object-oriented, functional, 
+ and procedural. This lab demonstrates one of 
+ Python's most unique features -- the ability to treat functions 
+ like first class objects.
+  To demonstrate this, you will solve several problems by
+ passing functions as parameters.
+Before beginning, review some basics of Python in this <a href="./Code/Python/test.py">test.py</a>. If you have time, you may want to run through the 
+<a href="http://docs.python.org/tut/tut.html">Python Tutorial</a>.
+<p>
+ Python is a scripting language. Like lisp, you can also execute
+ commands within the interpreter by just typing python.  See the
+ <a href="./Code/Python/readme">readme</a> for instructions on how to
+ execute a script. 
+ Your job is to add two Python functions to 
+ this <a href="./lab09.py">lab09.py python program</a> that accesses
+ <a href="./lab09.data">lab09.data data file.</a> The specifications for 
+ the functions are 
+ included in the file. Copy the file and data file from here:<pre>
+
+  /home/fac/donna/public_html/cs350/lab09.py 
+  /home/fac/donna/public_html/cs350/lab09.data
+</pre>
+Note: there is no error checking on input for the data file. For example,
+ a blank line will crash the script. You can assume good input.
+ Note: if you know what you are doing, you
+ only need to add ten or so lines of code to the file.
+
+
+<h3>PART II. Coroutines in Python </h3>
+<p>
+<b>Background on Coroutines.</b>
+  The communication between the caller and the callee in *normal*
+  subroutines occurs twice: once when the caller hands off control to the
+  subroutine (jump) and once again when the subroutine hands control back 
+ to the caller (resume). The only place to enter a subroutine is at the
+ top and the only place to exit it at the bottom. 
+ Coroutines, on the other hand, have multiple points of 
+ entry and exit. Communication between the caller and the callee 
+ can therefore occur often; e.g., the caller hands off control to the
+ callee, the callee yields control back to the caller, the caller hands 
+ control back again, and so on and so forth. 
+ In this fashion coroutines involve interleaved execution.
+ Why do coroutines?
+ Coroutines are less expensive
+  than multiple function calls - the stack frame for the caller and the callee
+ is loaded only once at setup.   Coroutines also mimic the behavior of
+ a special set problems in computer science.
+ 
+ <p>
+ Coroutines are supported in Python 2.5. To hand off control call yield.
+ To resume control call  next() or send(). Each time 
+ next() or send() is called, the coroutine resumes 
+ where it left off in the caller.
+<p>
+Your job is to <a href="./Code/Python/coroutines.py">download this Python program</a> and modify it. This code uses Python lists. If the syntax is not intuitive,
+ read the documentation on Python lists <a href="http://effbot.org/zone/python-list.htm">here.</a> Make these changes to coroutines.py:
+<ol>
+<li> In the existing program, the main function (everything in the script
+ that is not in a subroutine is in the main function) 
+  is acting as the initiating coroutine and the Scheduler is the partner
+ coroutine with main. Convert
+ the code so that there are two coroutines - one is the initiator and the
+ other is the partner (the Scheduler). Start the initiating coroutine
+ from main. 
+<p>
+<li> Modify the Scheduler so that every time a dog is walked it is
+  removed from the list.
+<p>
+<li> Add a method to the Scheduler to walk two dogs at a time -
+ and then remove the two dogs once they have been walked. 
+ Hint: pass the dog pair in this request as a tuple so you don't need
+ to modify all other requests: <pre>
+            p.send(("walktwo",("fido","rusty")))
+  </pre>
+</ol> 
+
+<h3>PART III. Concurrent Programming in Ada </h3>
+ <b>resources:</b><br>
+<a href="http://delivery.acm.org/10.1145/140000/130891/p31-hilzer.pdf?key1=130891&key2=3347808621&coll=GUIDE&dl=GUIDE&CFID=81045390&CFTOKEN=59935685">Ada Rendezvous Implementation of Producer/Consumer Problem</a><br>
+ <a href="http://en.wikibooks.org/wiki/Ada_Programming/Tasking">Ada Programming Wikibook</a><br>
+<a href="http://www.adaic.org/whyada/intro5.html">concurrent programming in Ada</a><br>
+ 
+<a href="http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html">Ada</a> is the 20th most widely used language worldwide (it was 25th last year) 
+ and may be the best 
+ choice for reliable software - <a href="http://conferences.telecom-bretagne.eu/rst2009/program/tutorial_details/">14th International Conference on Reliable software Technologies</a>. Since Ada was developed for embedded systems,
+ concurrent programming is built-in to the language.
+ Ada's built-in concurrency and safety critical support features 
+ make it a first choice for mission critical applications.
+ The fly-by-wire system software in the Boeing 777 was written in Ada. 
+ </p>
+ <p>
+ Unlike coroutines, concurrent programming (threads) 
+ involve "simultaneous" execution. Simultaneous is 
+ quoted because, although at the programmer level you can think of the threads
+ as executing simultaneously, in reality, on a 
+ non-threaded single processor machine this is not the case. The single
+ processor is jumping back from thread to thread: 
+<pre>
+             - - -
+           /       \
+      >---- - - - - ----->>
+ </pre>
+ On multi-processor or on a threaded machine it really is simultaneous: <pre>
+           ---
+          /   \
+     >-------------->>
+</pre>
+ For the typical application, you don't
+ need to worry about  what the processor is doing.
+ Your job is to write a threaded algorithm only.
+ Start by downloading 
+  <a href="./Code/Ada/lab09.adb">this Ada program</a>. You
+ job is modify it. 
+ This Ada program is an example of concurrent programming using
+ Ada tasks. Tasks are similar to coroutines in that you have multiple
+ entry and exit points. But in addition to this, a task represents a separate
+ thread of control that can proceed  independently and concurrently
+ between the points of interaction with the other tasks. 
+ Refer to the documentation on <a href="">Ada Tasks and Synchronization</a>
+ as you work on this part of the lab. Make the following changes to lab09.adb:
+<p>
+ <b>Task #1.</b> Add a data structure to the program to hold the
+ names of the dogs. Each time you add a dog, its name is added to the 
+ structure. The structure can be as simple as an array of Strings.
+  Caveat - due to strong constraint-checking, data types are never 
+ simple in Ada.  You must do the following:
+ <pre>
+    type Names is array(1..25) of String(1..5);   -- array for dog names
+    subtype names_index is Integer range 1..25;   -- the index into dog array
+    my_names : Names;
+
+ </pre>
+ And later, if you assign a value to the array from a literal, the literal
+ MUST be of length 5. 
+ <pre>
+    my_names(names_index) := "Tiger";
+ </pre>
+
+ <p>
+ <b>Task #2.</b> Add parameters to the message passing that
+ occurs in between main program and the Kennel task.  Message passing
+ is at two entry points : dropoffDog and pickupDog. An example of
+ adding parameters to messages is here:
+<pre>
+TASK worker IS
+     ENTRY run (repeat : IN Integer; length : IN Integer);  
+END  worker;
+
+TASK BODY worker IS
+     ..
+     ACCEPT run (repeat : IN Integer; length : IN Integer) DO
+         save_repeat := repeat;
+         save_length := length;
+     END run;
+     ..
+END  worker; 
+</pre>
+ Add two IN parameters to dropoffDog. One is  a boolean. If this
+ parameter is true the dog is not a biter and safe to insert into the kennel. 
+ If the dog is a biter then do not insert the dog.
+ The second parameter is a string containing the name of the dog.
+ If you insert the dog you need to add the dog's name to the String array. 
+ Each time you display the Kennel, display the name of the dogs.
+</body>
+</html>

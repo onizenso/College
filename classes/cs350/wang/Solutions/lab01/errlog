@@ -1,0 +1,16 @@
+
+99 error caught...
+
+
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 0
+from main: 
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 0
+
+from main: 
+RangeError exception thrown: list.h Line: 131 Function: max Index: 0
+
+
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 1
+from main: 
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 1
+

@@ -1,0 +1,653 @@
+<html> <body> <head>
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 31;
+
+ function CalculateScore() {
+ var right = 0; var wrong = 0;var err_flag = 0; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if (j == 4 ) break;
+           var myvalue = parseInt(document.quizform.elements[index].value);
+           var ischecked = document.quizform.elements[index].checked;
+           if ( (ischecked && myvalue != 1) || (!ischecked && myvalue == 1) ) {
+              err_flag = 1;
+              question = i + 1;
+              err_str = err_str + question + ",";
+              wrong++;
+              break;
+           }
+       }
+       if ( !err_flag ) right++;
+       err_flag = 0;
+     } 
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+}
+
+</script>
+
+</head>
+<body bgcolor="white">
+<h3> CMPS 350 HW 6 "Data Types"</h3>
+<b>resources:</b><br>
+<a href="./Code/C/strings.c">/Code/C/strings.c</a><br>
+<a href="./Code/C/arrays.c">/Code/C/arrays.c</a><br>
+<a href="./Code/C/structs.c">/Code/C/structs.c</a><br>
+<a href="http://www.cs.csubak.edu/howto_guides/gdb_basics.html">gdb basics</a><br>
+<font color=red>DUE: next monday before lecture</font>
+
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre class=verbatim>
+01. If the 'int' data type is implemented in 4 bytes, with negative integers
+    stored as the two's complement of the positive integer, what is -3?
+    A. 11111111111111111111111111111101
+    B. 11111111111111111111111111111010</pre>
+    A<input type="radio" name="Q1" value="1"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: you want -3 + 3 to equal 0 in the binary representation - so twos complement is the positive integer with all the bits flipped and 1 added to the result.'; } "
+
+>
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+02. In Perl, strings can be any length and the size can change at runtime. What
+    is most likely true regarding Perl's memory management for this valid code?
+      sub test {
+           $str = &lt;stdin>; // user types in hello 
+           $str = &lt;stdin>; // user types in the gettyburg address
+           $str = &lt;stdin>; // user types in hi
+      }
+    A. Perl allocates memory off the heap three times and frees it twice 
+    B. Since strings are scalars, Perl allocates enough memory on the stack 
+       one time only to hold the largest possible string.
+    C. Perl allocates memory for str at the first and second statements only.</pre>
+    A<input type="radio" name="Q2" value="1"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the length of strings in perl is unlimited.'; } "
+>
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+03. Strings in Perl are scalar types. Since Perl uses dynamic typing, what is 
+    most likely true? (select C if both statements are equally likely)
+    A. If Perl sees a number when it expects a string, it implicitly converts 
+       the number into a string; e.g. 25 becomes "25".
+    B. If Perl sees a string when it expects a number, it implicitly converts 
+       the string into an arbitrary number; e.g. "hello" becomes 0.
+    C. both statements are true</pre>
+   A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="1"> D<input type="radio" name="Q3" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If Perl uses dynamic typing and strings are scalars then, most likely, Perl will implicitly cast one to the other. For one statement to be true, both statements must be.'; } "
+>
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+04. Select the false statement, or 'D' if all statements are true.
+    A. An ordinal number reflects the position of that number in a set. 
+    B. A range of integers; e.g. (2..20) is an ordinal set.
+    C. Ordinal numbers are countable.
+    D. All statements are true.</pre>
+   A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="1">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The term ordinal in this contect is strictly mathematical and not about any particular data type in computing. A well-ordered set of numbers is countable.'; } "
+>
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+05. Select the false statement or C if both are true.
+    A. An enumeration type must be mapped to a set of ordinal numbers.
+    B. All possible values in an enumeration type must be named constants.
+    C. both statements are true </pre>
+   A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="1"> D<input type="radio" name="Q5" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Enumeration types reflect position and not quantity. Position in an ordered set is immutable.'; } "
+>
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+06. A subrange type is a subsequence of an ordinal type. Select the allowable
+    sequences, or C if both are allowable.
+    A. (12..14)  
+    B. (15.5..19.5)
+    C. both are OK </pre>
+    A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: You can always find a real number to squeeze inbeteen two other real numbers, so real numbers are not ordinal.'; } " >
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+
+07. An enumeration type may begin with any integral value. 
+    A.  true     B. false</pre>
+   A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Since an enumeration type is mapped to a set of countable numbers - integers - starting anywhere or omitting values; e.g. (5..8) is perfectly fine.'; } "
+>
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+08. What type of array allocation is performed in this C code? (malloc is the
+    operator in C to allocate memory from the heap)
+
+         int * i_array = (int *) malloc(sizeof(int[5]));  
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic 
+   D. heap-dynamic </pre>
+   A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="1"> D<input type="radio" name="Q8" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The size is fixed and the allocation is dynamic. The two choices for dynamic allocation are the stack and the heap'; } "
+>
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+09. What type of array allocation is performed in this C code?
+        scanf ("%d",&size);
+        int * h_array = (int *) malloc(sizeof(int[size])); 
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic
+   D. heap-dynamic </pre>
+   A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="1">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The size is dynamic and the allocation is dynamic. The two choices for dynamic allocation are the stack and the heap'; } "
+>
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+10.What type of array allocation is performed in this C code?
+       scanf ("%d",&size);   // scanf reads input from the user at runtime
+       int sd_array[size];   
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic
+   D. heap-dynamic </pre>
+   A<input type="radio" name="Q10" value="0"> B<input type="radio" name="Q10" value="1"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The size is dynamic and the allocation is dynamic. The two choices for dynamic allocation are the stack and the heap'; } "
+>
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+11.What type of array allocation is performed in this C code?
+       void funA() {
+       int i_array[5] = {1,2,3,4,4};   
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic
+   D. heap-dynamic arrays</pre>
+   A<input type="radio" name="Q11" value="1"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The size is fixed and the allocation is performed during a function call.'; } "
+>
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+12.Select the false statement or C if both are false.
+   A. The elements in an associative array have an implicit order.
+   B. An associative array is indexed by an ordinal type.
+   C. Both are false </pre>
+   A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="0"> C<input type="radio" name="Q12" value="1"> D<input type="radio" name="Q12" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The keys in an associative array are not ordinal types.'; } "
+>
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+13.In these statements, which is an example of an aggregate constant in C?
+           int list [] = {4, 5, 7, 83}    
+           char name[20] =  "sam spade";
+   A. {4,5,7,1}        B. "sam spade"     C. both are examples </pre>
+   A<input type="radio" name="Q13" value="1"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A string enclosed in quotes is a single literal.'; } "
+>
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+14. Which of the following is a listing of this matrix in row major order?
+      9 2 6 
+      7 5 3 
+      4 8 1 
+
+   A. 9 7 4 2 5 8 6 3 1               B. 9 2 6 7 5 3 4 8 1 </pre>
+   A<input type="radio" name="Q14" value="0"> B<input type="radio" name="Q14" value="1"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Row-major means rows first before columns.'; } "
+>
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+15. Which of the following statements is false? (select D if all are true)
+    A. A union type may store different type values at different times during 
+       program execution.
+    B. A free union is a union that allows more than one of the specified type 
+       values stored at a time.
+    C. A discriminated union enforces type checking with a tag (type indicator).
+    D. all statements are true</pre>
+   A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Any union, whether free or discriminated, stores only one value at a time in the specified field.'; } "
+>
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+16.Which of the following statements is false? (select D if all are true)
+   A. An allocated area in the heap with no associated pointer is a memory leak.
+   B. An unallocated area in the heap with an associated pointer is a dangling 
+      pointer.
+   C. Cross-linked pointers point to the same area in memory.
+   D. all statements are true</pre>
+   A<input type="radio" name="Q16" value="0"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="1">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: memory *leaks* when it cannot be allocated and yet it is not being used.'; } "
+>
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+17.Select the false statement or D if all statements are true.
+   A. A C++ reference variable is bound to the memory location of the variable 
+      it references.
+   B. You can never get a "dangling reference" with C++'s reference variables.
+   C. You can explicitly dereference a C++ reference variable.
+   D. All statements are true</pre>
+   A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="1"> D<input type="radio" name="Q17" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If A and B are true then C cannot be true.'; } "
+>
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+18. Select the false statement or C if both statements are true.
+    A. In eager garbage collection, reclamation is done in stages throughout 
+       program execution. 
+    B. In lazy garbage collection, reclamation occurs only when the list of 
+       variable space is completely empty.
+    C. both statements are true</pre>
+   A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="1"> D<input type="radio" name="Q18" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: freeing memory back to the heap has an overhead.'; } "
+>
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+19. Which approach to garbage collection is less efficient but you have the 
+    maximum amount of memory at any given time?
+    A. eager approach
+    B. lazy approach </pre> 
+   A<input type="radio" name="Q19" value="1"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: more efficient means you reclaim the fewest number of times as possible.'; } "
+>
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+20. Which approach to garbage collection is more efficient but when you need 
+    it most, it works worst?
+    A. eager approach
+    B. lazy approach </pre>
+   A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the goal is to prevent a core dump by dereferencing a dangling pointer.'; } "
+>
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+21. Select the correct statement concerning this C code:
+
+   void dbl_ptrs( int** dptr){
+     int * tmp_ptr = *dptr;  
+   
+   A. tmp_ptr now holds the address of a pointer variable 
+   B. tmp_ptr now holds the address of an integer variable
+   C. tmp_ptr now holds an integer value  </pre>
+   A<input type="radio" name="Q21" value="0"> B<input type="radio" name="Q21" value="1"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: draw a pointer to a pointer to a variable and trace the dereference.'; } "
+>
+<DIV id="Q21Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+*22. What is displayed on the screen in the following C code?
+     bits.b = 4;   // size 4 bit field
+     bits.b = 5;   // size 4 bit field
+     printf("%d", bits.a | bits.b);   // | is bitwise or 
+
+   A.  0      B.  1     C.  4     D.  5</pre>
+   A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="0"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="1">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: apply or to each bit: 0100 OR 0101 .'; } "
+>
+<DIV id="Q22Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+23. In the IEEE standard, single precision floating point numbers are
+    represented in the format s * 2^e, where 'e' is the stored value of the
+    exponent - 127, and 's' is 1 + the stored value of the fraction. Under
+    this encoding, what is the decimal value of the following?
+
+   0    10000100  01000000000000000000000
+   -    --------  -----------------------
+   sign exponent  fraction
+   1     8 bits   23 bits
+
+   A. 1.25 * 2^5          B. 1.4 * 2^-5       C. 1.5 * 2^4    </pre>
+   A<input type="radio" name="Q23" value="1"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: exponent = 128+4 = 132; 132 - 127 = 5. fraction: .01 (binary)=.25 (decimal).'; } "
+>
+<DIV id="Q23Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+24. What will be displayed on the screen in the following C code?
+ 
+    struct Bits {
+       unsigned int a:1; // bit field of size 1 bit
+       unsigned int :0 ; // unnamed bit field of size 0 forces c to be aligned
+       unsigned int c:2; // named bit field of size 2
+    } bits;
+    bits.a = 5;  
+    printf("bits.a: %d \n", bits.a);
+  
+   A. 5       B. 0      C. 1 </pre>
+   A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="1"> D<input type="radio" name="Q24" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: grabs the most significant bit.'; } "
+>
+<DIV id="Q24Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+25. The C code below declares a 2x3x4 array of ints. Complete the statement
+    to initialize each cell in the cube with its offset into the array. Recall
+    that C stores 3-dimensional arrays in row-column-depth order.
+
+ /* 3-dimen arrays are in x,y,z order; e.g. row,col,depth */
+  int cube[2][3][4];
+  int x,y,z;
+  for ( x = 0; x < 2; x++ )
+     for ( y = 0; y < 3; y++ )  
+        for ( z = 0; z < 4; z ++ ) 
+           // which statement will insert the offset?
+        }
+      }
+   A. cube[x][y][z] = (x*(3*4))+(y*4)+ z;
+   B. cube[x][y][z] = (z*(2*3))+(y*4)+ x;
+   C. cube[x][y][z] = (x*(2*3))+(y*4)+ z; </pre>
+   A<input type="radio" name="Q25" value="1"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0">
+   
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: expand the general formula for a matric to a cube.'; } "
+>
+<DIV id="Q25Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+26. Under binary coded decimal encoding, the value of 137 is what?
+    A. 001 011 111       B. 0001 0011 0111    C. 1000 1001</pre>
+    A<input type="radio" name="Q26" value="0"> B<input type="radio" name="Q26" value="1"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: how many bits are needed to encode a single decimal digit?.'; } "
+>
+<DIV id="Q26Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+27. Which C structure supports an array of elements of varying sizes? (a 
+    "jagged array")
+    A. a static array of void pointers
+    B. an array of union types
+    C. both are correct </pre>
+   A<input type="radio" name="Q27" value="1"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: union types are fixed size. void pointers are typeless'; } "
+>
+<DIV id="Q27Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+28. Select the true statement concerning this Ada code (Ada includes implicit 
+    index boundary checking) or C if both are true.
+
+       type AN_ARRAY is array(1..10) of INTEGER;   
+       myArray : AN_ARRAY;
+       ...
+       myArray(99) := 0;
+
+    A. The code will compile but raise a CONSTRAINT_ERROR at runtime.
+    B. The code will compile with a warning.
+    C. both statements are true </pre>
+   A<input type="radio" name="Q28" value="0"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="1"> D<input type="radio" name="Q28" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: boundary checking in a language is implicit if a constraint is raised and you did not explicitly code a try block. Although 99 is obviously out-of-bounds, index boundary checking must be done at runtime'; } "
+>
+<DIV id="Q28Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+29. C employs eager garbage collection and calls to malloc always allocate 
+    multiple bytes of storage in contiguous memory locations. Recurrent calls
+    to fun will cause heap fragmentation.
+
+    void fun (){
+     char * a_char = (char *) malloc(sizeof(char));
+     char * a_char2 = (char *) malloc(sizeof(char));
+     free a_char;
+     double * a_dbl = (double *) malloc(sizeof(double));
+     free a_dbl;
+     free a_char2;
+    }
+    A. true       B. false</pre>
+    A<input type="radio" name="Q29" value="1"> B<input type="radio" name="Q29" value="0"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q29Area');
+          if ( document.quizform.Q29[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: the fragmentation occurs if small chunks of memory are allocated and freed interspersed with larger chunks of memory.'; } "
+>
+<DIV id="Q29Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+
+30. If you change the size of a static array of integers in C (from 50 to 100 
+    integers for example), and recompile, the size of the executable file will 
+    increase.
+    A. true       B. false</pre>
+    A<input type="radio" name="Q30" value="1"> B<input type="radio" name="Q30" value="0"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q30Area');
+          if ( document.quizform.Q30[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: static variables are stored in the data segment of the executable.'; } "
+>
+<DIV id="Q30Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+31. What happens at Line 3 in the following C++ code? 
+     int stuff[2] = {5,10};
+     int & iref = stuff;
+     iref++;   // line 3 
+
+   A. stuff[0] is incremented from 5 to 6
+   B. iref is incremented to point to stuff[1] </pre>
+   A<input type="radio" name="Q31" value="1"> B<input type="radio" name="Q31" value="0"> C<input type="radio" name="Q31" value="0"> D<input type="radio" name="Q31" value="0">
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q31Area');
+          if ( document.quizform.Q31[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: An C++ reference type is strictly an alias.'; } "
+>
+<DIV id="Q31Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 6">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+
+
+</body>
+</html>
+

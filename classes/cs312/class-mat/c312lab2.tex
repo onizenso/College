@@ -1,0 +1,131 @@
+% marc thomas
+%
+% macros:
+%
+\def\scriptA{{\cal A}}   % \cal for math mode only
+\def\boldN{{\bf N}}
+\def\boldR{{\bf R}}
+\def\boldRP{{\bf R}$^+$}   % bold-face R plus
+\def\boldC{{\bf C}}
+%
+\def\eop{\vrule height10pt width6pt depth0pt}
+\def\mapleft#1{\ \smash{\mathop{\longleftarrow}\limits^{#1}}\ }
+%
+% end of macros:
+%
+% font declarations for larger fonts:
+%
+\font\bigcal=cmsy10 at 17.28pt
+\font\bigrm=cmr10 at 17.28pt
+%
+\magnification=\magstep1   % magnify output chosen number of steps
+\nopagenumbers             % no pagenumbers set
+\voffset -0.5 true in
+\hoffset 0.0 true in
+\hsize = 6.5 true in       % true page size
+\vsize = 9.8 true in       % if using pagenumbers reduce this
+\baselineskip12pt          % line spacing
+\parskip4pt                % space between paragraphs
+\null
+\centerline{\bf COMPSCI 312 -- LAB 2}
+\line{\hfill Marc Thomas}
+\vskip5pt
+
+\noindent
+   This lab concerns timing {\tt C} and {\tt C++} programs
+and getting values for both {\tt user} and {\tt system} times.
+Note that {\tt user} time is the same as {\tt virtual} time and
+that {\tt profiling} time is the sum of the {\tt user} and
+{\tt system} times. The  {\tt real} time is not very useful because
+it depends too much on machine load.
+
+\noindent
+1. {\bf First method:} Run your program using the ``wrapper:'' \ \ 
+ {\tt /usr/bin/time -p}. \hfil\break
+ This will run your program using the system calls {\tt fork()}
+ and {\tt execve()} and then print out the {\tt real}, 
+ {\tt user}, and {\tt system} times after the program ends. 
+ Note that the {\tt -p} option is recommended so that you
+ get the timing information in Posix format. If your program
+ requires user input you can use a Unix pipe. For example, if
+ you want to do a quicksort on the large dataset {\tt datafile6.txt}
+ you could type: \hfil\break
+{\tt sorting datafile6.txt} \hfil\break
+ and manually enter the keystrokes ``{\tt q}'' for quicksort 
+ and ``{\tt x}'' to quit. 
+ But, you could time this as one atomic operation as follows: \hfil\break
+{\tt echo "q x" | /usr/bin/time -p sorting datafile6.txt} \hfil\break
+ The format of the full command line in general will be: \hfil\break
+{\tt echo "$\{$keystrokes$\}$" | /usr/bin/time -p $\{$command with
+   any parameters$\}$ }\hfil\break
+ {\bf Note that:}
+\itemitem{i.} times reported by the operating system are usually
+	only accurate to $\pm$5--10\%, depending on the
+	system, so you may have to do several runs and take an 
+	average if you need better accuracy.
+\itemitem{ii.} if the program executes with a time under a hundredth 
+	of a second you will get $0.00$ as an answer, so this method is
+	not useful for quickly executing programs.
+
+\noindent
+ Time all of the different sorting options available in the
+ {\tt sorting} program on the large dataset {\tt datafile6.txt}.
+ Are the large variations in time you get surprising?
+
+\noindent
+2. {\bf Second method:} Set timers in your programs, using the timing
+ system calls \hfil\break
+ {\tt setitimer()}, {\tt getitimer()}, etc., or
+ the newer POSIX calls {\tt timer\_create()}, \hfil\break
+ {\tt timer\_settime()}, etc.
+ To say that these calls are complicated is an {\it understatement} 
+ but I have written
+ the {\tt C} module {\tt timing.c} with header file {\tt timing.h} which
+ you can use and which is much simpler. 
+ To see an example of this, get the sample program {\tt cache.c}.
+ Look at the source code, particularly the lines: \hfill\break
+{\tt \#include "timing.h"} \hfil\break
+{\tt $\ldots$ } \hfil\break
+{\tt init\_timing(); /* initialize and start timers */} \hfil\break
+{\tt $\ldots$ } \hfil\break
+{\tt read\_timing(); /* get the results */} \hfil\break
+{\tt pause\_timing(); /* stop the timers */} \hfil\break
+{\tt $\ldots$ } \hfil\break
+{\tt fprintf\_timing(); /* write the results to stdout or file */} \hfil\break
+{\tt $\ldots$ } \hfil\break
+ Compile the program (with the {\tt timing} module) either via: \hfil\break
+{\tt gcc -g cache.c timing.c -o cache} \hfil\break
+ or by using the makefile: \hfil\break
+{\tt make cache} \hfil\break
+{\tt make clean} \hfil\break
+ This program tests the effective speed of the L2~cache by reading and
+ writing a large amount of information to an array using a particular
+ {\tt line\_offset}. It then uses the timing results to compute the
+ net memory bandwith in megabytes per second for that
+ {\tt line\_offset}. Run it, trying some numbers from 127--4096 and
+ see if you can discern a pattern.
+
+\vskip10pt
+\noindent
+{\bf Assignment} Write a {\tt C} or {\tt C++} program which  will
+ accept a positive integer {\tt n} from 2--2000000 on the command line and 
+ which will display the first 20 primes greater than or equal to {\tt n}.
+ For an example executable, copy over {\tt cpubound} from the class
+ directory and run it, for example, with {\tt n=2000}: \hfil\break
+{\tt cpubound 2000} \hfil\break
+ Time you program for values of {\tt n=200, 2000, 20000} and {\tt 200000}
+ using Method~1 (with {\tt /usr/bin/time -p}) above.
+ 
+\noindent
+Email me your timings ({\tt user} and {\tt system}) for the
+values of {\tt n} above and the
+{\bf path} (and {\bf only the path}) to your solution. For example, if your
+program is named {\tt lab2.c} you might email me that \hfil\break
+{\tt my solution is at: /usr/stu/myusername/cs312/lab2.c } \hfil\break
+Please:
+\itemitem{i.} Keep line length under 80 characters per line.
+\itemitem{ii.} Do not send any attachments.
+
+\vfill
+\eject
+\end

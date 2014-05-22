@@ -1,0 +1,125 @@
+<html>
+<head>
+<title> CMPS 350 Exam 2 - PHP and JavaScript </title>
+</head>
+<!-- 
+ For this part of the exam, copy these files into your public_html directory:
+
+       /home/fac/donna/cs350/exam2/e2.html
+       /home/fac/donna/cs350/exam2/elephant.jpg
+       /home/fac/donna/cs350/exam2/croc.jpg
+
+  **********
+  *  PHP   *                                                             / 10
+  **********
+
+  Your job is to write a PHP script 'e2.php' to be called when the SUBMIT 
+  button in the FORM below is clicked. You DO NOT need to add any additional
+  HTML to this file for the PHP portion. The PHP script will do the following:
+                                                                            PTS
+1. Check that a name has been entered - if not display an error message     (1)
+2. Grade the quiz. The answer to #1 is B. The answer to #2 is "B and C" only(2)
+3. Keep a list of questions that are answered incorrectly  (e.g. Q1 Q2)     (1)
+4. Maintain a count of the number of correct answers                        (1)
+5. Display the name                                                         (1)
+6. Display the class                                                        (1)
+7. Display the quiz score as a percentage                                   (1)
+8. Display the list of missed questions                                     (1)
+9. Use the 'strlen' function to determine if the list of questions is empty.(1)
+   If empty display "Errors: 0 Great Job!"                                 ====
+                                                                            
+ Three examples of output:
+
+ 350 Quiz #1: sam spade 
+ Percentage: 100%
+ Errors: 0 Great Job! 
+
+ 351 Quiz #1: sam spade 
+ Percentage: 50%
+ Errors: Q2
+
+ 352 Quiz #1: sam spade  
+ Percentage: 0%
+ Errors: Q1 Q2
+
+ **************
+ * JavaScript *                                                            / 10
+ **************
+
+ For the JavaScript portion, add 6 events to this e2.html file. Everything you
+ need to complete this is in: /cs350/Code/JavaScript/events.html  (view the
+ source of the file or copy it over to your directory)
+ 
+ Add the events to existing HTML-do NOT add more HTML. The events are:
+
+ 1. onMouseOver on the croc image to *swap* the croc and elephant image   (3 PT)
+ 2. onClick on the croc image to swap the images back again               (3 PT)
+ 3. onFocus in the name text field to display alert "First and Last"      (1 PT)
+ 4. onChange event to SELECT box to change the background color           (1 PT)
+ 5. onClick on BUTTON to write a hint on the page for question #1.        (1 PT)
+ 6. onDblClick on BUTTON to remove the hint from the page.                (1 PT)
+-->
+
+<BODY>
+<h1>QUIZ #1.</h1>
+
+<SCRIPT language = "JavaScript">
+
+  var temp = new Image();
+
+</SCRIPT>
+
+<FORM method="post" action="php_option2.php">
+<DIV>
+Name: <input type="text" name="name" onFocus="alert('first last');"> <p>
+
+Class: <SELECT name = "class" onChange="window.document.bgColor='#000fff';">
+<option value = "350" >350
+<option value = "351" >351
+<option value = "352" >352
+</SELECT>
+<P>
+
+<A HREF="#" onMouseOver="temp.src = window.document.image1.src;
+	      window.document.image1.src = image2.src;
+	      image2.src = temp.src;"
+	      
+	    onClick="temp.src = window.document.image1.src;
+	      window.document.image1.src = image2.src;
+	      image2.src = temp.src;">
+<img src="./croc.jpg" NAME="image1"></A><p>
+1. Crocodiles are native to which continent? 
+   <INPUT TYPE="BUTTON" value="Need Hint?" 
+   onClick="area=document.getElementById('myArea');
+	    area.innerHTML='Gday, mate!<p>';
+	    return false;"
+   onDblClick="area.innerHTML='';" >
+<p>
+<DIV id="myArea">
+
+</DIV>
+
+A. North America <input type="radio" name="Q1" value="A"> <br>
+B. Australia <input type="radio" name="Q1" value="B"> <br>
+C. Africa <input type="radio" name="Q1" value="C"> <br> 
+D. Las Vegas<input type="radio" name="Q1" value="D"><br>
+<p>
+
+<A HREF="#"><img src="./elephant.jpg" NAME="image2"></a></A><p>
+2. Elephants are native to which continents?  Select  all
+that apply.  <p>
+
+A. <input type = "checkbox" name = "Q2A"> North America<br> 
+B. <input type = "checkbox" name = "Q2B"> Asia<br>
+C. <input type = "checkbox" name = "Q2C"> Africa<br>
+D. <input type = "checkbox" name = "Q2D"> South America<br>
+<p>
+
+<input TYPE="SUBMIT" VALUE="Submit FORM">
+<p>
+<INPUT TYPE="RESET" VALUE="Clear FORM">
+
+</DIV>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,18 @@
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> soa 224.9.209
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NXDOMAIN, id: 49892
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;224.9.209.			IN	SOA
+
+;; AUTHORITY SECTION:
+.			0	IN	SOA	a.root-servers.net. nstld.verisign-grs.com. 2014010701 1800 900 604800 86400
+
+;; Query time: 49 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Tue Jan  7 16:44:57 2014
+;; MSG SIZE  rcvd: 102
+

@@ -1,0 +1,84 @@
+.:File Analysis Tools & Password Databases:.
+
+Tools
+    The Coroner's Toolkit
+        "granddaddy" of many disk analysis tools
+        Meant primarily for Unix/Linux systems
+        Programs:
+            grave-robber         gather inode info (allocated||unallocated)
+            unrm & lazerus       undelete files(if block info still available)
+                                 recover RAM, free space, swap space, etc.
+            mactime              search files based on Modified, Accessed and
+                                     Created times. Lists all matches
+        Had to run on disk device, not image files
+            (unless using loopback device on Linux or VMware)
+
+    The Sleuthkit TSK & Autopsy
+        Based on TCT - Autopsy is GUI to toolkit
+        Works on Windows & Unix/Linux
+        Works with many data sources
+            disk devices
+            dd images
+            EnCase images
+            etc.
+        Common programs used from TSK
+            ils         list file metadeta entries ("inode ls" from Linux)
+            icat        dump data(file) from specified file entry ("inode cat")
+               above tools don't work on ext3/4 filesystems, inodes are wiped
+            
+            fls         list allocated & unallocated filenames
+            fsstat      filesystem statistical information
+            disk-stat   (Linux, mb others) hidden (unallocated) disk space
+            ffind       search for filenames
+            mactime     same as from TCT
+            blkls(dls)  list (un)allocated data blocks 
+                            (only tool that works for ext3/4)
+
+    debugfs (Linux)
+        List inode information
+        mostly useful for ext2
+        Launches into built-in debugfs shell
+            similar to shell from gdb
+        Built-in Commands
+            lsdel                   list deleted files (also work w/ ext3/4)
+            dump <inode><file>      restore given inode to filename
+                dump 15 oops.txt
+            mi <inode>              modify given inode
+            imap <inode>            list blockss associated w/ inode
+    
+    WinHex & hexdump
+        WinHex can open image files & perform file recovery for several
+            filesystems
+        Any hex tool allows one to look at raw data
+        hexdump is a command-line hex tool
+
+    Commercial Toolkits (EnCase, Forensic Toolkit, etc.)
+        Support file recovery operations
+        Have scripts for running automatic analysis
+        
+
+Can use WinHex or another hex tool to look for opening file tags to narrow down the breadth of search
+
+Can run Strings against regular doc file to see the original text and changed
+text if the user performed a quick save, or did not complete a full save. Does 
+not work against docx files because of file compression
+
+Lab Next Week:
+    Use Sleuthkit, WinHex & hexdump to investigate image files
+    To prep for later labs, we'll also use Linux loopback devices & 
+        VMware to add to filesystem   
+
+.:Password Databases:.
+    Many different ways to store user information
+        details will be covered in the Windows & Linux analysis chapters
+    How to store passwords
+        Plaintext - horrible, still performed in some organizations
+            -very rare at OS level, sometimes happens w/ applications/websites
+        Reversible Encryption - slightly better, but still not good
+        One-way Encryption(hashing) - depends on algorithm used
+            look up password-specific hashing algorithms
+
+    Password Cracking
+        Usually referring to brute force attack
+            might also be protocol attack
+        Trying to find a match to hash in database   

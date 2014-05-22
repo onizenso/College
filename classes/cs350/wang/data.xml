@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<inventory>
+   <item 
+      name="MythGame"
+      release_date="2/12/2006"
+      version="0.19"
+      filesize="9.69 MB"
+      category="Linux, Application, Multimedia"
+      links="http://www.mythtv.org/"
+      description="A Modern Sci-Fi Game"
+   > 100 </item>
+
+   <item
+      name="Notepad++"
+      release_date="12/24/2005"
+      version="3.40"
+      filesize="956 KB"
+      category="Windows, Application, Text Editor"
+      links="http://notepad-plus.sourceforge.net/"
+      description="A free source code editor"
+   > 250 </item>
+   
+   <item 
+      name="CygWin"
+      release_date="1/20/2006"
+      version="1.5.19"
+      filesizen="298 KB"
+      categoryn="Windows, Linux API"
+      linksn="http://www.cygwin.com/"
+      description="A Linux environment for Windows"
+   > 23 </item>
+   
+   <item
+      name="Firefox"
+      release_date="2/17/2006"
+      version="1.5.0.1"
+      filesize="5.0 MB"
+      category="Windows, Linux, Mac OS X, Application, Web Browser"
+      links="http://www.mozilla.com/firefox/"
+      description="An award-winning Web browser"
+   > 100 </item>
+
+   <item 
+      name="InTuit"
+      release_date="1/20/2008"
+      version="2.5.19"
+      filesizen="298 KB"
+      categoryn="Windows, Linux API"
+      linksn="http://www.intuit.com/"
+      description="Personal Accounting Software"
+   > 300 </item>
+
+</inventory>
+

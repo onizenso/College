@@ -1,0 +1,56 @@
+.:Investigating Incidents:.
+
+Primarily converned w/ intrusions/compromises/incidents & 
+    some techniques that may have been used
+        CMPS 451 - Vulnerability Analysis (Winter 2015)
+            reverse engineering malware
+            vulnerability analysis
+        CMPS 476 - Advanced Networking & Security (Spring 2014)
+            general methods of attack (system & network)
+            applied crypto
+            authentication & identification
+            access control
+            "trusted" OS design
+                 (not the same as DRM-implied "trusted computing")
+                 focuses on original meaning instead
+        MATH/CMPS 475 - Applied Cryptography (Fall 2014)
+            non-calculus based cryptography
+        CMPS 445 - Data Mining
+
+Reverse Engineering
+    Used in investigating suspicious executables, macros, etc.
+        found during incident response
+    Aids in discerning functionality of code when source is unavailable
+    Code can be obfuscated to hide functionality
+    Other disassembling techniques and anti-debugging techniques
+    
+    Macro code - use macro cod elanguage in another program
+        e.g. Office nacros
+        infect documents related to program
+    Scripting code - often network-based, e.g. infected website or email
+
+Wednesday June 5th
+    Reverse engineering techniques 
+    Intro to basic attack vectors
+
+Reverse Engineering Techniques
+    Static analysis
+        useful for binaries or obfuscated source code 
+        code is not run, but analyzed for functionality
+        Techniques
+            use Strings to extract human-readable info
+                only works if human-readable text remains in binary
+            debugger w/o running code
+                shows remaining debugging symbols
+                more friendly than Strings
+            de-compile machine code w/ either decompiling tool
+                or by hand w/ hex editor
+            call in the experts, particularly obfuscated code
+         
+    Dynamic Analysis
+        Usually involves running the code & observing it
+        Can show traces of actual behavior, unless malware 
+            detects dynamic analysis and evades it
+        Techniques
+            Debugger w/ running code and/or strace (tracing syscalls)
+            Sandboxing/Honeypot

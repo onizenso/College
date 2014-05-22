@@ -1,0 +1,42 @@
+.: Duplication :.
+
+.:Current Standards:.
+    .::Serial ATA (SATA) Family::.
+        SATA 1 (1.5Gbps) <::> SATA 2 (3.0Gbps) <::> SATA 3 (6.0Gbps)
+        Original ATA standards are paralel (PATA)
+        One drive per cable w/ SATA
+        Same connector used for all standards
+            "L shape" to prevent improper connections
+            also eSATA connector w. slightly different connections
+                -only used on enclosure
+    
+    .::Serial Attached SCSI(SAS) family::.
+        Like SATA, a point-to-point serial standard
+        Connectors are compatible with SATA connectors (can connect SATA drive)
+            Drops down to being like two SATA drives, lose SAS-specific features
+            SFF 8482 connectors (compatible)
+            Can create a non-SATA coompatible backplane
+                mini-SAS connector
+                high density connector
+        Uses SCSI commands when in SAS mode
+        Standards
+            SAS 1.0 (1.5Gbps) <::> SAS 1.1 (3Gbps) <::> SAS 2 (6Gbps)
+
+.:Linux Device Names:.
+     IDE/ATA drives: 
+         /dev/hda <::> /dev/hdb <::> /dev/hdc
+         Partitions: 
+             /dev/hda1 <::> /dev/hda2 <::> etc.
+     SATA/SAS/USB drives: 
+         /dev/sda <::> /dev/sdb
+     IDE/SCSI CD-ROM drives:
+         /dev/sr0 <::> /dev/sr1 <::> /dev/sg0 <::> /dev/sg1
+
+.:Wipe Magnetic Drives Clean:.
+    need clean media before making a duplicate
+        (oldInfo + newInfo) == contamination
+    Minimum:
+        Zero out the disk w/ Null bits
+        More thorough measures would be needed for real investigation
+        
+    

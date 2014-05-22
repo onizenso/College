@@ -1,0 +1,168 @@
+<html>
+<body>
+<h3>Chapter 14 - Exception Handling in C++ </h3> (event handling covered later)
+<a href="./Code/C++"/>C++ exception handling sample code</a><br>
+<a href="./Code/C++/FAQ.txt">C++ exception handling FAQ</a><br>
+<a href="./Code/C++/ExceptionClasses.jpg">C++ Exception Handling Classes</a><br>
+<a href="http://www.awprofessional.com/content/images/020163371x/supplements/Exception_Handling_Article.html">Exception handling drawbacks</a><br> 
+<pre>
+  Without exception handling
+        When an exception occurs, control goes to OS (a crash) or program 
+        freezes (hang)
+  
+  With exception handling
+       Programmer can trap exceptions, prevent crashes and freezes and control 
+       what happens next
+
+Basic Concepts
+   Many languages allow programs to trap input/output errors (including EOF)
+
+   An exception is any unusual event, either erroneous or not, detectable by 
+   either hardware or software, that may cause a crash or freeze if not
+   otherwise handled
+ 
+   Most common Examples: divide by zero, illegal memory access (dereferencing
+   a bad pointer, array out-of-bounds), file open errors, input errors (reading
+   float into char), reading past EOF    
+
+   Processing the exception is called *exception handling*
+    
+   An exception is *raised* when its associated event occurs
+  
+   The exception handling code unit is called an *exception handler*
+
+User-defined Exception Handling 
+    A language that does not have exception handling built-in can still 
+    define, detect, raise, and handle exceptions 
+
+    Pass an argument (flag or error msg) to an error-handling routing
+    or return a flag (boolean, int)
+
+    Have some mechanism for interpreting what the return flag means (see
+    Unix strcmp)
+
+    Give exception handling utilities global scope 
+
+****************************************************
+* Advantages of Built-in Exception Handling in C++ *
+****************************************************
+
+   Added to C++ in 1990 (Design based on CLU, Ada, and ML)
+
+   Code reusability, uniformity, promotes readability
+
+   Error detection code is tedious to write and clutters the program
+
+   Allows you to rethrow back to main, unwind the runtime stack and perform
+   cleanup (very difficult to code otherwise)
+
+   Saves the return value for something other than error handling
+
+   Supports dynamic memory management if objects are allocated in a try block
+   since destructors are called upon exiting the block
+
+   Increases chances that a program can recover without a complete crash
+
+*******************************************************************
+* Things you should know about exception handling in any language *
+*******************************************************************
+
+   How is an exception occurrence bound to an exception handler?
+   How and where are exception handlers specified and what is their scope?
+   Are there any built-in exceptions?
+   Are default exception handlers used if exception handling is not explicitly
+   coded? 
+   Can built-in exceptions be explicitly raised?
+   Are hardware-detectable errors treated as exceptions that can be handled?
+   How can exceptions be disabled, if at all?   
+   How does exception handling control flow work?
+   Where does execution continue, if at all, after an exception handler 
+   completes its execution?
+
+*****************************
+* Exception Handling in C++ *
+*****************************
+Basic syntax:
+
+  try {
+    throw  
+  }
+  catch (formal parameter) {
+     throw    // optional re-throw will propogate through runtime state
+  }
+  catch (...) { // a generic handler
+  }
+
+Specific example:
+  
+  const int DivideByZero = 10;
+  //....
+  double divide(double x, double y) {
+      if(y==0) throw DivideByZero;
+      return x/y;
+  }
+  ///...
+  try {
+     divide(10, 0);
+  }
+  catch(int i) {
+    if (i==DivideByZero) cerr << "Divide by zero error";
+  }
+  
+  
+  
+// example of error objects
+  
+  class DivideByZero
+  {
+      public:
+          double divisor;
+          DivideByZero(double x);
+  };
+  DivideByZero::DivideByZero(double x) : divisor(x)
+  {}
+  int divide(int x, int y)
+  {
+      if(y==0)
+      {
+          throw DivideByZero(x);
+      }
+  }
+  try
+  {
+      divide(12, 0);
+  }
+  catch (DivideByZero divZero)
+  {
+      cerr<<"Attempted to divide "<<divZero.divisor<<" by zero";
+  }
+
+
+Notes on C++ facility:
+
+o  catch function is overloaded--formal parameter of each catch must be unique
+   The formal parameter need not have a variable
+   It can be simply a type name to distinguish the handler it is in from others
+   The formal parameter can be used to transfer information to the handler
+   If formal parameter is an ellipsis it handles all exceptions not yet handled
+
+o A throw without an operand can only appear in a catch block; when it appears,
+  it re-throws the exception to the next available handler by unwinding the
+  runtime stack
+
+o An unhandled exception is thrown to every function on the runtime stack until
+  it is finally thrown to main; if no handler is found in main the program 
+  terminates with an error message (not good)
+
+o After a handler completes its execution, control flows to the first statement 
+  after the last handler in the sequence of handlers of which it is an element
+
+o  Exceptions are not named; hardware and system software-detectable exceptions 
+   cannot be handled
+
+o  Exceptions are bound to handlers through the type of the parameter 
+   (does not promote readability)
+</pre>
+</body>
+</html>
+

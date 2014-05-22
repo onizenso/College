@@ -1,0 +1,18 @@
+Chapter 3 Grammars
+
+
+Example 3.4 :
+
+    <assign> -> <id> = <expr>
+    <id> -> A | B | C 
+    <expr> -> <expr> + <term> | <term>
+    <term> -> <term> * <factor>  | <factor>
+    <factor> -> ( <expr> ) | <id>
+
+Example 3.2:
+
+    <assign> -> <id> = <expr>
+    <id> -> A | B | C
+    <expr> -> <id> + <expr> | <id> * <expr> | ( <expr> ) | <id>
+
+

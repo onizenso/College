@@ -1,0 +1,76 @@
+*****************************************************************************
+            TIMELINE FOR THE PROGRAMMING LANGUAGES IN THIS COURSE
+*****************************************************************************
+  
+The dates reflect when the language was first publicly available, not the 
+start of development.
+  
+Resources:
+  http://www.byte.com/art/9509/sec7/art19.htm
+  http://en.wikipedia.org/wiki/History_of_programming_languages
+  
+  
+  Plankalkul 1946 Konrad Zuse      German engineer alone in the Alps
+  
+  FORTRAN    1957  Backus/IBM      scientific use
+  
+  LISP       1958  McCarthy/MIT    1st functional language; AI
+  
+  ALGOL      1958  US/Europe - CS  scientific use (basis for Pascal,C,C++, Java)
+                   scientists      1st language with formal grammar (BNF)
+                                   ALGOL 60 Backus/Naur 1st block-structured lang
+  
+  COBOL      1960  IBM et al/govt  business, government and military use
+  
+  PL/1       1960  IBM             ALGOL+FORTRAN+COBOL; 1st general purpose lang 
+                                   (everything but the kitchen sink)
+  
+  SNOBOL     1962  AT&T Bell Labs  string processing; pre-REs;  roots for awk 
+  
+  Simula     1964  Oslo,Norway     ALGOL+classes; 1st OO language; roots of C++  
+  
+  BASIC      1964  Dartmouth       Beginner's All-purpose Symbolic Instruction
+                                   Code; designed for non-science students 
+  
+  APL        1964  Harvard/IBM     basis for Unicode charset; mathematical; 
+                                   vectors; matrices
+  
+  Pascal     1968  N. Wirth        teaching structured programming
+  
+  SmallTalk  1971  Alan Kay/Xerox  OO; Simula + Lisp; roots of Java 
+  
+  Prolog     1972  France          1st logic lang; natural language processing; 
+                                   AI; theorem proving; declarative paradigm
+  
+  C          1972  Bell Labs K&R   systems programming
+  
+  Ada        1983  DoD             mission-critical DoD embedded applications;
+                                   concurrency
+  
+  C++        1983  Stroustroup     Simula + C ; 1st widely used OO language 
+                   Bell Labs       procedural and object-oriented paradigm
+  
+  Perl       1987  Larry Wall      the archetypal scripting language
+  
+  VisualBasic 1987 Microsoft       drag-n-drop GUI IDE; event driven language 
+                                   (integrated development environment)
+      
+  Python     1991  Netherlands     bytecode; Lisp + Perl + SmallTalk 
+                                   open source
+  
+  Ruby       1993  Matsumoto/Japan scripting; Python+Smalltalk+Perl+Lisp; 
+                                   open source
+  
+  Java       1994  Sun             OOP for the web
+  
+  JavaScript 1995  Netscape        client-side scripting for web; event-driven;
+                                   C+Self
+  
+  PHP        1995  Lerdorf/Denmark Perl for the web; server-side scripting; 
+                                   open source
+  
+  XSLT       1999  Clark/Kay/W3C*  awk+prolog+LISP; transforms XML files 
+   
+  C#         2001  Microsoft       .NET / Mono ; the best of C++ and Java  
+ ===============================================================================
+  * World Wide Web Consortium

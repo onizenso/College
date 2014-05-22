@@ -1,0 +1,3 @@
+gmcs RemoteClient.cs -r:RemoteClass.dll -r:System.Runtime.Remoting.dll -out:client.exe
+
+mono client.exe

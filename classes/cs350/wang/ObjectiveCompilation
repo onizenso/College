@@ -1,0 +1,14 @@
+From: Paul Holden 
+
+This command works for me to compile Objective-C.
+
+I set up an alias in .bash_profile
+
+alias objcc='gcc `gnustep-config --objc-flags` -lgnustep-base'
+
+This way you can do
+
+objcc SourceFile.m -o SourceFile
+
+and you will get an exec file named SourceFile.
+

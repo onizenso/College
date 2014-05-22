@@ -1,0 +1,131 @@
+.Code {
+  font-weight: normal;
+  font-family: helvetica;
+  font-size: 12px;
+  text-align: left;
+  background-color: #AFCFFF;
+  borders: 2px dotted #EFEFEF;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 85%;
+}
+
+h1 { font-family: Arial, helvetica, sans-serif; color: #040055;}
+h2 { font-family: Arial, helvetica, sans-serif; color: #254117;}
+h3 { font-family: Arial, helvetica, sans-serif; color: #254117;}
+h4 { font-family: Arial, helvetica, sans-serif; color: #040055; top-padding: .2em;}
+h5 { font-family: Arial, helvetica, sans-serif; color: #040055; top-padding: .2em;}
+
+ul { list-style: inside; margin: 8px; padding: 5px; }
+ol { list-style: inside; margin: 0px; padding: 0px; }
+
+text {font-weight: bold; font-size: 14pt; font-family: arial, sans-serif;}
+
+title { font-family: Arial, helvetica, sans-serif; color: #040055;}
+A {text-decoration : none;}
+A:link { color: #009090;}
+A:visited { color: #009090;}
+A:active { color: #009090;}
+A:hover {color: darkorange;}
+
+body { margin-left: 5%; margin-right: 10%; margin-top: 1%; margin-bottom:6%; }
+
+h4 { margin-left: 0%; margin-right: 0%;}
+h3 { margin-left: 8%; margin-right: 0%;}
+h2 { margin-left: 0%; margin-right: 0%;}
+h1 { margin-left: 0%; margin-right: 0%;}
+
+.titlelink { color: white;}
+
+.info{
+font-size: 11pt;
+font-weight: bold;
+}
+
+.lrg{
+font-size: 18pt; 
+font-family: 'times new roman', times, serif;
+}
+
+.header{
+font-size: 12pt;
+text-align: center;
+background-color: #FFC588;
+padding-top: 1pt;
+padding-left: 5pt;
+padding-right: 5pt;
+}
+
+A:link.link{ 
+color: #00F0F0;
+text-decoration:  none;
+}
+
+A:visited.link{
+color: #00F0F0;
+text-decoration:  none;
+}
+
+A:active.link{ 
+color: #CCCC33;
+text-decoration:  none;
+}
+
+A:hover.link{ 
+color: #3333FF;
+text-decoration:  none; 
+}
+
+A:link.info{
+color: #0000FF;
+text-align: center;
+text-decoration:  none;
+}
+
+A:visited.info{
+color: #0000FF;
+text-decoration:  none;
+}
+
+A:hover.info{ 
+text-decoration:  none; 
+background-color: #FFCC99;
+color: #0000CC;
+}
+
+.selected{
+font-size: 12pt;
+text-align: center;
+background-color: #3366CC;
+font-weight: bold;
+padding-top: 1pt;
+padding-left: 8pt;
+padding-right: 8pt;
+}
+
+.selectedlink{
+font-size: 12pt;
+color: #FF9966;
+}
+
+A:link.selectedlink{ 
+color: #FF9966;
+text-decoration:  none;
+}
+
+A:active.selectedlink{ 
+color: #F0C090;
+text-decoration:  none;
+}
+
+A:visited.selectedlink{ 
+color: #FF9966;
+text-decoration:  none;
+}
+
+A:hover.selectedlink{ 
+color: #FFCC66;
+text-decoration:  none; 
+}

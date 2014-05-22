@@ -1,0 +1,116 @@
+
+<HTML>
+<head>
+<title>Testing Dynamic Type Binding </title>
+
+<SCRIPT language="JavaScript">
+
+/* create a window object to test if the window is opened already */  
+newWindow = new Object;
+newWindow.closed = true;  
+
+/* functions to calculate temperature conversions */
+
+function far2cen ( far )
+{
+  /* result becomes a number as soon as this assignment is made */
+  result = 5/9 * (far - 32);
+
+  /* dynamic typing means that a variable can change its type once set; thus
+  /* concatenating result with a NULL string will convert result to a string */
+  result = result + "";
+  /* take the first 4 digits only */
+  result = result.substring( 0, 4);
+  return result;
+}
+
+
+function cen2far( celsius )
+{
+ var result = 9/5 * celsius + 32;
+ return result;
+}
+
+/* function to display the result in a new window 
+   demonstrates the use of onBlur event handler */
+
+function display ( answer ) {
+
+  if ( !newWindow.closed )
+     newWindow.close();
+  newWindow=window.open("","","height=100,width=300");
+  newWindow.moveTo(100,100); 
+  newWindow.focus();
+  newWindow.document.write("<HTML><HEAD></HEAD><BODY onBlur='this.close()' bgcolor='#cc9999'>");
+  newWindow.document.write( "ANSWER: " + answer + " degrees celsius.");
+  newWindow.document.write("</BODY></HTML>");
+  newWindow.document.close();   // close the HTML document
+}	
+
+// -->
+</SCRIPT>
+</head>
+
+
+Check JavaScript syntax at: 
+<a href="http://www.javascriptlint.com/online_lint.php">http://www.javascriptlint.com/online_lint.php</a>
+
+<body bgcolor="#F33cccc" >
+
+<SCRIPT>
+  /* display the date calculated above */
+  document.write(month + "." + date + "." + year + "<P>");
+</SCRIPT>
+
+
+<h3>Testing Dynamic Typing</H3>
+<!-- Create a Form for the Input Buttons; call functions from the onClick 
+     event handler for the form element -->
+
+<form>
+<input type="button" value="Fahrenheit -> Celsius" 
+      onClick="var in_num=prompt('Enter a Fahrenheit temperature','');
+      result = far2cen(in_num);
+      display (result);
+      return false;">
+
+<SCRIPT>
+function test( )
+{
+  var x = 5;     // (1)
+  var y = "hi";  // (2)
+  var z = x + y; // (3)  <= x is coerced into a string and concatenated with y
+  z = x / y;     // (3)  <= problem here 
+
+ return z;
+}
+</SCRIPT>
+
+<input type="button" value="Celsius -> Fahrenheit" 
+       onClick="var in_num=prompt('Enter a Celsius temperature','');
+       display (cen2far(in_num) );
+       return false;">
+</form>
+
+<input type="button" value="Test dynamic typing" 
+       onClick="area=document.getElementById('myArea');
+                area.innerHTML=test();
+                return false;">
+
+<input type="button" value="Clear It" 
+       onClick="area=document.getElementById('myArea');
+                area.innerHTML='';
+                return false;">
+
+<pre>
+
+
+</pre>   
+<!-- create an area on the document to write to -->
+<div id="myArea">
+</div>
+
+
+</body>
+</HTML>
+

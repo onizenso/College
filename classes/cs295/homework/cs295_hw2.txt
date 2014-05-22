@@ -1,0 +1,181 @@
+//============================\\
+|| 1.3                        ||
+\\============================//
+01.
+a) All the students at CSUB have visited North Dakota
+b)It is not the case that some student at CSUB has visited North Dakota
+
+02.
+a)Ex(C(x)^D(x)^F(x))
+b)AxD(x) | AxC(x) | AxF(x)
+
+03.
+a)true
+b)false, Ax~(x^4 < x^2) is true
+
+04.
+a) P(1) | P(2) | P(3)
+b) P(1) ^ P(2) ^ P(3)
+
+05.
+a) AxS(x), all users obey the speed limit
+b) Ex~S(x), there are some Swedish movies that are not serious
+
+06. A, because there are two distinct systems being qualified over
+
+07.
+a) (P(a)^Q(a)) ^ (P(b)^Q(b)) ^ (P(c)^Q(c))
+b) (P(a)^P(b)^P(c)) ^ (Q(a)^Q(b)^Q(c))
+C) (P(a)vQ(a)) ^ (P(b)vQ(b)) ^ (P(c)vQ(c))
+d) (P(a)^P(b)^P(c)) v (Q(a)^Q(b)^Q(c)) 
+
+08. 
+Setting P(a),P(b),Q(c) to true and Q(a),Q(b),P(c) to false results in 
+Ax(P(x) v Q(x)) being true and AxP(x) v AxQ(x) being false
+     T  T   F                      F  F    F
+     T  T   F                            
+     F  T   T
+
+09. 
+Set P(a) to true and P(b) to false; 
+Ex(P(a) ^ Q(a)) is true while ExP(a) ^ ExQ(b) is false
+
+10. 
+a) (p v r) ^ (q v r)
+b) (~p ^ ~q) v r -=> (~p v r) ^ (~q v r)
+c) ((p ^ q) v r) ^ ((p ^ q) v s) -=> (p v r) ^ (q v r) ^ (p v s) ^ (q v s)
+
+//============================\\
+|| 1.4                        ||
+\\============================//
+01. 
+a) ExP(x,3) == (1,3) v (2,3) v (3,3)
+b) AyP(1,y) == (1,1) ^ (1,2) ^ (1,3)
+c) Three sets of three integers equals nine total elements, or all the tuples inset S x S
+
+02. 
+a) There is some student who has taken a computer science course
+
+b) There is some student who has taken all computer science courses
+
+c) All students in the class have taken a computer science class
+
+03.
+a) For some number, that number added to each number in the set of all reals will be equal to the number from the set of all reals
+b) For all members in the set of all real numbers there is another number that when added to the original results in the original number. Valid
+c) For all members in the set of real numbers there is one assignment of values that when added to a value from another set of all real numbers equals the second number from the set of all reals
+
+
+04. 
+a) AxEyF(x,y)
+b) ExAyF(x,y)
+c) AyExF(x,y)
+d) AxEyF~(x,y)
+e) AyExF(x,y)
+f) ~Ex(F(x,Fred) ^ F(x,Jerry)) -=> Ax~(F(x,Fred)^F(x,Jerry)) 
+   so, Ax(~F(x,Fred) v ~F(x,Jerry))
+g) ExF(Nancy,x) ^ EyF(Nancy,y) ^ x!=y
+h) ExF(Nancy,x) ^ EyF(Nancy,y) ^ x!=y ^ (AzF(Nancy,z) -> (z=x v z=y)) 
+i) ExF(Nancy,x) ^ EyF(Nancy,y) ^ (AzF(Nancy,z) -> (z=x v z=y)) 
+j) ~ExF(x,x) -=> Ax~F(x,x)
+
+05. 
+a) False
+b) True, Valid For all integers there is one integer that results in the 
+original integer if the when it is added or subtracted
+
+06.
+a) AyAx~P(x,y)
+b) ExAy~P(x,y)
+
+07.
+a) EpAfEa(T(p,f) ^ O(a,f))
+b) AfEpEa(O(a,f) -> T(p,f))
+c) ApEfEa(O(a,f) -> T(p,f))
+
+//============================\\
+|| 1.5                        ||
+\\============================//
+
+01. Modus Tollens, Valid
+A)P(a)->Q(a)
+B)~Q(Pooh)
+C)::~P(Pooh`)
+
+02. Tautology, Valid
+L(k) ^ M(k) :: M(k)
+ 
+03. Modus Ponens, Valid
+S(Linda) -> L(Linda) 
+S(Linda)
+.:. L(Linda
+
+04. Fallacy: Affirming the Conclusion, Invalid
+I(x^2)->I(x)
+I(x)
+.:.I(x)
+
+05. Fallacy: Denying the Antecedent, Invalid
+I(x^2) -> I(x)
+~I(x^2)
+.:.~I(x)
+
+06. Tautology, Valid, Addition
+W(d)
+.:.W(d) v M(d)
+
+07.Resolution, Valid
+O(b) v B(b)
+R(b) v ~O(b)
+.:.B(b) v R(b) 
+
+08. Constructive Dilemma, Valid
+F(s) -> R(l)          
+C(m) -> J(c)        (F(s) -> R(l)) ^ (C(m) -> J(c))
+F(s) v C(m)                   F(s) v C(m)
+.:.R(l) v J(c)             .:.R(l) v J(c)
+
+09. 
+a) (~r v ~f) -> (s ^ d)
+b) s-> t
+c) ~t
+d) 
+(~r v ~f) -> (s ^ d)
+        s -> t
+        ~t
+     .:.r ^ f
+
+10. Valid
+~t so ~s : M.P.
+(s^d) to s : Simplification
+~s so ~(~r v ~f) : M.P.
+r ^ f : DeMorgan's 
+
+11. Valid
+1)AxP(x)->Q(x)
+2)~Q(Mia)
+.:.~P(Mia)
+~P(Mia) Modus Tollens(1,2)
+
+12.
+1) AxP(x)->Q(x)
+2) ~P(Pooh)
+.:. ~Q(Pooh)
+Invalid, Denying the Antecedent
+
+13.
+1) AxM(x)->L(x)
+2) L(Lion King)
+.:.M(Lion King)
+Invalid, Affirming the consequent
+
+14.
+For existential instantiation, x != x
+
+15. Invalid, 
+A] 1) ~t -> ~f
+   .:. t -> f
+
+B] Invalid, equivocation of the converse
+
+AxAr(~T(x,r)->~F(x,r))

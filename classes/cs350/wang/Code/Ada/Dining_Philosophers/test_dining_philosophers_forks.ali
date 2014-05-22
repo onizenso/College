@@ -1,0 +1,74 @@
+V "GNAT Lib v4.3"
+P SS ZX
+R vnnnnnnnnnnnnnnvnnvnnnnvnnvnnnnnvnnnvnnvnnnnnnnnnnnnnnnnvnnnv8nnnnnnnnnv1+nn
+
+U test_dining_philosophers_forks%s  test_dining_philosophers_forks.ads  ed1a4b2b EE PK
+W ada%s			ada.ads			ada.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.finalization%s	a-finali.adb		a-finali.ali
+W ada.tags%s		a-tags.adb		a-tags.ali
+W ada.task_identification%s  a-taside.adb	a-taside.ali
+W interfaces%s		interfac.ads		interfac.ali
+W synchronization%s	synchronization.ads	synchronization.ali
+W synchronization.generic_mutexes_array%s  synchronization-generic_mutexes_array.adb  synchronization-generic_mutexes_array.ali  AD
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.storage_elements%s  s-stoele.adb	s-stoele.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.protected_objects%s  s-taprob.adb  s-taprob.ali
+W system.tasking.protected_objects.entries%s  s-tpoben.adb  s-tpoben.ali
+W system.tasking.protected_objects.operations%s  s-tpobop.adb  s-tpobop.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-taside.ads		20061031174905 ed6367a8
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-c.ads		20070406091342 bc3ef662
+D synchronization.ads	20090117012641 2ce7d859
+D synchronization-generic_mutexes_array.ads  20090119213808 d1251663
+D synchronization-generic_mutexes_array.adb  20090117012641 d3d90228
+D system.ads		20090104120524 28071540
+D s-atacco.ads		20061031181603 60789a20
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-osinte.ads		20071213101844 d8d17ef4
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stausa.ads		20071213103435 653209dc
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-tasinf.ads		20071213101844 268f0cd4
+D s-taspri.ads		20050905074606 5ce832d1
+D s-taskin.ads		20070814085009 07168b8a
+D s-taprob.ads		20061031181144 5e00115c
+D s-tpoben.ads		20070606101344 af64fa42
+D s-tpobop.ads		20070814085009 ccd38b83
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D test_dining_philosophers_forks.ads  20090117013643 3c3f5d48
+X 11 synchronization.ads
+31K9*Synchronization 35e20 37|1r6 6r11
+X 12 synchronization-generic_mutexes_array.ads
+43k25*Generic_Mutexes_Array 264e42 37|1w22 6r27
+X 37 test_dining_philosophers_forks.ads
+3K9*Test_Dining_Philosophers_Forks 7l5 7e35
+4E9*Philosopher 4e64 6r50
+4n25*Aristotle{4E9}
+4n36*Kant{4E9}
+4n42*Spinoza{4E9}
+4n51*Marx{4E9}
+4n57*Russel{4E9}
+5K12*Forks[12|43]
+

@@ -1,0 +1,6 @@
+8 out of 10
+
+why did you not put logging in the overloaded = operator?
+
+
+

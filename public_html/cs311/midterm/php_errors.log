@@ -1,0 +1,2 @@
+[09-Feb-2014 20:28:24 UTC] PHP Warning:  fread(): Length parameter must be greater than 0 in /home/stu/nramsey/public_html/cs311/midterm/grade.php on line 54
+[09-Feb-2014 20:29:49 UTC] PHP Warning:  fread(): Length parameter must be greater than 0 in /home/stu/nramsey/public_html/cs311/midterm/grade.php on line 54

@@ -1,0 +1,43 @@
+1. The stack frame stores the instructions and data associated with a function
+
+2. The runtime stack allows for recursive function calls and overwriting registers without needing to worry about losing the previous values, as long as the values were stored in the stack frame. Data stored in data segments is static data.
+
+3. $sp - stack pointer
+   $fp - frame pointer
+   $ra - return address
+
+4. lw $v0, 0($fp) - loads the address at the zero offset from the frame pointer
+
+5. The size of the current stack frame is the difference between the frame pointer and the stack pointer. $fp - $sp
+
+6. Caller saved registers preserve the values of registers in the calling context. The called function is now free to use those registers without clobbering the data from the calling function.
+
+7. jal a_label - jump to the address represented by a_label and set the $ra to $pc
+
+8. The callee must set up the stack frame by subtracting 32 bytes from the current stack frame. Next, the frame pointer and return address are stored on the stack. 
+
+9. The callee must return the caller's return address and frame pointer, and then  pop the stack by substracting the space allocated for the stack pointer from the current value of the stack pointer.
+
+10. Caller saved registers preserve the value of the registers in the calling function. Callee saved registers save the value of the registers in the called function. Caller saved registers are used when it the called function will need to overwrite the values in those registers. Callee saved registers are persistent across function calls, similar to passing by reference/pointer in higher level languages.
+
+11. No, as long as the programming language has the ability to make room for instructions and data used in the program, there should be no need for a runtime stack.
+
+12. The stack grows downward in memory from the largest addressable memory. By subtracting 32 from main, 32-bytes of memory are freed for stack frame storage. Adding 28 to the base offset of the stack pointer allows the 4 bytes neccessary for frame pointer storage.
+
+13. 
+(spim) p $sp
+Reg 29 = 0x7ffff788 (2147481480)
+...
+[0x004001b4]	0x23bdffe0  addi $29, $29, -32; 84: addi  $sp, $sp, -32
+(spim) p $sp
+Reg 29 = 0x7ffff768 (2147481448) 
+
+14. Because fact is a recursive function it is important to save the original value of the argument sent to fact.
+
+15. L2 continues to calculate the next number in the factorial sequence, while L1 is function called when the stopping condition of n=0 has been reached.
+
+16. Moving n-1 into $a0 sends this as the next argument into fact function
+
+17. The values of x, y, and z will need to be stored into the stack frame. The values of x-1, y-1, and z-1 will become the new values of x, y, and z in the called procedure. The return value will also need to be stored.
+
+18. Tak does not need to store the value of the frame pointer because its frame size does not change. The fact program does not need its frame pointer for the same reason. Rewriting fact without a frame pointer only requires changing the offsets from $fp to offsets from $sp.

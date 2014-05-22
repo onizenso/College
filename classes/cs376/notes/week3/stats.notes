@@ -1,0 +1,15 @@
+Statistics
+  Bernoulli Trial: 
+    test with a binary outcome
+    p = prob of success
+    q = prob of failure, q = 1 - p
+    n = number of trials
+
+Binomial Distribution
+  a series of n bernoulli trials w/ k success
+  P(k|n) = (n choose k) * p^k * (1-p)^(n-k)
+  (n choose k) = n! / [ k! * (n - k)! ]
+
+  Expected number of successes E(x)
+    E(x) = p * n
+    E(x) = floor(10 * 0.95) = 9 

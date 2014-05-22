@@ -1,0 +1,56 @@
+Nik Ramsey
+CMPS 321
+Winter 2013
+
+1.
+	Machine 1:
+		Class A CPI: 1cyc/10inst = 0.10 CPI
+		Class B CPI: 3cyc/6inst  = 0.50 CPI
+		Class C CPI: 5cyc/3inst  = 1.66 CPI
+		Class D CPI: 5cyc/2inst  = 2.40 CPI
+
+Average CPI: (0.10 + 0.50 + 1.66 + 2.40)/4.00 = 1.15 CPI
+
+	Machine 2:
+		Class A CPI: 2cyc/10inst = 0.20 CPI
+		Class B CPI: 2cyc/6inst  = 0.33 CPI
+		Class C CPI: 4cyc/3inst  = 1.33 CPI
+		Class D CPI: 6cyc/2inst  = 3.00 CPI
+
+Average CPI: (0.20 + 0.33 + 1.33 + 3.00)/4.00 = 1.20 CPI
+
+Machine 1 is 0.05 CPI better on average than Machine 2, given that Machine 2 does not have a faster clock cycle than Machine 1.
+
+2.
+	Sun Ultra 40 M2:
+		Hardware:
+			Processor: AMD Opteron 2222 SE
+				4 cores (2 chips, 2 cores/chip)
+			CPU MHz: 3000MHz 
+			L1 Cache: 64KB I + 64KB D on chip/core; L2 Cache: 1MB on chip/core; L3 Cache: none. 
+			Memory:	32 GB (8x4GB, DDR2-667 CL5 ECC Registered SDRAM)
+			Disk Subsystem:	SATA, 160 GB, 7200 RPM
+
+	IBM System X 3455:
+		Hardware:
+			Processor: AMD Opteron 2222 SE
+				4 cores (2 chips, 2 cores/chip)
+			CPU MHz: 3000MHz 
+			L1 Cache: 64KB I + 64KB D on chip/core; L2 Cache: 1MB on chip/core; L3 Cache: none. 
+			Memory:	16 GB (8 x 2GB DDR2-5300 ECC)
+			Disk Subsystem:	1 x 80 GB SATA, 7200 RPM
+
+	Comparison:
+		Base: 
+			The Sun Ultra has a higher ratio for each individual test, but took less time to complete the tests. 
+			This may be due to the AMD Opteron being able to process INT operations faster through its data-path 
+			than the Sun machine, but I am not exactly sure. The systems seem nearly identical, and the Sun actually 
+			looks like it should have performed better than IBM (higher memory and hard-drve space). Perhaps the size of
+			hard drive slowed down its ability to process quickly?
+		Peak:
+			The same is true in the Peak cases, the Sun machine ran the tests in less time, but had a higher ratio. Unless the higher
+			ratio indicates some higher level of processing capability instead of a higher CPI, the IBM machine appears to be performing
+			better than the Sun machine. There is very little description on the Results page for what the Ratio indicates, but 
+			intuitively it would seem that the above interpretation would hold true. Please let me know if I am incorrect in this
+			assumption.
+ 				

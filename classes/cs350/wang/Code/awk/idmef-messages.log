@@ -1,0 +1,715 @@
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1707">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94841c3.0xea8d64d7">2007-01-05T03:17:23Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94841c4.0x6ed67770">2007-01-05T03:17:24Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>66.160.201.71</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>2460</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.101.11</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>49153</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL probe response overflow attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2329</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2329</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="url">
+        <name>www.microsoft.com/technet/security/bulletin/MS04-003.mspx</name>
+        <url>http://www.microsoft.com/technet/security/bulletin/MS04-003.mspx</url>
+      </Reference>
+      <Reference origin="cve">
+        <name>2003-0903</name>
+        <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=2003-0903</url>
+      </Reference>
+      <Reference origin="bugtraqid">
+        <name>9407</name>
+        <url>http://www.securityfocus.com/bid/9407</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="low" type="user" completion="failed">Attempted User Privilege Gain</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">6</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1708">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc9484288.0x878f57f7">2007-01-05T03:20:40Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc9484288.0xc4e94ee3">2007-01-05T03:20:40Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>66.160.201.71</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>2460</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.101.11</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>49153</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL probe response overflow attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2329</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2329</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="url">
+        <name>www.microsoft.com/technet/security/bulletin/MS04-003.mspx</name>
+        <url>http://www.microsoft.com/technet/security/bulletin/MS04-003.mspx</url>
+      </Reference>
+      <Reference origin="cve">
+        <name>2003-0903</name>
+        <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=2003-0903</url>
+      </Reference>
+      <Reference origin="bugtraqid">
+        <name>9407</name>
+        <url>http://www.securityfocus.com/bid/9407</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="low" type="user" completion="failed">Attempted User Privilege Gain</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">6</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1709">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948447c.0xdf4a98aa">2007-01-05T03:29:00Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948447d.0x3b31b152">2007-01-05T03:29:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+     <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>35467</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>1434</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL ping attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2049</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2049</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="nessus">
+        <name>10674</name>
+        <url>http://cgi.nessus.org/plugins/dump.php3?id=10674</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="info" type="other">Misc activity</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">4</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1710">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948447c.0xe1081c2e">2007-01-05T03:29:00Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948447d.0x3cd3ae68">2007-01-05T03:29:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.112</address>
+        </Address>
+      </Node>
+    </Source>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.112</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>25,80,1433,3306</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) TCP Portscan">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) TCP Portscan</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) TCP Portscan</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1711">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948447c.0xe1081c2e">2007-01-05T03:29:00Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948447d.0x3d8e8640">2007-01-05T03:29:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>25</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1712">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948447c.0xe1081c2e">2007-01-05T03:29:00Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948447d.0x3e1c25d0">2007-01-05T03:29:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>80</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1713">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94846c1.0xe880e8c8">2007-01-05T03:38:41Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94846c2.0x64d79d0a">2007-01-05T03:38:42Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>66.160.201.71</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>2460</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.101.11</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>49153</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL probe response overflow attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2329</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2329</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="url">
+        <name>www.microsoft.com/technet/security/bulletin/MS04-003.mspx</name>
+        <url>http://www.microsoft.com/technet/security/bulletin/MS04-003.mspx</url>
+      </Reference>
+      <Reference origin="cve">
+        <name>2003-0903</name>
+        <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=2003-0903</url>
+      </Reference>
+      <Reference origin="bugtraqid">
+        <name>9407</name>
+        <url>http://www.securityfocus.com/bid/9407</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="low" type="user" completion="failed">Attempted User Privilege Gain</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">6</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1714">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94847c5.0x57aa044a">2007-01-05T03:43:01Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94847c5.0x78bd4499">2007-01-05T03:43:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>35471</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>1434</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL ping attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2049</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2049</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="nessus">
+        <name>10674</name>
+        <url>http://cgi.nessus.org/plugins/dump.php3?id=10674</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="info" type="other">Misc activity</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">4</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1715">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94847c5.0x5a4c1ebc">2007-01-05T03:43:01Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94847c5.0x79c3ac92">2007-01-05T03:43:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>80,1433,3306</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) TCP Portscan">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) TCP Portscan</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) TCP Portscan</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1716">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94847c5.0x5a4c1ebc">2007-01-05T03:43:01Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94847c5.0x7a6d7a56">2007-01-05T03:43:01Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>80</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1717">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc94847c5.0x5a4c1ebc">2007-01-05T03:43:01Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc94847fc.0x16ece13f">2007-01-05T03:43:56Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.112</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>25</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1718">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948482a.0xc5b64e05">2007-01-05T03:44:42Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948482b.0x155bff04">2007-01-05T03:44:43Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>35473</port>
+      </Service>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4" iana_protocol_number="17" iana_protocol_name="udp">
+        <name>udp</name>
+        <port>1434</port>
+      </Service>
+    </Target>
+    <Classification text="MS-SQL ping attempt">
+      <Reference origin="vendor-specific" meaning="sid">
+        <name>2049</name>
+        <url>http://www.snort.org/snort-db/sid.html?sid=2049</url>
+      </Reference>
+      <Reference origin="vendor-specific" meaning="nessus">
+        <name>10674</name>
+        <url>http://cgi.nessus.org/plugins/dump.php3?id=10674</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact severity="info" type="other">Misc activity</Impact>
+    </Assessment>
+    <AdditionalData type="integer" meaning="sig_rev">4</AdditionalData>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1719">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948482a.0xc855b899">2007-01-05T03:44:42Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948482b.0x165ebb77">2007-01-05T03:44:43Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>80,1433,3306</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) TCP Portscan">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) TCP Portscan</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) TCP Portscan</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1720">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948482a.0xc855b899">2007-01-05T03:44:42Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc948482b.0x171832fc">2007-01-05T03:44:43Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.144</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>80</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1721">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948482a.0xc855b899">2007-01-05T03:44:42Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc9484857.0x523cd9a5">2007-01-05T03:45:27Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.112</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>21</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>
+<?xml version="1.0"?>
+<!DOCTYPE IDMEF-Message PUBLIC "-//IETF//DTD RFC XXXX IDMEF v1.0//EN" "/usr/local/share/idmef-message.dtd">
+<IDMEF-Message version="1.0">
+  <Alert messageid="1722">
+    <Analyzer analyzerid="IDS1" manufacturer="Snort IDMEF Plugin, (c) Joe McAlerney, Sandro Poppi" class="IDS/IPS" model="snort" version="2.4.5">
+      <Node category="unknown">
+        <name>sumatra.cs.csubak.edu</name>
+      </Node>
+    </Analyzer>
+    <CreateTime ntpstamp="0xc948482a.0xc855b899">2007-01-05T03:44:42Z</CreateTime>
+    <AnalyzerTime ntpstamp="0xc9484858.0x5224edf6">2007-01-05T03:45:28Z</AnalyzerTime>
+    <Source>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.112</address>
+        </Address>
+      </Node>
+    </Source>
+    <Target>
+      <Node category="unknown">
+        <Address category="ipv4-addr">
+          <address>136.168.201.111</address>
+        </Address>
+      </Node>
+      <Service ip_version="4">
+        <portlist>1040</portlist>
+      </Service>
+    </Target>
+    <Classification text="(portscan) Open Port">
+      <Reference origin="vendor-specific" meaning="sfportscan">
+        <name>(portscan) Open Port</name>
+        <url>http://webopedia.internet.com/TERM/p/port_scanning.html</url>
+      </Reference>
+    </Classification>
+    <Assessment>
+      <Impact type="recon" severity="low">(portscan) Open Port</Impact>
+    </Assessment>
+  </Alert>
+</IDMEF-Message>

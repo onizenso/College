@@ -1,0 +1,67 @@
+<html>
+<body>
+<h3>CMPS 350 Lab "Introduction to Perl"</h3>
+<p>
+<font color=red>Due: before next lab </font>
+<p>
+<h3>PERL</h3>
+"The three principal virtues of a programmer are Laziness, Impatience,
+       and Hubris."  -- Larry Wall (Perl designer)
+<p>
+From the preface to <u>Programming Perl</u>:
+ "Perl is a language for getting your job done." <p>
+<table bgcolor=silver><tr><td>
+<b>resources:</b><br> 
+<a href="http://docstore.mik.ua/orelly/perl/prog3/ch20_01.htm">Perl debugger</a><br>
+<a href="http://perldoc.perl.org/perl.html#Reference-Manual">perl ref</a><br>
+<a href="./Manpages/perlrequick.txt">man perlrequick</a> (basic REs)<br>
+<a href="./Code/Perl">Perl Code</a><br>
+</td> </tr> </table>
+<p>
+Read the <a href="./Code/Perl/readme.txt">Perl readme</a> to learn how to
+ run a Perl script.
+Refer to this <a href="http://perldoc.perl.org/perlintro.html">basic
+ introduction</a> to Perl while doing this lab. Ignore information on 
+ regular expressions, OO, and Perl modules. Refer to the first few
+ pages of this 
+ <a href="http://perldoc.perl.org/perldata.html">Perl data</a> reference
+ for help on Perl's three built-in data types: scalars, arrays and
+ associative arrays (hashes).
+ Both sets of documentation can be accessed from the command line with:
+<p>
+<pre class=verbatim>
+  man perlintro 
+  man perldata
+</pre>
+Everything you need to know to complete this lab is in <a href="./Code/Perl/test.pl">test.pl</a> and <a href="./Code/Perl/spell_check.pl">spell_check.pl</a>.
+ Copy these files into your working directory:<pre>
+      $ cp  /home/fac/donna/public_html/cs350/Code/Perl/spell_check.pl .
+      $ cp  /home/fac/donna/public_html/cs350/Code/Perl/test.pl .
+</pre>
+<p>
+<b> Some things to look out for. </b>
+  If Perl sees a number when it expects a string, it implicitly converts
+    the number into a string; e.g. 25 becomes "25". If Perl sees a string when
+    it expects a number, it implicitly converts the string into an arbitrary
+    number; e.g. "hello" becomes 0.
+</p>
+<p> 
+ Your job is to  write a Perl script to do the following: 
+<ol>
+<li> Read <a href="./data">this list</a> of NYSE symbols from an external file
+ Copy the file into your working directory (do not copy and paste): 
+  <pre> cp /home/fac/donna/public_html/cs350/data . </pre>
+<li> No need to do error checking on read - assume file format is OK
+<li> Parse the command line arguments for required -f filename;
+if missing - abort with this error: Usage:  lab05.pl -f &lt;filename>
+<li> Create an associative array (hash) to hold the data from the file
+<li> Open input file and read elements into the hash table (don't forget to close it)
+<li> Display the entire hash on the screen
+<li> Prompt the user for a symbol
+<li> Convert the symbol to uppercase (in case the user types in lower case)
+<li> Display the value of the key if found in the hash otherwise "NOT FOUND"
+</pre>
+
+</pre>
+</body>
+</html>

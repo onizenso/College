@@ -1,0 +1,24 @@
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 35;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>

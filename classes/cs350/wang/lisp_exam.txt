@@ -1,0 +1,36 @@
+
+                       CMPS 350 EXAM 1 - WTR 2011
+
+
+************
+PART I. 50 %
+************
+
+Questions taken, slightly reworded or reframed to cover the same concept, from  
+Homeworks 1 - 5. Closed book and scantran. 55 questions (5 extra credit). You 
+can come in anytime during the week to take this portion of the exam in order
+to devote all lab time to coding. 
+
+*************
+PART II. 50 %
+*************
+
+This portion is open book and open computer. You will be asked to code one 
+or more programs in your choice of two languages: Lisp, Ada, Prolog or Perl.
+The level of difficulty is geared to students who have taken 3 quarters of
+programming and similar to the lab problems. I assume you have completed the 
+labs. If you think you might need more than 2.5 hours, see me in advance to 
+arrange starting the exam earlier or staying later (up to 2 hours).
+
+Create a subdirectory for this exam on sleipnir and copy these files into it:
+
+       cp /home/fac/donna/public_html/cs350/exam1_files/* .
+
+Pick any two of the coding problems.
+
+Or you can use wget or http to grap the stuff here: 
+
+         http://www.cs.csubak.edu/exam1_files
+
+
+

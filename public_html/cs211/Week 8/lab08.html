@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
+  <head>
+    <title>Friendly Game of Rock, Paper, Scissors</title>
+	
+	<STYLE type='text/css'>
+div.result { background-color: #A0D0E0; width: 30px; outline: 1px solid black;
+             position: relative; left: 120px; top: -35px; }
+div.score { position: relative; left 300px; }
+</STYLE>
+
+<script type='text/javascript' src='lib.js'>  
+</script>
+ 
+<script type='text/javascript'>	
+
+function rand123() {
+      // random returns random value between 0 and < 1
+      var result = Math.floor( Math.random() * 3 + 1);  // result is 1, 2 or 3
+      return result;
+    }
+
+
+var humWin = 0;
+var compWin = 0;
+var humLose = 0;
+var compLose = 0;
+var tie = 0;
+</script>
+
+</head>
+<body>
+	<script type='text/javascript'>
+		output("Rock Paper Scissors", "h1");
+	</script>
+<div>
+<p><h1>Human Player</h1></p>	
+<img src='rps.png' alt='boulder' height='100px' width='100px' name='rps' style='visibility:hidden;'/>
+</div>
+<div id='human'>
+<!--1 is rock, 2 is scissors, 3 is paper -->
+<input type="button"  value="rock" 
+              onClick='show(rps);
+			  show(crps);
+			  changeImg(rps, "boulder.jpg");
+			  var num = rand123();
+			  if (num==1)
+			  {
+				changeImg (crps, "boulder.jpg");
+				tie++;
+				changeTxt ("tie", tie);
+			  }
+			  else if (num==2)
+			  {
+				changeImg (crps, "scissors.jpg");
+				humWin++;
+				changeTxt ("humWin", humWin);
+				compLose++;
+				changeTxt ("compLose", compLose);
+				}
+			
+				else if (num==3)
+				{
+				 changeImg (crps, "paper.jpg");
+				 compWin++;
+				 changeTxt ("compWin", compWin);
+				 humLose++;
+				 changeTxt ("humLose", humLose);
+				 }'
+                    />				  
+			
+<input type="button" value="paper"
+			onClick='show(rps);
+			show(crps);
+			changeImg(rps, "paper.jpg");
+			var num = rand123();
+			  if (num==3)
+			  {
+				changeImg (crps, "paper.jpg");
+				tie++;
+				changeTxt ("tie", tie);
+			  }
+			  else if (num==1)
+			  {
+				changeImg (crps, "boulder.jpg");
+				humWin++;
+				changeTxt ("humWin", humWin);
+				compLose++;
+				changeTxt ("compLose", compLose);
+				}
+			
+				else if (num==2)
+				{
+				 changeImg (crps, "scissors.jpg");
+				 compWin++;
+				 changeTxt ("compWin", compWin);
+				 humLose++;
+				 changeTxt ("humLose", humLose);
+				 }'
+					/>
+					
+<input type="button" value="scissors"
+			onClick='show(rps);
+			show(crps);
+			changeImg(rps, "scissors.jpg");
+			var num = rand123();
+			  if (num==2)
+			  {
+				changeImg (crps, "scissors.jpg");
+				tie++;
+				changeTxt ("tie", tie);
+			  }
+			  else if (num==3)
+			  {
+				changeImg (crps, "paper.jpg");
+				humWin++;
+				changeTxt ("humWin", humWin);
+				compLose++;
+				changeTxt ("compLose", compLose);
+				}
+			
+				else if (num==1)
+				{
+				 changeImg (crps, "boulder.jpg");
+				 compWin++;
+				 changeTxt ("compWin", compWin);
+				 humLose++;
+				 changeTxt ("humLose", humLose);
+				 }'
+					/>
+					
+<input type="button" value="clear"
+			onClick='hide(rps);
+					hide(crps);
+					tie=0;
+					changeTxt("tie", tie);
+					humWin=0;
+					changeTxt("humWin", humWin);
+					compWin=0;
+					changeTxt("compWin", compWin);'
+					/>
+			
+<div class='score'> 
+ <p>Human Wins: 
+ <div class='result' id='humWin'>
+  0 
+  </div>
+  </p>
+  <p>Computer Wins: 
+ <div class='result' id='compWin'>
+
+   0
+  </div>
+  </p>
+  <p>Tie: 
+ <div class='result' id='tie'>
+
+   0
+  </div>
+  </p>
+  </div>
+  </div>
+<hr>
+<div id='comp'>
+<p><h1>Computer Player</h1><p>
+<img src='rps.png' alt='boulder' height='100px' width='100px' name='crps' style='visibility:hidden;'/>
+<div>
+
+  
+</body>
+</html>   

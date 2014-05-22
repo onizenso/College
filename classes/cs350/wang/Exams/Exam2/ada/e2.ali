@@ -1,0 +1,129 @@
+V "GNAT Lib v4.1"
+M P W=b
+P SS ZX
+R nnnnnnnnnnnnnnvnvnvvvnvnnnvnnnnnnnnnvvnnnvnvvvnnnnnnvvnnnnnnv3nv2nv1+nnnnnn
+
+U e2%b			e2.adb			31bcb271 NE SU IL
+W ada%s			ada.ads			ada.ali
+W ada.calendar%s	a-calend.adb		a-calend.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.discrete_random%s
+W interfaces%s		interfac.ads		interfac.ali
+W system%s		system.ads		system.ali
+W system.arith_64%s	s-arit64.adb		s-arit64.ali
+W system.img_int%s	s-imgint.adb		s-imgint.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.string_ops_concat_5%s  s-sopco5.adb	s-sopco5.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.rendezvous%s  s-tasren.adb	s-tasren.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+W system.val_int%s	s-valint.adb		s-valint.ali
+W text_io%s		text_io.ads		text_io.ali
+
+D ada.ads		20050905075125 9c7dd3ea
+D a-calend.ads		20051115140645 979f5d2f
+D a-except.ads		20051115140645 64bf35a8
+D a-finali.ads		20051115140645 2f48e141
+D a-filico.ads		20051115140645 9299732a
+D a-inteio.ads		20050616082628 03bc737c
+D a-ioexce.ads		20050905075125 be0900a0
+D a-numeri.ads		20050905075125 1cf3e608
+D a-nudira.ads		20051115140645 8ccc9cf3
+D a-nudira.adb		20051115140645 cb202240
+D a-stream.ads		20051115140645 246b88a6
+D a-tags.ads		20051115135436 a574b7d1
+D a-tags.adb		20051115135436 eb2a3d20
+D a-textio.ads		20051115140645 bc58c967
+D a-tiinio.ads		20050701012917 75fbf922
+D e2.adb		20100309212826 14b4cdc1
+D interfac.ads		20051115140009 a69cad5c
+D i-c.ads		20050905075125 a00183cf
+D i-cstrea.ads		20050905080700 85085d90
+D system.ads		20051115140645 f14ecda8
+D s-arit64.ads		20050905075125 ded5f422
+D s-crtl.ads		20050905075125 44c0e2c2
+D s-exctab.ads		20050905075125 e14b1567
+D s-ficobl.ads		20050701012917 ed792749
+D s-finimp.ads		20050905075125 33c39bf7
+D s-finroo.ads		20051115140434 78d634f7
+D s-htable.ads		20050905075125 9598cfa4
+D s-imgint.ads		20050905075125 8222338e
+D s-osinte.ads		20050701012917 509ba1b0
+D s-parame.ads		20050905075125 6bd7b874
+D s-secsta.ads		20051115140645 db466d0c
+D s-soflin.ads		20050905074606 bb3ef1e4
+D s-stache.ads		20050905074606 07e06d0a
+D s-stalib.ads		20050905074606 99eda53f
+D s-stoele.ads		20050905075125 f7e9ab3e
+D s-stoele.adb		20051115140445 a397f9ca
+D s-stratt.ads		20051115140434 9823065b
+D s-strops.ads		20050905075125 92e79914
+D s-sopco3.ads		20050905075125 14cc5bf6
+D s-sopco4.ads		20050905075125 dca7f27b
+D s-sopco5.ads		20050905075125 63c5ad18
+D s-tasinf.ads		20050905074606 0891d67c
+D s-taspri.ads		20050905074606 5ce832d1
+D s-taskin.ads		20050905074606 a291889d
+D s-taprob.ads		20050701012917 5cb38f61
+D s-tpoben.ads		20050701012917 4c2c41a9
+D s-tasren.ads		20050701012917 02b02214
+D s-tassta.ads		20050701012917 2435ba65
+D s-traent.ads		20050905074606 9950c76b
+D s-unstyp.ads		20050905075125 b399198a
+D s-valint.ads		20051115140645 70811f54
+D text_io.ads		20050616082628 aa78903f
+D unchconv.ads		20030424175420 34860a55
+X 1 ada.ads
+16K9*Ada 19e8 16|10r6 10r31 12r6 27r29
+X 6 a-inteio.ads
+18K13*Integer_Text_IO[15|47] 16|10w10 10r35
+X 8 a-numeri.ads
+16K13*Numerics 32e17 16|12r10 27r33
+X 9 a-nudira.ads
+52k22*Discrete_Random 116e33 16|12w19 27r42
+65R9 Generator 16|29r6[27]
+67V13 Random{integer} 16|111r17[27]
+69U14 Reset 16|107r3[27]
+X 14 a-textio.ads
+167U14*New_Line 16|136r3
+243U14*Put 16|65r18 76r17
+264U14*Put_Line 16|51r5 66r18 77r17 134r3 135r3
+X 16 e2.adb
+14U11*e2 14b11 138l5 138t7
+17A11 Dog_name{string} 43r34 60r64
+18A8 RandomNames(string) 96r14
+20A8 Names(string) 42r60 44r40 60r48 75r47 95r12
+21I11 names_index{integer}
+22I11 My_index{integer} 97r7
+26I11 myint{integer} 27r59
+27K11 Random_Int[9|52] 28r7
+29r3 G{9|65R9[27]} 107r9 111r24
+30I11 binary_type{integer} 32r14
+31i3 my_rand{integer} 111m6 112r19 120r59
+32i3 my_binary{30I11} 112m6 116r11
+35b3 ok2dropoff{boolean} 57r16 68m21 119r16
+36b3 ok2pickup{boolean} 64m18 74r16 80m20 124r17
+37i3 MAX_DOG_CNT{integer} 67r31
+38i3 dog_cnt{integer} 62m18 62r29 63r26 66r35 67r21 77r34 78m17 78r28 79r20
+41T13 Kennel 46l7 46e13 48b13 92l7 92t13 94r12
+42Y12 dropoffDog 59b21 70l18 70t28 120r23
+42b24 flag{boolean}
+42a43 dogList{20A8} 63m18 66m27
+43a24 name{17A11} 63r38
+44Y12 pickupDog 75b21 82l18 82t27 126r24
+44a24 dogList{20A8} 77m26
+59b32 flag{boolean}
+60a32 dogList{20A8}
+60a55 name{17A11}
+75a31 dogList{20A8}
+94t3 petsRus{41T13} 120r15 126r16
+95a3 dogList{20A8} 120m40 126m35
+96a3 someNames{18A8} 101m3 102m3 103m3 104m3 105m3 120r49
+97i3 i{22I11}
+109i7 x{integer}
+X 52 text_io.ads
+19K9*Text_IO=19:29 16|11w6 11r19
+

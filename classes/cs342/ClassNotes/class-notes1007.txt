@@ -1,0 +1,35 @@
+Data specifications - handed down from the Data Analyzers and Database Administrators to the programmer to implement the database
+
+Server side developer creates database, 
+
+Front-end developer builds the user interface for the server-side programs and data
+
+Middle-tier workers are invovled in large and complex organizations. Serves as an intermediary between server-side programmers and front-end developers.
+
+How to convert ER entity type into Relation
+  Divide the entity into a structure, flatten all composite attributes
+  
+  Multiple value attributes must split into a separate relation, 
+    include the primary key from the initial relation
+    use the primary key from new relation as foreign key in original relation
+
+  Convert relationship into relation
+    Directly build relation from a relationship
+      relation contains primary key from the entities, relationship attributes
+      
+    If one-to-one relationship: 
+      1. use one of the entity's primary keys as a foreign key in the other entity
+      2. merge the two entities together if the relationship has total participation on both sides
+      3. set up a third relation that contains the primary keys of the entities
+
+    If one-to-many relationship:
+      use the primary key from the entity on the one side of the relationship
+        as a foreign key in the entities on the many side of the relationship
+    
+
+    For weak entities, add an artificial primary key to impart uniqueness
+  
+Include alternate possibilities and why one alternative was chosen over the others
+Unions that include entities with duplicate primary keys, can append an identifying substring to identify the type
+
+Re-read chapter nine and read chapter six

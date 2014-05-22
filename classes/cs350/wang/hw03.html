@@ -1,0 +1,595 @@
+<html>
+<head>
+<STYLE type=text/css>
+DIV {
+  font-family: helvetica;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #FF0000;
+  background-color: "yellow";
+  padding-right: 20px;
+}
+
+BODY {
+  margin: 2% 15% 5% 5%;
+  font-family: helvetica;
+  background-color: #DDEEEE;
+  color: #19193A;
+  font-size: 10pt;
+}
+</STYLE>
+
+
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 26;
+function CalculateScore() {
+   var right = 0; var wrong = 0;var err_flag = 0; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if (j == 4 ) break;
+           var myvalue = parseInt(document.quizform.elements[index].value);
+           var ischecked = document.quizform.elements[index].checked;
+           if ( (ischecked && myvalue != 1) || (!ischecked && myvalue == 1) ) {
+              err_flag = 1;
+              question = i + 1;
+              err_str = err_str + question + ",";
+              wrong++;
+              break;
+           }
+       }
+       if ( !err_flag ) right++;
+       err_flag = 0;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+</head>
+<body>
+<h3>CMPS 350 HW 03: Formal Grammars, Ch 3.1 - 3.3 </h3>
+<font color=red>DUE: next monday before lecture </font>
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre class=verbatim>
+01. Which of the following Java constructs is a lexeme?
+    A. mult_op       B. identifier          C. while      D. int_literal </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="1"> D<input type="radio" name="Q1" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The while keyword is the only lexeme; everything else is a tokens, which  are classifications of lexemes.'; } ">
+
+<DIV id="Q1Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>	
+02. Pick the Java construct that is not a lexeme.
+    A. ++     B. literal       C. ;         D. for </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="1"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="0">  
+	
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A lexeme is a terminal in the lanague.'; } ">
+
+<DIV id="Q2Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>	
+03. Programming languages are defined by what type of generative grammar?
+    A. context-sensitive    B. context-free    C. regular   D. unrestricted</pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="1"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A few aspects of a programming language (such as typing) are context sensitive.'; } ">
+
+<DIV id="Q3Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip">
+ BNF Grammar 1:
+   &lt;expr> ::= &lt;expr> + &lt;term> | &lt;term> - &lt;term>
+   &lt;term> ::= &lt;var> | const
+   &lt;var>  ::= a | b | c | d
+
+</div>
+
+04. The rule &lt;expr> ::= &lt;expr> + &lt;term> from Grammar 1 makes addition 
+    A. left associative.        B. right associative. </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q4" value="1"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Consider the parse tree for 5 + 3 + 1. In a left associative grammar, 5+3 occurs first. Some ways to remember this: 3 has a choice - it can associate with the + on its left or with the + on its right. Left associativity means that 3 associates left and thus operations of equal precedence are performed left to right. Associativity is controlled by whether the rule is left or right recursive.'; } ">
+
+<DIV id="Q4Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+05. The following is a valid expression in Grammar 1. 
+        a + b - c
+    A. true     B. false </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="1"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try to derive the expression. There is no way to get the addition operator to appear before the subtraction operator. '; } ">
+
+<DIV id="Q5Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+06. What is the first sentential form in the derivation of this expression from
+    Grammar 1?
+          a - b + c
+   A. &lt;expr> + &lt;term>    B. &lt;term> - &lt;term>  C. either one is OK</pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Derive the expression to check your answer.'; } ">
+
+<DIV id="Q6Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+07. What is always true regarding the language defined by Grammar 1?
+    A. subtraction will be evaluated before addition
+    B. addition will be evaluated before subtraction
+    C. the order of evaluation of + and - depends on the expression  </pre>
+   
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The hierarchy of operations is controlled by the order in which non-terminals are defined; e.g. is subtraction defined in terms of addition or vice versa?'; } ">
+
+<DIV id="Q7Area" STYLE="background-color: yellow" >
+</DIV><pre>
+08. A context-free grammer is always ambiguous if 
+    A. at least one rule contains the epsilon symbol (the empty list).
+    B. the head non-terminal is repeated twice in the body of the rule.
+    C. parsing a sentence in the grammar results in two distinct parse trees.
+    D. at one derivation step, two production rules can both be applied.</pre> 
+   &nbsp;&nbsp;&nbsp;A<input type="checkbox" name="Q8" value="0"> B<input type="checkbox" name="Q8" value="0"> C<input type="checkbox" name="Q8" value="1"> D<input type="checkbox" name="Q8" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( !document.quizform.Q8[0].checked  
+               && !document.quizform.Q8[1].checked  
+               && document.quizform.Q8[2].checked  
+                && document.quizform.Q8[3].checked  
+              )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: You can repeat the head non-terminal twice in the body and still be unambiguous - you just may need to backtrack. An unambiguous grammar will always produce the same parse tree regardless of the parse.'; } ">
+
+<DIV id="Q8Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+09. Select the true statements regarding the formal model of grammars developed
+    by Chomsky. 
+    A. The set of strings with equal 'a's 'b's and 'c's in order is regular.
+    B. Context-free grammar and BNF grammars are theoretically equivalent.
+    C. A regular grammar is Chomsky's most restrictive form of grammar. 
+    D. Most programming languages are context-free languages. </pre>
+   &nbsp;&nbsp;&nbsp;A<input type="checkbox" name="Q9" value="0"> B<input type="checkbox" name="Q9" value="1"> C<input type="checkbox" name="Q9" value="1"> D<input type="checkbox" name="Q9" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( !document.quizform.Q9[0].checked && 
+               document.quizform.Q9[1].checked && 
+               document.quizform.Q9[2].checked && 
+               document.quizform.Q9[3].checked ) 
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: More restrictive grammars define less sophisticated languages; regular expressions define a regular grammar.'; } ">
+
+<DIV id="Q9Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+10. A statement list in Perl is one or more statements separated by semi-colons
+    and enclosed in curly braces. Which is a correct BNF grammar for a Perl 
+    statement list? (The curly braces and semicolon are terminal symbols.)
+
+    A. &lt;stmt_list> ::= { &lt;stmts> }
+       &lt;stmts> ::=  &lt;stmt> | &lt;stmt>; &lt;stmts>
+
+    B. &lt;stmt_list> ::= { &lt;stmt> } | { &lt;stmt>; &lt;stmt_list> } </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q10" value="1"> B<input type="radio" name="Q10" value="0"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Do not confuse the curly braces, which are symbols in Perl, with the curly braces in EBNF. '; } ">
+
+<DIV id="Q10Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip;">
+  BNF Grammar 2:
+    &lt;assign> -> &lt;id> = &lt;expr>
+    &lt;id> -> A | B | C 
+    &lt;expr> -> &lt;expr> + &lt;term> | &lt;term>
+    &lt;term> -> &lt;term> * &lt;factor>  | &lt;factor>
+    &lt;factor> -> ( &lt;expr> ) | &lt;id>
+
+</div>
+11. In Grammar 2, * has precedence over + . How do you know that?
+    A. Because &lt;term> is defined as &lt;term> * &lt;factor> before it is defined as &lt;id>. 
+    B. Because in the parse tree for 5 + 3 * 4, the * operator is farther from
+       the root than +.
+    C. Both statements are true.</pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="1"> D<input type="radio" name="Q11" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Create the parse tree for 5 + 3 * 4.'; } ">
+
+<DIV id="Q11Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>	
+12. If you swap the + and * operators in Grammar 2, leaving all else the same,
+    + will take precedence over *.
+    A.  true      B.  false </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q12" value="1"> B<input type="radio" name="Q12" value="0"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If you really understand question 11, you will know the answer to this question. Operator hierarchy - not associativity - is controlled by defining an operation in terms of another operation.'; } ">
+
+<DIV id="Q12Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip;">
+  BNF Grammar 3:
+     &lt;assign> -> &lt;id> = &lt;expr>
+       &lt;expr> -> &lt;id> + &lt;expr> | &lt;id> * &lt;expr> | ( &lt;expr> ) | &lt;id>
+         &lt;id> -> A | B | C
+ </div>
+13. The following is a valid statement in the language defined by Grammar 3.
+              A = A * ( B + ( C * A))
+    A. true     B. false</pre>
+                                                    
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q13" value="1"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Create a parse tree or a derivation to verify.'; } ">
+
+<DIV id="Q13Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+14. What is true regarding Grammar 3?  (select C if neither are true)
+    A. * has precedence over +
+    B. + and * are right associative
+    C. neither statement is true </pre>
+
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q14" value="0"> B<input type="radio" name="Q14" value="1"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Derive 5+3*4 and 5+3+2 to get the answer.'; } ">
+
+<DIV id="Q14Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip;">
+ Grammar 4:
+    &lt;assign> -> &lt;id> = &lt;expr>
+    &lt;id> -> A | B | C 
+    &lt;expr> -> &lt;expr> + &lt;term> | &lt;term>
+    &lt;term> -> &lt;term> * &lt;factor>  | &lt;factor>
+    &lt;factor> -> ( &lt;expr> ) | &lt;id>
+
+</div>
+
+15. Using Grammar 4, the partial leftmost derivation shown below is correct. 
+           A = ( A + B) * C
+    &lt;assign> => &lt;id> = &lt;expr>
+             => A  =  &lt;expr>
+             => A = &lt;term>
+             => A = &lt;term> * &lt;factor>
+             => A = &lt;factor> * &lt;factor>
+    A.  true     B. false </pre>
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q15" value="1"> B<input type="radio" name="Q15" value="0"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Derive the statement.'; } ">
+
+<DIV id="Q15Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+16. The parse tree below is correct for this statement following Grammar 4:
+         A = ( A + B) * C
+
+                    &lt;assign> 
+                   /   |   \ 
+                 &lt;id>  =   &lt;expr>
+                  |          |
+                  A       &lt;term>   
+                         /   |  \
+                      &lt;term> * &lt;factor>
+                        |          |
+                     &lt;factor>     &lt;id>
+                        |          |
+                    ( &lt;expr> )     C 
+                     /  |  \       
+                &lt;expr>  + &lt;term>   
+                  |         |
+                &lt;term>    &lt;factor>
+                  |         |
+                &lt;factor>   &lt;id>
+                  |         |
+                 &lt;id>       B
+                  |
+                  A 
+   A. true            B. false</pre>
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q16" value="1"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Create a parse tree.'; } ">
+
+<DIV id="Q16Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>	
+17. The following grammar is ambiguous.
+     &lt;S> -> &lt;A>
+     &lt;A> -> &lt;A> + &lt;A>  | &lt;id>
+     &lt;id> -> a | b | c
+
+   A. true     B. false </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q17" value="1"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a rule defined in terms of itself more than once is most likely ambiguous; the definitive test is if you can construct two parse trees from a + b + c.'; } ">
+
+<DIV id="Q17Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+18. Which string cannot be derived by this grammar?
+
+     &lt;S> -> &lt;A> &lt;B> &lt;C>
+     &lt;A> -> a&lt;A> | a 
+     &lt;B> -> b&lt;B>c | b 
+     &lt;C> -> c&lt;C> | c  
+
+   A. abbbcc    B. abbc</pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="1"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Start deriving the set of strings using the second rule, starting with the smallest to the largest string.'; } ">
+
+<DIV id="Q18Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+19. Consider the grammar:
+   &lt;S> -> &lt;A> a &lt;B> b
+   &lt;A> -> &lt;A> b | b 
+   &lt;B> -> a &lt;B> | a
+
+   Which strings is in the language defined by this grammar?
+   A. bbbab       B. bbaaaaa        C. baab         D. bbaabb    </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="1"> D<input type="radio" name="Q19" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: you can quickly eliminate strings that do not end correctly.'; } ">
+
+<DIV id="Q19Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>	
+20. Consider the grammar
+    S -> AB | AD
+    A -> Aa | b
+    B -> Bb | a
+    D -> cDc | d 
+
+   Which of the following is NOT a valid string in the language?
+   A. bccdcc        B. bbbbab        C. aaaacccc </pre>
+
+   &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="0"> C<input type="radio" name="Q20" value="1"> D<input type="radio" name="Q20" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try to quickly eliminate strings - e.g., if a string ends in c it must have a d - this will eliminate aaaacccc.'; } ">
+
+<DIV id="Q20Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>
+21. The grammar below defines the set of strings of 1 or more "b"s followed by 
+    2 or more "a"s and ending with one "b". 
+
+    &lt;S> -> &lt;A> a &lt;B> b
+    &lt;A> -> &lt;A> b | b
+    &lt;B> -> a &lt;B> | a
+
+    A.  true     B. false </pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Start by defining the shortest string, the next shortest string, etc. until you see a pattern.'; } ">
+
+<DIV id="Q21Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>
+22. Java is a procedural language.
+    A. true     b. false</pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="1"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: You cannot write a procedure outside a class in Java.'; } ">
+
+<DIV id="Q22Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+23. Since garbage collection (dynamic memory management) is automatic in Java, 
+    A. you do not need to call a destructor.
+    B. it is impossible to have a dangling pointer (unlike C++).
+    C. both statements are true.</pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="1"> D<input type="radio" name="Q23" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: There is no explicit destructor in Java.'; } ">
+
+<DIV id="Q23Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+24. The Java character set is what?
+    A. 16-bit extended ASCII
+    B. 16-bit Unicode </pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="1"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Part of portability includes supporting languages outside of English.'; } ">
+
+<DIV id="Q24Area" STYLE="background-color: yellow" >
+</DIV>
+<pre>
+25. Java does not support direct access to memory through pointers. How does
+    this impact the Java runtime environment?
+    A. reduces the risk of segmentation faults
+    B. reduces the risk of buffer overflows
+    C. more difficult to write low-level drivers for the operating system
+    D. eliminates dynamic memory leaks
+     </pre>
+    &nbsp;&nbsp;&nbsp;A<input type="checkbox" name="Q25" value="1"> B<input type="checkbox" name="Q25" value="1"> C<input type="checkbox" name="Q25" value="1"> D<input type="checkbox" name="Q25" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[0].checked  
+               && document.quizform.Q25[1].checked  
+               && document.quizform.Q25[2].checked  
+               && !document.quizform.Q25[3].checked  
+               )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Reliability, as well as portability, was a major design criterion for Java and eliminating pointers was essential to achieving that; automatic garbage collection eliminates memory leaks - you can still have leaks without pointers.'; } ">
+
+<DIV id="Q25Area" STYLE="background-color: yellow" >
+</DIV>
+
+<pre>
+26. The length of the bitstrings produced by this grammar will always be odd.
+           A -> 0 | 01A  | 1AA
+    A.  true     B.  false</pre>
+    &nbsp;&nbsp;&nbsp;A<input type="radio" name="Q26" value="1"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Use structural induction to reason this out.'; } ">
+
+<DIV id="Q26Area" STYLE="background-color: yellow" >
+</DIV>
+
+</pre>
+<p>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 3">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:yellow">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+</body>
+</html>

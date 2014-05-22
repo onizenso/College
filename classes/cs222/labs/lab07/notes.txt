@@ -1,0 +1,38 @@
+struct animal{
+int teeth; 4 bytes
+char color[15]; 15 bytes
+char genus[40]; 40 bytes
+char species[40]; 40 bytes
+]; 99 bytes total
+
+struct animal fabio;
+
+fabio teeth =2;
+strncpy(fabio.color, "purple");
+strncpy(fabio.genus, "canis");
+strncpy(fabio.species, "lupus");
+
+struct stack{
+int capacity;
+int position;
+struct node * data;
+}
+
+struct node{
+int intval;
+char charval;
+char stringval[20];
+}
+
+union node{
+int intval;
+char charval;
+char stringval[20];
+}
+
+
+Initialize (stack * input){
+	capacity=10;
+	position=-1;
+	data = new node[10];
+}

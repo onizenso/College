@@ -1,0 +1,55 @@
+Expert Systems
+
+LTM  --> Inference Engine <_--_> User Interface
+	 	^
+WM  ->--|
+
+Inference Engine - contains rules for forward/backward chaining
+	Conflict Resolution:
+		Strategies for resolution
+	Forward chaining is inefficient and cumbersome
+	Backward chaining helps solve forward chaining inefficiencies
+		Loads only rules that are part of solving some arbitrary goal
+		Looks for primitives that can be evaluated by asking experts true/false
+			questions
+KB: Contains Rules
+	How to deal with uncertainty?
+	Need fuzzy logic
+		Extend knowledge base to use statistical distributions to 
+			evaluate which rules to fire
+
+Uncertainty:
+	Lack of exact knowledge of the facts
+	Sources:
+		weak implications 
+		imprecise lanuage
+		unknown data
+	Approaches: 
+		Probability Theory
+		Practical Model
+
+Certainty Theory
+	Knowledge base contains uncertain rules and information
+	Uses certainty factor to determine truth value of premise/conclusion
+	Certainty Factor (CF)
+		Range -1/+1 (0.1)
+		Positive value represents belief
+		Negative value represents disbelief
+		Combine two rules w/ same conclusion, but have different CF
+		Commutative property
+			order doesn't matter
+		Assymptotic Property
+			Probability should not exceed 1
+			The combining function should converge toward one
+
+		Net Belief
+			Obtain total net belief by combining the 
+				measure of belief ("MB")
+				with the 
+				measure of disbelief ("MD")
+			If MB is greater, belief in hypothesis confirmed
+			If MD is greater, disbelief in hypothesis is confirmed
+	
+Practical Certainty Model
+	Practical application of certainty theory for expert systems
+	

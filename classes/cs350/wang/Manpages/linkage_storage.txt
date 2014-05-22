@@ -1,0 +1,171 @@
+CONTENTS: Linkage and Storage Info  for C/C++
+
+Linkage and storage pertains to visibility and lifetime of identifiers.
+
+Identifiers include variables and function names. Storage classes apply to 
+variables only (all data objects and function parameters) and functions.
+
+However, storage class keywords in C are also used to control the visibility 
+of functions. Every data object and parameter used in a program has exactly 
+one storage class, either assigned explicitly or by default. 
+There are four storage classes: 
+
+     auto 
+
+     register 
+
+     static 
+
+     extern 
+
+An object's storage class determines its availability to the linker and 
+its storage duration. An object with external or internal linkage, or with 
+the storage-class specifier static, has static storage duration, which means 
+that storage for the object is reserved and initialized to 0 only once, 
+before main begins execution. 
+
+An object with no linkage and without the storage-class specifier static 
+has automatic storage duration; for such an object, storage is automatically 
+allocated on entry to the block in which it is declared, and automatically 
+deallocated on exiting from the block. An automatic object is not initialized. 
+
+When applied to functions, the storage-class specifier extern makes 
+the function visible from other compilation units, and the storage-class 
+specifier static makes the function visible only to other functions in the same compilation unit.
+For example: 
+
+static int tree(void);
+
+STATIC
+
+The static class specifies that space for the identifier is maintained 
+for the duration of the program. Static objects are not available to the 
+linker [do not have external linkage]. Therefore, another compilation unit 
+can contain an identical declaration that refers to a different object. 
+
+A static object can be declared anywhere a declaration may appear 
+in the program; it does not have to be at the beginning of a block, as 
+with the auto class. If a data object is declared outside a function, 
+it has static duration by default-it is initialized only once at the 
+beginning of the program. 
+
+EXTERN
+
+The extern class is the default class for objects with file scope. 
+Objects outside of any function (an external definition) receive the 
+extern class storage unless explicitly assigned the static keyword 
+in the declaration. The extern class specifies the same storage duration 
+as static objects, but the object or function name is not hidden from the 
+linker.  Using the extern keyword in a declaration results in external 
+linkage in most cases, and results in static duration of the object. 
+
+LINKAGE
+
+Data objects and functions can be implicitly or explicitly assigned linkage. 
+There are three kinds of linkage: 
+
+Internal linkage-a declaration referring to a data object or function 
+declared in the same compilation unit, and not known outside the compilation 
+unit. 
+
+External linkage-a declaration referring to a definition of a data object 
+or function known outside the compilation unit. The definition of the 
+object also has external linkage. 
+
+No linkage-a declaration declaring a unique data object. 
+
+When more than one declaration of the same object or function is made, 
+linkage is made. The linked declarations can be in the same scope or in 
+different scopes. Externally linked objects are available to any function 
+in any compilation unit used to create the executable file. Internally linked 
+objects are available only to the compilation unit in which the
+declarations appear. 
+
+LINKAGE
+
+The concept of linkage and the static and extern keywords are related, 
+but not directly. Using the extern keyword in an object's declaration 
+does not guarantee external linkage. The following rules determine the 
+actual linkage of an object or function: 
+
+An identifier explicitly specified with the auto or register storage class 
+has no linkage. 
+
+An identifier with block scope and the extern storage-class specification 
+has linkage the same as any visible declaration of the same identifier 
+with file scope. If no such declaration of the object or function is 
+visible, then the object or function has external linkage. 
+
+The declaration of functions defaults to external linkage. 
+The only other storage class possible for a function is static, which must 
+be specified explicitly, cannot be applied to a block scope function 
+declaration, and results in internal linkage. 
+
+In C the file scope declaration of a data object without an explicit storage 
+class specification, or with the extern storage class specified, defaults to 
+external linkage.
+
+An identifier with file scope and the static storage class has internal linkage. 
+An identifier with block scope and without the extern storage-class 
+specification has no linkage. 
+
+Identifiers other than data objects and functions have no linkage. 
+An identifier declared as a function parameter also has no linkage. 
+
+The following example show declarations with different linkages: 
+Cut and paste into two files to test:  
+
+/*------------------------------------------------------------------------
+// filename: file1.cpp
+#include <iostream>
+using namespace std;
+static int y = 4;      /* internal linkage                    */
+int x =5;              /* file scope and external linkage */
+void func1 (int);      /* no linkage  */
+
+main ()                /*  external linkage   */
+{
+    int w;             /*  Internal linkage                              */
+    x = 10;
+    cout << "\nBefore calling func1...." << endl;
+    cout << "Extern x in file1: " << x << endl;
+    cout << "Static y in file1: " << y << endl;
+    extern int y;      /*  external linkage to y in file2  */
+    static int a=3;    /*  internal linkage  */
+    func1(x);          /* external linkage */
+    cout << "\nAfter calling func1...." << endl;
+    cout << "Extern x in file1: " << x << endl;
+    cout << "Static y in file1: " << y << endl;
+    {
+      auto int a = 10;    /* no linkage */
+    }
+}
+// link this file with file1.cpp
+/*------------------------------------------------------------------------
+Filename: file2.cpp     testing linkage   */
+
+#include <iostream>
+using namespace std;
+
+static int y = 100;      /* internal linkage */
+void func1 (int arg1)  /*  func1 has external linkage, arg1 has no linkage */
+{
+
+  extern int x;         /*  External linkage                        */
+  cout << "\nWithin func1......\n";
+  cout << "Extern x in file2: " << x << endl;
+  cout << "Static y in file2: " << y << endl;
+}
+
+
+Before calling func1....
+Extern x in file1: 10
+Static y in file1: 4
+
+Within func1......
+Extern x in file2: 10
+Static y in file2: 100
+
+After calling func1....
+Extern x in file1: 10
+Static y in file1: 4

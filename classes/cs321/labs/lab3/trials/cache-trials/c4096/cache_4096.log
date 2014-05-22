@@ -1,0 +1,23 @@
+
+Using line_offset=4096 cache_page=4096..
+..stopping timers 
+..user time      =    0.668041 seconds
+..system time    =    0.012001 seconds
+..maximum    RSS = 33400000 bytes
+..integral   RSS = 0 
+..integral  DATA = 0 
+..integral STACK = 0 
+..swaps          = 0 
+..inblock ops    = 0 
+..outblock ops   = 8 
+..software pagesize was=4096 
+..tlb misses=??? 
+..page reclaims=8195 
+..page faults=0 
+..context switches (voluntary)=0 
+..context switches (involuntary)=13 
+
+Total time(sec.usec):    0.685401 REAL     0.663541 VIRT     0.675542 PROF
+
+Net Memory Bandwidth   49.670 Mbytes/sec: 
+

@@ -1,0 +1,484 @@
+CMPS 350 Exam 1  WTR 2010 
+
+01. In C++, how do you throw an exception back to the calling function?
+    A. put a throw in the try block
+    B. put a throw in the catch block
+    C. omit the catch block
+<!-- 1. ANS: B --!>
+
+02. What is true about the cout statement in this catch block? 
+    catch (...) {
+      throw 5;
+      cout << "hello\n";
+    }
+    A. Hello will be printed when an exception does not occur.
+    B. Hello will never be printed.
+<!-- 2. ANS: B --!>
+
+03. Fortran was the first widely used time-sharing language.
+    A. true    B. false
+<!-- 3. ANS: B --!>
+
+04. The primary disadvantage to having multiple ways of doing the same thing in 
+    a programming language is what?
+    A. readability     B. writeability  
+<!-- 4. ANS: A --!>
+
+05. The primary operation in an imperative language is
+    A. the if statement  
+    B. the assignment statement  
+    C. the loop   
+<!-- 5. ANS: B --!>
+
+06. BASIC was the first functional programming language.
+    A. true     B. false
+<!-- 6. ANS: B --!>
+
+07. Which imperative language was designed to be the swiss-army knife?
+    A. Ada     B. Lisp    C. PL/1     D. Prolog 
+<!-- 7. ANS: C --!>
+
+08. Methods may exist outside classes in Java.  
+    A. true     B. false
+<!-- 8. ANS: B --!>
+
+09. In Lisp prefix notation, ( + 3 4 5 6 ) will return  
+    A. (7 5 6)    B. 18 
+<!-- 9. ANS: B --!>
+
+10. What will this Lisp function return if you call it with (foo '(1 2 3))?
+
+      (defun foo (x)
+        (if (null x)
+           0 
+        (+ (foo (cdr x)) 1))) 
+
+    A.  6      B. 3     C.  0 
+<!-- 10. ANS: B --!>
+
+
+11. Which of the following calls to this Lisp function will return T?
+
+    (defun thing ( x )
+       ( if ( NULL x )
+           NIL
+          ( if ( listp ( car x ) )    
+               T
+               ( thing ( cdr x ) ) ) ))
+
+  A.  ( thing '(a b (c)) ) 
+  B.  ( thing '(a b c) )
+<!-- 11. ANS: A --!>
+
+12. This function will return T if you call it with  (stuff 'a '(b a c))
+
+       (defun stuff (x y)
+          (if (null y)
+              nil
+             (if (eql (car y) x)    
+                 t
+                 (stuff x (cdr y)))))
+
+    A. true       B. false 
+<!-- 12. ANS: A --!>
+
+13. What will be returned by calling function g in this C code under static 
+    scoping rules?
+
+        x = 0;
+        int f () { return x; }
+        int g () { int x = 1; return f(); }
+
+     A. 0       B. 1      C. f()  
+<!-- 13. ANS: A --!>
+
+14. Fortran was initially designed for a specific computer rather than for a 
+    processor instruction set.  
+    A. true    B. false 
+<!-- 14. ANS: A --!>
+
+          BNF Grammar 1
+          =============
+    <expr> ::= <expr> * <term> | <term> + <term>  | <term>
+    <term> ::= <var> | const 
+     <var> ::= a | b | c | d
+
+15. Following the rules in BNF Grammar 1, and given the expression 5 * 3 * 2,
+    A. 5 * 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 * 3.
+    C. either 5 * 3 or 3 * 2 could occur first - the grammar is ambiguous.
+<!-- 15. ANS: A --!>
+
+16. Following the rules in BNF Grammar 1, and given the expression 5 + 3 * 2, 
+    A. 5 + 3 will be performed before 3 * 2.
+    B. 3 * 2 will be performed before 5 + 3.
+    C. either 5 + 3 or 3 * 2 could occur first - the grammar is ambiguous.
+<!-- 16. ANS: A --!>
+
+17. A grammar is ambiguous if a valid sentence in the language has two 
+    distinct parse trees.
+    A. true       B. false 
+<!-- 17. ANS: A --!>
+
+     BNF Grammar 3
+     ============== 
+     <assign> -> <id> = <expr>  
+     <expr>   -> <id> + <expr> | <id> * <expr> | ( <expr> ) | <id>
+     <id>     -> A | B | C 
+
+18. The following is a valid statement in the language defined by Grammar 3.
+              A =  ( A *  B ) + ( C + A )
+    A. true       B. false 
+<!-- 18. ANS: B --!>
+
+19. The following grammar is ambiguous.
+     <S> -> <A>
+     <A> -> <A> + <A>  | <id>
+     <id> -> a | b | c
+
+   A. true      B. false 
+<!-- 19. ANS: A --!>
+	
+20. Which string cannot be derived by the grammar below?
+
+     <S> -> <A> <B> <C>
+     <A> -> a<A> | a 
+     <B> -> b<B>c | b 
+     <C> -> c<C> | c  
+
+   A. abbbbcc    B. aaaabbcc
+<!-- 20. ANS: A --!>
+
+21. Consider the grammar:
+   <S> -> <A> a <B> b
+   <A> -> <A> b | b 
+   <B> -> a <B> | a
+
+   Which of these strings is in the language defined by the above grammar?
+   A. ababbab        B. bbaaaaa         C. bbaabb      D. baaaaab         
+<!-- 21. ANS: D --!>
+
+22. This grammar
+
+    <S> -> <A> b <B>  
+    <A> -> <A> b | a 
+    <B> -> a <B> | c 
+
+    defines the set of all strings starting with a single 'a' and followed by 
+    2 or more 'b's and ending with one 'c'. 
+    A.  true     B. false 
+<!-- 22. ANS: B --!>
+
+23. The length of the bitstrings produced by this grammar will always be what?
+    (the terminal characters are 0 and 1)
+
+           A -> 1 |  00A  | 1AA
+    A. odd      B. even   
+<!-- 23. ANS: A --!>
+
+24. What will this C++ code result in?
+         Shape * s = new Shape();
+         Shape * t = new Shape();
+         s = t;
+    A. a cross-linked pointer
+    B. a memory leak
+    C. both are true   
+<!-- 24. ANS: C --!>
+
+25. If you want to ensure that ^ takes precedence over * in the grammar below, 
+    what new rule would you add to the grammar?
+          <stuff> ::= <stuff> * <junk>  
+    A. <stuff> ::= <junk> ^ <term>
+    B. <junk> ::= <junk> ^ <term>
+<!-- 25. ANS: B --!>
+ 
+26. This BNF grammar
+          <cmdlist> ::= <cmd> | <cmdlist>; <cmd>
+   is equivalent to this EBNF grammar, where { } denotes 0 or more times.
+          <cmdlist> ::= <cmd> {; <cmd> }
+   A.  true      B. false 
+<!-- 26. ANS: A --!>
+
+27. Assume you want to specifiy identifier naming in a language so that a name 
+    must end with the same number of digits that it starts with. This problem 
+    A. can be solved with a BNF grammar.
+    B. requires an attribute grammar.
+<!-- 27. ANS: B --!>
+
+28. What is Size in the following attribute grammar? (x <- 5 means x is 
+    assigned value 5)
+
+       <astring> ::= <astring>[2] a
+       Size(<astring>[2]) <- Size(<astring>) + 1  
+
+   A. a synthesized attribute        B. an inherited attribute 
+<!-- 28. ANS: B --!>
+
+29. In an attribute grammar, the parse tree is decorated with inherited 
+    attributes 
+    A. from the top down.       B. from the bottom up. 
+<!-- 29. ANS: A --!>
+
+   Attribute Grammar 1 (AG 1)   note: this grammar is recursive
+   =========================
+    type - an attribute to store the data type of variables or expressions
+    lookup (<var>.id) returns the variable's type from the symbol table 
+
+    <assign> ::= <var> = <expr> 
+    PREDICATE: <var>.type == <expr>.type
+    
+    <expr> ::= <var> + <expr>[2] 
+    Semantic Rule #1: if (<expr>[2] == REAL or <var> == REAL)
+                           <expr>.type <- REAL 
+                       else
+                           <expr>.type <- INT 
+
+    <expr> ::= <var>
+    Semantic Rule #2: <expr>.type <- <var>.type
+
+    <var> -> A | B | C | D
+    Semantic Rule #3: <var>.type <- lookup (<var>.id)
+
+30. AG1 employs 
+    A. inheritance     B. synthesis     C. both
+<!-- 30. ANS: B --!>
+
+ Following AG1, this is an undecorated parse tree for the statement 
+             A = B + C + D, where A is INT, B is INT, C is REAL and D is INT. 
+    
+                           <assign>
+                       /             \
+                  <var>       =        <expr>
+                 .type INT             .type
+                    |                 /         \ 
+                    A             <var>    +    <expr>
+                   INT          .type           .type  
+                                  |             /     \
+                                  B         <var>  +  <expr>
+                                 INT       .type     .type 
+                                              |         |
+                                              C       <var>
+                                             REAL      .type 
+                                                         |
+                                                         D
+                                                        INT
+       
+31. In an inorder parse (the default), which semantic rule is applied first?
+    A. Semantic Rule #1
+    B. Semantic Rule #2
+    C. Semantic Rule #3 for variable A
+    D. Semantic Rule #3 for variable D 
+<!-- 31. ANS: C --!>  
+
+32. Semantic Rule #2 is applied how many times?
+    A. once      B. twice     C. three times
+<!-- 32. ANS: A --!>
+
+33. What is the value of <expr>.type after the last application of Semantic 
+    Rule #1?
+    A. INT         B. REAL
+<!-- 33. ANS: B --!>
+
+34. The predicate in AG1 
+    A. will fail          B. will pass
+<!-- 34. ANS: A --!>
+
+35. If this is valid code in some language, you know what about the language?
+        $var = 5;             
+        $var = "hello there";        
+    A. it is dynamically typed    B. it is typeless 
+<!-- 35. ANS: A --!>
+
+36. Prolog is based on the closed world assumption. This means that 
+    A. predicates are true unless shown to be false.
+    B. predicates are false unless shown to be true.
+<!-- 36. ANS: B--!>
+
+37. What does this Prolog rule mean?
+         loves(jack,X) :- rich(X), loves(harry,X). 
+    A. Jack loves everyone who is rich and whom harry also loves.
+    B. Harry loves everyone who is rich and whom jack also loves.
+<!-- 37. ANS: A--!>
+    
+38. What does this Prolog rule mean?
+            parent(Y,X) :- child(X,Y).
+    A. For all X and Y, if X is the child of Y, then Y is the parent of X.
+    B. For all X and Y, if Y is the parent of X, then X is the child of Y.
+<!-- 38. ANS: A --!>
+
+39. Rules in Prolog are definite clauses, where the head of the rule is the 
+    single positive literal in that definite clause. 
+    A. true    B. false 
+<!-- 39. ANS: A --!>
+
+40. What does this Prolog rule mean? (universe of discourse is all widgets)
+
+          alsoRelated(X,Y) :- related(Z,X), related(Z,Y).
+
+    A. If all widgets are related to two other widgets, then all widgets 
+       are alsoRelated.
+    B. If there is a widget Z that is related to widget X and widget Y, then
+       X and Y are alsoRelated.
+<!-- 40. ANS: B --!>
+
+41. An lvalue must be bound to a memory address.
+    A. true    B. false 
+<!-- 41. ANS: A --!>
+
+42. What is true concerning static variables, such as x in this C function?
+      void fun () {
+          static int x = 5;
+      }
+   A. x is bound to value 5 throughout program execution 
+   B. x is bound to the same memory address throughout program execution 
+   C. both statements are true
+<!-- 42. ANS: B --!>
+ 
+Prog 1. The following C code will compile, link and execute.
+---------------------------------  ----------------------
+| // filename: file1.c          |  |// filename: file2.c |
+|                               |  |                     |
+| static int x = 10;            |  | static int x = 20;  |
+| void fun(char *);             |  | int y = 5;          |
+|                               |  |                     |
+| int main( )                   |  | void fun()          |
+| {                             |  | {                   |
+|     extern y;                 |  |    print(y);        |
+|     y = 15;                   |  |                     |
+|     fun();                    |  | }                   |
+|     print(x);                 |  |                     | 
+|   }                           |  |                     |
+| return 0;                     |  |                     |
+| }                             |  |                     |
+|-------------------------------   -----------------------
+
+43. Select the false statement re Prog 1 or D if all are true.
+    A. The compiler will bind each of the static variables named x to a memory 
+       address in the data section.
+    B. The linker will bind the reference to y in file1 to an address in the 
+       data section.
+    C. The reference to y in main will be bound to a memory address at runtime.
+    D. all statements are true
+<!-- 43. ANS: C --!>
+
+44. Based on Prog1, what is NOT true about the C language? 
+    A. a file is a compilation unit 
+    B. the default scope for variables outside a function is across all
+       compilation units
+    C. static variables outside a function have global scope (across all
+       compilation units)
+<!-- 44. ANS: C --!>
+
+45. What is true about Perl, which is a dynamically typed language? 
+    A. that variables are bound to a type at runtime
+    B. that variable type can change at runtime
+    C. both statements are true 
+<!-- 45. ANS: C --!>
+ 
+Prog 2. Ada program 
+ |----------------------------------------| 
+ |   procedure Main is                    |
+ |   X : Integer;                         |
+ |   procedure Sub3;  (forward reference) |
+ |   ---------------------------------|   |
+ |  |  procedure Sub1 is              |   |
+ |  |  --------------------------     |   |
+ |  |  |  procedure Sub2 is     |     |   |
+ |  |  |  X : Integer;          |     |   |
+ |  |  |  begin                 |     |   |
+ |  |  |    X := 5;             |     |   |
+ |  |  |  end;                  |     |   |
+ |  |  --------------------------     |   |
+ |  |  begin                          |   |
+ |  |   Sub2;                         |   |
+ |  |   X := 10;                      |   |   
+ |  |  end;                           |   |
+ |  |----------------------------------   |
+ |                                        |
+ |  |----------------------------------   |
+ |  |  procedure Sub3 is              |   |
+ |  |  begin                          |   |
+ |  |    X := 15;                     |   | 
+ |  |  end;                           |   |
+ |  |----------------------------------   |  
+ |   begin                                | 
+ |     Sub3;                              |
+ |     Sub1;                              |
+ |     Put(X);                            | 
+ |   end;                                 |
+ |----------------------------------------| 
+ 
+
+46. Assuming static scope, how many nonlocal variable references are in Prog 2?
+    A.  1     B.  2     C.  3
+<!-- 46. ANS: B --!>
+
+47. Assuming static scope, what is displayed from Put(X) in Prog 2's Main?
+    A.  5     B.  10     C.  15 
+<!-- 47. ANS: B --!>
+
+Prog 3.
+   Procedure JUNK is
+   X:INTEGER:= 0;
+   procedure SUB2;   -- forward reference
+
+   Procedure SUB1 is
+   X:INTEGER;
+
+   BEGIN
+      X := 10;
+      SUB2;
+   END;
+
+   Procedure SUB2 is
+   BEGIN
+      X := X + 15;
+   END;
+
+   BEGIN
+      SUB2;
+      SUB1;
+      Put(X);  
+   END;
+
+48. Under static scoping rules what value of X is printed in procedure JUNK
+    from Prog 3? 
+    A. 0      B. 5     C. 15    D. 30
+<!-- 48. ANS: D --!>
+
+49. Assuming Ada uses dynamic scoping rules (which it doesn't), what value of 
+    X would be printed in procedure JUNK from Prog 3?
+    A. 0      B. 5     C. 15    D. 30
+<!-- 49. ANS: C --!>
+ 
+   
+50. What type of coercion is present in the following C code?
+
+    int X = 10;
+    float Y = 10.5;
+    X = Y;
+    A. a float coerced into an int
+    B. an int is coerced into a float
+<!-- 50. ANS: A --!>
+
+
+51. The lifetime of a variable is determined by 
+    A. how long that variable is bound to a memory address
+    B. the scope of the variable
+<!-- 51. ANS: A --!>
+ 
+
+52. Is it possible to create a scalar variable that is explicit stack dynamic?
+    A. No    B. Yes
+<!-- 52. ANS: A --!>
+
+53. An Ada identifier must start with a letter and be followed by zero or more 
+    letters, digits or underscores. An underscore cannot be the final symbol 
+    or be followed by another underscore. Is this regular expression for Ada
+    identifiers correct?
+  
+          [a-zA-Z]([a-zA-Z0-9_][a-zA-Z0-9])*{_[a-zA-Z0-9]}
+
+    A. true     B. false 
+<!-- 53. ANS: B --!>
+

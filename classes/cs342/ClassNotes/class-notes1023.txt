@@ -1,0 +1,21 @@
+Define: 
+  the three versions of normal forms
+  function dependency
+  concentrate on a small portion of the ER diagram
+  
+Stored procedures will be canned transactions coded in C# or C++
+Save stored procedures and test SQL statements in a file
+
+sqlplus is the SQL program on delphi
+
+Tablespace - allocated space for tables, views, workers
+
+Create a table/s for the group
+
+CREATE user bmanson_nramsey IDENTIFIED BY password --create new user
+ALTER user bmanson_nramsey IDENTIFIED BY new_password --change password
+
+each command ends with semicolon or /
+use 'COMMIT' to save the results of the commands just run
+
+GRANT 'resource' TO 'user' -- give privileges to resources/commands to user

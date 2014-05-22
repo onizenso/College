@@ -1,0 +1,500 @@
+CMPS 350 WTR 2008 EXAM 02 SOLUTIONS&nbsp;&nbsp;&nbsp; / 50
+
+4 points added to all scores (2 questions given to to)
+Average Score:  74%
+
+1. If the 'int' data type is implemented in 4 bytes, with negative integers
+   stored as the two's complement of the positive integer, what is -7?
+   A. 11111111111111111111111111111000
+   B. 11111111111111111111111111111001
+   C. 11111111111111111111111111110001
+ANS: B; 7 is ...000111 -7 is 1111001 
+ 
+*2. Select the false statement, or 'E' if all statements are true.
+   A. Strings in C are dynamic within a fixed size.
+   B. The size of a string in Perl may change during runtime, with no limit.
+   C. Strings in Perl are scalar types.
+   D. If Perl sees a number when it expects a string, it quietly converts the
+      number into a string.
+   E. All statements are true.
+ANS: E; possibly B is confusing and should say "theoretically with no limit"
+
+*3. Select the false statement, or 'D' if all statements are true.
+   A. An enumeration type may be a float or an ordinal type.
+   B. In an enumeration type, all possible values are named constants.
+   C. In an enumeration type, some values may be omitted from the definition. 
+   D. All statements are true.
+ANS: A; enumeration types must be ordinal types
+
+*4. Select the false statement. QUESTION THROWN OUT 
+   A. An associative array is an unordered collection of data elements.
+   B. An associative array is indexed by keys that are stored in the array.
+   C. Both A and B are true. 
+ANS:  B ;  C would be a better answer but the wording to B is misleading 
+
+
+5. What type of array allocation is performed in this C code?
+         int * f_array = (int *) malloc(sizeof(int[5]));  
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic 
+   D. heap-dynamic 
+ANS: C
+
+6. What type of array allocation is performed in this C code?
+       scanf ("%d",&size);
+       int sd_array[size];   
+
+   A. fixed stack-dynamic
+   B. stack-dynamic
+   C. fixed heap-dynamic
+   D. heap-dynamic 
+ANS: B
+
+7. In the locks-and-keys method of dynamic memory management, pointer values 
+   are stored as ordered pairs (key,address) and heap-dynamic variables as 
+   the variable plus a lock value. When a heap dynamic variable is allocated, 
+   a lock value is placed in the lock cell of the variable and in the key cell 
+   of the pointer. At deallocation, the lock is set to NIL. This strategy 
+   prevents what?
+   A. dereferencing a dangling pointer
+   B. cross-linked pointers
+   C. both A and B
+ANS: A
+
+08. Select the true statement (or C if both are true)
+    A. A free union is a union that allows more than one of the specified type 
+       values stored at a time. 
+    B. A discriminated union enforces type checking by a tag (type indicator).
+    C. both statements are true
+ANS: B  
+
+9. Reference counters, which keep track of the number of pointers currently 
+   pointing at a memory cell, are used in which type of approach to garbage 
+   collection?
+   A. lazy garbage collection
+   B. eager garbage collection
+ANS: B
+
+*10. A C++ ref type can be explicitly dereferenced. (T/F)
+ANS: B; all dereferencing to a ref type is done for you by the compiler or
+runtime environment in the case of polymorphism 
+
+*11.In the tombstone method of avoiding dangling pointers, each heap-dynamic 
+   variable includes a special cell called a tombstone. Select the false 
+   statement about the tombstone method or D if all are true.
+   A. The tombstone is a pointer to the heap-dynamic variable. 
+   B. The actual pointer variable points at the tombstone and not to the 
+      heap-dynamic variable.  
+   C. At deallocation, the tombstone is deleted.
+   D. All statements are true
+ANS: C 
+
+12. Given this function segment 
+
+          void test ( int** dptr){
+              int num = 5;
+
+    which of the following is a valid next statement in the function?
+ 
+    A. *dptr = num;  
+    B. **dptr = &num; 
+    C. *dptr = &num; 
+ANS: C    
+
+13.What is displayed on the screen in the following C code?
+     bits.a = 1;   // size 1 bit field
+     bits.b = 0;   // size 1 bit field
+     printf("%d", bits.a ^ bits.b);
+
+   A.  1     B. 0 
+ANS: A 
+
+14. In the IEEE standard, single precision floating point numbers are
+    represented in the format s * 2^e, where 'e' is the stored value of the
+    exponent - 127, and 's' is 1 + the stored value of the fraction. Under
+    this encoding, what is the decimal value of the following?
+
+   0    10000100  11000000000000000000000
+   -    --------  -----------------------
+   sign exponent  fraction
+   1     8 bits   23 bits
+<!--exponent=128+4=132; 132 - 127 = 5. fraction: .01 (binary)=.75 (decimal) -->
+   A. 1.25 * 2^5          B. 1.75 * 2^5      C. 1.5 * 2^4     D. 1.25 * 10^5
+ANS: B
+
+*15.What will be displayed on the screen in the following C code?
+ 
+    struct Bits {
+       unsigned int a:1; // bit field of size 1 bit
+       unsigned int :0 ; // unnamed bit field of size 0 forces c to be aligned
+       unsigned int c:2; // named bit field of size 2
+    } bits;
+    bits.a = 4;  
+    printf("bits.a: %d \n", bits.a);
+  
+   A. 4       B. 0      C. 1 
+   ANS: B; a bit field of size 1 truncates all but the last bit, thus '100' is 0
+
+16. The C code below declares a 2x3x4 array of ints. Complete the statement
+    to initialize each cell in the cube with its offset into the array. Recall
+    that C stores 3-dimensional arrays in row-column-depth order.
+
+   /* 3-dimen arrays are in x,y,z order; e.g. row,col,depth */
+   int cube[3][4][5];
+   int x,y,z;
+   for ( x = 0; x < 2; x++ )
+     for ( y = 0; y < 3; y++ )  
+        for ( z = 0; z < 4; z ++ ) 
+           // which statement goes here? 
+
+   A. cube[x][y][z] = (x*(4*5))+(y*5)+ z;
+   B. cube[x][y][z] = (z*(3*4))+(y*3)+ x;
+    ANS: A
+ 
+17.Under binary coded decimal encoding, the value of 735 is what?
+   A. 0111 0011 0101   B. 111 011 101    C. 0010 1101 1111
+ANS: A   
+
+18. What happens at Line 3 in the following C++ code? 
+    int stuff[2] = {5,10};
+    int & iref = stuff;
+    iref++;   // line 3 
+
+   A. stuff[0] is now 6
+   B. iref is incremented to point to stuff[1]
+   C. Line 3 is a compilation error
+ANS: A    
+
+
+19. If you know that the '=' operator is right associative, the order of 
+    operations in the statement "a = b = c" is what?
+
+    A. a = (b = c)        B.  (a = b) = c
+ANS: A 
+
+*20. Which of the following could cause a problematic functional side effect?
+    A. void stuff ( * int n ) {  n++; }
+    B. int stuff ( int n ) {  return n++; }
+    C. either function could be problematic
+  ANS: A; returning a value from a function is not a side-effect (that is
+  what functions do) 
+ 
+*21. Select the true statement regarding this while loop.
+      int LIST[MAX];
+      index = 0;
+      while ( (index < MAX ) && (LIST[index] != value) )
+          index++;
+   A. Unless && is a short circuit operator, this code will cause an 
+      out-of-range runtime error.
+   B. When the while loop exits, the index is past the range of the array.
+   C. Both statements are true. 
+ANS:  C; when while loops finish, index is generally always past array bounds
+
+22. The associativity of C's relational operators is left to right. Given this,
+    what is the result of the expression below?
+        int a = 5, b = 6, c = 0; 
+        a <= b <= c;
+    A. 0       B. 1
+ANS: A ;  (5 <= 6) is 1 and (1 <= 0) is 0
+ 
+23. The following chunk of C code is an example of conditional targets on 
+    assignment statements. What is the result?
+       int flag = 1;
+       count1 = 0; count2 = 0;
+       (flag) ? count1 : count2 = 100;
+    A. count1 = 100     B. count2 = 100    C. flag = 100
+ANS: A 
+
+*24. What is this code an example of?
+       float x;
+       int i = 3;
+       x = i;
+    A. mixed mode assignment with a narrowing conversion  
+    B. implicit coercion of int to float 
+    C. both A and B
+ANS: B; x = i and i=3 are not narrowing conversions
+
+25. Given that the function prototype of the pow function is
+         double pow(double,double);    
+    What is happening in this statement, where offset, i and j are all ints
+    and i_array is a pointer to int?
+           *(i_array + offset) = pow(2,i) + j;
+    A. all conversions are widening 
+    B. all conversions are narrowing 
+    C. widening and narrowing conversions are both occurring    
+ANS: C
+
+26. What will happen in C given this code? (it does compile)
+        count = 5;
+        count= -count++;   
+    A. following precedence, count is assigned the value of -4
+    B. modifying a variable twice in the same operation is undefined
+ANS: B 
+
+27. C/C++ support both widening and narrowing coercions in assignments.  (T/F)
+ANS: A
+
+28. The following C code is an example of a narrowing coercion. (T/F)
+       short s_short;  //  2 bytes
+       int i_int = 14;  // 4 bytes
+       s_short = i_int;  // Line 3
+ANS: A 
+
+29. Given this code, what statement in test will change ptr1 to point to n2?
+     int n1 = 10, n2 = 20;
+     int *ptr1 = &n1;
+     int *ptr2 = &n2;
+     test(&ptr1, &ptr2);
+     void test( int ** ptr1, int ** ptr2){
+         // add a statement here
+     }
+    A. *ptr1 = *ptr2;
+    B. ptr1 = ptr2;
+ ANS: A
+
+30. Given these values for X and Y 
+       X: 0000000100
+       Y: 0000000101
+    What is  X | Y?
+    A. 4     B. 5     C. 6   
+ANS: B
+ 
+31. Given these values for X and Y 
+       X: 00000100
+       Y: 00000111
+    What is  X ^ Y?   (XOR)
+    A. 7     B. 5    C. 3 
+ANS: C
+
+*32. What will this code produce?
+     int X = 33;
+     X ^ 15;
+     A. flip the last 4 least significant bits of X.
+     B. turn the 4 least significant bits of X into 0s.
+ANS: A 
+
+          100001  
+       ^  001111 
+          ======
+          101110             
+
+33. How could you test if two integers X and Y are equal?
+    A. if (X | Y) is false 
+    B. if (X ^ Y) is false 
+    C. if (X & Y) is false 
+ANS: B 
+
+34. Under the IEEE-754 floating-point format, which fraction will have a 
+    problem with rounding error?
+    A.  .1            B.  .5             C. both A and B
+ANS: A
+
+35. An implicit branch in a multiple selection statement ensures that only 
+    branch will be taken. (T/F)
+ANS: A
+
+36. Select the statement that is NOT true about C's multiple selection 
+    statement (the switch)? (select D if all statements are true) 
+    A. multiple statements could be executed
+    B. there is a mechanism for a default choice
+    C. the branch is explicit
+    D. all statements are true
+ANS: D 
+
+37. C#'s switch statement syntax (see below), which requires an explicit break 
+    statement, disallows fall through. (T/F)
+
+    switch (expression)
+    {
+    case constant-expression:
+       statement
+       jump-statement
+    [default:
+       statement
+       jump-statement]
+    }
+ANS: A 
+
+38. User-located loop control statements allow programmers to do what? 
+    A. jump out of a loop somewhere other than the beginning or end
+    B. jump out of loop at the end before the exit condition is satisfied
+ANS: A
+
+39. What is NOT true regarding break, continue and goto statements? 
+    A. they are all unconditional controls 
+    B. the goto statement requires a label 
+    C. the continue allows you to exit a loop prematurely 
+    D. the continue skips to the top of the loop but does not exit 
+ANS: C; continue just skips code 
+
+40. Which of the following PHP statements is an example of an iterator?
+    A.  foreach($attrs as $key => $value)
+    B.  xml_get_current_line_number($xml_parser)
+    C.  both A and B are correct
+ANS: A 
+
+41. The following code is based on Dijkstra's guarded command.
+       if 
+            a >= b -> print "More or equal" 
+            a <= b -> print "Less or equal" 
+       fi
+   What is the result of the command when a = b?
+   A. "More or equal"
+   B. "Less or equal"
+   C. either A or B might be the result
+ANS: C; guarded commands select options non-deterministically
+
+42. Reading from a file of unknown filesize uses what type of looping control?
+    A. counting              B. logical         C. either would work 
+ANS: B
+
+43. Reading values from an array until you hit a flag value requires what 
+    type of looping control?
+    A. counting              B. logical         C. either would work 
+ANS: B
+
+*44. What is true regarding this while loop in C, where num is an int?
+              while (num) {
+                 ... 
+              }
+    A. num must have a value of 1 to start the loop 
+    B. num must have a value of 0 to exit the loop  
+    C. both A and B are true   
+ANS: B ; in C num can be anything but 0 to start the loop
+
+45. Why might a language support arithmetic expressions in control statements?
+    A. to prevent divide by zero errors involving the loop variable
+    B. to provide greater flexibility  
+    C. both statements are true
+ANS: C
+ 
+46. What is not true about the default value option in a switch statement?
+    A. unrepresented values will be caught
+    B. it encourages programmer sloppiness
+    C. it forces the programmer to consider all possible values up-front
+ANS: C 
+
+47. What is true concerning the use of negative logic in a control expression?
+    A. control is released when the condition becomes false 
+    B. control is released when the condition becomes true
+ANS: B; e.g. while ( flag != 0 ) is false when flag is true  
+
+*48. Select the correct "for" statement to make Code B equivalent to Code A.
+       // Code A 
+       for ( i = 0; i <= 3; i++) {
+          j = 3 - i;
+          switch (j) {
+            case 3: printf("x");
+            case 2: printf("x");
+            case 1: printf("x");
+            case 0: printf("x");
+            default: printf("\n");
+          }
+       }
+       // Code B
+       for ( i = 0; i <= 3; i++) {
+          for ( ____; _____;  ____)   <= complete this "for" statement
+             printf("x");
+          printf("\n");
+       }
+
+     A. for ( j = 3 - i; j >= 0; j--)
+     B. for ( j = 0; j <= 3 - i; j++)
+     C. for ( j = 3; j >= 0; j--)
+ANS: A; a fall through switch is like the inner loop of a nested for loop
+
+*49. Does the following C code find the first row or the first column of all
+    zeros?  (assume matrix X has been initialized)
+    for ( i = 0; i < n; i++ ) {
+       for ( j = 0; j < n; j++ ) {
+          if ( X[j][i] != 0)
+             goto reject;
+       }
+       printf ("Found it at: %d\n", i);
+       break;
+       reject: 
+     }
+   A. the first column 
+   B. the first row 
+ANS: A; note that X[j][i] is in column major order  
+
+*50. The code below is equivalent to the code in #49, except the printf 
+    statement has been omitted. Where does the printf statement belong?
+
+    while ( i < n )
+    {
+       flag = 1;
+       for ( j = 0; j < n; j++ )
+          if ( X[i][j] != 0)
+             flag = 0;
+
+        ______________________ location #1
+       if ( flag )  {
+           ___________________ location #2
+           i = n ;  
+       } 
+       _______________________ location #3
+       i++;
+    }
+
+    A. location #1 
+    B. location #2 
+    C. location #3
+ANS: B ; the printf displays the solution, thus it needs to be when flag == 1  
+
+51. What will be printed when this C code is executed for num = 2?
+    switch (num) {
+      case 1: printf("one ");   
+      case 2: printf("two ");   
+      case 3: printf("three ");   
+      default: printf("whatever "); 
+    }
+    A. one two three whatever      B. two  three  whatever     C.  two three 
+ANS: B; C allows fall through
+
+52. What is true concerning this recursive function?
+    int stuff (int n) {
+        if ( (n == 0) || ( n == 1) ) return 1
+        else 
+           return stuff(n-2) +  stuff (n-1);
+     }
+   A. the function is tail-recursive
+   B. the function is not tail-recursive
+ANS:  B
+
+53.What is always true regarding counter-controlled loops regardless of
+   the language?
+   A. The loop variable cannot be changed in the loop.
+   B. The loop variable is evaluated no more than once per iteration.
+   C. There must be an explicit loop variable.
+   D. The loop variable must be an integer.
+ANS:  B 
+
+*54. The following function and while loop produce the same output for
+    n = 4. (T / F)
+
+    void junk (int n) {
+        print n;
+        if ( n > 0)
+           junk (n-1);
+    }
+
+
+    while (n > 0) {
+         print n;
+         n--;
+    }
+ANS: B; junk: 4 3 2 1 0     while: 4 3 2 1  
+
+*55. What is the next line executed in this C code for value = -1?
+     1 while (sum < 1000) {
+     2     getnext(value);
+     3     if (value < 0) 
+     4         continue;
+     5     sum := value;
+     6 }
+     7 printf("Value: %d",value);
+   A. Line 1       B. Line 5       C. Line 7 
+   ANS: A; continue takes you to the top of the loop

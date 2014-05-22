@@ -1,0 +1,65 @@
+Topic: Legal Foundations and Professional Ethics
+
+Focus of course is on techniques to recover digital evidence
+    Legal investigation: evidence handling procedures
+    Professional investigation: determining cause/extent of compromise, fraud, 
+        info leak, etc.
+    Evidence is not always direct, IRL != CSI or NCIS
+        its a lot easier to cover a digital trail than a physical one
+
+Legal Foundations
+    Constitution
+        4th Ammendment: probable cause for legal investigations
+            Investigations performed by government/law enforcement
+        5th Ammendment: Due Process
+        6th Ammendment: Right to confront witnesses
+
+    Federal Law:
+        United States Code (USC)
+            Title 18 covers crime
+        Federal rules of Evidence (FRE)
+            Valid evidence in Federal Court System
+            Important Rules:
+               Rule 401: Relevant Evidence
+               Rule 403: Exclusion of Relevant Evidence
+               Rule 702: Testimony of Expert Witnesses
+        Federal Rules of Criminal Procedure
+            US District Courts
+            Rule 16: Discovery & Inspection of Evidence
+        Federal Rules of Civil Procedure
+            Civil proceedings in US District Court
+            Chapter V: Depositions & Discovery
+                Must preserve ability for other party to:
+                    "inspect, copy, test, or sample" the evidence
+        Expert Testimony: Daubert Test
+            Judge is "gatekeeper", has final say over admissibility
+            Testimony must be relevant & reliable (determined by Judge)
+            Admissible if derived from sound scientific methodology
+                1) Uses empirical testing
+                       -falsifiable
+                       -refutable
+                       -reproducible
+                2) Subject to peer review
+                3) Known or potential error rate
+                4) Has standards & controls
+                       -ability to calibrate tools based on known data
+                       -ability to test for reliability and accuracy 
+                5) Technique accepted by relevant scientific community
+        Daubert Trilogy in Rule 702 of FRE
+            1) Testimony based on sufficient facts/data
+            2) Testimony is product of reliable principles & methods
+            3) Witness has applied principle & methods reliably
+
+Professional Investigation
+    Do NOT violate the law in the process
+        Not even if ordered to by the boss
+        If it belongs to employer, is OK
+        If it belongs to an employee, NOT OK
+    Consultants: get a lawyer!
+        have them draw up contracts for pen-tests
+        include scope, collateral damage protection, etc.
+    Can investigate resources the company owns
+    Keep a strong code of ethics and a lawyer on retainer
+
+Monday Professional Ethics from Various Sections
+       Evidence Handling & Gathering

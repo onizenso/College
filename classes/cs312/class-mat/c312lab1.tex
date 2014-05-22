@@ -1,0 +1,109 @@
+% marc thomas
+%
+% macros:
+%
+\def\scriptA{{\cal A}}   % \cal for math mode only
+\def\boldN{{\bf N}}
+\def\boldR{{\bf R}}
+\def\boldRP{{\bf R}$^+$}   % bold-face R plus
+\def\boldC{{\bf C}}
+%
+\def\eop{\vrule height10pt width6pt depth0pt}
+\def\mapleft#1{\ \smash{\mathop{\longleftarrow}\limits^{#1}}\ }
+%
+% end of macros:
+%
+% font declarations for larger fonts:
+%
+\font\bigcal=cmsy10 at 17.28pt
+\font\bigrm=cmr10 at 17.28pt
+%
+\magnification=\magstep1   % magnify output chosen number of steps
+\nopagenumbers             % no pagenumbers set
+\voffset -0.5 true in
+\hoffset 0.0 true in
+\hsize = 6.5 true in       % true page size
+\vsize = 9.8 true in       % if using pagenumbers reduce this
+\baselineskip12pt          % line spacing
+\parskip4pt                % space between paragraphs
+\null
+\centerline{\bf COMPSCI 312 -- LAB 1}
+\line{\hfill Marc Thomas}
+\vskip5pt
+
+\noindent
+   This lab concerns creating random data and
+coding algorthms in {\tt C} and {\tt C++}.
+
+\noindent
+1. Make a subdirectory named ``{\tt cs312}'' under your HOME directory 
+  and make yourself a copy of the (ascii text) class
+  file: {\tt c\_and\_c++.txt} from the class directory: \hfil\break
+\centerline{\tt /home/fac/marc/public\_html/code/cs312} 
+Read this informational file. Why do you think that it often
+said that ``{\tt C++} is a superset of {\tt C}?'' Additional
+information is given in the class file: {\tt C\_diffs.txt}.
+
+\noindent
+2. Make yourself a copy of the class file (and {\tt C++} program): 
+ {\tt uniform.cpp} and
+ you may also find it useful to also make a copy of: {\tt Makefile}. 
+ Compile and link the program either by typing: \hfil\break
+ {\tt g++ -g uniform.cpp -o uniform} \hfill\break
+ or (more easily) by using the {\tt Makefile}: \hfil\break
+ {\tt make uniform} \hfil\break
+ {\tt make clean} \hfil\break
+ The program {\tt uniform} allows you to generate a set of $ n $ random 
+ numbers (written to {\tt stderr}) chosen from 
+ some interval $ [a, b] $. You can 
+ save the numbers in the usual way by redirecting them to a file. Since
+ {\tt stderr} is file descriptor 2, this would be done, for example, by
+ typing: \hfil\break
+ {\tt uniform 2$>$ my\_datafile.txt} \hfil\break
+ Note that the program always writes the {\tt sentinel} {\tt 0.0}
+ at the end of the data. Why? You can, of course, remove this
+ or modify the program. Make a datafile of about 30--40 random
+ numbers chosen from the interval $[-5.0 , 5.0]$ for use later.
+
+\noindent
+3. Make yourself a copy of the class file (and {\tt C++} program): 
+ {\tt sorting.cpp}.
+ This program will accept a datafile of floating point numbers
+ (separated by white space) and do some statistical operations
+ on the data set.  A sentinel is {\bf not} necessary with this program. 
+ Compile and link the program either by typing: \hfil\break
+ {\tt g++ -g sorting.cpp -o sorting} \hfill\break
+  or (more easily) by using the {\tt Makefile}: \hfil\break
+ {\tt make sorting} \hfil\break
+ {\tt make clean} \hfil\break
+ Run the program on your datafile via: \hfil\break
+ {\tt sorting my\_datafile.txt} \hfil\break
+ Try out all operations provided in the menu and make sure that
+ the answers are correct. We will eventually
+ discuss all of the sorting algorithms (selection, insertion,
+ heap, merge, quick, and shell sort) during the course of the
+ quarter.
+
+\vskip10pt
+\noindent
+{\bf Questions} Write up a short explanation of your conclusions
+ and observations (no more than one page) on items 1--3 above.
+ 
+\noindent
+Email me your explanation {\bf in plain ascii text} observing
+ the following:
+\itemitem{i.} keep line length under 80 characters per line and
+	{\bf don't send quoted-printable text} (which is painful to
+	read since each line ends in an `=' sign and it is full
+	of stupid =0A's and =20's).
+\itemitem{ii.} send the text {\bf in-line} and {\bf not as an
+	attachment} (e.g. in pine you can use CTRL-R to read text
+	into the email body).
+\itemitem{iii.} if you need to refer to files that you have in your
+	account, just give me the path to the file and the filename.
+	{\bf Don't} use spaces in filenames; you can use the underscore
+	character to improve readability.
+
+\vfill
+\eject
+\end

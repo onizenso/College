@@ -1,0 +1,23 @@
+.:Final Notes:.
+
+    Room 315 on Thur June 13th 2:00 - 4:30 pm
+    Optional: can come in Wednesday to do Moodle Quiz
+        Room 240 on Wednesday June 12th 2:00 - 4:30 pm
+
+    Nmap lab will NOT be on the final
+
+    All the other labs will be open game for the lab portion of the Final
+
+    look back to tcpdump lab for review
+        src host, dst host, host
+        src port, dst port, port
+        look at tcp and udp filtering
+
+    Look to steganography lab and quiz on hiding files within files
+
+    To show cracked passwords w/ John:
+        ./john --show <file>
+
+    If running password cracking in Etch
+        switch to another terminal: ALT+F2, ALT+F3, ALT+F4, etc.
+        go back to original terminal: ALT+F1

@@ -1,0 +1,67 @@
+ file:lab03.cpp ,function:main ,line:68 start of logging
+ file:lab03.cpp ,function:PrintArray ,line:14 starting PrintArray(); 
+ file:lab03.cpp ,function:PrintArray ,line:21 ending PrintArray(); 
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 6 and 7
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 7 and 8
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 8 and 9
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortAscending ,line:34 swapping positions 0 and 1
+ file:lab03.cpp ,function:PrintArray ,line:14 starting PrintArray(); 
+ file:lab03.cpp ,function:PrintArray ,line:21 ending PrintArray(); 
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 6 and 7
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 7 and 8
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 8 and 9
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 6 and 7
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 7 and 8
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 6 and 7
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 5 and 6
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 4 and 5
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 3 and 4
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 2 and 3
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 1 and 2
+ file:lab03.cpp ,function:SortDescending ,line:54 swapping positions 0 and 1
+ file:lab03.cpp ,function:PrintArray ,line:14 starting PrintArray(); 
+ file:lab03.cpp ,function:PrintArray ,line:21 ending PrintArray(); 

@@ -1,0 +1,532 @@
+CMPS 350 EXAM 2 - WTR 2010      Chapters 4 - 9                    /55
+01. If the 'int' data type is implemented in 4 bytes, with negative integers
+    stored as the two's complement of the positive integer, what is -5?
+    A. 11111111111111111111111111111101
+    B. 11111111111111111111111111111010
+    C. 11111111111111111111111111111011
+<ANS:  C -->
+
+02. What is true regarding Perl's memory management vis-a-vis this valid code? 
+    Hint: strings are scalars in Perl.
+      sub test {
+           $str = <stdin>; // user types in hello  
+           $str = <stdin>; // the user types in the gettyburg address
+           $str = <stdin>; // the user types in hi
+      }
+    A. Perl allocates memory off the heap three times for each read into $str.
+    B. Perl allocates memory on the stack one time for $str, allocating enough
+       for the largest possible string.
+<ANS:  B -->
+
+03. If Perl sees a number when it expects a string, it implicitly converts 
+    the number into a string; e.g. 25 becomes "25". If Perl sees a string when 
+    it expects a number, it implicitly converts the string into an arbitrary 
+    number; e.g. "hello" becomes 0. What can you conclude?
+    A. Perl uses dynamic typing.
+    B. Perl is typeless.
+    C. both statements are true
+<ANS: A -->
+
+04. What type of array allocation is performed in this C code?
+       int sd_array[size];   
+   A. fixed heap-dynamic
+   B. heap-dynamic 
+   C. stack-dynamic
+   D. fixed stack-dynamic
+<ANS:  C -->
+
+05. What is displayed on the screen in the following C code?
+       bits.a = 4;   // size 4 bit field
+       bits.b = 5;   // size 4 bit field
+       printf("%d", bits.a | bits.b);     // '|' is bitwise or 
+    A. 0       B. 1       C. 4        D. 5
+<ANS:  D -->
+
+06. In the IEEE standard, single precision floating point numbers are stored
+    in the format s * 2^e, where 'e' is the stored value of the exponent 
+    minus 127, and 's' is 1 + the stored value of the fraction. Under this 
+    encoding, what is the decimal value of the following?
+
+    0    10000100  01000000000000000000000
+    -    --------  -----------------------
+    sign exponent  fraction
+         8 bits    23 bits
+
+   A. 1.4 * 2^-5       
+   B. 1.25 * 2^5          
+<ANS:  B -->
+
+07. The C code below declares a 2x3x4 array of ints. Complete the statement
+    to initialize each cell in the cube with its offset into the array. Recall
+    that C stores 3-dimensional arrays in row-column-depth order.
+  /* 3-dimen arrays are in x,y,z order; e.g. row,col,depth */
+  int cube[2][3][4];
+  int x,y,z;
+  for ( x = 0; x < 2; x++ )
+     for ( y = 0; y < 3; y++ )  
+        for ( z = 0; z < 4; z ++ ) 
+           // which statement will insert the offset?
+        }
+      }
+   A. cube[x][y][z] = (z*(2*3))+(y*4)+ x;
+   B. cube[x][y][z] = (x*(2*3))+(y*4)+ z; 
+   C. cube[x][y][z] = (x*(3*4))+(y*4)+ z;
+<ANS:  C -->
+
+08. Under binary coded decimal (BCD) encoding, the decimal number 35 requires 
+    how many bits?
+    A. 6        B. 8   
+<ANS:  B -->
+
+09. The following Ada code will compile. However, will statement #1 raise a 
+    CONSTRAINT_ERROR at runtime since Ada includes implicit runtime index 
+    boundary checking?
+         type AN_ARRAY is array(1..10) of INTEGER;   
+         myArray : AN_ARRAY;
+         myArray(99) := 0;    // statement #1
+     A. True       B. False
+<ANS:  A -->
+
+10. C employs eager garbage collection and calls to malloc always allocate 
+    multiple bytes of storage in contiguous memory locations. Recurrent calls
+    to a function will cause heap fragmentation under what conditions?
+    A. if you allocate a small chunk of memory, then allocate a large chunk
+       of memory, then deallocate both, and repeat the process
+    B. if you allocate lots of small chunks of memory, deallocate every other 
+       one of those chunks, and then allocate several large chunks
+    C. if you alternate allocating small chunks of memory with large chunks of
+       memory
+<ANS:  B -->
+
+11. What happens at Line 3 in the following C++ code? 
+     int stuff[2] = {5,10};
+     int & iref = stuff;
+     iref++;   // line 3 
+
+   A. stuff[0] is incremented from 5 to 6
+   B. iref now points to stuff[1] 
+<ANS:  A -->
+
+12. Under what conditions might the following statement result in an unwanted
+    functional side effect? 
+          C = A + foo(A) + A; 
+    A. if A is a global variable and its value is modified in foo
+    B. if A is a 2-way parameter its value is modified in foo
+    C. both conditions could cause a problem 
+<ANS:  C -->
+
+13. What will happen when executing this code if && is a short circuit operator?
+      int list[MAX];    // list indices are 0..MAX-1
+      index = 0;      
+      while ( (index < MAX ) && (LIST[index] != value) )   {
+          index++;
+      }
+    A. When the loop exits, the index will be one past the range of the array.
+    B. The loop will exit without an out-of-range error.
+    C. both A and B are true.  
+<ANS:  C -->
+
+14. What is the result of this relational expression in C if relational 
+    operators <= and == are left associative?
+           int a = 5, b = 6, c = 6; 
+           a <= b == c;
+    A. 1      B. 0 
+<ANS:  A -->
+
+15. This code shows a mixed mode assignment with a widening coercion.
+       float x;
+       int i = 3;
+       x = i;
+    A. true     B. false
+<ANS:  A ->
+
+16. Given these values for X and Y
+       X: 00000100
+       Y: 00000111
+    What is  X ^ Y in binary?   ( '^' is the binary XOR operator )
+    A. 000        B. 011        C. 100
+<ANS:  B -->
+
+17. The function prototype of the pow function in C is
+          double pow(double,double);    
+    This statement compiles and executes without a problem. Why?
+              int n;
+              n = pow(2.5, 3);
+    A. The compiler implicitly does this:   pow ((int)2.5, 3)
+    B. The compiler implicitly does this:   (int) pow (2.5, 3)
+    C. The compiler implicitly does this:   (int) n = pow (2.5, 3)
+<ANS:  B -->
+
+18. This C statement compiles but produces undefined results. Why?
+         int count = 5;
+         count = -count++;   // ++ has precedence over - 
+         printf("count: %d", count);
+    A. the displayed value of count could be -4 or -6
+    B. the displayed value of count could be -4 or 6
+<ANS:  B -->
+
+19. After executing the following legal GNU C code, what is the value of 
+    short_min, assuming that a signed short int takes 16 bits and the value
+    of short_max is 32767?
+       signed short int short_max = SHRT_MAX;  // largest signed short int
+       signed short int short_min = SHRT_MIN;  // smallest signed short int
+   A. -32767 
+   B. -32768
+<ANS:  B -->
+
+20. What bitwise operation do you need to apply to 11 (1011) to produce 
+    4 (0100)? Hint: this is used to 'flip' the bits of a binary number.
+    A.  & 15     B. | 15      C. ^ 15      
+<ANS: C --> 
+
+21. If (7 & 3) results in 3, and if the operation occurs from the most 
+    significant bit to the least significant bit, what do you know about the 
+    & operator? 
+    A. bitwise & is a short-circuit operator 
+    B. bitwise & is not a short-circuit operator 
+<ANS:  B -->
+
+22. Assume num and num2 are ints under C (32 bits). You assign num to the 
+    largest positive integer on the system. 
+          01111111111111111111111111111111    <= num = INT_MAX
+    You assign num2 to the result of num+1: 
+          10000000000000000000000000000000    <= num2 = num + 1
+    If your language interprets num2 as the largest negative int on the system,
+    what do you know?
+    A. the absolute value of num2 is the largest positive integer on the system
+    B. num + num2 is not zero.
+<ANS:  B -->
+
+23. Select the false statements concerning an implicit branch in a multiple 
+    selection statement.
+    A. it ensures that only one selection will be executed
+    B. it supports implicit flow through 
+    C. it can result in redundant code
+<ANS:  B -->
+
+24. What is this Fortran code equivalent to?
+      i = 5
+      j = 5
+   10 PRINT "foo"
+   15 PRINT "bar" 
+      i = i - 1
+      IF (i .gt. 0) GOTO 15        // .gt. is "greater than"
+      j = j - 1
+      IF (j .ne. 0) GOTO 10       // .ne. is "not equal to"
+   A. a while loop nested in another while loop 
+   B. two while loops that are not nested 
+<ANS:  A -->
+
+25. Which of the following controls would allow you to jump in and jump out 
+    of a loop somewhere other than at the top or the bottom?
+    A. unconditional labeled branch statements 
+    B. unconditional unlabeled break statements
+<ANS:  A --> 
+
+26. Reading from a file with an unknown number of lines requires what type
+    of loop mechanism?
+    A. a counter controlled loop mechanism.
+    B. a logically controlled loop mechanism
+<ANS:  B -->
+
+27. Since this code is legal in C
+          int i;
+          while (i = 0)   // assignment statement 
+    this code is also legal:
+          int x = 4;
+          while (5*x+30/2)   
+    A. true        B. false 
+<ANS:  A -->
+
+28. The loop body in this C code will execute an infinite number of times.
+                  int i = 1;
+                  while (i = 1)  {
+                      i--;
+                  }
+    A. true   B. false 
+<ANS:  A -->
+    
+29. If, in a function, the last statement before returning is a recursive call
+    then that function is tail-recursive. Which of the following can be easily 
+    converted into a loop control structure?
+    A. non-tail recursive functions    B. tail-recursive functions    
+<ANS:  B --> 
+
+30. In counter-controlled loops, the loop variable may be evaluated within the 
+    loop control more than once per iteration.
+    A. true        B. false 
+<ANS:  B -->
+
+31. C#'s switch statement syntax requires an explicit break statement whereas
+    in C the break is optional. From this you know that
+    A. C#'s switch statement does not support fall through.
+    B. C#'s switch statement supports flow through.
+<ANS:  A -->
+
+32. Like all continue statements, the continue statement in C 
+    A. re-evaluates the loop condition before continuing.
+    B. continues without re-evaluating the loop condition.
+<ANS:  A -->
+
+33. The following two control structures in C share the same semantics.
+     // #1
+     k = 0;
+     loop:
+     k = k + 1;
+     print k;
+     if ( k > 10 ) then goto out
+     goto loop
+     out: 
+
+     // #2
+     for ( k = 1; k <=10; k++ ) 
+       print k;
+   A. true        B. false 
+<ANS:  B -->
+
+34. These two C control structures share the same semantics.
+     int i;
+     int j = 0;
+     // #1
+     for ( i = 0; i < 3; i++) {
+       switch (j+2) {
+         case 3:
+         case 2: j--; 
+         case 0: j++; 
+         default: j = 0;
+       }
+       if ( j > 0 ) break;
+       j = 3 - i;
+     }
+
+     // #2
+     i = 0;
+     while ( i < 3 ) {
+        if ( (j+2 == 3) || (j+2 == 2) ) {
+           j--;
+           j++;
+         }
+         else
+           j = 0;
+        if ( j > 0 )  
+           break;
+        j = 3 - i;
+        i++;
+     }
+    A. true         B. false 
+<ANS: B -->
+
+35. The following C code will accomplish what? (assume X contains integers)
+    while ( i < n ) {
+       flag = 1;
+       for ( j = 0; j < n; j++ ) {
+          if ( X[i][j] == 0 ) {        
+             flag = 0
+             break;
+       }
+       if ( flag )  {
+           printf ("found: %d\n", i);
+           i = n ;  
+       } 
+       i++;
+    }
+   A. display the first row containing all nonzeros 
+   B. display the first row containing all zeros 
+<ANS:  A -->
+
+36. The output of the two chunks of code below for n = 4 is identical.
+    // #1 
+    void junk1 (int n) {
+        print n;
+        if ( n > 0)
+           junk1 (n-1);
+    }
+    // #2 
+    while (n > 0) {
+         print n;
+         n--;
+    }
+    A. true         B. false 
+<ANS:  B -->
+
+37. The output of the two chunks of code below for n = 4 is identical.
+    // #1 
+    while (n > 0) {
+        print n;
+        n--;
+    }
+    // #2 
+    void junk2 (int n) {
+        if ( n > 0)
+           print n;
+        else
+           junk2 (n-1);
+    }
+    A. true         B. false 
+<ANS:  A -->
+
+38. What is the next line executed after the break in this C code?
+     1 while (sum < 1000) {
+     2     getnext(value);
+     3     if (value < 0) 
+     4        break;
+     5     sum := value;
+     6 }
+     7 printf("Value: %d",value);
+   A. Line 5       B. Line 7      C. Line 1     D. Line 2 
+<ANS:  B -->
+
+The next questions refer to the Ada selective accept statement shown here:
+    loop
+       select                  // demonstrates a guarded command selection 
+          when OK1 =>         
+              accept pickup;   // will wait indefinitely for a pickup
+       or
+          when OK2 =>          
+              accept dropoff;
+       or 
+         terminate;
+       end select;
+    end loop;
+
+39. OK2 is only evaluated if OK1 is false.
+    A. true      B. false
+<ANS:  B -->
+
+40. If OK1 and OK2 are both true, 
+    A. the pickup or dropoff requests are randomly selected.
+    B. the pickup request is always selected first.
+    C. the dropoff request is always selected first.
+<ANS:  A -->
+
+41. This function call is a compilation error in C#.
+             Foo (out 5);    // out mode parameter
+    A. true         B. false
+ <ANS:  A -->
+
+42. If the address of the actual parameter is 0xffbefa28, and the address of 
+    the formal parameter is also 0xffbefa28, what do you know?
+    A. you are passing a pointer type in C
+    B. you are passing a reference type in C++ 
+<ANS:  B -->
+
+43. Which of the following mechanisms use the same parameter passing semantics? 
+    A. Pass by value and pass by result
+    B. Pass by result and pass by reference
+    C. Pass by value result and pass by reference
+<ANS:  C -->
+
+44. Which parameter passing mechanisms support one-way parameter passing only?
+    A. pass by value and pass by result
+    B. pass by value and pass by value result 
+<ANS: A -->
+
+45. The C language supports two-way parameter passing mode.
+    A. true         B. false
+<ANS: B ->
+
+46. Below is a valid PHP subroutine. From this, what do you know about PHP?
+      function odd($var) {
+          print $var + 5;
+          print $var + "hello";
+      } 
+    A. PHP does not enforce parameter type checking
+    B. PHP enforces parameter type checking through implicit coercions
+<ANS: A -->
+
+47. An access to a static local variables is generally more efficient than 
+    an access to a stack-dynamic local variable because 
+    A. a static local variable requires one less address resolution
+    B. static local variables exist in cache
+<ANS:  A -->
+
+The next questions refer to the referencing environment of sub2 in this 
+JavaScript code:
+  function sub1(){
+    var x = 7;
+    function sub2(){     
+      alert(x);
+    };
+    function sub3(){
+      var x = 6;
+      sub4(sub2);        
+    };
+    function sub4(subx){
+        var x = 5;
+        subx();        
+    }
+    sub3();
+  };
+
+48. If '6' is displayed in the alert, the referencing environment of sub2 is
+    A. the static environment of the function definition. 
+    B. the the dynamic environment of the function execution.
+    C. the static environment of the call statement. 
+<ANS:  C -->
+
+49. If '5' is displayed in the alert, the referencing environment of sub2 is 
+    A. the static environment of the function definition. 
+    B. the the dynamic environment of the function execution. 
+    C. the static environment of the call statement.  
+<ANS:  B -->
+
+50. What is not true concerning a formal parameter?  (select D if all are true)
+    A. a formal paramter may not have a default value 
+    B. a formal parameter is a copy of or a reference to an actual parameter
+    C. a formal parameter name exists only in a subprogram
+    D. All statements are true.
+<ANS:  A -->
+
+51. What is true about this C++ code? 
+     void fun(Stuff& stuff )  {
+          stuff.setCount(200);       // line #1
+          Stuff new_stuff(999);
+          stuff = new_stuff;         // line #2 
+          new_stuff.setCount(222); 
+     }
+    A. line #1 modifies the Stuff object in the caller
+    B. line #2 doesn't modify anything in the caller
+<ANS:  A ->
+
+52. This python function call 
+             test_function(arg2='b', arg1='a')
+    is an example of what?
+    A. a function call using default values for arguments
+    B. a function call using keyword binding for arguments
+<ANS:  B -->
+ 
+53. The following code compiles in Python except for the marked line. Because
+    of this, what do you know? 
+         def fun1(argument):
+            result = argument + 5
+         fun1(5)           # this is OK
+         # fun1('a')       # this is not OK  
+   A. Python uses dynamic duck typing
+   B. Python is strongly typed
+   C. Both A and B
+<ANS:  C -->
+ 
+54. The following C# code will produce a compilation error. Why?
+       int foo(int a, out int b){   // default mode in C# is IN 
+          a = b;   
+          return 0; 
+       }
+   A. an OUT mode parameter cannot be an rvalue before it is an lvalue.  
+   B. an IN mode parameter cannot be an lvalue.  
+   C. both statements are true
+<ANS:  A -->
+
+55. In Java, all parameters are pass-by-value. Because of this, what will the 
+    name of the Dog be after calling foo(c)?
+        public static void main (String[] args) 
+        {
+           Dog c = new Dog("Fido");
+           foo(c);                       
+        }   
+        public static void foo(Dog d) {
+           d.setName("Fifi");       
+           d = new Dog("Spot");      
+        }
+    A. Fifi        B. Fido     C. Spot 
+<ANS:  A -->
+

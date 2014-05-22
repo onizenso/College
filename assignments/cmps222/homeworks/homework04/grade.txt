@@ -1,0 +1,9 @@
+88 out of 20
+
+has an off by one error
+
+44 is the last value added but 43 is the first value popped off 
+
+
+
+

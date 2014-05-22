@@ -1,0 +1,71 @@
+.:Windows Live Data Collection:.
+
+Sysinternal tools
+Foundstone fport
+NTRK
+Other Tools
+    netcat /nc /ncat
+        allows transmission of data for many purposes
+        primary use now: get data off of machine being investigated
+        server: nc -l -p 2222 > capture file
+        client: pslist | nc 192.168.0.22 2222
+
+    cryptcat - encrypts data with 'twofish' crypt algorithm
+        encrypted form of netcat
+
+    Cryptographic hashe types:
+        md5sum
+        sha*sum family - * = 1, 2, 256, 512
+            create hash: md5sum <somefile> >> checksums
+            check hash: md5sum -c checksums
+        can run hash over file, disk, partition, etc.
+
+    Data Collection Tools
+        cmd.exe - need trusted copy, version on machine may be corrupted
+            need to make sure 'Run..' command has not been corrupted
+            if 'Run..' corrupted, live-boot linux, use tools for analysis
+            built-in commands
+                dir      - List files
+                cd       - Change Directory
+                time     - Current time
+                date            - Current date
+                type            - Echo file contents
+                ipconfig        - List current network config
+                    ipconfig /all - long listing
+                    there is an option to dump the list in DNS cache (*lookup)
+                netstat         - List network connections
+                arp             - List NetBios name cache
+                nslookup        - Look up domain name/IP mapping
+                doskey /history - History of commands listed (legacy)
+                    only for cmd.exe commands
+        
+        External Tools        
+                pwdump3e        - List SAM password database
+                ntlast          - Login history
+                userdump        - User-mode memory contents
+                    need live system, that has not been rebooted
+
+.:Putting Toolkit Together:.
+    store on read-only media or write-blocked USB Drive
+    don't trust system binaries or libraries
+        needs to be stand-alone tools
+    checksum all utilities & keep checksum file on read-only media
+        do this even on local repository of tools
+    wipe toolkit media after investigation & start w/ new copy
+        for next investigation
+    keep ISO image to speed up creation of toolkit media
+        use checksum to verify the ISO image
+        check the checksum verifying the ISO checksum before using ISO checksum
+
+.:Operating System Basics:.
+    Booting a machine is a multi-step process
+        BIOS/EFI -> bootstrap -> 1st stage kernel -> kernel ->
+            system tools/binaries -> user tools/binaries
+   
+        Corrupting the BIOS makes it hard to make forensic copies of the 
+        hard disk, because hard-disk BIOS is different from Virtual Machine BIOS
+    Even with duplicate, we load system tools, binaries & libraries first
+        rootkit - try to hide data, binaries, etc from discovery
+            look for inconsistencies in tool output to discover a rootkit
+    Live data collection can alter logs, timestamps, etc.
+    

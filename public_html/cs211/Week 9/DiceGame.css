@@ -1,0 +1,120 @@
+body
+{
+  background-color: #004400;
+}
+
+div.playerArea
+{
+  position: absolute;
+  top: 100px;
+  bottom: 200px;
+  width: 300px;
+  
+  background-color: #0996FF;
+  border: 3px solid #0027C6;
+  padding: 0 1em;
+}
+
+div#human
+{
+  left: 100px;
+}
+
+div#computer
+{
+  right: 100px;
+}
+
+div#wins
+{
+	left: 450px;
+	right:450px;
+}
+
+div#roll
+{
+  position: absolute;
+  bottom: 175px;
+  left: 100px;
+  right: 100px;
+  height: 100px;
+  background-color: #FFFF00;
+  border: 3px solid #FFBE00;
+
+}
+
+div#roll:hover
+{
+  background-color: #FFFF99;
+}
+
+div#roll a
+{
+  display: block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  color: #004400;
+  text-align: center;
+  font-size: 90px;
+  text-decoration: none;
+}
+
+div#roll a:hover
+{
+  color: #FF0000;
+}
+
+div#stop
+{
+  position: absolute;
+  bottom: 50px;
+  left: 100px;
+  right: 100px;
+  height: 100px;
+  background-color: #FFFF00;
+  border: 3px solid #FFBE00;
+
+}
+
+div#stop:hover
+{
+  background-color: #FFFF99;
+}
+
+div#stop a
+{
+  display: block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  color: #004400;
+  text-align: center;
+  font-size: 90px;
+  text-decoration: none;
+}
+
+div#stop a:hover
+{
+  color: #FF0000;
+}
+
+p.total
+{
+  margin: 10px;
+  font-weight: bold;  
+  font-size: 3em;
+  text-align: center;
+}
+
+p.winner
+{
+  color: #00CC00;
+}
+
+p.loser
+{
+  color: #CC0000;
+}

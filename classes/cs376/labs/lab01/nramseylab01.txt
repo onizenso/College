@@ -1,0 +1,59 @@
+1. I ran dig using the university's nameserver against the sever hosting my web app. It returned all the available servers and their IP's. Google seemed like a nice target for ping, just to make sure the search engine is still on the internet. Last tool in the box was used on Hacker News (news.ycominator.com). I have attached the output in three separate files.
+
+2. 
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> www.cs.csub.edu
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29109
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 6, ADDITIONAL: 6
+
+;; QUESTION SECTION:
+;www.cs.csub.edu.		IN	A
+
+;; ANSWER SECTION:
+www.cs.csub.edu.	86400	IN	CNAME	sleipnir.cs.csub.edu.
+sleipnir.cs.csub.edu.	86400	IN	A	136.168.201.100
+
+;; AUTHORITY SECTION:
+cs.csub.edu.		86400	IN	NS	ns0.csub.edu.
+cs.csub.edu.		86400	IN	NS	tux.cs.csubak.edu.
+cs.csub.edu.		86400	IN	NS	ns2.csub.edu.
+cs.csub.edu.		86400	IN	NS	ns3.csub.edu.
+cs.csub.edu.		86400	IN	NS	sleipnir.cs.csubak.edu.
+cs.csub.edu.		86400	IN	NS	ns1.csub.edu.
+
+;; ADDITIONAL SECTION:
+ns0.csub.edu.		1236	IN	A	136.168.1.4
+ns1.csub.edu.		187	IN	A	136.168.1.91
+ns2.csub.edu.		187	IN	A	209.129.125.194
+ns3.csub.edu.		2287	IN	A	209.129.125.196
+tux.cs.csubak.edu.	86400	IN	A	136.168.201.117
+sleipnir.cs.csubak.edu.	86400	IN	A	136.168.201.100
+
+;; Query time: 1 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Tue Jan  7 13:29:14 2014
+;; MSG SIZE  rcvd: 291
+
+
+; <<>> DiG 9.8.4-rpz2+rl005.12-P1 <<>> soa www.cs.csub.edu
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 29265
+;; flags: qr aa rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 1, ADDITIONAL: 0
+
+;; QUESTION SECTION:
+;www.cs.csub.edu.		IN	SOA
+
+;; ANSWER SECTION:
+www.cs.csub.edu.	86400	IN	CNAME	sleipnir.cs.csub.edu.
+
+;; AUTHORITY SECTION:
+cs.csub.edu.		43200	IN	SOA	sleipnir.cs.csubak.edu. postmaster.cs.csubak.edu. 2013110600 300 60 1209600 43200
+
+;; Query time: 1 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; WHEN: Tue Jan  7 13:29:25 2014
+;; MSG SIZE  rcvd: 122
+

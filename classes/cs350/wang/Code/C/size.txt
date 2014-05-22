@@ -1,0 +1,13 @@
+
+Size of the segments in the executable with and w/o a static array of 100 ints
+   text	   data	    bss*	 dec	    hex	filename
+   2494	    268	     32	   2794	    aea	a.out   <= w/o array 
+   2522	    268	    432	   3222	    c96	a.out   <= with array
+
+*the BSS segment is the data segment where unitialized static variables go 
+
+Size of the executable segments with and w/o stack dynamic array of 100 integers
+   text	   data	    bss	    dec	    hex	filename
+   2522	    268	    432	   3222	    c96	a.out   <= without array
+   2522	    268	    432	   3222	    c96	a.out   <= with array 
+

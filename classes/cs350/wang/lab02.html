@@ -1,0 +1,176 @@
+<HTML> <HEAD>
+<TITLE>Lab Assignment 2 -- CS 350</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FEFDE7" LINK="#FB6A2D" VLINK="#993300" ALINK="#FF6600">
+Computer Science 350 
+
+<h3>CMPS 350 Lab 02: Introduction to Functional Programming</h3>
+<font color=red>Due: email solution before next lab</font> 
+<p>
+<pre>
+"Its all about you, using your own mind, without any method or schema, to 
+ restore order from chaos. And once you have, you can sit back and say, 
+ Hey, the rest of my life may be a disaster, but at least I have a solution."
+ Marcel Danesi, professor of anthropology at the University of Toronto and 
+ author of The Puzzle Instinct: The Meaning of Puzzles in Human Life.
+</pre>
+<img src="http://imgs.xkcd.com/comics/lisp_cycles.png">
+<p><table border=1 bgcolor="white"><tr><td>
+<b>resources:</b><br>
+<a href="http://www.cliki.net">CLISP wiki</a> (good introduction to syntax)<br>
+<a href="http://www.lisp.org/alu/~1f58f83638d8c7546aa7d265~/res-lisp#common-lisp">Lisp resources from Lisp Users Group</a><br>
+<a href="http://www-cgi.cs.cmu.edu/afs/cs.cmu.edu/user/dst/www/LispBook/index.html">Gentle Introduction to COMMON LISP</a> (500 pp. PDF)<br>
+<a href="./PDFs/lisp-primer.pdf">LISP primer</a> <br>
+<a href="http://www.findword.org/fu/functional-programming.html">overview
+ of functional programming</a><br>
+<a href="ftp://ftp.aw.com/cseng/authors/finkel/apld/finkel04.pdf">Ch. 4 
+</a> Finkel's <u>Advanced Programming Language Design</u> (36 pp. PDF file)
+<br>
+<a href="http://en.wikipedia.org/wiki/Functional_programming">Functional 
+programming (wiki)</a>
+<br>
+<a href="http://en.wikipedia.org/wiki/Lisp_programming_language">Lisp (wiki)</a> 
+<br>
+<a href="http://www.cs.csubak.edu/~donna/cs350/Code/Lisp/cltl/clm/node1.html#SECTION00100000000000000000">Common Lisp reference</a>
+<br>
+<a href="http://gigamonkeys.com/book/">Practical Common Lisp</a> by Peter Seibel<br>
+<a href="http://www.cs.csubak.edu/~donna/cs350/Code/Lisp/">sample Lisp code</a>
+<br>
+<p>
+</td> </tr> </table> 
+<p>
+<font color=red>NOTE: Kill your lisp process if 
+ you abort before exiting the lisp interpreter.</font>
+<p>
+Read <a href="http://www.paulgraham.com/acl.html">chapter 2</a> of <i>ANSI Common Lisp</i> by Paul Graham (ch. 1 is optional). The full version of 
+Graham's text can be purchased from Amazon. Read this
+<a href="./PDFs/lisp-primer.pdf">lisp primer</a> for C and Java programmers.
+<p>
+ Read this <a href="./Code/Lisp/readme.txt">quick guide</a> for a brief
+ introduction on how to run a Lisp interpreter on sleipnir. There
+ are two Lisp interpreters on sleipnir - Common Lisp (clisp) and Scheme (chicken).
+ (The code from chapter 14 will run under chicken not common lisp.) 
+ Email me a single file lab02.txt with your answers. 
+<p>
+There are lots and lots of LISP online references (see resource list above).
+ You are welcome to use any or all, but I have installed the definitive
+ online documentation to our implementation of CLISP 
+ <a href="http://www.cs.csubak.edu/~donna/cs350/Code/Lisp/cltl/clm/node1.html#SECTION00100000000000000000">here</a>, and I recommend you use this
+ as a definitive and complete reference.
+<p>
+ For a quick reference, refer to <a href="http://jtra.cz/stuff/lisp/sclr/index.html">this site</a> and this <a href="http://www.math-cs.gordon.edu/courses/cps323/LISP/lisp.html">LISP overview</a>.
+ <p>
+<pre>
+01. Use the Lisp interpreter on sleipnir to determine what happens when the 
+    following expressions are evaluated.
+
+   (a) > (* (+ 5 2) (- 7 5) )
+
+
+   (b) > (list 1 (+ 2 3))
+
+
+   (c) > (if (listp 1) (+ 1 2) (+ 3 4))
+
+
+   (d) > (list (and (listp 3) t) (+ 1 2))
+
+
+02. Replace the 'x' in the following statements with a Lisp operator or
+    variable that will produce the outcome as shown.
+
+   (a) > (car (x (cdr '(a (b c) d))))
+         B
+
+
+   (b) > (x 13 (/ 1 0))
+         13
+
+   (c) > ((lambda (y) (* y 2)) x) 
+         6 
+
+03. Use car and cdr to return the fourth element of a list.
+
+04. Find three distinct cons expressions that return (a b c). Since Lisp is 
+    case insensitive, (A B C) is identical. However, the list ((A B C)) is 
+    not equivalent to (A B C). One list has one element and the other list 
+    has three.
+
+05. Given this Lisp function definition
+
+   (defun test (n)
+     (if (<= n 1)
+        1
+     (+ n (test (- n 1)))))
+
+    Explain how (test 3) will be evaluated.
+
+06. Explain how this function will be evaluated. 
+
+    (list (or t (listp 3)) (+ 1 2))
+
+</pre>
+<div style="width: 600px; background-color:white; 
+          border: solid black 1px; padding: 5px;">
+For the next questions, write and run
+  Lisp functions. The easiest way
+ is to copy and paste or write the function in a file, load the file and run 
+  the functions; e.g.:<pre>
+     > (load 'lab02.lisp)
+     > (enigma '(a b)) 
+     > (mystery 'a '(a b c)) 
+</pre>
+  This <a href="./Code/Lisp/readme.txt">README</a> 
+ file provides more detailed  instructions. 
+</div>
+<pre> 
+07. What does this function return?
+
+      (defun enigma (x)
+         (and (not (null x))
+           (or (null (car x))
+             (enigma (cdr x)))))
+
+08. What does this function return?
+
+    (defun mystery (x y)
+       (if (null y)
+           nil
+           (if (eql (car y) x)
+              0
+              (let ((z (mystery x (cdr y))))
+                 (and z (+ z 1))))))
+
+   Note: 'let' establishes variable bindings. This is not the same as an 
+   assignment statement. For example: (let ((z 5)) (+ z 1))  binds z to 5, 
+   increments z, and returns 6.
+
+09. Write an iterative function that takes a positive integer and prints 
+    that many dots.
+
+10. Write a recursive function that takes a positive integer and prints 
+    that many dots.
+
+11. Write a recursive function that takes a list and returns the number of 
+    times the symbol 'a' occurs in it. (note: you do not need to look for 
+    a's in a sublist within a list)
+
+12. Write a recursive function that returns the Fibonacci number where the
+    Fibonacci sequence is defined as
+
+    fib(0) = 0, fib(1) = 1 and fib(n) = fib(n-1) + fib(n-2) for n > 1.
+    examples:
+    n =       0 1  2  3  4  5  6   7   8  9   ...
+    fib(n) =  0 1  1  2  3  5  8  13  21  34  ...
+
+13. Write a function that takes 2 numbers and returns the greater of the two.
+
+14. EXTRA CREDIT: Write a function that takes a list and returns the number 
+     of times the symbol 'a' occurs in it. This function must look for 'a's 
+     within sublists.
+</pre>
+Note: For testing, you can define a function that runs all of your functions. 
+See <a href="./Code/Lisp/examples.lisp">this file</a> for an example of 
+a test function.
+</body>
+</html>

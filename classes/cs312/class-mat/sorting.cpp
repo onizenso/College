@@ -1,0 +1,850 @@
+			/* sorting.cpp: sample program which reads
+		a datafile into an array and does some statistics 
+		with different options for sorting:
+				
+			generic (selection) sort	(g)
+			heap sort			(h)
+			insertion sort			(i)
+			shell sort			(k)
+			merge sort			(l)
+			quick sort			(q)
+
+		invoke the program with the datafile on the commandline,
+		e.g.:
+
+			sorting datafile5.txt 	
+	
+		if you want to time the sorts, put the selected sort menu 
+		letter in a tmpfile ending with 'x', e.g.
+
+			g (or h or k or l or q)
+			x
+			[EOF]
+
+		and invoke through the "time" command:
+
+			/usr/bin/time -p sorting datafile5.txt < tmpfile  
+
+		or you can do:
+			
+		echo "y x" | /usr/bin/time -p sorting datafile5.txt  
+		
+		where y = g | h | k | l | q			*/
+
+#include <iostream>	// C++ I/O
+#include <fstream>	// for files
+#include <iomanip>
+using namespace std;
+
+#include <stdio.h>	// C I/O
+#include <stdlib.h>
+#include <unistd.h>
+#include <math.h>
+
+#define	TOLERANCE	   250	// only print small data sets
+#define MAX_NUMS	100250
+int	comparisons = 0;
+int	total_moves = 0;
+int	total_swaps = 0;
+int	depth = 0;
+int	max_depth = 0;
+			// function prototype, code will follow
+char	menu(void);
+void	make_copy(double to[], double from[], int num_items);
+void	sort(double array[], int num_items);
+int	above_ave(double array[], int num_items);
+int	below_ave(double array[], int num_items);
+void	heap_sort(double x[], int num);
+void	insertion_sort(double x[], int num);
+void	shell_sort(double x[], int num);
+void	merge_sort(double x[], int num);
+void	quick_sort(double v[], int left, int right);
+void	swap(double & x, double & y);
+
+/* ----------------------------------------------------------- */
+
+int	main(int argc, char *argv[])
+	{	
+	int	count, i;
+	char	khar;
+	double	sum, max, min, ave;
+	double	data[MAX_NUMS];	// working array data[0]..data[MAX_NUMS - 1] 
+	double	orig[MAX_NUMS]; // ORIGINAL UNSORTED array 
+	ifstream inputfile;	// declaring an object named "inputfile"
+				// of the class "ifstream"
+
+	ios::sync_with_stdio();
+	if (argc == 2)
+		{
+		inputfile.open(argv[1]);	// open the file
+		}
+	else
+		{
+		printf(
+	"\n follow instructions! invoke this program as follows: ");
+		printf("\n sorting [name of data file] \n\n");
+		return(-1);		// failure
+		}
+			// try to open the file
+
+	if (!inputfile.fail())		// check results of open()
+		{
+		printf("\n datafile.txt opened ok");
+		}
+	else
+		{
+		printf("\n \"%s\" file open failed", argv[1]);
+		printf("\n check that you typed the correct file name \n\n");
+		return(-1);		// failure
+		}
+
+			// read the numbers from the data file
+			// into the array
+	count = 0;
+	while ( (!inputfile.eof()) && (count < MAX_NUMS) )
+		{
+		if (inputfile >> orig[count]) // if extraction successful
+			{
+/* *** DIAG *** */
+//			fprintf(stderr, 
+//			  "\n data[%2d]=%8.4f ", count, orig[count]);
+			count++;
+			}
+		}
+	inputfile.close();	// close the file when done reading
+
+	make_copy(data, orig, count);	 // make copy of data so that
+				// we can run different types of sorts
+				// on the original UNSORTED data
+
+				// process data in first loop
+				// compute: sum, max, min
+	sum = 0.0;
+	for (i = 0 ; i < count ; i++)
+		{
+		sum = sum + data[i];
+		if (i == 0)	// is this the first number?
+			{
+			max = data[0];
+			min = data[0];
+			}
+		else
+			{
+			if (data[i] > max)
+				max = data[i];
+			if (data[i] < min)
+				min = data[i];
+			}
+
+/* *** DIAG *** */
+//	fprintf(stderr, "\n sum=%8.4f max=%8.4f min=%8.4f ",
+//			sum, max, min);
+		} // end of for
+	ave = sum/(double)count;// compute ave
+/* *** DIAG *** */
+	fflush(stdout);
+	fprintf(stderr, "\n n=%d sum=%8.4f ave=%8.4f max=%8.4f min=%8.4f ",
+			count, sum, ave, max, min);
+
+			// ask user
+
+loop:	khar = menu();		// post menu and get choice
+
+	switch(khar) {
+	  case 'a':	printf("\n average=%8.4f ", ave);
+			break;
+
+	  case 's':	printf("\n maximum=%8.4f ", max);
+			break;
+
+	  case 't':	printf("\n minimum=%8.4f ", min);
+			break;
+
+	  case 'n':	printf(
+	"\n there are %d data items greater than the average ", 
+				above_ave(data, count) );
+			break;
+
+	  case 'm':	printf(
+	"\n there are %d data items smaller than the average ",
+				below_ave(data, count) );
+			break;
+
+				// sort in increasing order
+	  case 'g':	total_moves = 0;
+			comparisons = 0;
+			sort(data, count);
+			printf(
+	"\n generic (selection) sort: total moves=%d comparisons=%d", 
+				total_moves, comparisons);
+			fflush(stdout);
+/* *** DIAG *** */
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'h':	total_moves = 0;
+			comparisons = 0;
+			heap_sort(data, count);
+			printf(
+	"\n heap sort:                total moves=%d comparisons=%d", 
+				total_moves, comparisons);
+			fflush(stdout);
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'i':	total_moves = 0;
+			comparisons = 0;
+			insertion_sort(data, count);
+			printf(
+	"\n insertion sort:           total moves=%d comparisons=%d", 
+				total_moves, comparisons);
+			fflush(stdout);
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'k':	comparisons = 0;
+			total_swaps = 0;
+			shell_sort(data, count);
+			printf(
+	"\n shell sort:               total swaps=%d comparisons=%d", 
+				total_swaps, comparisons);
+			fflush(stdout);
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'l':	comparisons = 0;
+			total_moves = 0;
+			depth = 0;		/* recursive depth */
+			max_depth = 0;
+			merge_sort(data, count);
+			printf(
+ "\n merge sort:               total moves=%d comparisons=%d max_depth=%d", 
+				total_moves, comparisons, max_depth);
+			fflush(stdout);
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'q':	comparisons = 0;
+			total_swaps = 0;
+			depth = 0;		/* recursive depth */
+			max_depth = 0;
+			quick_sort(data, 0, count - 1);
+			printf(
+ "\n quick sort:               total swaps=%d comparisons=%d max_depth=%d", 
+				total_swaps, comparisons, max_depth);
+			fflush(stdout);
+			if (count < TOLERANCE)
+				{
+				fprintf(stderr,
+				  "\n the numbers in increasing order are: ");
+				for (i = 0 ; i < count ; i++)
+					printf("\n %8.4f ", data[i]);
+				}
+			break;
+
+	  case 'x':	goto done;
+	  
+	  default:	;
+			printf("\n\n *** not implemented yet *** \n\n");
+			fflush(stdout);
+	  } // end of switch
+
+	make_copy(data, orig, count);	// reload from original data so
+					// that next sort will be on
+					// UNSORTED data
+	goto loop;
+done:
+	cout << "\n\n";
+	return(0);
+	} // end of main
+
+/* ----------------------------------------------------------- */
+
+char	menu(void)
+	{
+	char	k;
+
+	cout << "\n";
+	cout << "\n   <a> average of the data ";
+	cout << "\n   <s> maximum of the data ";
+	cout << "\n   <t> minimum of the data ";
+	cout << "\n   <n> number of data items above the average ";
+	cout << "\n   <m> number of data items below the average ";
+	cout << "\n   <g> generic (selection) sort in increasing order ";
+	cout << "\n   <h> heap sort in increasing order ";
+	cout << "\n   <i> insertion sort in increasing order ";
+	cout << "\n   <k> shell sort in increasing order ";
+	cout << "\n   <l> merge sort in increasing order ";
+	cout << "\n   <q> quick sort in increasing order ";
+	cout << "\n   <x> quit ";
+	cout << "\n       enter your choice: ";
+	cin >> k;
+	return(k);
+	}
+
+/* ----------------------------------------------------------- */
+
+void	make_copy(double to[], double from[], int num_items)
+		/* copy array from[] to to[] */
+	{
+	int	i;
+
+	for (i = 0 ; i < num_items ; i++)
+		to[i] = from[i];
+
+	} // end of make_copy
+
+/* ----------------------------------------------------------- */
+
+void	sort(double array[], int num_items)
+		/* this is a generic (selection) type of sort which 
+	simply finds the minimum of the remaining numbers and puts it 
+	in the correct place. It has a fixed overhead of O(n^2) and 
+	does extra work if the array is partially sorted. */
+	{
+	int	ok, index, i;
+	double	temp, tempmin;
+
+	ok = 0;	// number in correct position
+	for (ok = 0 ; ok < num_items ; ok++)
+		{
+		// find the minumum of
+		//   array[ok], array[ok+1], .. array[num_items-1]
+		tempmin = array[ok];
+		total_moves++;
+		index = ok;
+		for (i = ok+1 ; i < num_items ; i++)
+			{
+			comparisons++;
+			if (array[i] < tempmin)
+				{
+				tempmin = array[i];
+				index = i;
+				}
+			}
+		// at this point we have the minimum
+		// and it is in array[index]
+		// so
+		// swap array[ok] and array[index]
+		temp = array[ok];
+		array[ok] = array[index];
+		array[index] = temp;
+		total_moves = total_moves + 3;
+/* *** DIAG *** */
+//		fprintf(stderr,
+//	"\n swapped array[%d]=%8.4f and array[%d]=%8.4f ",
+//		ok, array[ok], index, array[index]);
+
+		} // end of for
+	} // end of sort
+
+/* ----------------------------------------------------------- */
+
+int	above_ave(double array[], int num_items)
+	{
+	int	i, num;
+	double	sum, ave;
+
+	sum = 0.0;
+	for (i = 0 ; i < num_items ; i++)
+		{	
+		sum = sum + array[i];
+		}
+	ave = sum/(double)num_items;	
+
+/* *** DIAG *** */
+//	fprintf(stderr, "\n ave=%8.4f ", ave);
+
+	num = 0;
+	for (i = 0 ; i < num_items ; i++)
+		{
+		if (array[i] > ave)
+			num++;	// another number bigger
+				// than the average
+/* *** DIAG *** */
+//		fprintf(stderr,
+//	"\n i=%d array[i]=%8.4f ave=%8.4f num=%d", i, array[i], ave, num);
+		} // end of for loop
+
+	return(num);		// return number above average
+	}
+
+/* ----------------------------------------------------------- */
+
+int	below_ave(double array[], int num_items)
+	{
+	int	i, num;
+	double	sum, ave;
+
+	sum = 0.0;
+	for (i = 0 ; i < num_items ; i++)
+		{	
+		sum = sum + array[i];
+		}
+	ave = sum/(double)num_items;	
+
+/* *** DIAG *** */
+//	fprintf(stderr, "\n ave=%8.4f ", ave);
+
+	num = 0;
+	for (i = 0 ; i < num_items ; i++)
+		{
+		if (array[i] < ave)
+			num++;	// another number smaller
+				// than the average
+/* *** DIAG *** */
+//		fprintf(stderr,
+//	"\n i=%d array[i]=%8.4f ave=%8.4f num=%d", i, array[i], ave, num);
+		} // end of for loop
+
+	return(num);		// return number above average
+	}
+
+/* ----------------------------------------------------------- */
+
+void heap_sort(double x[], int num)
+		/* this function accepts an array x[] of num
+	precision real numbers (from x[0], x[1], ... , x[num - 1])
+	moves them to a heap-type array (from h[1], h[2], ...
+	h[num]), constructs the heap in bottum-up fashion, and
+	then selectively deletes keys (from largest to smallest),
+	re-heapifying the array as necessary. The keys then end
+	up sorted and can then be copied back into the x[] array 
+	in order. */
+	{
+	int	i, j, half_num, working_key, working_num, not_yet_heap;
+	double	working_value;
+	double	*h;
+				/* allocate heap-type array */
+	h = (double *)malloc((num + 1)*sizeof(double));
+				/* transfer x[0], x[1], ... , x[num-1]
+				   to       h[1], h[2], ... , h[num] */
+	h[0] = 0.0;
+ 	for (i = 0 ; i < num ; i++)
+		{
+		h[i+1] = x[i];
+		total_moves++;
+		}
+	half_num = num/2;
+	if (half_num == 0)
+		return;		// only one number and nothing to sort
+
+				/* construct heap in bottum-up fashion */
+	for (i = half_num ; i >= 1 ; i--)
+		{
+		working_key = i;
+		working_value = h[working_key];
+		not_yet_heap = 1;
+		while ( (not_yet_heap == 1) && (2*working_key <= num) )
+			{
+			j = 2*working_key;
+			if (j < num)		/* if two children 
+						   pick the larger */
+				{
+				comparisons++;
+				if (h[j] < h[j + 1]) 
+					{
+					comparisons++;
+					j = j + 1;
+					}
+				}
+			if (working_value >= h[j])
+				{
+				comparisons++;
+				not_yet_heap = 0;
+				}
+			else			/* swap values */
+				{
+				h[working_key] = h[j];
+				total_moves++; 
+				working_key = j;
+				}
+			h[working_key] = working_value;
+			total_moves++; 
+			}  // end of while
+		}  // end of for (i = half_num ..
+
+/* *** DIAG *** Uncomment to see start of heap ..
+		fflush(stdout);
+		i = 1;
+		k = 32;
+		while(i < 16)
+			{
+			fprintf(stderr, "\n");
+			for (j = 0 ; j < k ; j++)
+				{
+				fprintf(stderr, " ");
+				}
+			for (j = i ; j < 2*i ; j++)
+				{
+				fprintf(stderr, " %7.4f ", h[j]);
+				}  // end of for (j = i..
+			k = k - 4*i - 1;
+			i = 2*i;
+			}  // end of for (i = 1..
+		fprintf(stderr, "\n"); */
+
+				/* start deletions largest to smallest */
+	working_num = num;
+	while (working_num > 1)
+		{
+				/* swap h[1] and h[working_num] */
+		working_value = h[1];
+		h[1] = h[working_num];
+		h[working_num] = working_value;
+		total_moves = total_moves + 3;
+
+				/* re-heapify the heap on one less
+				   number by percolating down at
+				   working_key = 1 */
+		working_num--;
+		i = 1;
+		working_key = i;
+		working_value = h[working_key];
+		not_yet_heap = 1;
+
+		while ( (not_yet_heap == 1) && 
+			(2*working_key <= working_num) )
+			{
+			j = 2*working_key;
+			if (j < working_num)	/* if two children 
+						   pick the larger */
+				{
+				comparisons++;
+				if (h[j] < h[j + 1]) 
+					{
+					comparisons++;
+					j = j + 1;
+					}
+				}
+			if (working_value >= h[j])
+				{
+				comparisons++;
+				not_yet_heap = 0;
+				}
+			else			/* swap values */
+				{
+				h[working_key] = h[j];
+				total_moves++; 
+				working_key = j;
+				}
+			h[working_key] = working_value;
+			total_moves++; 
+			}  // end of while
+		}  // end of while (working_num > ..
+
+				/* update original array x[] 
+				   now that h[] is sorted */
+ 	for (i = 0 ; i < num ; i++)
+		{
+		x[i] = h[i+1];
+		total_moves++;
+		}
+	return;
+	}  // end heap_sort
+
+/* ----------------------------------------------------------- */
+
+void insertion_sort(double x[], int num)
+		/* this function accepts an array x[] of num double
+	precision real numbers (from x[0], x[1], ... , x[num - 1])
+	and sorts them in increasing order. The double loop is tricky
+	but all we are doing is keeping the start of the array sorted
+	and then checking where to put the next number (hence the
+	name "insertion sort") 
+
+		The *** DEBUG *** lines can be commented out if you 
+	don't want to see the progress of the sort. */
+	{
+	int	i, j, k;
+	double	temp;
+
+	for (i = 1 ; i < num ; i++)
+		{
+				/* so far
+
+			x[0] < x[1] < .. x[i-1] have been sorted, so
+			now consider where x[i] goes */
+
+		for (j = 0 ; j < i ; j++)
+			{
+			comparisons++;
+			if (x[i] < x[j])
+
+				/* insert x[i] at the j-th position
+				           |
+			x[0] x[1].. x[j-1]   x[j]-> x[j+1]-> .. x[i-1]-> 
+
+				   and move the rest up in the array */
+				{
+				temp = x[i];
+				for (k = i ; k > j ; k--)
+					x[k] = x[k-1];
+				x[j] = temp;
+				total_moves = total_moves + (i - j) + 2;
+				break;
+				}
+			}  // end of for (j = ..
+
+/* *** DEBUG *** show the progress of the insertion sort */
+//		printf("\n  sort:");
+//		for (l = 0 ; l <= i ; l++)
+//			{
+//			if ( (l == j) && (l < i) )
+//				printf(" %7.3f*", x[l]);
+//			else
+//				printf(" %7.3f ", x[l]);
+//			if ( (l % 8) == 7)
+//				printf("\n       ");
+//			}
+		}  // end of for (i =  ...
+	}  // end of insertion sort
+
+/* ----------------------------------------------------------- */
+
+void shell_sort(double x[], int num)
+		/* this function accepts an array x[] of num double
+	precision real numbers (from x[0], x[1], ... , x[num - 1])
+	and sorts them in increasing order using a shell sort. The
+	*** DEBUG *** lines can be commented out if you don't want 
+	to see the progress of the insertion sort. */
+	{
+	int	i, j, diff;
+	double	temp;
+
+	diff = num/2;
+	if (diff == 0)
+		return;		// only one number and nothing to sort
+	while(diff > 0)
+		{
+		for (i = diff ; i < num ; i++)
+			{
+				// compare all pairs of numbers separated 
+				// by diff and swap if out of place
+			for (j = i - diff ; j >= 0 ; j = (j - diff))
+				{
+				comparisons++;
+				if (x[j] > x[j + diff])
+					{
+// *** OLD ***				swap(x[j], x[j + diff]);
+					temp = x[j];
+					x[j] = x[j + diff];
+					x[j + diff] = temp;
+					total_swaps++;
+					}
+				}  // end of for (j =
+			}  // end of for (i =
+
+/* *** DEBUG *** show the progress of the shell sort */
+//		cerr << setprecision(3);
+//		cerr << setiosflags(ios::fixed);
+//		cerr << setiosflags(ios::showpoint);
+//		cerr << "\n  diff=" << diff;
+//		cerr << "\n  sort:";
+//		for (l = 0 ; l < num ; l++)
+//			{
+//			cerr << setw(8) << x[l] << " ";
+//			if ( (l % 8) == 7)
+//				cerr << "\n       ";
+//			}  // for (i =
+		diff = diff/2;
+		}  // end of while 
+	}  // end of shell_sort
+
+/* ----------------------------------------------------------- */
+
+void	merge_sort(double x[], int num)
+			/* this is the "standard" recursive merge 
+	sort routine where we split the array, sort each part
+	recursively, and merge the results, e.g.:
+
+		8  3  2  9  - split - 7  1  5  4 
+	get:
+		2  3  8  9     and    1  4  5  7 which are then
+	merged.  					       */
+	{
+	int	i, n, m, i_y, i_z;
+	double	*y, *z;
+
+	if (num == 1)
+		return;			/* done */
+	depth++;			/* one more activation record
+					   on stack */
+	if (depth > max_depth)
+		max_depth = depth;	/* keep track of maximum
+					   depth of recursion */
+	n = num/2;
+	m = num - n;			/* n, m >= 1 */
+					/* allocate two shorter arrays */
+	y = (double *)malloc(n * sizeof(double));
+	z = (double *)malloc(m * sizeof(double));
+
+					/* copy data from larger array */
+	for (i = 0 ; i < n ; i++)
+		{
+		total_moves++;
+		y[i] = x[i];
+		}
+	for (i = 0 ; i < m ; i++)
+		{
+		total_moves++;
+		z[i] = x[n + i];
+		}
+					/* make recursive calls */
+	merge_sort(y, n);
+	merge_sort(z, m);
+					/* merge information back 
+					into the larger array x[] */
+	i_y = 0;
+	i_z = 0;
+	i = 0;
+	for (i = 0 ; i < num ; i++)
+		{
+		if ( (i_y < n) &&
+		     (i_z < m) && (y[i_y] <= z[i_z]) )
+			{
+			x[i] = y[i_y];
+			comparisons = comparisons + 3;
+			total_moves++;
+			i_y++;
+			}
+		else if ( (i_y < n) &&
+		          (i_z < m) && (y[i_y] > z[i_z]) )
+			{
+			comparisons = comparisons + 3;
+			x[i] = z[i_z];	
+			total_moves++;
+			i_z++;
+			}
+		else if ( (i_y < n) && (i_z == m) )
+			{
+			comparisons = comparisons + 2;
+			x[i] = y[i_y];
+			total_moves++;
+			i_y++;
+			}
+		else
+			{
+			x[i] = z[i_z];
+			total_moves++;
+			i_z++;
+			}
+		}  // end of for (i= ..
+	depth--;			/* pop activation record */
+	return;
+	}  // end of merge_sort
+
+/* ----------------------------------------------------------- */
+
+void quick_sort(double v[], int left, int right)
+			/* this is the "standard" quick sort routine.
+	it is usually far superior to anything else, but at the 
+	expense of high recursion. we use the "<"  comparison for 
+	making the swaps:
+				left..last ... pivot ... right
+								  */
+	{
+	int	i, last, pivot;
+	double	ptmp;
+
+	if (left >= right) return;	/* less than two elements */
+	depth++;			/* one more activation record
+					   on stack */
+	if (depth > max_depth)
+		max_depth = depth;	/* keep track of maximum
+					   depth of recursion */
+
+	pivot = (left + right)/2;
+	ptmp = v[left];
+	v[left] = v[pivot];
+	v[pivot] = ptmp;		/* swap pivot and left */
+
+	last = left;			/* set partition */
+	for (i = left + 1 ; i <= right ; i++)
+		{
+		comparisons++;
+		if (v[i] < v[left])	/* comparison here */
+			{
+			++last;
+			ptmp = v[last];
+			v[last] = v[i];
+			v[i] = ptmp;	/* swap v[i] and v[last] */
+			total_swaps++;
+			}
+		}
+	ptmp = v[left];
+	v[left] = v[last];
+	v[last] = ptmp;			/* swap left and last */
+	total_swaps++;
+
+		/* at this point everything between left..(last-1) 
+		is smaller than v[last] and everything
+		between (last+1)..right is greater than v[last] so .. */
+
+/* *** DIAG *** */
+//		printf("\n");
+//		for (l = 0 ; l <= right ; l++)
+//			{
+//			if (l < left)
+//				printf("               ");
+//			else if (l == last) 
+//				printf(" v[%2d]=%7.3f*", l, v[l]);
+//			else
+//				printf(" v[%2d]=%7.3f ", l, v[l]);
+//			if ( (l % 5) == 4)
+//				printf("\n");
+//			}
+
+
+		/* .. finish off with recursion */
+	quick_sort(v, left, last - 1);
+	quick_sort(v, last + 1, right);
+	depth--;			/* pop activation record */
+	return;
+	}  // end of quick_sort 
+
+/* ----------------------------------------------------------- */
+
+void swap(double & x, double & y)
+		/* this function accepts two double precision reals 
+	passed by reference (can't pass by value here) and swaps them.
+	we don't actually use this in the sorting routines above
+	since inline swapping with a temp variable is faster than
+	a function call. */
+	{
+	double	temp;
+	temp = x;
+	x = y;
+	y = temp;
+	}  // end of swap
+

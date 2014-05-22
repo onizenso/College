@@ -1,0 +1,98 @@
+with "components.gpr";
+
+project Components.APQ is
+
+   type Arch_Type is ("win32", "linux");
+   Arch   : Arch_Type := external ("ARCH", "win32");
+
+   type Driver_Type is ("MySQL", "PostgreSQL", "All");
+   Driver : Driver_Type := external ("Driver", "All");
+   
+   case Arch is
+      when "win32" =>
+         for Source_Dirs use (".", "C:/Program Files/APQ-2.1/Bindings/APQ");
+      when "linux" =>
+         for Source_Dirs use (".", "/usr/local/apq-2.1/include");
+   end case;
+
+   Common_Files :=
+      (  "apq-common.adb",
+         "apq-common.ads",
+         "apq-keys.adb",
+         "apq-keys.ads",
+         "apq-keys-arrays.ads",
+         "apq-keys-sets.ads",
+         "apq-links.adb",
+         "apq-links.ads",
+         "persistent-apq.adb",
+         "persistent-apq.ads",
+         "apq.ads",
+         "apq.adb"
+      );
+   MySQL_Files :=
+      (  "apq-mysql.ads",
+         "apq-mysql-client.adb",
+         "apq-mysql-client.ads"
+      );
+   PostgreSQL_Files :=
+      (  "apq-postgresql.ads",
+         "apq-postgresql-client.adb",
+         "apq-postgresql-client.ads",
+         "apq-postgresql-decimal.adb",
+         "apq-postgresql-decimal.ads"
+      );
+   
+   case Driver is
+      when "MySQL" =>
+         for Source_Files use Common_Files & MySQL_Files;
+      when "PostgreSQL" =>
+         for Source_Files use Common_Files & PostgreSQL_Files;
+      when "All" =>
+         for Source_Files use Common_Files & MySQL_Files & PostgreSQL_Files;
+   end case;
+
+   package Compiler is
+      for Default_Switches ("ada") use Components.Compiler'Default_Switches ("ada");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use Components.Binder'Default_Switches ("ada");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use Components.Builder'Default_Switches ("ada");
+   end Builder;
+
+   package Linker is
+      case Arch is
+         when "win32" =>
+            case Driver is
+               when "MySQL" =>
+                  for Default_Switches ("ada")
+                     use Components.Linker'Default_Switches ("ada") &
+                         "-LC:/Program Files/APQ-2.1/Bindings/APQ" &
+                         "-lapq";
+               when "PostgreSQL" | "All" =>
+                  for Default_Switches ("ada")
+                     use Components.Linker'Default_Switches ("ada") &
+                         "-LC:/Program Files/PostgreSQL/8.2/lib" &
+                         "-LC:/Program Files/APQ-2.1/Bindings/APQ" &
+                         "-lapq";
+            end case;
+         when "linux" =>
+            case Driver is
+               when "MySQL" =>
+                  for Default_Switches ("ada")
+                     use Components.Linker'Default_Switches ("ada") & "-lapq" & "-lmysql";
+               when "PostgreSQL" =>
+                  for Default_Switches ("ada")
+                     use Components.Linker'Default_Switches ("ada") & "-lapq";
+               when "All" =>
+                  for Default_Switches ("ada")
+                     use Components.Linker'Default_Switches ("ada") & "-lapq" & "-lmysql";
+            end case;
+      end case;
+   end Linker;
+
+end Components.APQ;
+

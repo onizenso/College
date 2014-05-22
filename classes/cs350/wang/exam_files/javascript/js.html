@@ -1,0 +1,141 @@
+<html>
+<head>
+<title> CMPS 350 Exam 2 Part II - JavaScript </title>
+<style type=text/css>
+  body { margin: 1% 5% 10% 15%; }
+</style>
+</head>
+<!-- 
+ **************
+ * JavaScript *                                                          / 25 
+ **************
+ 
+ For this part of the exam, copy everything in this directory into a
+ subdirectory under your public_html directory:
+
+       cp /usr/users/donna/cs350/exam2/javascript/* .
+
+ Everything you need to complete this assignment is in one of these files:
+ 
+       /cs350/Solutions/lab06/lab06.html   
+       /cs350/Code/JavaScript/more_events.html   
+
+  Notes: most FORM element data can be accessed by appending .value to 
+  the element's name;e.g. myForm.myText.value
+
+ Add the JavaScript as specified below to the existing file-you do not need to
+ add or change the HTML.
+
+ 1. An onClick event in the "Next Photo" button to click though the four animal
+    images - when you hit the last image start over (you will need to load
+    these images in an image array to do this)
+
+ 2. An onChange event in the albumTitle text area to take whatever the user
+    typed in and display it in the TitleArea div (albumTitle.value)
+
+ 3. An onChange event in the select box to change the document bgColor to the
+    selected value in the pull-down menu
+
+ 
+ 4. An onClick event in the "Change matte to selected value" button to change
+    the matteDiv background image to the one selected in the radio button. To
+    change the backgound image in a div to the variable filename you need to
+    concatenate the STYLE component with the value of the variable; e.g.:
+
+          divArea.style.backgroundImage = 'url(' + filename + ')';
+
+ 5. An onClick event in the [checkSelect] button to count the number of
+    animals that you like. Display the result in the  choiceArea.  
+-->
+
+<body>
+<table>
+<tr><td>
+<div id="TitleArea" style="background-color:yellow; width:250px; text-align:center">
+<h1>Title Goes Here</h1>
+</div>
+
+<SCRIPT language = "JavaScript">
+
+
+
+
+</SCRIPT>
+
+<div id="matteDiv" style="position: relative; 
+                          border:solid 4px black; 
+                          background-image:url('satinbg.jpg'); 
+                          width:200px;
+                          height:200px;">
+
+<img src="./elephant.jpg" name="image1" style="position: absolute;
+                                                  left: 23px;
+                                                  top: 23px;
+                                                  height: 150px;
+                                                  width: 150px;
+                                                  border:solid 4px brown;" />
+</div>
+<p>
+<INPUT TYPE="BUTTON" value="Next Photo" 
+	        
+
+
+
+>
+
+<p>
+
+<p/>
+<FORM name="myForm" onSubmit="return false;">
+ Album Title: <input type="text" name="albumTitle" value="" 
+              
+
+</input>
+                    
+<p/>
+Page Background: <select name = "background"
+
+
+
+>
+<option value = "tan" > tan 
+<option value = "silver"> silver 
+<option value = "beige" > beige
+</select>
+<P>
+
+<div id="myArea">
+
+</div>
+Select Matte:
+ivy <input type="radio" name="matte" value="ivybg.jpg"> 
+granite  <input type="radio" name="matte" value="granitebg.gif"> 
+stripes <input type="radio" name="matte" value="stripesbg.gif">  
+water <input type="radio" name="matte" value="waterbg.jpg">
+
+<input type="button" value="Change matte to selected value" 
+            
+
+
+">
+ 
+<p/>
+
+<p/>
+A. <input type = "checkbox" name = "Q1"> I like lions 
+B. <input type = "checkbox" name = "Q1"> I like tigers 
+C. <input type = "checkbox" name = "Q1"> I like bears 
+
+  <input type="button" value="checkSelect" 
+
+>
+<p/>
+<div ID="choiceArea">
+
+</div>
+<p/>
+
+<INPUT TYPE="RESET" VALUE="Clear FORM">
+</FORM>
+</body>
+</HTML>

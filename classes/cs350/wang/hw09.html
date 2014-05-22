@@ -1,0 +1,499 @@
+<html> <head> 
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 37;
+
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+</head> <body bgcolor="white">
+<font face="Courier" style="font-size: 11pt; font-weight: 500">
+<h3>CMPS 350: HW 09 Subprograms </h3> 
+<font color=red>DUE: next monday before lecture</font>
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<a href="./Code/C++/functions.cpp">C++</a> <br>
+<a href="./Code/Ada/hw09.adb">Ada</a> <br>
+<a href="./Code/C_sharp/functions.cs">C# code</a> <br>
+<pre class=verbatim>
+01. Why is this function call a compilation error in C#?
+             Foo (out 5);    // keyword out specifies an out mode parameter
+    A. a literal cannot be passed as an argument in C#
+    B. 5 is not an L-value
+</pre>   A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="1"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  <input type="button" value="check" onClick="x=document.getElementById('x1'); 
+  if (document.quizform.Q1[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: You do not need to know C# to know this - an out mode parameter must be an L-value in any language.'; } ">  
+<DIV id="x1" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+02. What statement is NOT true concerning positional binding? (or D if all true)
+    A. C/C++ use this form of formal to actual parameter binding. 
+    B. The first actual parameter is bound to the first formal parameter.
+    C. Formal parameters cannot have default values in positional binding.
+    D. All statements are true
+</pre>   A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="1"> D<input type="radio" name="Q2" value="0">  <input type="button" value="check" onClick="x=document.getElementById('x2'); 
+  if (document.quizform.Q2[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: you can set default values in positional binding in a C++ function prototype - fun(int=1,float=3.5); .'; } ">  
+<DIV id="x2" STYLE="background-color: white"> </DIV>  
+
+<pre>
+03. What do you know about this Perl code?  (syntax is OK)
+    &test(5, ' cats', 34);  // will display "5 cats" on the screen. 
+    &test(' cats');         // will display "cats" on the screen. 
+    sub test { 
+       $first = $_[0];
+       $second = $_[1];
+       print "$first and $second\n";
+    }
+   A. the implicit formal parameter in a subroutine is the array @_
+   B. there is no restriction on the number of actual parameters in a 
+      subroutine call 
+   C. both statements are true
+</pre>   A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="1"> D<input type="radio" name="Q3" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x3'); 
+  if (document.quizform.Q3[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: Perl initializes all variables.'; } ">  
+<DIV id="x3" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+04. In C/C++, the default address binding for non-static variables that are 
+    local to a subroutine is 
+    A. heap dynamic     B. stack dynamic      
+</pre>   A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="1"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x4'); 
+  if (document.quizform.Q4[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: Unlike C, Java uses explicit heap dynamic allocation for all objects.'; } ">  
+<DIV id="x4" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+05. Which of the following is NOT a primary design issue for subprograms?
+    A. what parameter passing methods to provide
+    B. whether to give subprogram identifiers internal or external linkage
+    C. whether or not to check parameter types 
+    D. whether local variables are static or dynamic
+</pre>   A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="1"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x5'); 
+  if (document.quizform.Q5[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: subprogram identifiers - by default - always have external linkage; if not - you would either have an extremely large single compilation unit program or lots of redundant code.'; } ">  
+<DIV id="x5" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+06. Which of the following is NOT a primary design issues for subprograms?
+    A. How many parameters can be subprogram have?
+    B. Can subprograms be overloaded?
+    C. Can subprograms be generic?
+    D. Can you have nested subprograms?
+</pre>   A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x6'); 
+  if (document.quizform.Q6[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: in the design phase you do not set a limit on the number of parameters - this is an implementation issue . The number of parameters does not affect how subgrams behave. '; } ">  
+<DIV id="x6" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+07. What is true if a language does not support stack-dynamic address binding 
+    for variables local to a subprogram?
+    A. the languages does not support recursion
+    B. the binding of a local variable to an address is done by the linker
+    C. both statements are true 
+</pre>   A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x7'); 
+  if (document.quizform.Q7[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: a reference to a local variable does not have external linkage - so the linker is not involved.'; } ">  
+<DIV id="x7" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+08. In C++ pass by reference, the address of the actual parameter is the same as
+    the address of the formal parameter. 
+    A.  true         B. false 
+</pre>   A<input type="radio" name="Q8" value="1"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x8'); 
+  if (document.quizform.Q8[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: C++ uses pass by reference with the & symbol. see code for examples.'; } ">  
+<DIV id="x8" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+09. If the address of the actual parameter is 0xffbefa28, and the address of 
+    the formal parameter is 0xffbefa0c, what do you know about the parameter 
+    passing mechanism?
+    A. this is some version of pass by value
+    B. if this is an in mode parameter, the R-value of the actual parameter
+       is copied to the R-value of the formal parameter.
+    C. both A and B are true
+</pre>   A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="1"> D<input type="radio" name="Q9" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x9'); 
+  if (document.quizform.Q9[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: C uses this method.'; } ">  
+<DIV id="x9" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+10. Which of the following mechanisms use the same parameter passing semantics? 
+    A. Pass by value and pass by result
+    B. Pass by value result and pass by reference
+    C. Pass by result and pass by reference
+</pre>   A<input type="radio" name="Q10" value="0"> B<input type="radio" name="Q10" value="1"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x10'); 
+  if (document.quizform.Q10[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: there are only three semantic modes: IN, OUT, and IN-OUT. There are only two mechanisms in the list given that use the same mode.'; } ">  
+<DIV id="x10" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+11. Which parameter passing mechanism supports one-way parameter passing only?
+    A. pass by value
+    B. pass by result
+    C. both A and B are correct
+</pre>   A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="1"> D<input type="radio" name="Q11" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x11'); 
+  if (document.quizform.Q11[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: One-way passing includes both IN and OUT modes.'; } ">  
+<DIV id="x11" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+12. Which language does not support two-way parameters? 
+    A. Fortran          B. C           C. C++   
+</pre>    A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x12'); 
+  if (document.quizform.Q12[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: You do not need to know Fortran to answer this question.'; } ">  
+<DIV id="x12" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+13. Below is a valid PHP subroutine. From this, what do you know about PHP?
+      function odd($var) {
+        if ($var % 2 == 1) {
+           print "odd";
+        }
+        else  {
+           print "even";
+        }
+      } 
+    A. PHP does not enforce parameter type checking
+    B. PHP does not support return values  
+    C. both statements are true 
+</pre>    A<input type="radio" name="Q13" value="1"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x13'); 
+  if (document.quizform.Q13[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: if a language does not enforce parameter type checking - it will not enforce type checking on return values - thus no need to specify a type.'; } ">  
+<DIV id="x13" STYLE="background-color: white"> </DIV>  
+
+<pre>
+14. Select the true statement that describes how arrays are passed in C.
+    A. If the parameter is type [], the address of the array is passed by value.
+    B. If the parameter is type [], the entire array is passed by value.
+    C. If the parameter is type *, the address of the array is passed by 
+       reference.
+</pre>    A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x14'); 
+  if (document.quizform.Q14[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: everything in passed by value in C. if the argument is a structured type, the address of the structure is passed by value.'; } ">  
+<DIV id="x14" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+15. In languages such as C/C++, where n-dimen arrays are really single 
+    dimensional arrays, the sizes of which dimensions must be included in the 
+    actual parameter?
+    A. the sizes of all dimensions must be included 
+    B. the size of every dimension but the first 
+    C. the size of every dimension but the last
+</pre>    A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x15'); 
+  if (document.quizform.Q15[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the sizes of all dimensions but the first must be included to determine the offset into the array.'; } ">  
+<DIV id="x15" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+16. What type of parameter passing mode has no side effects? 
+    A. in mode         B. in out mode        C. out mode      
+</pre>    A<input type="radio" name="Q16" value="1"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x16'); 
+  if (document.quizform.Q16[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: a side-effect is any change to the program state other than the return value.'; } ">  
+<DIV id="x16" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+17. Why are accesses to static local variables more efficient than accesses
+    to stack-dynamic local variables?
+    A. A reference to a static local variable requires one address resolution.
+    B. A reference to a stack-dynamic variable requires two address resolutions.
+    C. both statements are true
+</pre>    A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="1"> D<input type="radio" name="Q17" value="0"> 
+<input type="button" value="check" onClick="x=document.getElementById('x17'); 
+  if (document.quizform.Q17[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: To access a variable on the stack, you first resolve the stack frame address and then you resolve the offset to the variable in the stack frame. For static variables (loaded in the data section) one address resolution is all you need.'; } ">  
+<DIV id="x17" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+The next questions refer to the referencing environment of sub2 in this 
+JavaScript code:
+  function sub1(){
+    var x = 1;
+    function sub2(){     
+      alert(x);
+    };
+    function sub3(){
+      var x = 2;
+      sub4(sub2);        
+    };
+    function sub4(subx){
+        var x = 3;
+        subx();        
+    }
+    sub3();
+  };
+
+18. If '1' is displayed in the alert, the referencing environment of sub2 is 
+    A. the static (lexical) environment of the function definition. 
+    B. the dynamic environment of the function execution. 
+    C. the static (lexical) environment of the call statement. 
+</pre>    A<input type="radio" name="Q18" value="1"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x18'); 
+  if (document.quizform.Q18[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: look at sub2 - what referencing environment must be used for the value of x to be 1? .'; } ">  
+<DIV id="x18" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+19. If '2' is displayed in the alert, the referencing environment of sub2 is
+    A. the static environment of the function definition. 
+    B. the the dynamic environment of the function execution.
+    C. the static environment of the call statement. 
+</pre>    A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="1"> D<input type="radio" name="Q19" value="0"> 
+<input type="button" value="check" onClick="x=document.getElementById('x19'); 
+  if (document.quizform.Q19[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: look at sub2 and where x=2 is set in relation to sub2 .'; } ">  
+<DIV id="x19" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+20. If '3' is displayed in the alert, the referencing environment of sub2 is 
+    A. the static environment of the function definition. 
+    B. the the dynamic environment of the function execution. 
+    C. the static environment of the call statement.  
+</pre>    A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x20'); 
+  if (document.quizform.Q20[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: look at sub2 and where x=3 is set in relation to sub2.'; } ">  
+<DIV id="x20" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+21. All of the following are design issues for subprograms:
+       - What types of values can be returned?
+       - Are side effects allowed for some parameters and not for others?
+       - Are variable length parameter lists supported?
+       - Can parameters have default values?
+    A. true     B. false 
+</pre>    A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x21'); 
+  if (document.quizform.Q21[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: If the answer to these questions varies across languages then all are design issues; e.g., variable length parameter lists (passing a different number of arguments to the same function) is supported in C++ but not C ;   '; } ">  
+<DIV id="x21" STYLE="background-color: white"> </DIV>  
+<pre> 
+22. A coroutine may have more than one entry point, but only one exit point.
+    A. true      B. false 
+</pre>    A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="1"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x22'); 
+  if (document.quizform.Q22[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: the semantics of coroutines is to pass control back and forth between subroutines; to make this work you must have more than one entry point as well as more than one exit.'; } ">  
+<DIV id="x22" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+23. What is not true concerning a formal parameter?  (select D if all are true)
+    A. a formal paramter may have a default value 
+    B. a formal parameter is a copy of or a reference to an actual parameter
+    C. a formal parameter name exists only in a subprogram
+    D. All statements are true.
+</pre>    A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="1"> <input type="button" value="check" onClick="x=document.getElementById('x23'); 
+  if (document.quizform.Q23[3].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: default values are always attached to the formal parameter.'; } ">  
+<DIV id="x23" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+24. The ability to store variables on the runtime stack that are local to an 
+    instance of a subroutine is essential for recursion.
+    A. true         B. false 
+</pre>    A<input type="radio" name="Q24" value="1"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x24'); 
+  if (document.quizform.Q24[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: You can get away without passing parameters and still have recursion, but the return value and any local variables must be stored on the runtime stack.'; } ">  
+<DIV id="x24" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+25. All local non-static variables in a subprogram are bound to a new storage 
+    location at each function call.
+    A. true         B. false 
+</pre>    A<input type="radio" name="Q25" value="1"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x25'); 
+  if (document.quizform.Q25[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: non-static variables are bound to addresses in stack frames - the location of stack frames varies on the runtime stack.'; } ">  
+<DIV id="x25" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+26. What is true concerning the in out mode mechanism of pass-by-reference in
+    C++ ?
+    A. Any change made to the formal parameter in the subroutine is made 
+       immediately to the actual parameter in the calling program.
+    B. Any change made to the formal parameter in the subroutine is copied
+       to the actual parameter in the calling program upon exit.
+</pre>    A<input type="radio" name="Q26" value="1"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x26'); 
+  if (document.quizform.Q26[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: one of the answers describes pass by value-result as in implemented in Fortran.'; } ">  
+<DIV id="x26" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+27. What is true about this C++ code (& denotes a pass-by-reference parameter)? 
+     void fun(Stuff& stuff )  {
+          stuff.setCount(200);       // line #1
+          Stuff new_stuff(999);
+          stuff = new_stuff;         // line #2 
+          new_stuff.setCount(222); 
+     }
+    A. line #1 modifies the Stuff object in the caller
+    B. line #2 doesn't modify anything in the caller
+    C. both statements are true
+</pre>    A<input type="radio" name="Q27" value="1"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x27'); 
+  if (document.quizform.Q27[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: C++ pass-by-reference does not behave like Java pass-by-value.'; } ">  
+<DIV id="x27" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+28. Which is an example of parametric polymorphism?
+    A. a template function in C++ 
+    B. a (void *) parameter in C 
+</pre>    A<input type="radio" name="Q28" value="1"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0">
+<input type="button" value="check" onClick="x=document.getElementById('x28'); 
+  if (document.quizform.Q28[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: In parametric polymorphism, parameter types can change in the parameter list of the same function. A void * type does not change type - it just gives you enough rope to hang yourself.'; } ">  
+<DIV id="x28" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+29. A default value for a subroutine parameter, if supported, must be attached 
+    A. to the actual parameter.     B. to the formal parameter.   
+</pre>    A<input type="radio" name="Q29" value="0"> B<input type="radio" name="Q29" value="1"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x29'); 
+  if (document.quizform.Q29[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: think about how it is done in C++ .'; } ">  
+<DIV id="x29" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+30. This python function call 
+             test_function(arg2='b', arg1='a')
+    A. is an example of a function call using keyword arguments.
+    B. is an example of a function call using default values. 
+</pre>    A<input type="radio" name="Q30" value="1"> B<input type="radio" name="Q30" value="0"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x30'); 
+  if (document.quizform.Q30[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: If you know the answer to #29 you will know the answer to this question.'; } ">  
+<DIV id="x30" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+31. The following code compiles in Python except for the marked line. Because
+    of this, what do you know? 
+         def fun1(argument):
+            result = argument + 5
+         fun1(5)           # this is OK
+         # fun1('a')       # this is not OK  
+   A. Python uses dynamic duck typing and is not strongly typed.
+   B. Python uses dynamic duck typing and is strongly typed.
+   C. Python uses static typing and is strongly typed.
+</pre>    A<input type="radio" name="Q31" value="0"> B<input type="radio" name="Q31" value="1"> C<input type="radio" name="Q31" value="0"> D<input type="radio" name="Q31" value="0"><input type="button" value="check" onClick="x=document.getElementById('x31'); 
+  if (document.quizform.Q31[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: if there is no type specified when you declare a variable then the language cannot be statically typed.'; } ">  
+<DIV id="x31" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+32. The following C# code will produce a compilation error. Why?
+       int foo(int a, out int b){   // default mode in C# is IN 
+          a = b;   
+          return 0; 
+       }
+   A. an OUT mode parameter cannot be an rvalue before it is an lvalue.  
+   B. an IN mode parameter cannot be an lvalue.  
+</pre>   A<input type="radio" name="Q32" value="1"> B<input type="radio" name="Q32" value="0"> C<input type="radio" name="Q32" value="0"> D<input type="radio" name="Q32" value="0"><input type="button" value="check" onClick="x=document.getElementById('x32'); 
+  if (document.quizform.Q32[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: There is no restriction on an IN mode parameters within the subroutine.'; } ">  
+<DIV id="x32" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+33. In Java, all parameters are pass-by-value (there is no C++ & type in Java).
+    Because of this, what will the name of the Dog be after calling foo(c)?
+        public static void main (String[] args) 
+        {
+           Dog c = new Dog("Fido");
+           foo(c);                       
+        }   
+        public static void foo(Dog d) {
+           d.setName("Fifi");       
+           d = new Dog("Spot");      
+        }
+    A. Fido       B. Fifi       C. Spot 
+</pre>    A<input type="radio" name="Q33" value="0"> B<input type="radio" name="Q33" value="1"> C<input type="radio" name="Q33" value="0"> D<input type="radio" name="Q33" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x33'); 
+  if (document.quizform.Q33[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: pass-by-value is strictly IN mode.'; } ">  
+<DIV id="x33" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+The next questions refer this program, written in pseudo-code. 
+      swap (  a,  b ) {
+         var temp = a;
+         a = b;
+         b = temp; 
+      }
+      value = 2, List = {1,3,5,7,9};
+      swap(value, List[0])  
+      swap(List[0], List[1])  
+      swap(value, List[value])  
+34. If the parameters to swap use the modes
+         swap ( in out a,  in b ), 
+    List is unchanged after the three calls to swap.
+    A. true    B.  false 
+</pre>    A<input type="radio" name="Q34" value="1"> B<input type="radio" name="Q34" value="0"> C<input type="radio" name="Q34" value="0"> D<input type="radio" name="Q34" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x34'); 
+  if (document.quizform.Q34[0].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: what mode is List passed in under?'; } ">  
+<DIV id="x34" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+35. If the parameters to swap use the modes
+        swap ( in a,  in out b ), 
+    the value of List at the end of the three calls to swap is 
+    A. {1,3,5,7,9}     B. {2,2,2,7,9}     C. {3,1,5,7,9}
+</pre>    A<input type="radio" name="Q35" value="0"> B<input type="radio" name="Q35" value="1"> C<input type="radio" name="Q35" value="0"> D<input type="radio" name="Q35" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x35'); 
+  if (document.quizform.Q35[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: you should be able to tell by looking at the first element in the list.'; } ">  
+<DIV id="x35" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+36. If both parameters to swap are pass by value-result, the value of List 
+    at the end of the three calls to swap is
+    A. {1,3,5,7,9}
+    B. {2,2,2,7,9}
+    C. {3,1,5,7,9}
+</pre>    A<input type="radio" name="Q36" value="0"> B<input type="radio" name="Q36" value="0"> C<input type="radio" name="Q36" value="1"> D<input type="radio" name="Q36" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x36'); 
+  if (document.quizform.Q36[2].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: pass by value-result is IN OUT mode.'; } ">  
+<DIV id="x36" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+37. Which of the following mechanisms will produce the same results after three
+    calls to swap (assume value and List use the same mechanism)?
+    A. pass by value and pass by value-result
+    B. pass by value-result and pass by reference
+    C. pass by value and pass by result
+</pre>    A<input type="radio" name="Q37" value="0"> B<input type="radio" name="Q37" value="1"> C<input type="radio" name="Q37" value="0"> D<input type="radio" name="Q37" value="0"> <input type="button" value="check" onClick="x=document.getElementById('x37'); 
+  if (document.quizform.Q37[1].checked) {x.innerHTML='CORRECT';} 
+  else {x.innerHTML='Hint: pass by result is OUT mode ; pass by value is IN mode.'; } ">  
+<DIV id="x37" STYLE="background-color: white"> </DIV>  
+
+<pre> 
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 9">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+</body>
+</html>

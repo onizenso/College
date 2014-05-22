@@ -1,0 +1,59 @@
+Relational Model
+
+Date and time stored together, when needed separately just format the result
+
+List of attributes, equivalent to domain of a class
+   Set of atomic values
+
+The attribute itself is the name of a column
+
+Tuple is equivalent to a record
+
+Relational schema consists of relational name and attribute name
+
+r(R) means relation instance (r) of the relation schema (R) 
+
+attribute(R) -> set of attributes
+degree(R) -> number of attributes
+number(r) -> number of attributes in the relation instance
+
+Read chapter 9, 6, and 3
+
+Next Thursday's lab will be on relational algebra, covered in chapter 6. 
+
+Each relation is a set with no duplicate tuples. Don't assume that records in the set are sorted by default.
+
+t0,1 t[1,2,3] return the 1,2,3 values for the 0 and 1 record in t
+t.EID refers to employee id for record t 
+think of the dot as a member access operator from c++
+
+1-tuple, 2-tuple, n-tuple - n describes the number of attributes in the tuple
+
+Important to get the order of stored attributes correct. Changing the order later is difficult because you have to shift all the records in that relation.
+
+Entity  constraint - no record can be inserted without a primary key.
+
+Referential constraint (foreign key constraint) - records in a relation set must contain the primary keys from its referenced relations, no null values can be accepted as input for foreign keys. 
+
+If any of the attributes in the referenced relation's primary keys are null, the record will be rejected with an error. 
+
+All referenced records must have their referring records deleted before the referenced records can be deleted. Cascading deletions delete all referencing records when the referenced record is deleted.
+
+Updates are similar to deletions and require either cascading updates, or no changes to the referenced records.
+
+Value-range constraint: the set of acceptable values for attributes. Defines upper and lower bounds of acceptable input.
+
+Transaction is a group of statements that are executed as a whole. 
+
+Chapter Nine Notes
+Composite and multiple values need to be converted when mving to relational model
+
+Build new table that consists of columns named for the different values in the muliple valued attribute
+
+Can break down composite attributes into multiple simple attributes
+
+
+
+
+
+

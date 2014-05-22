@@ -1,0 +1,1 @@
+gmcs RemoteClass.cs /t:library /debug /r:System.Runtime.Remoting.dll /out:RemoteClass.dll

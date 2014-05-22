@@ -1,0 +1,135 @@
+<HTML>
+<HEAD>
+<TITLE>Lab Assignment 5: CS 350</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FEFDE7" LINK="#FB6A2D" VLINK="#993300" ALINK="#FF6600">
+Computer Science 350 
+
+<h3>CMPS 350 Lab 05: Prolog Lab II</h3>
+<font color=red>Due: 5:30 next monday </font>
+<p>
+<b>resources:</b><table border = 1><tr><td>
+<a href="http://www.cs.csubak.edu/~donna/cs350/Code/Prolog/predicates.txt">Prolog predicates listing</a><br>
+<a href="ch16_notes.txt">ch. 16.4 - 16.6.6</a> of Sebesta<br>
+<a href="./Code/Prolog/docs.pdf">Prolog docs</a> (Appendix A)<br>
+<a href="http://www.cs.may.ie/~jpower/Courses/PROLOG/">a Prolog tutorial</a>
+<br>
+<a href="./Code/Prolog/math.pl">/Code/Prolog/math.pl</a> <br>
+<a href="./Code/Prolog/logic.txt">Logical Equivalences</a> 
+</td></tr></table>
+<p>
+The material for this lab is derived from "Tutorial 2: Operators and Arithmetic" of James Power's <a href="http://www.cs.may.ie/~jpower/Courses/PROLOG/">Prolog tutorial</a>.
+<p>
+ In this lab you will use Prolog to compute some arithmetic functions.
+ You need to understand the concept of a "variable" in Prolog.
+ A variable is part of a predicate clause in Prolog. Variables are not 
+ assigned values in memory locations, as is the case in imperative languages.
+ Variables may be bound to a value by the 'is' operator, but within a single
+  predicate clause, a variable cannot change value. Variables must be
+ bound to a value before evaluation.
+ How Prolog handles variables is shown by the following predicate clauses:
+<pre>
+  | ?- I is I + 1.  <= this is an error because 'I' does not have a value 
+  uncaught exception: error(instantiation_error,(is)/2)
+
+  | ?- I is 6.  <== clause satisfied by I = 6
+  I = 6
+
+  | ?- I is 6, I is I + 1.  <= clause satisfied by I=6 and I=7  (impossible) 
+  no
+
+  | ?- I is 6, J is I + 1.  <= clause satisfied by I=6 and J=6+1
+  I = 6
+  J = 7
+  yes
+
+  | ?- N is 2, P is N * 2. <= satisfied by N=2 and P = 2*2" 
+  N = 2
+  P = 4
+  yes
+
+  | ?- I is 6, I is 7.  <== satisfied by I = 6 and I=7  (impossible)
+  no
+</pre>
+You also need to know how to do something in Prolog that you would normally
+ do with a function in an imperative language. For example, how would you 
+ achieve the result of this simple function in Prolog?<pre> 
+  /* convert fahrenheit to celsius */
+  float convert ( float far ) {
+     return 5/9 * ( far - 32)
+  }
+</pre>
+Since Prolog is a logic language, first state the problem as a logical 
+expression:
+<pre>
+   For all X, if R is 5/9 * (X - 32), then R is the celsius conversion of X.
+</pre>
+The equivalent Prolog predicate rule is shown below (R denotes result). Note
+ that you cannot use numbers in predicate names.
+<p><pre>
+   convert(X,R) :- X, R is 5/9 * (X - 32).   
+</pre>
+What about a function to return the absolute value of an integer?
+<pre>
+   int abs ( int num ) {
+     if (num < 0 ) return -num
+     else return num;
+   }
+</pre>
+This is expressed in predicate logic as: "for all X, X < 1, if R is
+-X OR for all X, X >= 0, if R is X, then R is the absolute value of X. And in Prolog:
+<pre>
+   abs(X,R) :- X < 1, R is -X. 
+   abs(X,R) :- X >= 1, R is X. 
+
+</pre>
+
+<hr> 
+Write Prolog rules to accomplish the following.
+<i> Add a comment before each rule, explaining what the Prolog rule means.</i>
+An operator you might find useful is  <pre>
+idiv(X,Y,R) :- Y>0, R is X // Y.
+</pre>
+   which performs integer division. 
+<pre>
+The 'rem' operator returns the remainder of integer division, which is
+ also useful.
+<p>
+1. Return a number incremented by 1
+   Example: inc(5,X). should display X=6
+
+2. Return signum(x), which is 1 if x>0, 0 if x=0, and -1 if x < 0 
+   Example: signum(-7,X). should display X=-1.
+
+3. Return the maximum of X and Y, or X if equal
+   Example: getMax(5,10,X). should display X=10.
+
+4. Return TRUE if X >= Y
+   Example: isMax(5,10). should display No.  
+
+5. Return the maximum of three numbers
+   Example: max3(5,10,3,X). should display X=10.  
+
+6. Return TRUE if N is even
+
+7. Return TRUE if N is prime  
+
+(test with one of the <a href="http://primes.utm.edu/lists/small/10000.txt">first 10,000 prime numbers.</a>)  
+</pre>
+<hr>
+<p>
+Create a single file lab05.pl. Create a log file where you test all rules
+in the Prolog interpreter. Email both files as attachments to me.
+<p>
+EXTRA CREDIT<p>
+The extra credit pertains to Prolog's ability to behave as a parser
+ for BNF grammars. Complete the assignment <a href="lab05_ec.pl">here</a>.
+<h3>PART II.</h3>
+When you submit your solution, please
+answer these questions in the body of the email:
+<ol>
+<li>How long did it take you to complete this lab?
+<li>Do you have any suggestions for improvement?
+</ol>
+</body>
+</html>

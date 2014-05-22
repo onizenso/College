@@ -1,0 +1,40 @@
+1. 2^32 - 1
+ * 2^32 - 1
+-------------
+   2^64 - 2^33 + 1
+ = (2^33(2^31 - 1) + 1) which is less than (2^64 - 1)
+
+2. MUL rd, rs, rt multiplies rs and rt, storing the result in rd
+   MULT rs, rt multiplies rs and rt, storing the result in ACCUMULATOR register
+   MULTU rs, rt performs same as above, stores result as unsigned int instead
+
+3. HI holds the most significant bits of the result, 
+   LO holds the least significant bits
+
+4. rs = 0000 0000 0000 0001 0000 0000 0000 0000
+   rd = 0000 0000 0000 0000 0000 0000 0000 0001
+
+5. Significant bits = 1 0101 0110 1101 1110
+
+6. Significant bits = 00 1010 1001 0010 0010
+
+7. mfhi $8 moves what is stored in the hi-accumulator into register $8
+   mflo $9 moves what is stored in the lo-accumulator into register $9
+
+8. ori      $8, $0, 12  ## stores 12 into $8     
+   ori      $9, $0,  5  ## stores 5 into $9      
+   mult     $9, $8      ## multiplies 12 and 5, storing 60 into lo-accum   
+   mflo     $9          ## stores multiply result (60) into $9
+   addiu    $9, $9,-74  ## 60 - 74, storing -14 as unsigned int in $9
+
+9. The quotient goes into lo-accum and the remainder goes into hi-accum
+
+10. hi holds rs % rt
+
+11. $10 = 1,  $11 = 16
+
+12. sra preserves sign bit in signed integers, srl won't preserve the sign-bit
+
+13. None of the mutliplication instructions trap for overflow. 
+    MULT and MULTU store results in the 64-bit accumulator
+    MUL can have overflow, b/c it stores results in 32-bit registers

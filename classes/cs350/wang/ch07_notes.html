@@ -1,0 +1,378 @@
+<html> 
+<body style="margin: 10px 40px 10px 40px;">
+<h3>Chapter 7 Expressions and Assignment Statements </h3>
+<b>resources:</b><br>
+<a href="http://techpubs.sgi.com/library/dynaweb_docs/0650/SGI_Developer/books/CLanguageRef/sgi_html/index.html">C ref man</a><br>
+<a href="./precedence_chart.html">C/C++ precedence & associativity chart</a><br>
+<a href="./Code/C/hw07.c">sample C code</a><br>
+<!--
+<font face="Courier" style="font-size: 12pt; font-weight: 500"> -->
+
+<p>
+Expressions and assignment statements are the fundamental means of 
+   computation in imperative languages. 
+ An expression is any statement that can legally appear on
+ the right side of an assignment statement.  An expression can be as
+  simple as a literal constant<pre>
+     num =  5.787;
+     str = "hello"; </pre>
+  or can involve any number of the  operators in the language. Supported
+ operators vary by language. C includes low-level
+ bitwise operators (<< >> & | ^) and a comma (sequence) operator.
+ Scripting languages and Java support string concatenation.
+ The power of an imperative language is  related to the number and type
+ of operators that are supported.
+ See <a href="http://java.sun.com/docs/books/jls/third_edition/html/expressions.html">Java Expressions</a>.
+ Java includes  concatenation. The more strongly typed 
+ a language is, the more complicated are the  constraints
+ placed on expressions (compare C with Java).
+ <p>
+ The two primary
+ types of expressions
+ in modern languages are expressions
+ that return a number (arithmetic) and 
+ expressions that return true or false (relational and boolean expressions).
+
+ Every expression in C returns a number since there is no boolean type. 
+
+<h4> ARITHMETIC EXPRESSIONS </h4>
+
+<li>  arithmetic computation influenced development of programming languages
+
+<li> expressions consist of operators, operands, and parentheses 
+<li> in most modern languages, the return value from a
+      function call can be an operand
+
+<pre class=verbatim > 
+<u>Design Issues</u>
+o  operator precedence and associativity rules
+o  order of operand evaluation (issue if side-effects)
+o  operand evaluation side effects 
+o  operator overloading
+o  mode mixing expressions (e.g. float with integer)
+
+<u>Operators</u>
+  Arity (number of operands)
+  unary:   ++
+  binary:  +
+  ternary: ?:    (a>5) ? b++ : b--;   <= ternary conditional 
+
+<u>Operator Precedence Rules</u> 
+
+   Typical precedence levels: <a href="./precedence_chart.html">C++ chart</a>
+
+      parentheses
+      postfix ++, --
+      prefix ++, --
+      unary +, -
+      *,/,%
+      +, -
+      =
+
+<u>Operator Associativity Rules</u> (see <a href="./precedence_chart.html">chart</a>)
+o associativity sets evaluation order of adjacent operators of equal precedence 
+o binary operators typically associate left to right
+o unary operators typically associate right to left
+o <a href="./Code/C/precedence.c">Sample code in C</a>
+
+
+<u>Ternary Conditional Expressions</u>
+
+   average = (count == 0) ? 0 : sum / count
+   means:
+     if (count == 0) 
+          average = 0
+     else 
+          average = sum /count
+			
+<u>Operand Evaluation Order</u>
+
+o  Variables: fetch the value from memory
+o  Constants: sometimes a fetch from memory; sometimes the constant is in the 
+	machine language instruction
+o  Parenthesized expressions: evaluate all operands and operators first
+o  postfix v. prefix increment/decrement operators: 
+   y = x * z++;  the current value of z is used to evaluate the expression 
+                 (i.e., y = x * z) then z is incremented 
+   y = x * ++z;  z is incremented first
+
+<u>Unwanted Functional Side Effects </u>
+
+o  A side-effect is anything that changes the environment of a program during
+   execution ; imperative languages are built on side-effects ; a functional
+   side-effect occurs in the time between a function call and a function 
+   return
+
+o  There is a potential "unwanted side-effect" when a function changes a 
+   two-way parameter or a non-local (global or static) variable:
+
+      int b, a = 10;
+      b = a + fun(&a);  /* assume fun changes a to 5 and returns it*/
+      What is the value of b?
+      If 'a' becomes 5 before addition, then b=10, otherwise b=15
+         
+o  Solution 
+   1. Disallow functional side effects in language ; no two-way parameters or 
+      non-local references in functions; Disadvantage: inflexibility 
+
+   2. Demand operand evaluation order be fixed in language definition
+      Disadvantage: limits some compiler optimizations
+
+<b> OVERLOADED OPERATORS</b>
+
+o  Use of an operator for more than one purpose is called operator overloading
+o  Some are easy to understand (e.g., + for int and float)
+o  Some are not (*  in C/C++ is both multiplication and pointer dereferencing)
+o  Loss of readability if meaning is not intuitive
+o  Avoided by use of new symbols (e.g., Pascal's div for integer division)
+o  C++ and Ada allow user-defined overloaded operators
+o  Potential problems: 
+   Users can define nonsense operations 
+   Can increase code complexity
+
+   Example in JavaScript of overloaded + operator:
+ <div STYLE="Background-Color : silver; width:90%; border: 1px dashed; ">  
+      // JavaScript is dynamically typed but does not behave like Perl
+      stuff = prompt('Enter an integer or a string:');
+      myInt = 5;
+      // + is overloaded to accept numbers or strings
+      // by default myInt is coerced to a string - unlike perl 
+      area.innerHTML = stuff + ' + ' + myInt + '=' + stuff + myInt; 
+      // if stuff is an integer OK, otherwise returns NaN
+      // the parens around parseInt MUST be there or + is string concat
+      area2.innerHTML = 
+      stuff + ' + parstInt(' + myInt + ')=' + (parseInt(stuff)+myInt); 
+
+      (<a href="./Code/JavaScript/test.html">run the script)</a>
+</div>
+
+o  Advantage: 
+   overload '=' operator to prevent cross-linked pointers in C++; <a href="./Code/C++/DynamicMemory">(see C++ example)</a>
+</pre>
+<h5> TYPE CONVERSIONS </h5> 
+<p>
+  A narrowing conversion converts an object to a type that reduces precision
+  or range of values of original type e.g., float to int or int to short
+</p>
+<p>
+  A widening conversion converts an object to a type that increases precision
+  or the range of values of original type e.g., int to float or short to int.
+ There are some standards but see /usr/include/limits.h for the limits
+ on your specific compiler. limits.h for
+    sleipnir is shown below:
+</p>
+<pre>
+<div STYLE="Background-Color : silver; width:90%; border: 1px dashed; ">  
+   
+                   Type  Bytes  Bits                Range
+
+            short int    2      16          -16,384 -> +16,383          
+   unsigned short int    2      16                0 -> +32,767          
+         unsigned int    4      16                0 -> +4,294,967,295   
+                  int    4      32   -2,147,483,648 -> +2,147,483,647   
+             long int    4      32   -2,147,483,648 -> +2,147,483,647   
+          signed char    1       8             -128 -> +127
+        unsigned char    1       8                0 -> +255
+                float    4      32
+               double    8      64
+          long double   12      96
+
+</div>
+  (<a href="./Code/C/types.c">see types.c</a>)
+
+<u>Mixed Mode</u>
+o  A mixed-mode expression contains operands of different types
+o  A coercion is an implicit type conversion made by the compiler or 
+   runtime system
+   Disadvantage: decrease type error detection of the compiler 
+o  In most languages, numeric types are coerced using widening conversions
+o  In C++, polymorphism uses implicit coercions from derived to base class
+   (downcasting) <a href="./Code/C++/Polymorphism/main.cpp">(see C++ code)</a>
+
+
+<u>Explicit Type Conversions</u>
+o  Called casting in C-based language. Examples:
+     C: int sum = 100; int num = 15;
+        float avg = (float) sum / num;
+     C++: static_cast &lt;int>(num)
+
+
+<u>Errors in Expressions</u>
+o  Inherent limitations of arithmetic; e.g., division by zero
+o  Limitations of computer arithmetic; e.g. overflow
+o  either ignored by run-time system or will give compiler specific results:
+
+<div STYLE="Background-Color : silver; width:70%; border: 1px dashed; ">  
+         num = __INT_MAX__: 2147483647
+         01111111111111111111111111111111
+         num2 = num + 1:  -2147483648
+         10000000000000000000000000000000
+         num + num2 = -1	
+         11111111111111111111111111111111
+
+</div>
+</pre>
+<h4> RELATIONAL AND BOOLEAN EXPRESSIONS </h4>
+
+<u>Relational Expressions</u>
+<pre>
+o  consists of relational operators and operands of various types
+o  evaluates to some boolean representation (e.g. T or 1)
+o  operator symbols vary among languages; e.g. not equal: !=, /=, .NE., <>, #
+o  relational expressions are a type of boolean expression
+o bitwise boolean operators are not boolean expressions (do not evaluate to T/F)
+
+<u>Boolean Expressions</u>
+o a boolean expression evaluates to T or F (or some representation of T/F)  
+o  boolean operators are: and, or, not, xor 
+o  most modern languages use C notation: && is AND, || is OR, ! is NOT (no XOR)
+o  operands are also boolean expressions; e.g. ((5 > 3) || (7 == 3)) is true  
+
+<u>Languages Without a Boolean Type </u>
+o  C has no boolean type--it uses int type: 0 is false and nonzero is true
+o  For C's relational expressions, associativity is L to R: 
+           a < b < c;  (legal code) 
+o  a and b are compared, producing 0 or 1; the result (0 or 1) is compared w/ c
+
+<u>Operator Precedence </u>
+o  Precedence in C-like languages:
+      !
+      <, >, <=, >=
+      =, !=
+      &&
+      ||                    
+
+</pre>
+<h5> SHORT CIRCUIT EVALUATION </h5>
+
+<p>
+If the result of an expression can be determined without evaluating all 
+ operands, you can stop evaluation; i.e., short-circuit evaluation.
+ Example: <pre>
+     (13*a) * (b/13-1)       # if 'a' is zero, no need to evaluate (b/13-1) 
+</pre>
+</p>
+<p>
+A disjunctive boolean expression (clauses separated by ORs) can be 
+ short-circuited after the first true in the expression:<pre>
+     ( (5 < 7) || (A > B) || (C == D) )     # stop at (5 < 7) 
+</pre> 
+A conjunctive boolean expression (separated by ANDs) can be 
+ short-circuited after the first false in the expression:
+<pre>
+     ( (5 > 7) && (A > B) && (C == D) )     # stop at (5 > 7) 
+</pre> 
+</p>
+This is a problem with non-short-circuit evaluation:
+<pre>
+   int LIST[MAX]; 
+	index = 0;
+	while ( (index < MAX ) && (LIST[index] != value) )
+		index++;
+</pre>
+When index == MAX, evaluating LIST [index] will be an out-of-bounds exception
+</p>
+<p>
+<li> C, C++, Java use short-circuit evaluation for the usual Boolean 
+	operators (&& and ||)
+
+<li>bitwise Boolean operators (& | ^ ) are NOT short circuit
+
+<li> short-circuit evaluation can cause side effects in expressions                
+<pre>
+	    ((stuff[index++] == 99) || (index < SIZE))   #  what index do you mean? 
+</pre>
+<h4> ASSIGNMENT STATEMENTS </h4>
+
+ Expressions can be part of a condition statement ((num+num2/5)>num3)
+ or part of an output statement (cout << num + num2).
+ But the most common use of expressions is to be the right hand side of
+ an assignment statement. BNF syntax for an assignment statement:
+<pre>
+	&lt;target_var> &lt;assign_operator> &lt;expression>
+</pre>
+The assignment operator differs by language<br/>
+	' = '   FORTRAN, BASIC, PL/I, C, C++, Java, Perl, php,...<br/>
+	' := '  ALGOL, Pascal, Ada </br>
+
+*The use of '=' in C-like languages is problematic since '=' means equality in mathematics
+
+<h4>Conditional Target on Assignment</h4>
+
+Adopted by C and all C-like languages
+  (java, php, perl, javascript...)
+<pre>
+<div STYLE="Background-Color : silver; width:70%; border: 1px dashed; ">  
+	(flag)? total : subtotal = 0
+
+  means:	
+
+	if (flag)
+		total = 0
+	else
+		subtotal = 0
+</div>
+</pre>
+<h4>Compound Assignment Operators</h4>
+
+A compound assignment statement is
+ a shorthand method of  assignment introduced in ALGOL and
+  adopted by C and all C-like languages;  Example
+
+<pre>
+ a += b    # is shorthand for a = a + b
+ a *= b    # is shorthand for a = a * b
+</pre>
+
+<h4>Unary Assignment Operators</h4>
+
+Unary assignment operators in C-based languages combine increment and 
+   decrement operations with assignment; ex.
+<pre>
+	sum = ++count ( count incremented then assigned to sum )
+	sum = count++ ( count assigned to sum then incremented )
+	count++ (count incremented)
+</pre>
+
+*Modifying a variable more than once in the same statement is undefined:
+<pre>
+  count = 5; 
+  count = -count++;   // what does this mean? should count be -4 or -5?
+</pre> 
+<h4>Assignment as an Expression</h4>
+
+In C-like languages, an assignment statement itself
+ can be an expression; i.e., the result of the assignment becomes
+  an operand for the expression; e.g.,:<pre>
+	   while ((ch = getchar())!= EOF){. . .}
+</pre>
+	ch = getchar() is carried out; the result is assigned to ch and becomes
+  the lefthand side of the != operator.
+   Disadvantage is in languages that do not have a Boolean type and
+ use '=' for assignment (as in all C-like languages):<pre>
+   int n = 0; 
+   if ( n = 0 )            # assignment statement is confused for equality
+      cout << "made it!";  
+</pre>
+<h4>Mixed Mode Assignment</h4>
+
+ Assignment statements, just like expressions, can be mixed-mode to
+ varying degrees (depending on the type rules of the language):<pre>
+	int a, b;
+	float c;
+	c = a / b;
+</pre>
+<li>  In Java, only widening assignment coercions are supported <a href="http://java.sun.com/docs/books/jls/third_edition/html/conversions.html">(see docs)</a>
+<li>  In Ada, there is no assignment coercion
+
+<li>  C/C++ supports both widening and narrowing coercions in assignments (the
+   compiler will issue a warning that can be ignored)
+
+<pre>
+
+
+
+
+</pre>
+</body>
+</html>

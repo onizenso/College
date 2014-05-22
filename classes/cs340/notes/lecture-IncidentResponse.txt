@@ -1,0 +1,55 @@
+.:Incident Response:. 
+
+=Disposing of Evidence===============================================
+    When length of time ordered by court elapses, all digital ecidence 
+        is securely destroyed.
+    Working copies can be securely erased when done or when checking 
+        out another copy
+======================================================================
+    
+    What is an incident?
+        Can be criminal, civil, or "non-actionable" investigation
+    
+    Goals of Incident Response
+        Gather accurate information
+        Protect rights
+        Minimize disruption & exposure
+        Detect & contain intrusions
+    
+    Analysis Methodology
+        Has to be flexible & adaptive
+        Basic steps:
+            Initial response
+            Develop Strategy
+            Conduct detailed investigation
+        Techniques:
+            Host-based evidence - files, logs, hidden/deleted data, etc.
+                Data Types: live & stored data
+            Network-based evidence - traffic, IDS reports, router logs, etc.
+                traffic collection can be considered a wiretap
+           
+.:Policy & Procedure - Effects on Investigations in Private Orgs:.
+    Acceptable Use Policy (AUPs)
+        Terms and conditions for using site/service/etc.
+        Defines acceptable/unacceptable uses
+        May say what monitoring techniques may be used
+        Cannot force someone to forfeit legal rights through AUP
+        This is not a contract, but an "agreement" (slightly > verbal agreement)
+        Data that AUP can say is gathered:
+            Trap-and-trace network traffic used to ensure proper 
+                operation of network (e.g. diagnostics)
+            Some full-content network traffic
+                Some states only require "one-party" consent to gathered 
+                    evidence from correspondence
+                Where correspondence goes interstate, the state with the 
+                    more stringent regulations win the day when deciding 
+                    admissibility 
+    Employee/Employer Policies
+        What data can Employer gather?
+        Legal precidence centers around employer-owned equipment & 
+            reasonable expectation of privacy (REP)
+        Some cases of REP:
+            logging into Gmail on work computer
+            viewing https:// site, content of that site is to remain private
+        If equipment belongs to Employer and no REP: content is searchable
+        Otherwise: content searchability is questionable

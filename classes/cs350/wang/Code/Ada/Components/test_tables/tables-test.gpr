@@ -1,0 +1,55 @@
+with "../tables.gpr";
+
+project Tables.test is
+
+   for Main use ("test_tables.adb");
+   for Exec_Dir use ".";
+   type Build_Type is
+      ("Debug", "Release");
+   Build : Build_Type := external ("Build");
+
+   package Naming is
+      for Implementation_Suffix ("text") use ".txt";
+   end Naming;
+
+   package Builder is
+
+      case Build is
+
+         when "Release" =>
+            for Default_Switches ("ada") use Tables.Builder'Default_Switches ("ada");
+
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-s", "-g");
+      end case;
+   end Builder;
+
+   package Compiler is
+
+      case Build is
+
+         when "Release" =>
+            for Default_Switches ("ada") use Tables.Compiler'Default_Switches ("ada");
+
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-gnatf", "-gnato", "-fstack-check", "-g", "-gnat05");
+      end case;
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+   package Linker is
+
+      case Build is
+
+         when "Release" =>
+
+         when "Debug" =>
+            for Default_Switches ("ada") use ("-g");
+      end case;
+   end Linker;
+
+end Tables.test;
+

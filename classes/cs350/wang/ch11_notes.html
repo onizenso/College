@@ -1,0 +1,116 @@
+<html>
+<body>
+<h3> Abstract Data Types and Encapsulation  </h3>
+
+Process abstraction is realized by subprograms
+<p>
+ Data abstraction is realized by user-defined abstract data types (ADTs)
+<p>
+ ADTs promote encapsulation, modularity, information hiding, and genericity
+<p>
+ ADTs paved the way to object-oriented methodology; 
+ full OOP includes the concepts of
+ objects, inheritance, template classes and polymorphism 
+ <p>
+ An abstract data type is a user-defined data type 
+ that satisfies two conditions:
+<p>
+Modularity: The representation of and operations on objects of the 
+ type are defined 
+in a single syntactic unit; also, other units can create objects of the
+  type.  Modularity supports reusability and good program organization.
+<p>
+Encapsulation: The representation of objects of the type is hidden 
+ from the program units that use these objects, so the only operations
+  possible are those provided in the type's definition. Encapsulation
+  supports security and reliability. (this is the use of private in C++)
+<p>
+Parameterization: The ability to define a generic data type
+ is optional. Generic data types promote code reusability 
+ (Ada and C++ but not Java include this)
+<p>
+C++ Standard Template Library (STL) - 
+<p>
+ The STL, a later edition to the C++ standard,
+  is a set of abstract datatypes, functions, and algorithms 
+ designed to handle user-specified datatypes. Each of the abstract 
+ datatypes also contains useful functions, including overloaded operators, 
+ to access them. The underlying methoology of the STL is generic programming - 
+ the implementation of algorithms or data structures without being dependent 
+ on the type of data being handled. For instance, the STL vector 
+ container can store a vector (a resizable array) of any object you desire. 
+ In C and non-STL C++, you can use arrays to get a similar feature, but 
+ arrays are limited to a single type of data structure. Moreover, the STL 
+ provides some nice features such as handling memory for you (no memory leaks), 
+ and it is also safer (no buffer overflow issues when using vectors or 
+ similar data structures).
+
+<p>
+  Simula provided encapsulation but not information hiding. 
+ Ada, C++ and Java provide all three. 
+ObjectAda now has full OOP support
+  with classes.
+
+<h3>Ada</h3>
+
+Ada was designed for reliability, large team projects, embedded systems,
+<p>
+Ada introduced and embodies many of the modern principles of
+ software engineering
+<p>
+Ada's design for exception handling was state-of-the-art in 1980 and the
+only widely used language with exception handling until C++
+<p>
+One aspect of reliability is to catch as many errors as possible
+ before runtime; Ada is strongly typed: there is no assignment coercion
+<p>
+
+The encapsulation construct is the package:
+<li>Specification package (the interface with .ads extension)
+
+<li>Body package (implementation of entities in the specification with .adb
+ extension)
+
+<li>Provides information hiding through hidden types named in the spec package
+ with keyword private:
+<pre>
+  package  is
+       type NODE_TYPE is private;
+     private
+       type NODE_TYPE is
+           record
+           end record; </pre>
+        
+<li> Private types have built-in operations for assignment (deep copy)
+ and comparison with = and /= 
+
+<li> Limited private types have no built-in operations
+ 
+ 
+<li> Ada Generic Packages make the stack type more flexible by making the 
+ element type and the size of the stack generic
+
+<pre>
+   package INT_STACK is new GENERIC_STACK(100, INTEGER);
+   package FLOAT_STACK is new GENERIC_STACK(500, FLOAT); </pre>
+
+<h3> Encapsulation </h3>
+
+ A means of organizing *large* programs into smaller divisable 
+ units. Division into subprograms doesn't solve the problem
+ solve since subprograms need data. <p>
+
+  Some means of partial compilation (compilation units that are smaller 
+ than the whole program)
+ <p>
+   Obvious solution: a grouping of subprograms that are logically related 
+ into a unit that can be separately compiled (compilation units)
+ <p>
+ Compilation units are encapsulations  - access across a compilation
+ unit must be intentional
+<p>
+ languages with strong encapsulation (Ada and Java) make a 
+ compilation unit one class or procedure 
+ <p>
+</body>
+</html>

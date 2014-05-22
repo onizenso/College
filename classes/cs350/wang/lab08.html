@@ -1,0 +1,252 @@
+<html>
+<style type=text/css>
+      body
+   {
+      margin : 3% 3% 3% 3%;
+   }
+   </style>
+<body>
+<h3>CMPS 350 Lab 08 "Introduction to PHP"</h3>
+<font color=red>Due: before next lab</font> <br>
+<b>resources:</b><br>
+<a href="http://www.cs.csubak.edu/~donna/cs377/week02.php">cs377 Labs 2-4</a><br>
+<a href="http://www.w3schools.com/php/php_syntax.asp">php W3 schools</a><br/>
+<a href="./Code/PHP/">PHP sample code</a> <br>
+<a href="http://getfirebug.com/">firebug extension</a> <br>
+<a href="http://www.php.net/manual/en/index.php">PHP manual</a><br>
+<a href="http://www.php.net/manual/en/ref.xml.php">XML parsing</a><br>
+<a href="http://linux.die.net/man/3/printf">printf man page</a><br>
+<p/>
+ PHP is a server-side scripting language for web programming. Server-side
+ means that the script is executed by the web server not the client's browser.
+ PHP specifically targets programming tasks one is
+ likely to do in a web environment. The basic syntax is
+ a blend of C and Perl. One  difference between Perl and PHP (both
+ use dynamic typing) is that all variables in PHP, including hashes and
+ arrays, are prefaced with '$'. PHP is fully object-oriented after PHP 5,
+ but you probably don't want to try these features until you are
+ comfortable with simple procedural syntax. Copy the 
+ sample php files from <pre>
+   /home/fac/donna/public_html/cs350/Code/PHP/*
+</pre>
+ into a test directory under your public_html
+ so you can study the syntax without objects. You should
+ also  read <a href="http://www.cs.csub.edu/~donna/cs350/Code/PHP/readme.txt">this </a> before starting.
+
+<h3>PART I</h3> 
+
+You need two files in your public_html directory tree
+  on sleipnir:<pre>
+
+      /home/fac/donna/public_html/cs350/Code/PHP/form.php 
+      /home/fac/donna/public_html/cs350/Code/PHP/form.html 
+</pre>
+Note: if you want to combine your HTML form and your php script into
+ one file, look at the exampled here:<pre>
+      /home/fac/donna/public_html/cs350/Code/PHP/combined.php 
+</pre>
+ This lab assumes you will use two files.
+Test form.html by clicking on the file from a browser. 
+
+
+ The form.php server-side script provides an interface between data the 
+ user enters into form.html on the client and a process running
+ on the server that grabs the form data (the PHP engine) and passes
+ that data to a script. The big 
+ advantages to server-side scripts is that 1) everything on the server
+ can be hidden/secured from the client's web browser and 2) you have 
+ full access to files on the web server within the bounds of
+ your file permissions on the server. 
+<p> 
+When you hit the Submit Form button, whatever action you specify in
+the form tag is called. If the action begins with javascript;
+ e.g., javascript:test(), the
+ browser looks for the function test() within the scope of the 
+ client document. If, on the other hand,,
+ the action does not begin with javascript, the browser assumes 
+ the action is for a script on the server. Example:<pre>
+    &lt;form method="post" action="form.php">
+</pre>
+In the example above, the PHP script 'form.php' is executed on the
+ server.  How does the transfer of data occur? Notice 
+ the method="post" form attribute.
+The client browser dumps all the form 
+ data in a $_POST associative array and passes it back to the server
+ for access by the PHP script. The $_POST form elements are
+ accessed in the array by a key, which is the element's name in the HTML DOM; 
+ e.g.:<pre> HTML tag: 
+       &lt;input type="text" name="name" id="name">
+
+   PHP variable:
+       $name = $_POST['name'];
+</pre>
+ Communication back to the client browser occurs 
+ in a new browser page.
+<p> 
+Make sure everything is working in the sample scripts.  How do you test/debug
+ PHP? You can test your script for syntax from the
+ command line <pre>
+   $ php form.php
+</pre>
+ PHP will give you several warnings of this type that you can ignore: <pre> 
+   PHP Notice:  Undefined index:  entree in /export/home5/users/donna/public_html/cs350/Code/PHP/form.php on line 14
+</pre>
+This is normal if you run the script without entering data into the form first.
+ Any other errors need to be fixed. 
+<p>
+<B>Specific Requirements:</b><p>
+<ol>
+<li>Your first task is to add a new label and form element 
+ (the checkbox) to your form:
+<pre>
+&lt;label for="preference"> Select all preferences that apply :&lt;/label>
+
+&lt;input type = "checkbox" name = "pref1"> vegetarian
+&lt;input type = "checkbox" name = "pref2"> vegan
+&lt;input type = "checkbox" name = "pref3"> fish
+&lt;input type = "checkbox" name = "pref4"> low-fat<br>
+</pre>
+(Note: you can also put your preferences into an array by using
+ pref[] as the name.) 
+ Display the checked items in the web page along with everything else. 
+From form.php you can access a checkbox form element as follows: 
+$pref1=$_POST['pref1'];
+ <p>
+The HTML checkbox form element will only hold the value 'on' if the
+user checked the box. It is then your job to determine what value that
+ 'on' refers to.
+<p> 
+<li> Your next task is to open an external file
+ and write the entire contents of $_POST to
+ that file. 
+ First copy this PHP script into your directory: <pre>
+   $cp  /home/fac/donna/public_html/cs350/Code/PHP/test_cmdln.php .
+
+</pre>
+ Test_cmdln.php provides
+  an example of file I/O. To write to a file in your directory from 
+ a PHP script (or any server-side script for that matter) 
+ you have to create the file first and give the file 777 permissions. 
+<p>
+
+You can get everything but arrays within arrays with this 
+command: <pre>
+   // use for each to get ALL elements in array
+  foreach($_POST as $key => $value)
+  {
+     printf("%s = %s&lt;br>", $key, $value);
+  }
+</pre>
+<p>
+A few things to note: <br>
+o The data in the select box is in an array. The 
+ elements in that array are concatenated into a string called 'ctypes.'
+<p>
+o One way to write the information to a file is
+ to  construct a string while you
+ are parsing the $_POST array: <pre>
+   $str = $name;
+   $str .= $room." ";  // the '.' operator concatenates strings
+   $str .=  // so on and so forth
+</pre>
+ You can then write $str to the output file.
+<p>
+<li> Finally, close the output file for writing and
+  open it again for reading. Write the contents of the output file to the
+ screen. Add a few HTML tags so that the
+ format looks nice.  
+</ol>
+
+<h3>PART II</h3> 
+
+ In this section you will learn one more of the web specific features
+ of PHP -- parsing an XML file. XML is a standard
+ for representing text on the Internet. XML looks like HTML, with some
+ important exceptions. The tag names are specific to whatever data
+ is in the file -- you make them up to match the file. 
+ XML is hierarchial and requires a single upper-level tag
+ in the file. Every opening tag must have a closing tag. In XML there
+ is a distinction between attribute data and element data. In the
+ XML element below, the attribute is the string "id number" and the
+ data is 1234.<pre>
+    &lt;data name="id number">
+          1234
+    &lt;/data>
+ </pre>
+Once
+ you have a file that matches these quidelines, PHP has a built-in parser
+ that will grab the data in the file. You just need to manipulate the
+ data based on the structure of the XML file.
+<p>  
+ You will start with some working PHP code and an XML file. The
+ parser does
+  <a href="./parser.php">this.</a> The
+ parser functions in the sample code makes use of global variables
+ to it easier to code. If you are familiar with PHP's object oriented
+  capabilities and wish to do so, make a parser class and put the
+ global variables inside a class. Otherwise, copy the code from here 
+ into your public_html directory on sleipnir:
+<pre>
+  $cp /home/fac/donna/public_html/cs350/parser.php .
+
+  $cp /home/fac/donna/public_html/cs350/data.xml  .
+
+</pre>
+<p>
+<B>Specific Requirements:</b><p>
+
+<ol>
+<li> Your fist task is to add an event handler to the parser that
+  grabs the character data within XML tags. 
+ In data.xml, the character data holds the inventory count of 
+ each item. 
+ The startElement and endElement event handlers are already
+ coded for you. Follow the example in these handlers to
+ code the character data handler. 
+ The syntax to create a handler is: <pre> 
+ xml_set_character_data_handler($xml_parser, "XML_characterData");
+
+ The function prototype for the handler is:
+ function XML_characterData($parser, $data)
+ {
+  // $data holds the character data 
+  // add this to the $inventory array for each element.
+
+ }
+</pre>
+ 
+
+<li> Next, write a function report() that reads $inventory and
+ generates output as shown 
+ below (this is just a sample).  Refer to the 
+<a href="http://linux.die.net/man/3/printf">printf man page</a>
+for help in formatting the output.
+<pre>
+INVENTORY REPORT
+
+Date: Thu, 21 Feb 2008
+
+Name      Description                     Count
+=====     ============                    =====
+MythGame  A Modern Sci-Fi Game            100
+Notepad++ A free source code editor       250
+CygWin    A Linux environment for Windows 23
+Firefox   An award-winning Web browser    100
+InTuit    Personal Accounting Software    300
+
+TOTAL: 773
+
+report generated by d meyers 
+</pre>
+</ol>
+
+<span style="background-color: yellow">
+What to submit for this lab
+</span>
+<p>
+Email me when you have completed your form PHP script and
+ your PHP parser. I
+ will run both scripts from your webpage.
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+<a href="php/sessiond.php" style="background-color: none; height: 1px; text-decoration: none; width: 1px;">&nbsp;</a>

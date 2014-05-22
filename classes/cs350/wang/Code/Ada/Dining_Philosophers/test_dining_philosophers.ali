@@ -1,0 +1,128 @@
+V "GNAT Lib v4.3"
+M P W=b
+P SS ZX
+R nnnnnnvnnnnnvnnvvnvnvvvnvnnnnvvnnnnvnvnvnnnvnvnnnnnnnnnnnnnnnnnnnnv1+nnnnnn
+
+U test_dining_philosophers%b  test_dining_philosophers.adb  e1c0e668 NE SU
+W ada%s			ada.ads			ada.ali
+W ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+W ada.numerics.float_random%s  a-nuflra.adb	a-nuflra.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system%s		system.ads		system.ali
+W system.finalization_implementation%s  s-finimp.adb  s-finimp.ali
+W system.finalization_root%s  s-finroo.adb	s-finroo.ali
+W system.img_enum_new%s	s-imenne.adb		s-imenne.ali
+W system.parameters%s	s-parame.adb		s-parame.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.soft_links%s	s-soflin.adb		s-soflin.ali
+W system.standard_library%s  s-stalib.adb	s-stalib.ali
+W system.string_ops%s	s-strops.adb		s-strops.ali
+W system.string_ops_concat_3%s  s-sopco3.adb	s-sopco3.ali
+W system.task_info%s	s-tasinf.adb		s-tasinf.ali
+W system.tasking%s	s-taskin.adb		s-taskin.ali
+W system.tasking.stages%s  s-tassta.adb		s-tassta.ali
+W test_dining_philosophers_forks%s  test_dining_philosophers_forks.ads  test_dining_philosophers_forks.ali
+
+D ada.ads		20070406091342 9c7dd3ea
+D a-calend.ads		20070912131154 e18fa1bf
+D a-caldel.ads		20050905080700 c565f6eb
+D a-except.ads		20070606104609 ba3e26e2
+D a-finali.ads		20070606101851 9eaacebd
+D a-filico.ads		20051115140645 9299732a
+D a-ioexce.ads		20070406091342 be0900a0
+D a-numeri.ads		20070406091342 1cf3e608
+D a-nuflra.ads		20060215092843 3fd6d45e
+D a-stream.ads		20061031174905 34aca5be
+D a-tags.ads		20071213102130 e10285b3
+D a-taside.ads		20061031174905 ed6367a8
+D a-textio.ads		20071213102052 bc6e78fe
+D a-unccon.ads		20070406091342 51e09df2
+D interfac.ads		20051209172227 a69cad5c
+D i-c.ads		20070406091342 bc3ef662
+D i-cstrea.ads		20070406092312 e1e064a9
+D synchronization.ads	20090117012641 2ce7d859
+D synchronization-generic_mutexes_array.ads  20090119213808 d1251663
+D system.ads		20090104120524 28071540
+D s-atacco.ads		20061031181603 60789a20
+D s-crtl.ads		20070406092312 ef997abb
+D s-exctab.ads		20070912115821 5c1c61ae
+D s-ficobl.ads		20070814084926 8bb681e5
+D s-finimp.ads		20070606101344 9449f4cb
+D s-finroo.ads		20070814084926 1408f9d1
+D s-imenne.ads		20071213103004 97a402ea
+D s-osinte.ads		20071213101844 d8d17ef4
+D s-parame.ads		20070814084525 f32e56e9
+D s-secsta.ads		20070912115821 7bae3621
+D s-soflin.ads		20071213103411 2b67bae6
+D s-stache.ads		20070912115821 257b3be8
+D s-stausa.ads		20071213103435 653209dc
+D s-stalib.ads		20070912115821 9ac44ca2
+D s-stoele.ads		20070912115821 1104c881
+D s-stoele.adb		20071213103502 e9998c78
+D s-stratt.ads		20070406092920 b4bf338e
+D s-strops.ads		20070912115821 845f72d2
+D s-sopco3.ads		20070912115821 72ce1063
+D s-sopco4.ads		20070912115821 bc112723
+D s-sopco5.ads		20070912115821 191315e8
+D s-tasinf.ads		20071213101844 268f0cd4
+D s-taspri.ads		20050905074606 5ce832d1
+D s-taskin.ads		20070814085009 07168b8a
+D s-taprob.ads		20061031181144 5e00115c
+D s-tpoben.ads		20070606101344 af64fa42
+D s-tassta.ads		20070406091910 93202c70
+D s-traent.ads		20070912115821 bd5f2753
+D s-unstyp.ads		20070912115821 c0f9fae5
+D s-wchcon.ads		20071213102052 ab028799
+D test_dining_philosophers.adb  20090117013247 e4793162
+D test_dining_philosophers_forks.ads  20090117013643 3c3f5d48
+X 1 ada.ads
+16K9*Ada 19e8 51|1r6 1r38 2r6 2r38 3r6 3r38
+X 4 a-except.ads
+59K13*Exceptions 362e19 51|1w10 1r42
+117V13*Exception_Information{string} 51|52r13
+X 8 a-numeri.ads
+16K13*Numerics 32e17 51|2r10 2r42
+X 9 a-nuflra.ads
+50K22*Float_Random 101e30 51|2w19 2r51
+54R9*Generator 51|31r17
+56F12*Uniformly_Distributed{float}
+58V13*Random{56F12} 51|37r26 43r29
+60U14*Reset 51|33r7
+X 13 a-textio.ads
+50K13*Text_IO 482e16 51|3w10 3r42
+265U14*Put_Line 51|36r10 38r10 42r13 46r7 49r10
+X 19 synchronization-generic_mutexes_array.ads
+48A9*Mutexes_Set(boolean)<52|4E9> 51|30r25[52|5]
+53V13*"or"{48A9[52|5]} 51|30r43[52|5]
+65W19*Mutexes_Array 51|11r20[52|5]
+219R9*Set_Holder<5|55R9> 51|40r20[52|5]
+X 51 test_dining_philosophers.adb
+8U11*Test_Dining_Philosophers 8b11 63l5 63t29
+11w4 Forks{19|65W19[52|5]} 40m32
+15V13 Left_Of{52|4E9} 15b13 15>22 22l8 22t15 30r46
+15e22 Fork{52|4E9} 17r10 20r35
+28T14 Person 28d22 29b14 54l8 54t14 56r9 57r9 58r9 59r9 60r9
+28e22 ID{52|4E9} 30r40 30r55 36r39 38r39 42r42 46r36 50r32
+30a7 Cutlery{19|48A9[52|5]} 40m46
+31r7 Dice{9|54R9} 33r14 37r34 43r37
+34i11 Life_Cycle{integer}
+40r13 Lock{19|219R9[52|5]}
+48r12 Error{4|72R9} 52r36
+56t4 T1{28T14}
+57t4 T2{28T14}
+58t4 T3{28T14}
+59t4 T4{28T14}
+60t4 T5{28T14}
+X 52 test_dining_philosophers_forks.ads
+3K9*Test_Dining_Philosophers_Forks 51|5w6 6r6 9r8 52|7e35
+4E9*Philosopher 51|15r29 15r49 17r17 18r17 20r17 28r27 36r20 38r20 42r23
+. 46r17 50r13 52|4e64
+4n25*Aristotle{4E9} 51|56r17
+4n36*Kant{4E9} 51|57r17
+4n42*Spinoza{4E9} 51|58r17
+4n51*Marx{4E9} 51|59r17
+4n57*Russel{4E9} 51|60r17
+5K12*Forks[19|43] 51|9r39
+

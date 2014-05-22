@@ -1,0 +1,70 @@
+<html>
+    <head>
+	<title>Midterm Project - Quiz Grading</title>
+	<style type="text/css">
+	 label{
+	     padding-right:20px;
+	     width:200px;
+	 }
+	 input[text]{
+	     display:inline;
+	     padding-left:20px;
+	     width:180px;
+	 }	     
+	 input[radio]{
+	     border:1px solid #c58;
+	     margin: 2px 2px;
+	     padding: 0 2px;
+	 }
+	 button{
+	     height:30px;
+	     margin:25px 2px 0;
+	     width:180px;
+	 }
+	</style>
+    </head>
+
+    <body>
+	<form action="grade.php" method="post" enctype="multipart/form-data">
+	    <label for="name">Name:</label>
+	    <input type="text" name="name" id="name">
+
+	    <p><strong>Question 1.</strong><br />
+	    The four corners of the earth have 90 degree interior angles</p>
+	    <label for="q1true">True</label>
+	    <input type="radio" name="q[0]" value="T" id="q1true"> 
+	    <label for="q1false">False</label>
+	    <input type="radio" name="q[0]" value="F" id="q1false">
+
+	    <p><strong>Question 2.</strong><br />
+	    The sun exploding leads to unavoidable death on earth</p>
+	    <label for="q2true">True</label>
+	    <input type="radio" name="q[1]" value="T" id="q2true">
+	    <label for="q2false">False</label>
+	    <input type="radio" name="q[1]" value="F" id="q2false">
+	    
+	    <p><strong>Question 3.</strong><br />
+	    Forty people drinking alcohol is a party</p>
+	    <label for="q3true">True</label>
+	    <input type="radio" name="q[2]" value="T" id="q3true">
+	    <label for="q3false">False</label>
+	    <input type="radio" name="q[2]" value="F" id="q3false">
+	    
+	    <p><strong>Question 4.</strong><br />
+	    Dogs run in circles to destroy their tales</p>
+	    <label for="q4true">True</label>
+	    <input type="radio" name="q[3]" value="T" id="q4true">
+	    <label for="q4false">False</label>
+	    <input type="radio" name="q[3]" value="F" id="q4false">
+	    
+	    <p><strong>Question 5.</strong><br />
+	    Fires die in a blaze of glory</p>
+	    <label for="q5true">True</label>
+	    <input type="radio" name="q[4]" value="T" id="q5true">
+	    <label for="q5false">False</label>
+	    <input type="radio" name="q[4]" value="F" id="q5false">
+	    <br />
+	    <button type="submit" name="submit" value="Submit">Submit</button>
+	    <button type="reset" name"reset" value="Clear">Clear</button>
+    </body>
+</html>

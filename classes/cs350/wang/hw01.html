@@ -1,0 +1,744 @@
+<!-- filename: hw01.html -->
+<html>
+<head>
+<STYLE type=text/css>
+DIV {
+  font-weight: normal;
+  font-family: helvetica;
+  font-size: 10pt;
+  color: red;
+  padding-right: 20px;
+}
+
+BODY {
+  margin: 2% 10% 5% 5%;
+  font-family: courier;
+  background-color: #DDDDFF;
+  color: #19193A;
+  font-weight: normal;
+  font-size: 12pt;
+}
+</STYLE>
+
+<script type="text/javascript" language="JavaScript">
+
+NumChoices = 5;   NumQuestions = 40;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&  
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;  
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+} 
+</script>
+</head>
+
+<body>
+
+<h3>CMPS 350 HW 01: Introduction to Programming Language Concepts </h3>
+<font color=red>DUE: next monday before lecture </font> 
+<SPAN STYLE="background-color: yellow">
+</SPAN>
+
+<FORM name="quizform" METHOD="POST" ACTION="emailme.php">
+<pre class=verbatim>
+1. C pointers are non-orthogonal for several reasons. For example, a pointer is
+   a scalar data type that does not consistently behave like other scalar types.
+   The following lines of code behave as expected if c and d are integers. Which
+   lines behave inconsistently if c and d are pointers? 
+         c = d;     // line 1
+         d++;       // line 2             
+         c = c + d; // line 3 
+   A. all three 
+   B. line 1 and line 2
+   C. line 2 
+   D. line 2 and line 3</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="0"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="1"> 
+
+<input type="button" value="check" name="1" onClick="  
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Pointers are incremented by the size of the pointer type; e.g. an int pointer is incremented by 4. Adding two pointer addresses may take you outside available memory. A scalar is a variable with a single memory address (as opposed to a structured type such as an array)'; } ">
+
+<DIV id="Q1Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+<pre class=verbatim>
+2. C parameters are passed by value. To pass an array you pass the value of 
+   the array's address as a pointer. This is an example of non-orthogonality
+   A. because sometimes you use * as part of parameter in the function 
+      definition and sometimes you don't.
+   B. because sometimes you must dereference function argument and sometimes
+      you don't.
+   C. Both statements are true.</pre> 
+   &nbsp;&nbsp;A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="1"> D<input type="radio" name="Q2" value="0">  
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: To be orthogonal, the syntax and behavior of pass-by-value function parameters should be consistent regardless of the data type. Pass-by-reference in C is really pass-by-value - we will discuss this later.'; } "> 
+<DIV id="Q2Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+3. Assume you have a Student class in C++ that uses dynamic memory allocation 
+   for the student's name:
+ 
+      char * name; 
+ 
+   What will happen after the following code is executed if the assignment 
+   operator in line 3 performs a bit copy? (i.e., '=' is not overloaded by user)
+
+    Student One("Sam Spade");
+    Student Two("Joe Smoo")
+    One = Two;  // Line 3   
+    strcpy(Two.name,"FooBar");   // copies "FooBar" to Two.name  
+
+   A. Student.One and Student.Two are both named "FooBar"
+   B. Student.One is named "FooBar" and Student.Two is named "Joe Smoo"</pre> 
+   &nbsp;&nbsp;A<input type="radio" name="Q3" value="1"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: A bit copy copies the contents of one memory location to another memory location; a bit copy of a pointer creates an alias (cross-linked pointers).'; } ">
+<DIV id="Q3Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+<pre class=verbatim>
+4. Based on the criteria for evaluating programming languages covered in  
+   lecture, which criterion is C most deficient in?
+   A. efficiency    B. reliability    C. readability   D. writeability</pre> 
+   &nbsp;&nbsp;A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="1"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0">
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: 80% of all serious network application vulnerabilities are due to buffer overflows -- and many of these are traced back to the misuse of C pointers.'; } ">
+<DIV id="Q4Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+5. What is NOT true regarding C++'s exception handling facility?
+   A. You can pass information back to the calling routine without using a
+      return code.
+   B. If objects are allocated in a try block, destructors are automatically
+      called if an exception occurs.
+   C. If an exception is caught in a function, the exception must be rethrown 
+      back to the calling function.
+   D. A try block must have a matching catch block.</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="0"> C<input type="radio" name="Q5" value="1"> D<input type="radio" name="Q5" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: If you do not use C++ exceptions, you are limited to return codes unless you want to add an addition error parameter to all function calls. Exceptions must be caught in the function in which they are thrown, but do not need to be rethrown.'; } ">
+<DIV id="Q5Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+6. This question pertains to the C++ exception handling facility. What happens
+   to an unhandled exception?
+   A. The exception is thrown to every function on the runtime stack until a
+      handler is found.    
+   B. The program immediately terminates with an error message.
+   C. There is no such thing as an unhandled exception.</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Unhandled exceptions occur when an exception is rethrown and there is no function on the runtime stack to handle it. The program terminates only after unwinding the entire runtime stack.'; } ">
+<DIV id="Q6Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+7. When would you not re-throw an exception back to the calling routine?
+   A. If you want to handle a non-critical error locally.  
+   B. If you want to execute code in the function beyond the catch block. 
+   C. Both A and B.</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q7" value="0"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="1"> D<input type="radio" name="Q7" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Once you throw an exception, you cannot execute any additional code in the function; a throw behaves like a return.'; } ">
+<DIV id="Q7Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+8. Which of the following might be a good indicator of poor readability of a
+   language?
+   A. program runtime efficiency   
+   B. program memory usage  
+   C. orthogonality  
+   D. the comment density in code </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="1"> 
+
+ <input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: The excessive use of comments often means a language is inherently difficult to understand. A self-documenting language is easy to read.'; } ">
+<DIV id="Q8Area" STYLE="background-color: #CCCCCC">
+</DIV>
+
+<pre class=verbatim>
+9. Scripting languages generally score better than compiled languages in which
+   of the following?
+   A. runtime efficiency   B. memory usage   C. writeability   D. A and C </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="1"> D<input type="radio" name="Q9" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Script languages are interpreted, thus an interpreter is in memory and translating the code at runtime.'; } ">
+<DIV id="Q9Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+10. Which language would be the best pick to write a low-level device driver 
+    for an operating system?
+    A. C          B. Java       C. Fortran   </pre> 
+
+   &nbsp;&nbsp;A<input type="radio" name="Q10" value="1"> B<input type="radio" name="Q10" value="0"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Runtime efficiency is a primary requirement for a device driver. Java is less efficient than C.'; } ">
+<DIV id="Q10Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+11. Which of the following is a client-side scripting language?
+    A. Perl     B. Python    C. PHP     D. JavaScript</pre>
+   
+   &nbsp;&nbsp;A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="1"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Client-side refers to the client browser.'; } ">
+
+<DIV id="Q11Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+12. Select the false statement or D if all are true.
+    A. Java source code is compiled into bytecode and executed by a Java runtime engine.
+    B. Java bytecode can run on multiple platforms without recompilation.
+    C. Some cell phones have Java support built into hardware. 
+    D. all statements are true</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="0"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="1"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Sun -The Network is the Computer- designed Java to be  an interoperable language for computers and devices on the Internet.'; } ">
+
+
+<DIV id="Q12Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+13. One valid criticism of the Unix development platform is
+    A. the lack of software development tools.       
+    B. the lack of an IDE (integrated development environment).
+    C. both A and B </pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="1"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Unix has all the development tools found in an IDE -- just not in a single package and not as easy to learn.'; } ">
+<DIV id="Q13Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+14. What programming language has dominated scientific computing over the past 
+    40 years?
+    A. Fortran       B. Cobol        C. Lisp       D. C  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: This language still dominates scientific computing.'; } ">
+<DIV id="Q14Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+15. What programming language has dominated business applications over the past 
+   40 years?
+   A. Fortran       B. Cobol        C. Ada       D. C </pre> 
+
+   &nbsp;&nbsp;A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: A majority of business applications still use this language.'; } ">
+<DIV id="Q15Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+16. Scheme is a dialect of which language?
+    A. Fortran       B. Cobol        C. Lisp      D. Snoball   </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q16" value="0"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="1"> D<input type="radio" name="Q16" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Scheme is best known for its support of functional programming.'; } ">
+<DIV id="Q16Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+17. What programming language has dominated artificial intelligence over the 
+    past 40 years?
+    A. Fortran       B. Cobol        C. Lisp      D. Snoball </pre>
+ 
+   &nbsp;&nbsp;A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="0"> C<input type="radio" name="Q17" value="1"> D<input type="radio" name="Q17" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Scheme is best known for its support of functional programming.'; } ">
+<DIV id="Q17Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+18. The majority of the UNIX operation system is written in which language?
+    A. Fortran       B. Cobol        C. Lisp     D. C   </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="1"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: C was developed at Bell Labs specifically to write the Unix operating system as a partial replacement for assembly language.'; } ">
+<DIV id="Q18Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim> 
+19. What is the primary disadvantage to having multiple ways of doing the same 
+    thing in a language?
+    A. readability     B. reliability    C. writeability  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q19" value="1"> B<input type="radio" name="Q19" value="0"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Too many choices means that programmers will pick  different subsets of the language to use - difficult to read.'; } ">
+<DIV id="Q19Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+20. Which of the following does not promote readability?
+    A. orthogonality      B. type checking    C. code reusability  </pre>
+    
+   &nbsp;&nbsp;A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="1"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Code reusability guanantees uniformity; orthogonality guarantees no exceptions.'; } ">
+<DIV id="Q20Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+21. What is true about user-defined operator overloading?
+    A. If done improperly, it can harm the readability of a program.
+    B. If done properly, it can improve the readability of a program.
+    C. both statements are true </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q21" value="0"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="1"> D<input type="radio" name="Q21" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: In C++ there is nothing to prevent overloading the '+' operator to perform something entirely unintuitive.'; } ">
+<DIV id="Q21Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+22. Which is an example of non-orthogonality in the design of C?
+    A. The meaning of the '*' symbol depends on the context. 
+    B. Arrays cannot be returned by functions.
+    C. Both A & B </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="0"> C<input type="radio" name="Q22" value="1"> D<input type="radio" name="Q22" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: * is multiplication, pointer dereferencing, and  denotes a pointer type.'; } ">
+<DIV id="Q22Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+23. What language uses orthogonality as a primary design criterion?
+    A. Ada       B. ALGOL 68     C. Java    D. Python  </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="1"> C<input type="radio" name="Q23" value="0"> D<input type="radio" name="Q23" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: A completely orthogonal language is close to impossible - so pick the language that never caught on.'; } ">
+<DIV id="Q23Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+24. What primitive control statement can build almost any other control 
+    statement?
+    A. switch          B. goto       C. for    D. if-else </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="1"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: The excessive use of gotos creates spaghetti code -  easy to code but almost impossible to read. Java does not have a goto for that reason.'; } ">
+<DIV id="Q24Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+25. What is the disadvantage to using the same closing reserved word or symbol 
+    for more than one kind of control statement?
+    A. readability       B. writeability        C. both A and B </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q25" value="1"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="0"> D<input type="radio" name="Q25" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Try tracing the last closing } in a 5 page C program with 20 nested blocks. Easy to write - impossible to read.'; } ">
+<DIV id="Q25Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+26. The cost of software running on the host computer is generally not a 
+    characteristic of the overall cost of a programming language.
+    A. True     B. False </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q26" value="0"> B<input type="radio" name="Q26" value="1"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Compiler and runtime license costs for commercial products are often enormous.'; } ">
+<DIV id="Q26Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+27. What construct of a programming language provides process abstraction?
+    A. subprograms        B. if statements         C. while loops </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q27" value="1"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: The term process refers to what a computer program is attempting to do through control structures, not to an executable running under Unix. Abstraction refers to the ability to view a problem at a high-level rather than by the details.'; } ">
+<DIV id="Q27Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+28. Software reliability means that the program
+    A. has no security vulnerabilities.
+    B  does not crash.
+    C. behaves according to specifications under all conditions. </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q28" value="0"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="1"> D<input type="radio" name="Q28" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Reliability and security are not synonymous.'; } ">
+<DIV id="Q28Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+29. Two or more distinct referencing names for the same memory location is 
+    A. parallelism        B. aliasing </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q29" value="0"> B<input type="radio" name="Q29" value="1"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q29Area');
+          if ( document.quizform.Q29[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Pointers can achieve this.'; } ">
+<DIV id="Q29Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+30. In a exception handling facility, what type of code would you put
+    after a throw in a try block? 
+    A. The code you want executed after a non-critical exception has occurred.
+    B. The code you want executed if an exception hasn't occurred.
+    C. It doesn't make sense to put any code after a throw in a try block.</pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q30" value="0"> B<input type="radio" name="Q30" value="1"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q30Area');
+          if ( document.quizform.Q30[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: If an exception is thrown, code after the throw in that block is not executed.'; } ">
+<DIV id="Q30Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+31. The strongest influence on language design over the past 45 years has been
+    A. computer architecture
+    B. memory cost 
+    C. CPU performance
+    D. object-oriented methodology </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q31" value="1"> B<input type="radio" name="Q31" value="0"> C<input type="radio" name="Q31" value="0"> D<input type="radio" name="Q31" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q31Area');
+          if ( document.quizform.Q31[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Imperative languages have been and are still the prevalent methodology.'; } ">
+<DIV id="Q31Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+32. What category of languages is dictated by the von Neumann architecture?
+    A. functional    B. procedural   C. imperative    D. declarative </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q32" value="0"> B<input type="radio" name="Q32" value="0"> C<input type="radio" name="Q32" value="1"> D<input type="radio" name="Q32" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q32Area');
+          if ( document.quizform.Q32[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Von Neumann architecture is based on executing one instruction after another in a linear fashion.'; } ">
+<DIV id="Q32Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+33. Which two deficiencies were discovered as a result of research in software 
+    development in the 1970s, resulting in structured languages such as Pascal?
+    A. Insufficient control statements and type checking
+    B. Insufficient data structures and control statements </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q33" value="1"> B<input type="radio" name="Q33" value="0"> C<input type="radio" name="Q33" value="0"> D<input type="radio" name="Q33" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q33Area');
+          if ( document.quizform.Q33[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Pascal is best known for its support of type checking and the elimination of the goto.'; } ">
+<DIV id="Q33Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+34. Which two language design criteria are often in direct conflict?
+    A. readability and reliability      B. readability and writability </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q34" value="0"> B<input type="radio" name="Q34" value="1"> C<input type="radio" name="Q34" value="0"> D<input type="radio" name="Q34" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q34Area');
+          if ( document.quizform.Q34[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Terse functional languages such as Lisp are easy to write but difficult to read. Languages with lots of keywords are easy to read but difficult to write.'; } ">
+<DIV id="Q34Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+35. Which approach to language implementation generally results in the fastest 
+    program execution?
+    A. compiler        B. interpreter </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q35" value="1"> B<input type="radio" name="Q35" value="0"> C<input type="radio" name="Q35" value="0"> D<input type="radio" name="Q35" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q35Area');
+          if ( document.quizform.Q35[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Each statement in an interpretive program is converted into machine code during runtime.'; } ">
+<DIV id="Q35Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+36. What is true about the symbol table?
+    A. It is created during program execution.
+    B. It is the database of information about a program, such as type and 
+       attribute of all symbols.
+    C. both statements are true </pre>
+
+   &nbsp;&nbsp;A<input type="radio" name="Q36" value="0"> B<input type="radio" name="Q36" value="1"> C<input type="radio" name="Q36" value="0"> D<input type="radio" name="Q36" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q36Area');
+          if ( document.quizform.Q36[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: The symbol table is created by the compiler.'; } ">
+<DIV id="Q36Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+37. What does a static linker do?
+    A. collects system libraries and links them to user programs 
+    B. resolves external linkage between compilation units
+    C. both A and B </pre>
+   
+   &nbsp;&nbsp;A<input type="radio" name="Q37" value="0"> B<input type="radio" name="Q37" value="0"> C<input type="radio" name="Q37" value="1"> D<input type="radio" name="Q37" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q37Area');
+          if ( document.quizform.Q37[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Static linking occurs after compilation and before program execution. Dynamic linking occurs during runtime for dynamic libraries.'; } ">
+<DIV id="Q37Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+38. What is the "von Neumann bottleneck"? 
+    A. the limit on the speed that programs can be executed due to 
+       memory-to-processor throughput
+    B. the limit on the amount of memory that can be used for cache  </pre>
+   
+   &nbsp;&nbsp;A<input type="radio" name="Q38" value="1"> B<input type="radio" name="Q38" value="0"> C<input type="radio" name="Q38" value="0"> D<input type="radio" name="Q38" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q38Area');
+          if ( document.quizform.Q38[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Pipelining, which is an architectural strategy to optimize instruction execution by the processor, and multi-core processors are attempts to overcome the bottleneck of imperative languages.'; } ">
+<DIV id="Q38Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim>
+39. Which of the following is not an advantage to implementing a language with 
+    a pure interpreter?
+    A. ease of modification    B. debugging facilities   C. runtime efficiency</pre>
+   &nbsp;&nbsp;A<input type="radio" name="Q39" value="0"> B<input type="radio" name="Q39" value="0"> C<input type="radio" name="Q39" value="1"> D<input type="radio" name="Q39" value="0"> 
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q39Area');
+          if ( document.quizform.Q39[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: the interpreter generates runtime error messages.'; } ">
+<DIV id="Q39Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+<pre class=verbatim> 
+40. A declarative language is also imperative. 
+    A. True      B. False </pre>
+ 
+   &nbsp;&nbsp;A<input type="radio" name="Q40" value="0"> B<input type="radio" name="Q40" value="1"> C<input type="radio" name="Q40" value="0"> D<input type="radio" name="Q40" value="0"> </pre>
+
+ <input type="button" value="check" onClick="  
+          myArea=document.getElementById('Q40Area');
+          if ( document.quizform.Q40[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else 
+    { myArea.innerHTML='Hint: Declarative languages are also called logic languages. Logic languages consist of statements that are evaluated to be true or false. In many cases there is no set order to the evaluation.'; } ">
+<DIV id="Q40Area" STYLE="background-color: #CCCCCC" >
+</DIV>
+
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow"> 
+&nbsp;&nbsp; &nbsp; 
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(Must be 90% or higher for credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 1">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Submit Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear Form" STYLE="background-color:#CCCCCC">
+<br>Note: confirmation of your homework submission will be sent to me and to your email address.
+</p>
+</form>
+</body>
+</html>

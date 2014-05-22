@@ -1,0 +1,143 @@
+Fun with Lambda Calculus
+
+Using the definitions of Pair, Head, Tail, Curry, Uncurry, where
+
+   define Curry = \f.\x.\y. f(Pair x y)
+   define unCurry = \f.\p. f(Head p) (Tail p)
+
+carry out the following reductions:
+
+a) Curry (unCurry h) => h
+
+b) unCurry (Curry h) (Pair r s ) => h (Pair r s)
+
+PART A:
+Curry (unCurry h ) => h
+
+define Curry   = \f.\x.\y. f(Pair x y)
+define unCurry = \f.\p. f(Head p) (Tail p)
+define Pair = \a.\b.\f.f a b   
+define Head = \g.g(\a.\b.a)
+define Tail = \g.g(\a.\b.b)
+
+Macro expansion:
+=> Curry (unCurry h)
+=>(\f.\x.\y.f(Pair x y)) (unCurry h)
+=>(\f.\x.\y.f(Pair x y)) ((\f.\p. f(Head p) (Tail p)) h)
+=>(\f.\x.\y.f((\a.\b.\f.f a b) x y))((\f.\p.f(Head p) (Tail p)) h)
+=>(\f.\x.\y.f((\a.\b.\f.f a b) x y))((\f.\p.f((\g.g(\a.\b.a))p)(Tail p)) h)
+=>(\f.\x.\y.f((\a.\b.\f.f a b)x y))((\f.\p.f((\g.g(\a.\b.a))p)((\g.g(\a.\b.b))p))h)
+                        
+Note: Some reductions have been performed out of normal order to simplify the 
+expression, but only when doing so does not impact reduction validity.
+
+=>(\f.\x.\y.f((\a.\b.\f.f a b)x y))
+ b  --                 ((\f.\p.f((\g.g(\a.\b.a))p)((\g.g(\a.\b.b))p))h)
+                         ---------------------------------------------
+=>(\x.\y.((\f.\p.f((\g.g(\a.\b.a))p)((\g.g(\a.\b.b))p))h)((\a.\b.\f.f a b)x y))
+ b     note: \x. has no argument
+=>(\x.\y.((\f.\p.f((\g.g(\a.\b.a))p)((\g.g(\a.\b.b))p))h)((\a.\b.\f.f a b)x y))
+           --                                          --        
+=>(\x.\y.(\p.h((\g.g(\a.\b.a))p)((\g.g(\a.\b.b))p))((\a.\b.\f.f a b)x y))
+ b        --                                        --------------------      
+=>(\x.\y.(h((\g.g(\a.\b.a))((\a.\b.\f.f a b)x y))((\g.g(\a.\b.b))
+ b           --              ------------------        ((\a.\b.\f.f a b)x y))))
+=>(\x.\y.(h(((\a.\b.\f.f a b)x y (\a.\b.a))((\g.g(\a.\b.b))
+ b            --            --                        ((\a.\b.\f.f a b)x y)))))
+=>(\x.\y.h(((\b.\f.f x b) y (\a.\b.a))((\g.g(\a.\b.b))((\a.\b.\f.f a b)x y))))
+ b           --          -- 
+=>(\x.\y.h(((\f.f x y) (\a.\b.a))((\g.g(\a.\b.b)) ((\a.\b.\f.f a b)x y))))
+ b           --         --------  
+=>(\x.\y.h(((\a.\b.a) x y)((\g.g(\a.\b.b)) ((\a.\b.\f.f a b)x y)))) <= simplify 
+ b                                           --            -- 
+=>(\x.\y.h(((\a.\b.a) x y)((\g.g(\a.\b.b)) ((\b.\f.f x b)y)))) <= simplify
+ b                                           --         -- 
+=>(\x.\y.h(((\a.\b.a) x y)((\g.g(\a.\b.b)) (\f.f x y)))
+ b           --      --                        
+=>(\x.\y.h (((\b.x) y)((\g.g(\a.\b.b)) (\f.f x y)))
+ b            --    -- 
+=>(\x.\y. h ( ((\b.x) y)((\g.g(\a.\b.b)) (\f.f x y)))
+ b            ---------         
+=>(\x.\y. h  x ((\g.g(\a.\b.b)) (\f.f x y)))
+ n                --              --------- 
+=>(\x.\y. h  x ((\f.f x y)(\a.\b.b)) )
+ b               --        --------                    
+=>(\x.\y. h  x ((\a.\b.b) x y) 
+ b               --      -- 
+=>(\x.\y. h  x ((\b.b) y) 
+ n               --    -- 
+=>(\x.\y. h  x y )
+ b    --       -           
+=>(\x. h  x )
+ n --     -           
+=> h
+ n 
+
+PART B.
+unCurry (Curry h) (Pair r s ) => h  (Pair r s) 
+
+define Curry   = \f.\x.\y. f(Pair x y)
+define unCurry = \f.\p. f(Head p) (Tail p)
+define Pair = \a.\b.\f.f a b   
+define Head = \g.g(\a.\b.a)
+define Tail = \g.g(\a.\b.b)
+
+Macro expand: unCurry (Curry h) (Pair r s ) 
+(unCurry)    = (\f.\p. f(Head p) (Tail p))
+             = (\f.\p. f((\g.g(\a.\b.a))p) ((\g.g(\a.\b.b)) p))
+(Curry h )   = ((\f.\x.\y. f((\a.\b.\f'.f' a b) x y)) h) 
+(Pair r s )  = ((\a.\b.\f.f a b) r s) 
+
+(\f.\p. f((\g.g(\a.\b.a))p) ((\g.g(\a.\b.b)) p)) 
+       ((\f.\x.\y. f((\a.\b.\f'.f' a b) x y)) h) 
+                  ((\a.\b.\f.f a b) r s)      <= simplify Pair r s 
+                     --            --
+                 =>((\b.\f.f r b) s) 
+                  b  --           --
+                 => (\f.f r s) 
+                  b
+
+REDUCTION:
+=>(\f.\p. f((\g.g(\a.\b.a))p) ((\g.g(\a.\b.b)) p)) 
+   --                     ((\f.\x.\y. f((\a.\b.\f.f a b) x y)) h) (\f.f r s) 
+                           --------------------------------------
+
+=>(\p.((\f.\x.\y. f((\a.\b.\f.f a b) x y)) h)
+ b --           ((\g.g(\a.\b.a))p)((\g.g(\a.\b.b)) p))  (\f.f r s) 
+                                                         --------
+=>(((\f.\x.\y. f((\a.\b.\f.f a b) x y)) h)
+     --                                --
+ b             ((\g.g(\a.\b.a)) (\f.f r s))((\g.g(\a.\b.b)) (\f.f r s)))
+
+=>((\x.\y. h  ((\a.\b.\f.f a b) x y))
+ b  --         ((\g.g(\a.\b.a)) (\f.f r s)) ((\g.g(\a.\b.b)) (\f.f r s)))
+                -------------------------- 
+=>((\y. h((\a.\b.\f.f a b) ((\g.g(\a.\b.a)) (\f.f r s)) y))
+ b  --                                      ((\g.g(\a.\b.b)) (\f.f r s)))
+                                             ---------------------------    
+=>h ((\a.\b.\f.f a b)((\g.g(\a.\b.a)) (\f.f r s))
+ b    --              --------------------------  ((\g.g(\a.\b.b))(\f.f r s)))
+
+=>h ((\b.\f.f ((\g.g(\a.\b.a)) (\f.f r s)) b)   ((\g.g(\a.\b.b))(\f.f r s)))
+ b    --                                         -------------------------
+=>h (\f.f ((\g.g(\a.\b.a)) (\f.f r s)) ((\g.g(\a.\b.b))(\f.f r s)))
+ b          --              -------- 
+=>h (\f.f ( (\f.f r s) (\a.\b.a)) ((\g.g(\a.\b.b))(\f.f r s)))
+ b           --        --------
+=>h (\f.f ( ((\a.\b.a) r s) ((\g.g(\a.\b.b))(\f.f r s)))
+ b            --       -   
+=>h (\f.f ( ((\b.r) s) ((\g.g(\a.\b.b))(\f.f r s)))
+ b           --------- 
+=>h (\f.f  r  ((\g.g (\a.\b.b)) (\f.f r s)))
+ n              --              ---------- 
+=>h (\f.f  r  ((\f.f r s)(\a.\b.b)))
+ b              --       --------               
+=>h (\f.f  r  ((\a.\b.b) r s))
+ b              --       -
+=>h (\f.f  r  (\b.b) s))
+ n              --   -          
+=>h (\f.f  r  s)   
+ b               
+
+=>h (\f.f  r  s)  <=> h (Pair r s)
+

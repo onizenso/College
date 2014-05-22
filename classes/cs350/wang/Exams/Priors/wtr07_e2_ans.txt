@@ -1,0 +1,430 @@
+CMPS 350 Wtr 07 Exam 2 
+
+10 points added to all scores   (5 questions thrown out) 
+Mean: 71.2
+
+*1. What is true about decimal numbers encoded in binary coded decimal (BCD)
+   format?
+   A. In BCD each digit 0-9 requires 3 bits.
+   B. Floating point numbers in BCD are more precise than those in IEEE format.
+   C. both A and B. 
+ANS: B 
+
+2. Assume the following numbers are stored in IEEE-754 floating-point format. 
+   Which numbers will have a problem with rounding error?
+   A.  .1
+   B.  .5
+   C.  .0625
+   D. all three 
+ANS: A
+
+*3. What is the binary representation for the integer -3, assuming two's 
+   complement and four byte-integers?
+
+  A. 11111111111111111111111111111100
+
+  B. 11111111111111111111111111111101
+
+  C. 10000000000000000000000000000101
+  ANS: B
+
+*4. Which statement is true of the following C++ code?
+   void test(){
+      cout << "enter size of array:";
+      cin >> n; 
+      static int arr[n];
+   }
+   A. This is a stack-dynamic array declaration.
+   B. This is a fixed stack-dynamic array declaration. 
+   C. This is not a legal array declaration.
+ANS: C 
+
+5. Assume a fixed heap-dynamic array declaration. Which statement is true?
+
+   A. Memory is allocated at runtime, size is determined at compile time.
+   B. The size, although fixed, is not determined until runtime.
+   C. The size can be determined at either compile or runtime. 
+ANS: A
+
+6. In which language are strings dynamic length scalar types, with no size 
+   limit?
+   A. Perl
+   B. Java
+   C. both A and B
+ANS: A 
+
+7. This regular expression in Perl will only match strings beginning with two 
+   upper or lowercase characters. (T/F)
+    
+   /[A-Za-z][A-Za-z\d]+/  
+
+ANS: B (false) 
+8. After allocation, the size of a string in C is
+   A. static 
+   B. limited dynamic
+   C. dynamic
+ANS: B 
+
+9. This is valid code in C/C++:   <= meant to read C only
+
+   enum bgcolors { silver, mauve, pink, gray } background_color;
+   background_color = 7;
+
+   (T/F)
+ANS: false
+
+*10. What does the following code demonstrate?
+  
+   Shape s;
+   test(s);
+   . . . 
+   void test( const Shape & s){
+       s.display();  
+
+   A. an implicit cast from a class type to a reference type 
+   B. an implicit dereference of a "constant pointer" 
+   C. both A and B
+ANS: C
+
+11. The tombstone method of memory deallocation solves what problem?
+   A. dangling pointers
+   B. memory leaks
+   C. both A and B
+ANS: A
+ 
+12. What is true about the locks-and-keys method of dynamic memory management?
+   A. it  prevents cross-linked pointers
+   B. it prevents dereferencing a dangling pointer
+   C. both A and B
+ANS: B 
+
+*13. Assume a matrix has C columns and R rows. In COLUMN major order, the 
+    physical address of the element in col i and row j is computed as:
+
+   A. array_starting_address + ((i * n_row + j) * element_size)
+   B. array_starting_address + ((j * n_row + i) * element_size)
+   C. array_starting_address + ((i * n_col + j) * element_size)
+ANS: A
+
+//ch 7
+
+*14. What is true about the following code? 
+    (assume it is compiled with gcc on helios).
+
+   int n[5];
+   int *ip = &n[0];
+   ip++;
+
+   A. the address in ip is incremented by 1 byte
+   B. ip now points to n[1]
+   C. both A and B are true
+   ANS: B
+
+15. Using the code from #14 above, the statement
+
+    cout << *ip + 1 
+
+    will display the next element in the array pointed at by ip. (T/F)
+ANS: B (false)
+
+16. Which statement is false regarding unions?
+    A. Unions can hold multiple values of different types during execution.
+    B. A free union is one without type checking.
+    C. A discriminated union enforces type checking using a tag.
+ANS: A
+
+17. What is displayed on the screen when the following code is executed?
+    a = -5; b = -3; c = 2;
+    if ( a > b > c)
+        printf ("\nTrue");
+    else
+        printf ("False");
+
+    A. True 
+    B. False 
+ANS: B 
+
+18. Polymorphism in C++ relies on implicit casting of
+    A. derived to base class
+    B. base to derived class
+ANS: A
+ 
+#19-22. Match the following code with the 4 constructs listed below ( A-D ).
+
+    A. mixed-mode implicit coercion 
+    B. short-circuit evaluation
+    C. functional side effects
+    D. widening coercion 
+
+19.  int a = 10;
+     b = a + test(&a);  
+ ANS: C 
+
+20.  index = 1;
+	  while (index < length) && (LIST[index] != value)
+	       index++;
+ANS: B 
+
+21.  int sum = 100; int num=15; float avg = (float)sum / num; 
+ANS: D 
+
+22. Shape * sptr;
+    Circle * cptr = &circle; 
+    sPtr = &circle;  
+ANS: A
+
+*23. Given the following code, *ptr at Statement #1 will access what?
+    int n = 5;
+    int * px = &n;
+    test(&px); 
+    void test( int ** ptr){
+      *ptr  <==  Statement #1 
+     }
+   A. the address of ptr  
+   B. the address of n
+   C. the value of n
+ANS: B 
+
+24. Operator associativity determines the semantics for what?
+
+    A. arithmetic expressions with operators of equal precedence
+    B. mixed mode arithmetic expressions 
+    C. both A and B 
+ANS: A 
+
+25. Float (in C/C++) is an example of an ordinal data type. (T/F)
+ANS: B (real numbers are not countable) 
+ 
+26. C++ specifies array index range checking as part of the language in
+    order to prevent array out-of-bounds errrors. (T/F)
+
+ANS: FALSE
+
+27. The output of this code is?
+     int a = 50;
+     int b = 7;
+     cout <<  a % b * 4; 
+
+   A. 28  
+   B. 4 
+   C. 0
+ANS: B
+
+ 
+// ch 8
+*28. The next line of code executed after 'break' in this C code, given value 
+    < 0, is what?
+
+    while (sum < 1000) {
+       getnext(value);
+       if (value < 0) break;
+          sum := value;
+   }
+   printf("Value: %d",value);
+
+   A. printf("Value: %d",value);
+   B. while (sum < 1000)
+   C. getnext(value);
+ANS: B  <== error in scan tran; answer s/b A 
+
+29. What does the following Perl statement demonstrate?
+
+   while (@ARGV)   
+
+   A. iteration based on a data structure
+   B. a pretest logical loop construct 
+   C. both A and B 
+ANS:  C 
+
+30. Most languages set a maximum number of selections that can be included in 
+    an n-way selection statement. (T/F)
+ANS: B; False
+
+*31. This recursive function can be can easily converted into a loop since it
+    is tail recursive. (T / F)
+
+return stuff (int x, int y) { 
+   if (y==0)
+     return 1;
+   else
+      return x * stuff(y-1); 
+}
+
+ANS: False; the * occurs after the recursive call so not tail recursive
+
+
+32. How does C solve the dangling else problem?
+    A. with a static semantics rule
+    B. with statement blocks 
+ANS: A 
+
+33. The loop statements will be executed at least once for what type of 
+    loop construct?
+
+    A. A post-test logical loop
+    B. A pre-test logical loop
+    C. A post-test counter controlled loop   
+ANS: A
+
+34. What is not true about C's switch statement?
+    A. The control expression must be an integer type.
+    B. Selectable segments must be blocks or compound statements.
+    C. Any number of segments can be executed.
+    D. There is no implicit branch at the end of selectable segments.
+ANS: B
+
+*35. What is always true regarding counter-controlled loops regardless of
+    the language?
+    A. The loop variable must be an integer.
+    B. The loop variable cannot be changed in the loop.
+    C. The loop variable is evaluated no more than once per iteration.
+    D. There must be an explicit loop variable.
+ANS: C
+ 
+36.  Which is controversial regarding control statements?   
+   A. multiple entries
+   B. multiple exits
+   C. both A and B
+ANS: A
+
+*37. Which generally tends to reduce the readability of control stuctures?
+    A. negative logic 
+    B. gotos
+    C. both A and B
+ANS: C
+
+38. What is true about this control structure in C?
+
+    while (ctrl_expr)
+	 do loop body
+
+    A. it is a counter controlled loop statement
+    B. it is a post-test logical loop statement
+    C. ctrl_expr must return a Boolean type
+    D. none of the answers is correct 
+ANS: D 
+
+39. User-located loop control statements are generally used to specify what?
+    A. an exit point other than the top or bottom of the loop
+    B. an entry point other than the top or bottom of the loop
+    C. an alternative exit point at the top or bottom of the loop
+    D. both A and B
+ANS: A 
+
+40. What is an example of an unconditional unlabeled exit?
+    A. C's break statement 
+    B. C's goto statement
+    C. both are examples
+ANS:  A 
+
+41. What would prevent a logical error of this type from occurring in C?
+
+    while (control = 1) 
+
+  A. The exclusive use of Boolean expressions in control statements 
+  B. Not allowing assignment expressions in conditionals 
+  C. Both would serve to prevent or help prevent such errors   
+ANS: C 
+
+42. What is true about this C switch statement?
+
+   switch (num) {
+    case 6: 
+    case 7: 
+    case 8:
+      j = k - 2;
+   }
+
+   A. it will not compile
+   B. j = k -2 will be executed for values 6, 7 or 8 
+   C. j = k -2 will be executed for value 8 only
+ANS: B
+
+43. What will be displayed if this guarded command is executed when a=b?
+
+    if
+        a >= b -> print "More or equal"
+        a <= b -> print "Less or equal"
+    fi
+
+   A. cannot be determined
+   B. More or equal 
+ANS. A
+
+44. The following function can be re-written using tail recursion.
+ 
+    void stuff (int n) { 
+       start: 
+       print n; 
+       if (n>0){
+          n=n-1;
+          goto start;
+        }
+     }
+   (T/F)
+ANS: A 
+
+45. The goto is the most efficient way to solve some algorithms. (T/F)
+
+*46. Given this Perl code
+    $x = 'the mouse in the house';
+	 $x =~ /^(.*)(ou.*)(n.*)$/; 
+
+    What is $1, i.e., the first substring marked by (.*)?
+    A.  'the m'
+    B.  'the mouse in the h'
+ANS: A
+
+*47. What does this regex match?
+
+     [^0-9]{4}[a-zA-Z]   
+
+    A. 8784b
+    B. ABCD
+    C. ABCDE
+ANS: C
+
+48. Given this HTML tag to load an image into a web page:
+
+    <IMG SRC="happy.jpg" NAME="pic1";></A>
+
+    How is the filename of the image accessed from the DOM in JavaScript?
+    A. pic1.src 
+    B. pic1 
+    C. happy.jpg 
+ANS: A 
+
+49. Which of the following JavaScript statements is an example of an
+    event handler?
+    A. onLoad="alert('hi')" 
+    B. prompt('Enter a number'); 
+ANS: A   
+
+50. What is true about this Perl statement to parse the command line arguments 
+    "-f <filename>"?
+
+    while (@ARGV) {
+         if ($ARGV[0] eq '-f') { ...
+
+   A. there should be one shift in the while block
+   B. there should be two shifts in the while block
+ANS: B 
+
+51. What is true about the following Perl statement?
+
+     $line =~ s/ +/ /g;            
+
+    A. $line is an array of characters.
+    B. The regular expression will remove all spaces from $line.         
+    C. Neither are correct.
+    D. Both A and B are correct.
+
+ ANS: C  <-- ANSWER S/B A
+
+52. What is true about the following Perl statement?
+
+    $table{@words[0]} = @words[1];           
+    
+  A. It will insert key @words[0] and value @words[1] into a hash table.
+  B. It will insert value @words[0] and key @words[1] into a hash table.
+ANS: A

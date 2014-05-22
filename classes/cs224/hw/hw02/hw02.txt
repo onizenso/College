@@ -1,0 +1,43 @@
+1. Assembly language is still in human readable format, whereas machine code is all binary machine instructions.
+
+2. Assembly language is specific to a certain architecture because the instructions and data storage use registers, caches, and control structures that change with different processor architectures.
+
+3. Assembler - tool to convert assembly language to binary instructions.
+   Macros - pieces of code that are replaced inline when the program is assembled or compiled
+   Object file - file that is created when the assembler has joined all of the assembly code for an executable. Object files are the last stage before a binary executable.
+   Linker - system level tool to join pieces of assembly code and resolves label addresses before making the binary executable
+
+4. A compiler translates a program from high-level instruction into assembly code, then uses the linker to build the object files and resolve label addresses. The assembler does all of the previous steps, but starts with the assembly language code instead of the high-level language.
+
+5. Assembly language offers more granular control over the flow of instructions and low-level storage of data. It is a lot easier to make mistakes in assembly language because you have to deal with the  complexity hidden by high level languages.
+
+6. Global labels are accessible by code in files outside the file where the label is defined, and local labels are only accessible within the same file. A forward reference is when a label is used in the program before it is defined, causing the assembler to make two passes over the code to replace all labels with the addresses they point to.
+
+7. An assembler handles forward references by making two passes over the code to replace all labels with the addresses to which they point.
+
+8. One important difference between high-level languages and assembly is that assembly language has simple, low-level types of data and control flow, so you have to be very explicit about the operations you want to perform and the format of the data. Also, in assembly, to implement things like loops, if-statements, and other control flow you have to use branches/jumps which make the code harder to read and debug.
+
+9. Object files have a text and data segment, relocation information, absolute addresses, a symbol table and debugging information.
+
+10. Assembly directives are used to tell the assembler how to translate portions or the program. A couple of examples are the .text and .data directives which tell the assembler to translate the following lines as instructions and stored data respectively.
+
+11. A pseudoinstruction is a constuct to make assembly more understandable, and is made of a combination of simpler instructions. 
+
+12. The linker searches for lab routines, determines memory locations of modules and moves their instructions into absolute addresses, and resolves any references among files. The Unix linker is called ld, and is short for loader.
+
+13. 1) Reads executable's header to get segment sizes 
+    2) Creates new address space large enough for data and text segments 
+    3) Copies instructions and data into new address space 
+    4) Copies input arguments to the stack 
+    5) Initializes registers, sets stack pointer to first free stack location 
+    6) Goes to starup routine, calls main routine from the program. 
+       If main returns successfully, the startup routine ends the program 
+       with the exit system call.
+
+14. Drawn on other paper.
+
+15. The global pointer is used to store the address of the beginning of the static data segment. Global variables are usually stored in that area, so the global pointer makes accessing global variables faster.
+
+16. The stack starts at the maximum address available (0x7fff fffc), and grows downward toward the data segment when procedure calls are made. Depending on the instructions and data included in a procedure, the procedure frame (space allocated for the procedure) will be larger or smaller. 
+
+17. 0xB7F5 big endian :::: 0xF5B7 little endian 

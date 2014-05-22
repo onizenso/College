@@ -1,0 +1,10 @@
+Operating System Evolution:
+1. Punch Cards, Batch processing, multiprogramming
+2. Multi-users: software interrupts, time slicing
+3. Multi-processors
+4. Realtime
+
+Embedded Systems: getting information from the real world and relaying 
+information in real time.
+
+

@@ -1,0 +1,15 @@
+ file:lab04.cpp ,function:main ,line:19 start of logging
+ file:lab04.cpp ,function:main ,line:36 add random values
+ file:lab04.cpp ,function:main ,line:42 print it out
+ file:lab04.cpp ,function:main ,line:51 calling SortAscending
+ file:SortAscending.h ,function:SortAscending ,line:4 start SortAscending
+swapping positions 0 and 1
+swapping positions 2 and 3
+swapping positions 3 and 4
+swapping positions 1 and 2
+swapping positions 2 and 3
+swapping positions 0 and 1
+swapping positions 1 and 2
+ file:SortAscending.h ,function:SortAscending ,line:21 end SortAscending
+ file:lab04.cpp ,function:main ,line:54 print it out
+ file:lab04.cpp ,function:main ,line:61 call delete[]

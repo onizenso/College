@@ -1,0 +1,160 @@
+ file:hw4_main.cpp ,function:main ,line:19 start of logging
+ file:dynamic_stack.h ,function:InitializeStack ,line:17 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 55
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 15
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 16
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 17
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 18
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 19
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 20
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 21
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 22
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 23
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 24
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 25
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 26
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 27
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 28
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 29
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 30
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 31
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 32
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 33
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 34
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 35
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 36
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 37
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 38
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 39
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 40
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 41
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 42
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 43
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PushInt ,line:32 PushInt -> 44
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:PopInt ,line:55 
+ file:dynamic_stack.h ,function:Size ,line:25 
+ file:dynamic_stack.h ,function:DestroyStack ,line:69 

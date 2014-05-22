@@ -1,0 +1,2 @@
+gmcs RemoteServer.cs -r:System.Runtime.Remoting.dll -r:RemoteClass.dll -out:RemoteServer.exe
+mono RemoteServer.exe 

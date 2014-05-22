@@ -1,0 +1,23 @@
+class person
+{
+private:
+string fname;
+string lname;
+int age;
+
+public:
+person ( string f = "name"; ) //used to store default value of "name" into fname
+{
+   fname = f;
+}
+person (string f, string l, int a)
+ {fname=f; lname=l; age=9;} 
+}
+
+know permissions for classes (i.e. private, public, protected)
+
+know encapsulation defintion -
+	the process of hiding primitive data types/variables within a class, 
+	thus restricting the user's access to those variables. When 
+	encapsulating data, public member functions must be used to access 
+	and manipulate data that is declared private or protected.

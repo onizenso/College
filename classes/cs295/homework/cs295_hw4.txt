@@ -1,0 +1,189 @@
+/================================\
+| Chapter 2.1                    |
+\================================/
+01) B and C are subsets of A, and C is a member of D; 
+    each set is a subset of itself
+
+02) a)true b)true
+
+03) A = {} B = {{}}
+
+04) B = {{5}, 5}
+
+05) a) |A|=0 |B|=1 
+    b) |S| = 3
+
+06) a) no
+    b) yes, P(S) where S={a}
+    c) yes, P(S) where S={a,b,c}
+
+07) AxB = {{1,1},{1,2},{1,3},{2,1},{2,2},{2,3},{3,1},{3,2},{3,3}}
+
+08) AxBxC = {{1,1,5},{1,2,5},{2,1,5},{2,2,5},{3,1,5},{3,2,5}}
+
+09) AxB is the set of all combinatory pairs x,y where x is all courses offered 
+and y is all math professors
+
+a) |AxB| is |x| * |y|
+
+10) P(S) = {{},{a},{b},{c},{a,b},{a,c},{b,c},{a,b,c}}
+
+11) |P(S)| = 2^13
+
+/================================\
+| Chapter 2.2                    |
+\================================/
+
+01) a) A U B = {a,b,c,d,e,f,g,h}
+    b) A n B = {a,b,c,d,e}
+    c) A - B = none
+    d) B - A = {f,g,h}
+
+02) a) 6
+    b) 6
+    c) 2,3,4
+
+03) a) C = {b,d}
+    b) 2,3,5,7
+
+04) The members that are exclusively in either set A or set B.
+
+05) (A n B) U (A-B)
+       1    1   0
+       0    1   1
+       0    0   0
+       0    0   0
+
+06) (A-B) U (B-A)
+      0   1   1  
+      1   1   0
+      0   1   1
+      0   0   0
+
+07) a) 0011100000
+    b) 1010010001
+    c) 0010000000
+    d) 1011110001
+    e) 0101101110
+   
+08) true, the number of members in A n B will be the same as the total number ofmembers in A minus the the members in A that do not appear in B.
+
+09) false, the number of members in the union of the sets A and B must include
+the members that appear in both A and B. This means that substracting the 
+intersection of A and B will exclude members that should appear in the union.
+
+
+/================================\
+| Chapter 2.3                    |
+\================================/
+
+01) f'(x) = cuberoot(x-1)
+
+02) f is a function because there is only one real number output for every
+integer input.
+
+03) f is discontinuous function because at n=2, the function is undefined.
+
+04) f: Z+ X Z+ -> Z+, f(x) = (x^2 + x)/(x + 1); 
+domain = (1, infinity); codomain = (1, infinity)
+
+05) f: Z+ -> {1,2,3,4,5,6,7,8,9}, domain = (1,infinity) codomain = (1,9)
+
+06) f: Z+ -> [k <= sqrt(Z)] where k = largest integer satisfying the inequality
+
+07) f: {bit string of 0's & 1's} -> {{},{bit strings of 1's}}
+
+08) i) x = 1.7, n = 5; ceil(x) = 2 :: 2 <= 5 
+   ii) x = 5, n = 5; ceil(x) = 5 :: 5 <= 5
+  iii) x = 4.9, n = 5; ceil(x) = 5 :: 5 <= 5
+
+If x is less than five, the ceiling of x always produces an integer <= five.
+If x is five, the ceiling of x produces 5.
+
+09) n = 5, ceil(x) = 4, .:. (3 < x <= 4) < 5
+
+10) 1
+
+11) -2
+
+12) 1
+
+13) one-to-one and onto
+
+14) not one-to-one, is the graph of a parabola
+
+15) one-to-one, graph of a cubic
+
+16) not one-to-one, ceil(7/2) = 4 && ceil(8/2) = 4
+
+17) is onto
+
+18) not onto
+
+19) is onto, m = Z and n = 1 or 2 to produce even and odd numbers
+
+20) f(n) = 5n + 4
+
+21) f(n) = floor(n/2) 
+   
+22) f(n) = 2n
+
+23) is a bijection, f'(x) = (x-4)/-3
+
+24) is not a bijection, f'(x) = +-sqrt((x-7)/-3) which is not defined for 
+    x >= 7
+
+25) f(n) = 2n + 1
+
+26) fog = (x + 2)^2 + 1 == x^2 + 4x + 5
+
+27) gof = (x^2 + 1) + 2 = x^2 + 3
+
+28) impossible on vim, will draw on paper
+
+29) if ceil(x) is the smallest integer not smaller than x (called y), and the
+floor(x) is the largest integer not larger than x (called z); 
+then floor(y) = z = y
+
+/================================\
+| Chapter 2.4                    |
+\================================/
+
+30) n^2 + 2n + 3
+
+31) Asub0 = 3; An = An-1 + 2n + 1
+
+32) 84
+
+33) 1.75
+
+34) 4
+
+35) 21215
+
+36) (1-1)+(1-2)+(2-1)+(2-2)+(3-1)+(3-2) = 3
+
+37) ((200^2 * 201^2)/4) - ((98^2 * 99^2)/4) = 404,010,000 - 23,532,201 
+    = 380,477,799
+
+38) x^2 + 3x + 1
+
+39) Asub(n-1) + 2(n+1)
+
+40) x^2 + 6x + 3
+
+41) 6, 12, 20, 30, 42
+
+42) x^2 + x
+
+43) 168, 112 + 56 = 168
+
+44) 168
+
+45) If S is a subset of an infinite countable set, then S can only contain countable members, thus making it a countable set.
+
+46) If S and T are both infinite countable sets, then all of their members are 
+countable. Thus the members contained in their union, which would be all of the
+members contained in both sets, must be countable.
+
+

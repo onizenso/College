@@ -1,0 +1,29 @@
+Name: samantha spade
+Recipe Book XML Parser
+RECIPE BOOK
+Date: Tue, 10 Mar 2009
+
+
+Recipe No: 1
+CATEGORY: bread LEVEL: easy TIME: 2 hrs. NAME: Quick Bread
+Ingredients:
+2 cups flour, 1 egg, 1/2 cup milk, 2 TBLS yeast
+Instructions:
+Step #1: Measure the flour, salt, and yeast.
+Step #2: Mix all ingredients together, and knead thoroughly.
+Step #3: Cover with a cloth, and leave for one hour in warm room.
+Step #4: Knead again, place in a tin, and then bake in 400 degree oven for 45 min.
+
+
+Recipe No: 2
+CATEGORY: seafood LEVEL: easy TIME: 30 minutes NAME: SweetnSour Salmon
+Ingredients:
+2 wild salmon steaks, 1/2 teas. soy sauce, 1/2 teas. ginger, 1 TBSP. honey, 2 cloves garlic
+Instructions:
+Step #1: mash the garlic
+Step #2: Mix all wet ingredients together, and mix thoroughly.
+Step #3: Put salmon steaks in the broiler - cook halfway.
+Step #4: Remove steaks from the broiler.
+Step #5: Cover steaks with marinade - finish cooking - turning once
+
+

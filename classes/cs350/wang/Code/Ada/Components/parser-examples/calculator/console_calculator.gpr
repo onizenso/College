@@ -1,0 +1,25 @@
+with "../../components.gpr";
+
+project Console_Calculator is
+
+   for Exec_Dir use ".";
+   for Main use ("console_calculator.adb");
+
+   package Compiler is
+      for Default_Switches ("ada") use Components.Compiler'Default_Switches ("ada");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use Components.Binder'Default_Switches ("ada");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use Components.Builder'Default_Switches ("ada");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use Components.Linker'Default_Switches ("ada");
+   end Linker;
+
+end Console_Calculator;
+

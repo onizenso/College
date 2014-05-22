@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for Linux/x86 (vers 1st March 2002), see www.w3.org" />
+
+    <title></title>
+  </head>
+
+  <body>
+    <h1 align="center">Operator Precedence Chart</h1>
+
+    <center>
+      <table width="100%" border="1" cellpadding="5" summary="Chart of
+	operator precendence">
+        <tr>
+          <td><i>Operator</i></td>
+
+          <td><i>Type</i></td>
+
+          <td><i>Associativity</i></td>
+
+        </tr>
+
+        <tr>
+          <td>::<br />
+          ::</td>
+
+          <td>binary scope resolution<br />
+          unary scope resolution</td>
+
+          <td rowspan="2">left to right</td>
+        </tr>
+
+        <tr>
+          <td>()<br />
+           []<br />
+           .<br />
+
+           -&gt;<br />
+           ++<br />
+           --<br />
+           typeid<br />
+           dynamic_cast&lt;&lt;i&gt; type &gt;<br />
+
+           static_cast<br />
+           reinterpret_cast<br />
+           const_cast<br />
+          </td>
+
+          <td>parentheses<br />
+           array subscript<br />
+
+           member selection via object<br />
+           member selection via pointer<br />
+           unary postincrement<br />
+           unary postdecrement<br />
+           run-time type information<br />
+           run-time type-checked cast<br />
+
+           compile-time type-checked cast<br />
+           cast for non-standard conversions<br />
+           cast away const-ness<br />
+          </td>
+        </tr>
+
+        <tr>
+          <td>++<br />
+
+           --<br />
+           +<br />
+           -<br />
+           !<br />
+           ~<br />
+           ( <i>type</i> )<br />
+
+           sizeof<br />
+           &amp;<br />
+           *<br />
+           new<br />
+           new[]<br />
+           delete<br />
+
+           delete[]</td>
+
+          <td>unary preincrement<br />
+           unary predecrement<br />
+           unary plus<br />
+           unary minus<br />
+           unary logical negation<br />
+
+           unary bitwise complement<br />
+           C-style unary cast<br />
+           determine size in bytes<br />
+           address<br />
+           dereference<br />
+           dynamic memory allocation<br />
+
+           dynamic array allocation<br />
+           dynamic memory deallocation<br />
+           dynamic array deallocation</td>
+
+          <td>right to left</td>
+        </tr>
+
+        <tr>
+
+          <td>
+          </td>
+
+          <td>
+          </td>
+
+          <td rowspan="12">left to right</td>
+        </tr>
+
+        <tr>
+
+          <td>.*<br />
+          -&gt;*</td>
+
+          <td>pointerto member via object<br />
+          pointer to member via pointer</td>
+        </tr>
+
+        <tr>
+          <td>*<br />
+          /<br />
+          %</td>
+
+          <td>multiplication<br />
+          division<br />
+
+          modulus</td>
+        </tr>
+
+        <tr>
+          <td>+<br />
+          -</td>
+
+          <td>addition<br />
+
+          subtraction</td>
+        </tr>
+
+        <tr>
+          <td>&lt;&lt;<br />
+          &gt;&gt;</td>
+
+          <td>bitwise left shift<br />
+          bitwise right shift</td>
+
+        </tr>
+
+        <tr>
+          <td>&lt;<br />
+           &lt;=<br />
+           &gt;<br />
+           &gt;=</td>
+
+          <td>relational less than<br />
+
+           relational less than or equal to<br />
+           relational greater than<br />
+           relational greater than or equal to</td>
+        </tr>
+
+        <tr>
+          <td>==<br />
+
+          !=</td>
+
+          <td>relational is equal to<br />
+          relational is not equal to</td>
+        </tr>
+
+        <tr>
+          <td>&amp;</td>
+
+          <td>bitwise AND</td>
+        </tr>
+
+        <tr>
+          <td>^</td>
+
+          <td>bitwise exclusive OR</td>
+        </tr>
+
+        <tr>
+          <td>|</td>
+
+          <td>bitwise inclusive OR</td>
+        </tr>
+
+        <tr>
+          <td>&amp;&amp;</td>
+
+          <td>logical AND</td>
+        </tr>
+
+        <tr>
+          <td>||</td>
+
+          <td>logical OR</td>
+        </tr>
+
+        <tr>
+          <td>?:</td>
+
+          <td>ternary conditional</td>
+
+          <td rowspan="2">right to left</td>
+        </tr>
+
+        <tr>
+          <td>=<br />
+           +=<br />
+           -=<br />
+           *=<br />
+           /=<br />
+
+           %=<br />
+           &amp;=<br />
+           ^=<br />
+           |=<br />
+           &gt;&gt;=<br />
+           &lt;&lt;=<br />
+
+          </td>
+
+          <td>assignment<br />
+           addition assignment<br />
+           subtraction assignment<br />
+           multiplication assignment<br />
+           division assignment<br />
+
+           modulus assignment<br />
+           bitwise AND assignment<br />
+           bitwise exclusive OR assignment<br />
+           bitwise inclusive OR assignment<br />
+           bitwise left shift assignment<br />
+           bitwise right shift with assignment<br />
+
+          </td>
+        </tr>
+
+        <tr>
+          <td>,</td>
+
+          <td>comma</td>
+
+          <td>left to right</td>
+
+        </tr>
+      </table>
+    </center>
+  </body>
+</html>
+

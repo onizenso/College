@@ -1,0 +1,62 @@
+.:Linux Live Data Tools:.
+
+Toolkits
+    Similar set of tools
+    Need multiple versions of tools to work on various OS's
+    Need to account for syntactic variations
+
+Rootkits & Linux
+    Also can alter the results of system calls
+    More rootkit detection binaries that can run "stand-alone"
+    
+Basic Commands
+    Like Windows, should have clean terminal binary & shell program to run
+        * still have to go through system shell to launch
+        * some commands are bult in to the shell
+        * executable commands  accesible through $PATH
+Crypto Commands:
+    des        DES Encryption
+    md5sum     MD5 encryption
+    ssh/scp    Secure file transfer/shell commands
+
+File Info/Manipulation Commands:
+    file    type of file
+    find    locate files in filesystem
+    lsof    list open files
+    du      list usage of directory
+
+Disk/Partition Information/Manipulation:
+    dd                     binary copy from/to disk
+    fdisk/cfdisk/gpartd    list/manipulate partition table
+    mount/umount           add/remove disks
+
+Network Info/Manipulation
+    ifconfig    list/change network address
+    route       list/change static routes
+    netstat     list open ports
+
+User info: 
+    w/who/whoami    list users
+    finger          detailed info for users
+    last            login info for users
+    cron/crontab    automatic tasks for users
+
+OS Info:
+    uname              System info (brief)
+    pkginfo/apt/etc    Package manager
+    lsmod              List kernel modules (running)
+    modinfo            Info on kernel modules
+    /proc              proc filesystem, info about running kernel
+        look for processes logged in /proc that do not appear in 'ps' output
+        may be a malware process that is deleting/manipulating logs
+    /sys               sys filesystem, configuration files
+
+Executable Info:
+    strace     trace execution
+    strings    print all printable data
+
+Misc. Commands:
+    tar/gzip/bzip2      create/extract archives
+    perl/python/bash    scripting languages, useful autmation tools
+    su/sudo             privilege changing commands
+    

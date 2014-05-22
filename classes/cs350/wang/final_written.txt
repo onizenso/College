@@ -1,0 +1,11 @@
+
+
+                         CMPS 350  - WTR 2011
+
+                             FINAL EXAM WRITTEN SECTION
+
+
+This portion of the final is MC/TF questions. Closed book. There will be
+26 questions taken from homeworks 8-10. There may be some coding questions
+on the languages that are not covered in the coding section. If you have 
+completed the labs you will be able to answer these.

@@ -1,0 +1,26 @@
+"strong reader writer problem"
+
+Tested using GNU g++ on the following platforms: Mac OS 10/BSD, Solaris 8,
+Digital/HP True65 Unix, Linux 2.4
+
+Uses Unix System V IPC shared memory
+   *creates a shared memory segment
+ 
+Uses Unix System V IPC semaphores
+  *element 0 represents the number of  readers (0 - n) 
+  *element 1 represents the number of writers (0 or 1)
+
+Uses POSIX pthreads to demonstrate concurrency
+  *creates several Writer threads that write current time to shared memory
+  *creates several Reader threads that read time from shared memory
+ 
+Implements the strong reader precedence protocol; i.e. waiting Readers take 
+precedence over waiting Writers:
+
+  *n_readers is a "waiting list" and is updated as soon as a Reader wants
+   access (this operation is not atomic with the wait on a Writer operation)
+  *the Writer waits until n_writers ==0 and n_readers == 0. since n_readers
+   is a waiting list, the strong reader preference is assured
+  *the Reader waits only until the Writer is finished 
+
+The semaphore set and shared memory are destroyed on exit  

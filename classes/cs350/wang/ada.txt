@@ -1,0 +1,36 @@
+            SAMPLE ADA PROGRAM 
+ --------------------------------------------
+ |  procedure Main is                       |
+ |     Z  : Integer;                        |
+ |   ----------------------------------|    |
+ |  |  procedure Sub1 is               |    |
+ |  |  begin                           |    |
+ |  |     Put(Z);                      |    |
+ |  |  end                             |    |
+ |  |-----------------------------------    |
+ |                                          |
+ |   --------------------------------- |    |
+ |  |  procedure Sub2 is               |    |
+ |  |  Z  : Integer                    |    |
+ |  |  begin                           |    |
+ |  |     Z := 5;                      |    |
+ |  |     Sub1;                        |    |
+ |  |  end                             |    |
+ |  |----------------------------------     |
+ |   begin  -- of Main                      |
+ |     Z := 15;                             |
+ |     Sub2;                                |
+ |   end;                                   |
+ |------------------------------------------|
+
+Static visibility:
+
+In SUB1 Z=15 
+
+Dynamic visibility:  
+
+                    SUB1  
+       SUB2 Z=5     SUB2 Z=5
+MAIN   MAIN Z=15    MAIN Z=15
+
+In SUB1 Z = 5

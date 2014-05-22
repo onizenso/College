@@ -1,0 +1,94 @@
+with "../components.gpr";
+
+project Components.Tests is
+
+   for Exec_Dir use ".";
+   for Main use
+       (  "test_association.adb",
+          "test_blackboard.adb",
+          "test_dining_philosophers.adb",
+          "test_fifo.adb",
+          "test_handles.adb",
+          "test_ieee_754.adb",
+          "test_linked_lists.adb",
+          "test_linked_lists_scheduler_test.adb",
+          "test_persistent_storage.adb",
+          "test_sequencer.adb",
+          "test_stack.adb",
+          "test_synchronization_events.adb",
+          "test_utf8_tables.adb"
+       );
+   for Source_Files use
+       (  "test_association.adb",
+          "test_association_expressions.adb",
+          "test_association_expressions.ads",
+          "test_blackboard.adb",
+          "test_dining_philosophers.adb",
+          "test_dining_philosophers_forks.ads",
+          "test_fifo.adb",
+          "test_handles.adb",          
+          "test_ieee_754.adb",
+          "test_integer_fifo.adb",
+          "test_integer_fifo.ads",
+          "test_integer_signaled_fifo.ads",
+          "test_linked_lists-controlled_elements.adb", 
+          "test_linked_lists-string_elements.adb",
+          "test_linked_lists-task_elements.adb",
+          "test_linked_lists.adb",
+          "test_linked_lists_of_elements-strings.adb",
+          "test_linked_lists_of_elements-strings.ads", 
+          "test_linked_lists_of_elements.ads",
+          "test_linked_lists_of_strings.ads",
+          "test_linked_lists_of_tasks.adb",
+          "test_linked_lists_of_tasks.ads",
+          "test_linked_lists_scheduler.adb",
+          "test_linked_lists_scheduler.ads",
+          "test_linked_lists_scheduler_test.adb",
+          "test_my_string-handle.adb",
+          "test_my_string-handle.ads",
+          "test_my_string.ads", 
+          "test_object-handle.ads",
+          "test_object-handle_array.ads",
+          "test_object.adb",
+          "test_object.ads",
+          "test_persistent_file_storage.adb",
+          "test_persistent_file_storage.ads",
+          "test_persistent_storage.adb",
+          "test_persistent_tree.adb", 
+          "test_persistent_tree.ads",
+          "test_record_blackboards.ads",
+          "test_safe_string_blackboards.ads",
+          "test_sequencer.adb",
+          "test_set.ads",
+          "test_stack.adb",
+          "test_stack_item.adb",
+          "test_stack_item.ads",
+          "test_string_blackboards.ads",
+          "test_string_fifo.ads",
+          "test_string_signaled_fifo.ads",
+          "test_synchronization_events.adb",
+          "test_synchronization_events_array.ads",
+          "test_synchronization_pulse_events.ads",
+          "test_utf8_tables.adb",
+          "test_utf8_tables_table.adb",
+          "test_utf8_tables_table.ads"
+        );
+
+   package Compiler is
+      for Default_Switches ("ada") use Components.Compiler'Default_Switches ("ada");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use Components.Binder'Default_Switches ("ada");
+   end Binder;
+
+   package Builder is
+      for Default_Switches ("ada") use Components.Builder'Default_Switches ("ada");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use Components.Linker'Default_Switches ("ada");
+   end Linker;
+
+end Components.Tests;
+

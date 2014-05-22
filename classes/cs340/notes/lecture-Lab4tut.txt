@@ -1,0 +1,68 @@
+.: Lab4 Announcements :.
+
+Is there any way that we could set up a test VM on our own machine that meets 
+the specs required for the assignment?
+    Bring in a 16-32GB thumb drive to copy the VM. Will be able to work at home
+        with this.
+
+.:Commands:.
+    Looking up command help: man <command>
+    
+    fdisk -l <device>
+        list the partition information
+ 
+    netstat -antp
+        -a     all
+        -n     numeric value only
+        -t     TCP/IP ports
+        -p     Process id for each port (root only)
+
+    ps -ef || ps aux
+        -ef    is non-POSIX for "list all processes"
+        aux    is POSIX for "list all processes"
+
+    ls fd && ls of
+        fd     prints out currently(blue)/previously(red) used files
+        of     prints association between file descriptor and file name
+
+    crontab    shows scheduled processes
+        crontab -l              list crontab for current user
+        crontab -l -u <user>    list crontab for <user>
+
+    Use reference data for comparison
+        ::> CS340 Desktop terminal
+        ::> Sleipnir login
+
+.:Log Files:.
+    /var/log/   (...duh)
+    
+    .::Common Log Files:
+        auth log    debug     dmesg    faillog
+        messages    syslog    ~temp
+
+    Configuration file: /etc/syslog.conf *~sometimes in its own sysctl.d directory
+
+    .::Common Config Files::.
+        passwd    shadow      groups         shell
+        hosts     services    resolv.conf    fstab
+        inittab
+
+    .::Proc Filesystem::.
+        Special filesystem to display current kernel/process data
+        Always has a subdirectory for each running process
+            cmdline
+            fd/ & net/ subdirs are important and FUN
+        Kernel Info:
+            kmem || kcare
+            Config Info:
+                cpuinfo
+                crypto
+                filesystems
+                sys/ subdirectory    
+
+    Compare with output from 'ps' command to search for discrepancies in running processes
+
+    .::Sys Filesystem::.
+        Linked to by /proc/sys (links to subdir of /sys)
+        Running configuration
+            Interferes w/ kernel & BIOS

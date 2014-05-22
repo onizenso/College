@@ -1,0 +1,432 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./style.css" title="style1">
+</head>
+<body>
+<h3>Programming Language Syntax</h3>
+<p>
+TERMINOLOGY.
+<p>
+<u>Language</u>: a finite or infinite set of sentences. 
+A language has a lexicon, syntax rules, and semantics. 
+ A grammar is a formal definition of a language.
+<p>
+<u>Lexicon</u>:  contains all the lexemes of the language; i.e., 
+  predefined names, symbols and user defined
+  identifiers (<a href="http://techpubs.sgi.com/library/dynaweb_docs/0650/SGI_Developer/books/CLanguageRef/sgi_html/index.html">see C's lexicon</a>)
+<P>
+<u>Syntax:</u> the form or structure of units in the language
+ whether sentences, expressions, statements, or program units.
+<p>
+<u>Semantics</u>: the meaning of the expressions,  statements, and 
+ program units in a language. For a programming language, semantics  
+ most often describe the runtime behavior of a program. A syntactically correct
+ statement may be semantically meaningless; 
+ i.e., <a href="http://www.elsewhere.org/cgi-bin/postmodern">postmodern generator</a>
+<P>
+<u>Lexeme</u>: the lowest level syntactic unit of a language. Lexemes
+ are the terminal symbols in a lanuage. An example of a lexeme 
+ is any <a href="http://h30097.www3.hp.com/docs/base_doc/DOCUMENTATION/V40F_HTML/AQTLTBTE/DOCU_006.HTM">C keyword</a>.
+<p>
+A <u>Sentence</u> in language L is a valid string of lexemes over the
+ terminal set of L. In English, the lexemes are words
+ and a sentence is a string words (plus punctuation). A word can also have
+ a grammar, defined as 
+ the set of arrangements over the terminal set we call the alphabet. 
+ If the language is the set of identifiers, then the terminal set
+ is called the character set of L. 
+  The C/C++ character set is most ASCII characters. The Java character set 
+ for <a href="http://java.sun.com/docs/books/jls/third_edition/html/lexical.html#229286">Java identifiers</a> is <a href="http://www.unicode.org">Unicode</a>.  <p>
+<u>Token</u>: a category of lexemes (e.g., identifier, keyword, literal,
+ separator, operator in a programming language or noun, verb, adverb, ...
+ in human language). A token is a classification of the terminal symbols
+ of a language. The lexemes are the actual terminals in the language. For 
+ example, 
+ a Keyword is a token classification in most lanuages. The actual keyword
+ 'const' is a lexeme belonging to that classification.
+<p>
+<h4>Grammars:  A Formal Definition of a Language</h4>
+<p>
+<u>Grammar:</u> a formal definition for describing the syntax of
+ a language through a finite nonempty set of rules upon the tokens
+ in the language. A grammar is a 
+ <i>metalanguage</i> of a language. Grammars do not describe
+ semantics.
+
+<a href="http://java.sun.com/docs/books/jls/third_edition/html/grammars.html#2.1">( see Java's Grammar )</a>
+<p>
+Two types of grammars:
+<p>
+<u>Generational models</u> "generate" all possible sentences and no others 
+in the language. Context-free and BNF grammars are generational models.
+  A device that generates sentences of a language
+ (a derivation or a parse tree)
+  can determine if the syntax of a particular sentence is correct by 
+     comparing it to the structure of the generator.
+<p>
+<u>Recognitional models</u> verify whether a sentence is in the language
+  or not. 
+  A recognition device reads input strings of the language and decides whether 
+  the input strings belong to the language.
+  Example: The syntax analysis part of a compiler is a recognitional model. 
+<p>
+ <H3>Noam Chomsky (mid-1950s) </h3>
+
+<li> Chomsky developed language generators to describe the syntax of natural 
+languages
+<p>
+<li>A generative grammar should generate all possible sentences in the language
+  and only those sentences (completeness and accuracy) <p>
+<li> All languges contain the empty string, denoted by &lambda; or &epsilon;
+<p>
+<li>A generative grammar is a 4-tuple, &lt;&Sigma;, N, P, S>, consisting of  
+<p>
+ + A finite set &Sigma; of <b>terminal symbols</b>, e.g. the <i>terminal alphabet</i> 
+   of the language that combine to form sentences.
+<p>
+ + A finite set N of <b>nonterminal symbols</b> or <b>syntactic categories</b>,
+   each of which represents some collection of subphrases of the sentences.
+   (Nonterminals are denoted in some way.)
+<p>
+ + A finite set P of <b>productions</b> or <b>rules</b> that describe how each 
+   nonterminal is defined in terms of terminal symbols and nonterminals.
+   A production has a left-hand side (LHS) and right-hand side (RHS).
+   Productions use ::= or -> , read as "is defined as". The "|" symbol is OR.
+<pre>
+     aBb ::= bC
+
+     S ::= 0B | 1A
+</pre>
+ + A nonterminal S, the <b>start symbol</b>, that specifies the uppermost 
+   category of the language (e.g. a sentence).
+<p>
+
+<li> The vocabulary of a grammar consists of the terminal and nonterminal symbols.
+<p>
+<li> A sentential form is a string of symbols in the derivation of
+ a sentence in the grammar.
+<p>
+
+<h3>Chomsky's 4 classes of languages and corresponding grammars</h3>
+By order of restrictiveness: 
+<p>
+  <u>Unrestricted</u>, requires only that one nonterminal appear on LHS
+<pre>
+     aBb ::= bC
+</pre>
+  <u>Context-sensitive</u>, requires that RHS contain no fewer symbols than LHS and
+     are of the form:
+<pre>
+     vAw ::= vzw 
+</pre>
+ Example: A grammar for the language of
+  the set of strings with equal numbers of as, bs, and cs in 
+   that  order. E.g. { abc, aabbcc, aaabbbccc, ... } is context-sensitive.
+<Pre>
+    <b>&Sigma;</b> = {a,b,c}
+    <b>N</b> = {S,A,C,Q,X}
+    <b>S</b> = S
+    <b>P</b> =  {
+      S -> abC | aSQ
+      bQC -> bbCC 
+      CQ -> CX
+      CX -> QX
+      QX -> QC
+      C -> c   }</pre>
+<p>
+  <u> <a href="http://en.wikipedia.org/wiki/Context_free_grammar">Context-free</a></u>, requires a <i>single</i> nonterminal on LHS, and one or more nonterminal  
+     and terminals on RHS. Examples:
+<pre>
+ CFG 1.
+    <b>&Sigma;</b> = {(,)}
+    <b>N</b> = {S}
+    <b>S</b> = S
+    <b>P</b> = { S ::= () | (S) | SS  }
+
+ CFG 2.
+    <b>&Sigma;</b> = {a,b}
+    <b>N</b> = {S}
+    <b>S</b> = S
+    <b>P</b> = { S ::= aSa | bSb | a | b | &lambda; }
+
+ CFG 3.
+    <b>&Sigma;</b> = {a,b}
+    <b>N</b> = {S}
+    <b>S</b> = S
+    <b>P</b> = { S ::= aSb | &epsilon; }
+
+
+ CFG 4.
+    <b>&Sigma;</b> = {a,b}
+    <b>N</b> = {S,A,B}
+    <b>S</b> = S
+    <b>P</b> = {S ::= aABb 
+         A ::= Ab | b 
+         B ::= aB | a }
+
+ CFG 5.
+    <b>&Sigma;</b> = {0,1}
+    <b>N</b> = {S,A,B}
+    <b>S</b> = S
+    <b>P</b> = {S ::= 1A | OB 
+         A ::= 0 | 0S | 1AA
+         B ::= 1 | 1S | 0BB }
+</pre>
+ Are these strings in the language defined by CFG 5?
+<pre>
+    0101
+    011
+    11110011
+    00011000110001110
+</pre> 
+ What are some characteristics of the language defined by CFG 5?
+<p>
+   <u><a href="http://en.wikipedia.org/wiki/Regular_grammar">Regular</a></u> is the most restrictive, requiring a single nonterminal
+    on the LHS and a terminal on the RHS or a terminal followed or prefaced by 
+    one nonterminal. The location of the nonterminal must be consistent. A 
+    terminal prefaced by a nonterminal is left regular and the reverse is 
+    right regular. Every regular grammar is also context-free. This grammar a 
+    right regular.
+<pre>
+    &lt;binary number> ::=  0
+    &lt;binary number> ::=  1
+    &lt;binary number> ::=  1 &lt;binary number>
+    &lt;binary number> ::=  0 &lt;binary number>
+</pre>
+<h3>John Backus - 1959 </h3><p>
+  <li>Backus-Naur Form (BNF) invented to describe Algol 58
+  <li>BNF is a context-free grammar under Chomsky's definition 
+          (a single nonterminal on LHS of every rule)
+  <li>Most widely known method for describing programming language syntax
+
+
+<h3>BNF terminology</h3>
+  
+<li> In BNF, abstractions represent classes of syntactic structures and
+      are the <i>nonterminals</i> in the grammar. 
+  
+<li> Nonterminals are enclosed in angle brackets
+
+ <li> Terminals are the lexemes 
+
+  <li> The tokens in the language are the categories of lexemes; e.g.
+     'num' is a lexeme in the token classification of identifier. 
+
+  <li> A production is called a rule in BNF
+<p>
+  Examples of BNF rules:
+<pre>
+      &lt;ident_list> -> identifier | identifier, &lt;ident_list>
+         &lt;if_stmt> -> <b>if</b> &lt;logic_expr> <b>then</b> &lt;stmt>
+
+</pre>
+ <li> A derivation is a repeated application of rules, starting with the start 
+     symbol and ending with a sentence 
+
+ <li> a sentence is a sentential form with all terminal symbols 
+
+ <li> derivation symbol is usually '=>' or '->' rather than ::=  (depends
+  on author)
+   
+
+<li> Every string of symbols in the derivation is a sentential form
+ 
+<li> A derivation may be either leftmost or rightmost (default is leftmost)
+
+<li> In a <i>leftmost derivation</i>, the leftmost nonterminal in each 
+    sentential form is expanded first
+ 
+<li> Parse tree: A hierarchical representation of a derivation
+
+<li> Syntactic lists are described using recursion <pre>
+      &lt;ident_list> -> ident
+                       | ident, &lt;ident_list>
+  
+</pre>
+<b>An Example Grammar:</b>
+<pre>
+    &lt;program> -> &lt;stmts>
+    &lt;stmts> -> &lt;stmt> | &lt;stmt> ; &lt;stmts>
+     &lt;stmt> ->  &lt;var> = &lt;expr>
+     &lt;expr> -> &lt;term> + &lt;term> | &lt;term> - &lt;term>
+     &lt;term> -> &lt;var> | const
+     &lt;var>  -> a | b | c | d
+</pre>
+<b>An Example Derivation and Parse Tree:</b>
+<pre>
+  Sentence: a = b + const
+
+  &lt;program> => &lt;stmts> 
+            => &lt;stmt> 
+            => &lt;var> = &lt;expr> 
+            => a = &lt;expr> 
+            => a = &lt;term> + &lt;term>
+            => a = &lt;var> + &lt;term> 
+            => a = b + &lt;term>
+            => a = b + const
+
+  Parse Tree:
+
+                  &lt;program>
+                     |
+                  &lt;stmts>
+                     |
+                   &lt;stmt>
+                  /  |   \ 
+              &lt;var>  =  &lt;expr>
+                |       /  |  \
+                a   &lt;term> +  &lt;term>
+                      |         |
+                    &lt;var>      const      
+                      |
+                      b
+ 
+</pre>
+<b>Ambiguity in Grammars: </b>
+<p>
+  A grammar is ambiguous if and only if it generates a valid sentence that 
+       has two or more distinct parse trees
+<p>
+  An Ambiguous Expression Grammar:
+<pre>
+  &lt;expr> ->  &lt;expr> &lt;op> &lt;expr>  |  const
+  &lt;op>   -> /  |  -
+
+  Example of ambiguity:    const - const / const
+  Leftmost Derivation:
+  &lt;expr> =>  &lt;expr> &lt;op> &lt;expr>  
+            =>  const> &lt;op> &lt;expr>  
+            =>  const> - &lt;expr>  
+            =>  const> - &lt;expr> &lt;op> &lt;expr> 
+            =>  const> - const &lt;op> &lt;expr> 
+            =>  const> - const / &lt;expr> 
+            =>  const> - const / const
+
+  Rightmost Derivation:
+  &lt;expr> =>  &lt;expr> &lt;op> &lt;expr>  
+            =>  &lt;expr> &lt;op> const  
+            =>  &lt;expr> / const 
+            =>  &lt;expr> &lt;op> &lt;expr>  / const
+            =>  &lt;expr> &lt;op> const  / const
+            =>  &lt;expr> - const  / const
+            =>  const - const  / const
+
+ <b>Leftmost Parse.</b>
+                      &lt;expr>
+                 /      |      \ 
+            &lt;expr>     &lt;op>   &lt;expr> 
+          /    |   \      |     |
+      &lt;expr> &lt;op> &lt;expr>  /   const 
+         |     |   |     
+       const   -  const
+
+
+ <b>Rightmost Parse.</b>
+                      &lt;expr>
+                 /      |      \ 
+            &lt;expr>     &lt;op>   &lt;expr> 
+                |       |     /   |   \    
+             &lt;const>    -  &lt;expr> &lt;op> &lt;expr>  
+                             |     |   |     
+                           const   /  const
+
+</pre>
+<p>
+  Follow the tree to produce an unambiguous expression grammar where / 
+ has precedence over -:
+<pre>
+  &lt;expr> -> &lt;expr> - &lt;term>  |  &lt;term>
+  &lt;term> ->  &lt;term> / const | const
+
+</pre>
+  To prove that a grammar is ambiguous, provide a sentence in the grammar that
+  has two different parse trees. (Easier to see than with derivations.)
+
+<p>
+<b>Operator Precedence in Expression Grammars</b>
+<p>
+  The parse tree indicates precedence levels of the operators - 
+  nodes farthest from the root are evaluated first
+  (since trees are displayed upside down these are the lowest levels)
+<p>
+<b>Example Grammar</b>
+<pre>
+    &lt;expr> -> &lt;expr> + &lt;term> | &lt;term>
+    &lt;term> -> &lt;term> * &lt;factor>  | &lt;factor>
+    &lt;factor> -> ( &lt;expr> ) | &lt;id>
+    &lt;id> -> A | B | C
+</pre>
+    Which operator (+ or *) has precedence?
+<p>
+    What happens if you swap the + and * operators in the grammar?
+<p>
+    &lt;term> is defined as &lt;term> * &lt;factor> before it is defined as &lt;id>.
+    What does this mean in terms of a parse tree?
+<p>
+<b>Associativity of Operators in Expression Grammars </b>
+<p>
+ The property of associativity for binary operators means that ((a op b) op c)
+ is the same as (a op (b op c));
+  Addition is associative, subtraction is non-associative.
+<p>
+  Associativity in a programming language
+ defines the order of operations for "like" operators that are non-associative
+<p>
+<u>Right associative</u> means that operators of equal precedence are evaluated
+   from right to left. Right recursion enforces right association. In right
+   recursion the nonterminal in the LHS appears at the right end of the RHS.
+<p>
+<u>Left associative</u> means that operators of equal precedence are evaluated
+   from left to right. Left recursion enforces left association. In left 
+   recursion the nonterminal in the LHS appears at the left end of the RHS.
+<p>
+  Operator associativity can be indicated by a grammar. For example:
+<pre>
+  7 - 4 - 2     
+</pre>
+<p>
+  Left associativity: 2 subtracted from 7 - 4  = 1
+<p>
+  Right associativity: 2 subtracted from 7 = 5
+<p>
+Example of recursion in the rule to control associativity:
+<pre>
+  &lt;expr> -> &lt;expr> - &lt;term>  |  &lt;term>   (left recursive)
+  &lt;expr> -> &lt;term> - &lt;expr>  |  &lt;term>   (right recursive)
+
+</pre>
+<b>Extended BNF (EBNF)</b>
+
+  <li><a href="./PDFs/iso-14977.pdf ">iso 14977 for EBNF</a> is rarely completely complied with 
+
+ <li>Extended BNF improves readability and writability of BNF
+ <li> Optional parts are placed in brackets [ ] <pre>
+
+  &lt;proc_call> -> ident [(&lt;expr_list>)] </pre>
+
+ <li> Alternative parts of RHSs are placed inside parentheses and separated via 
+  vertical bars (or by spaces)   <pre>
+
+  &lt;term> -> &lt;term> (+ | -) const </pre>
+
+ <li>  Repetitions (0 or more) are placed inside braces { } <pre>
+
+  &lt;ident> -> letter {letter digit} </pre>
+<pre>
+  BNF
+     &lt;expr> =>  &lt;expr> + &lt;term>
+             	 | &lt;expr> - &lt;term> | &lt;term>
+      &lt;term> => &lt;term> * &lt;factor>
+             	 | &lt;term> / &lt;factor> | &lt;factor>
+
+  EBNF
+     &lt;expr> => &lt;term> {(+ | -) &lt;term>}
+     &lt;term> => &lt;factor> {(* | /) &lt;factor>}
+
+  note: ENBF does not specify associativity--the syntax analyzer must do this
+</pre>
+<h3><a href="example03a.txt">A Few Problems</a></h3>
+
+
+</body>
+</html>

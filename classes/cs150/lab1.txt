@@ -1,0 +1,13 @@
+  475  passwd
+  476  history
+  477  ls -al
+  478  vi junk.txt
+  479  cp junk.txt junk.bak
+  480  mv junk.txt stuff.txt
+  481  cat stuff.txt 
+  482  less stuff.txt 
+  483  rm stuff.txt 
+  484  ls
+  485  cp junk.bak junk.txt
+  486  pine
+  487  history > lab1.txt

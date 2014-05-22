@@ -1,0 +1,50 @@
+  
+ ___________________________________________
+ |                                          |
+ |   MAIN_2                                 |  
+ |   var X                                  | 
+ |    ___________________________________   |
+ |    |                                 |   |
+ |    | BIGSUB                          |   |
+ |    | var A, B, C                     |   |
+ |    |                                 |   |
+ |    |  ___________________________    |   |
+ |    |  | SUB1                    |    |   |
+ |    |  | var A, D                |    |   |
+ |    |  | A  = B + C    <== 1     |    |   |
+ |    |  |_________________________|    |   |
+ |    |                                 |   |
+ |    |  ____________________________   |   |
+ |    |  | SUB2( X )                |   |   |
+ |    |  | var B, E                 |   |   |
+ |    |  |  ____________________    |   |   |
+ |    |  |  | SUB3             |    |   |   |
+ |    |  |  | var C, E         |    |   |   |
+ |    |  |  | SUB1;            |    |   |   |
+ |    |  |  | E = B + A   <==2 |    |   |   |
+ |    |  |  ____________________    |   |   |
+ |    |  |                          |   |   |
+ |    |  | SUB3;                    |   |   |
+ |    |  | A = D + E;  <== 3        |   |   |
+ |    |  |__________________________|   |   |
+ |    |                                 |   |
+ |    | SUB2(7);                        |   |   
+ |    |_________________________________|   |
+ |                                          |
+ |  BIGSUB;                                 |
+ |___________________________________________ 
+    
+MAIN_2 calls BIGSUB
+BIGSUB calls SUB2
+SUB2 calls SUB3
+SUB3 calls SUB1
+
+The chain_offset/local_offset pairs for each access to A are: 
+(where chain_offset is the nesting depth)
+ 1 => (0,2)   // variables are counted starting at one from right to left  
+ 2 => (2,3)  
+ 3 => (1,3)
+
+a local_offset of 3 references the first local variable in SUB1 
+
+

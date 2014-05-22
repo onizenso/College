@@ -1,0 +1,70 @@
+<html>
+<body>
+<h3>CMPS 350 Lab 06 "Introduction to Ada"</h3>
+<p>
+<font color=red>Due: before next lab</font>
+<p>
+
+resources:<br/>
+<a href="http://gcc.gnu.org/onlinedocs/gcc-4.4.5/gnat_ugn_unw/">gnat ada docs</a>
+
+<h3>ADA</h3>
+
+ Ada was developed primarily as a language for real-time embedded systems
+  (reliability and concurrency are important in this domain). 
+ Ada is still the number one 
+ software in avionics.
+  You might be interested in reading about <a href="http://gcn.com/Articles/2008/04/11/The-return-of-Ada.aspx?Page=3&p=1">The Return of Ada</a>.
+ <p>
+ 
+This article on <a href="http://www.adahome.com/articles/1997-03/ada_vs_cpp.html">Ada vs C++</a> introduces Ada in terms of things you know.<p>
+<p>
+ For file I/O, read this tutorial on
+ <a href="http://www.infres.enst.fr/~pautet/Ada95/chap14.htm">Ada I/O</a>.
+ (The other Ada tutorials are also very good.)
+<p>
+
+ Everything you need to know for this lab is
+  in <a href="./Code/Ada/test.adb">test.adb</a>.
+ <p>
+
+ Your job is to write an Ada program that performs matrix multiplication.
+ Use a program of at least two procedures (any way you want to do it).
+  If you manage your scoping, you don't need to pass parameters to your
+ procedure. You can pass parameters if you want - test.adb demonstrates
+ how to do that.
+ <p>
+ Declare two arrays of size 3 by 5 of integers.
+ Load the arrays from an external text file of random
+ integers.
+ Design your matrix ADT to enforce all range constraints (index ranges and
+ value ranges). Make both ranges
+ large enough to run the program without raising an exception. So if
+ the value range of your input numbers is 1..300, then the value
+  range of the integers 
+ in your result matrix must include larger values since you do multiplication. 
+  (If you use type INTEGER then you are OK - you should try a sub-range to
+ get a feel for what you can do in Ada).
+ <p>
+  Assume filename 'lab06.in' and
+  this format (15 integers per line):
+ </p>
+<pre>
+ 1  3 8 4 10 2  4  38 43 4 8 12 32 16 6
+ 23 8 9 9 18 41 11 21 12 2 1 6  33 11 22
+</pre>
+ Multiply the two matrices and store the values in a third matrix. Perform
+ matrix multiplication as: <pre>
+ a(1,1)*b(1,1)=c(1,1)
+ a(1,2)*b(1,2)=c(1,2)
+ a(1,3)*b(1,3)=c(1,3)
+      ...
+ a(3,5)*b(3,5)=c(3,5)
+</pre>
+	 Finally, 
+ write the contents of matrix 3 to an output
+ file 'lab06.out'. 
+ For formatting, see <a href="http://www.adaic.org/resources/add_content/standards/05rm/html/RM-A-10-8.html">Ada I/O for Integer Types</a>.
+
+</body>
+</html>

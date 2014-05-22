@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+# not finished yet...
+
+coroutine foo (int a) {
+yield a;
+yield a + 1;
+yield a + 2;
+}
+print foo(1), "\n";
+print foo(2), "\n";
+print foo(1), "\n";
+print foo(1), "\n";
+

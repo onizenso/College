@@ -1,0 +1,66 @@
+AN ANALYSIS OF THIS CODE IN THE DEBUGGER:
+
+static int test = 100;
+int fac( int n ){
+   int local = 0;
+   if ( n <= 1 ) {
+       local = 1;
+   }
+   else {
+       local = n * fac (n-1);
+   }
+   return local;
+}
+============================================================================
+(ladebug) p & test
+0x140000100
+It is obvious from this address that the static variable is not stored
+anywhere close to the runtime stack. The static data segment is determined
+by the compiler.
+
+============================================================================
+Based on the location of local in the stack traces below, the size  of a 
+runtime stack frame for fac() on pegasus is 20 hex = 32 bytes.
+
+This is 4 bytes more than the known data on the stack frame (activation record):
+
+int local             = 4 bytes
+int n                 = 4 bytes
+function return value = 4 bytes
+dynamic link          = 8 bytes
+return address        = 8 bytes 
+                       ========
+                       28 bytes
+
+This is because the local variables within the stack pointer must be aligned 
+on an 8 byte boundary. 
+
+>1  0x120001820 in fac(n=1) "fac.c":43
+(ladebug) p &local
+0x11ffffad0
+(ladebug) up
+>1  0x120001820 in fac(n=2) "fac.c":43
+     43        local = n * fac (n-1);
+(ladebug) p &local
+0x11ffffaf0
+(ladebug) up
+>2  0x120001820 in fac(n=3) "fac.c":43
+     43        local = n * fac (n-1);
+(ladebug) p &local
+0x11ffffb10
+(ladebug) up
+>3  0x120001820 in fac(n=4) "fac.c":43
+     43        local = n * fac (n-1);
+(ladebug) p &local
+0x11ffffb30
+(ladebug) up
+>4  0x120001820 in fac(n=5) "fac.c":43
+     43        local = n * fac (n-1);
+(ladebug) p &local
+0x11ffffb50
+(ladebug) up
+>5  0x1200017ac in main() "fac.c":31
+     31   result  = fac(5);
+(ladebug) p &result
+0x11ffffb68
+(ladebug)

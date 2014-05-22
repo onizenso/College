@@ -1,0 +1,33 @@
+Binary Multiplication, Division (by powers of two), Addition & Subtraction
+Hex, Octal Addition & Subtraction
+
+Bitwise logical operations ( && || ^ ~ )
+Bitmasks
+
+Convert arbitrary binary string into hex - split binary string into 4-bit chunks
+
+Convert arbitrary binary string into octal - "" 3-bit chunks
+
+Convert decimal into binary - highest power of two, start subtracting
+
+Perform two's complement - convert decimal to binary, flip the bits, add one
+
+Perform shift operations
+
+Draw the stack diagram
+
+Know difference between big and little endian
+
+Know the system registers
+
+Know address offsets, e.g. 4($sp)
+
+Difference b/w callee and caller saved registers
+
+Explain jal
+
+Know when stack frame not needed
+
+Define memory alignment
+
+Given a chunk of code representing a for loop, destruct the components & trace

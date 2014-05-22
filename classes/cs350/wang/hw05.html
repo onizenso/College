@@ -1,0 +1,741 @@
+<html> <body> <head>
+<STYLE type=text/css>
+DIV {
+  font-family: helvetica;
+  font-size: 10pt;
+  font-weight: normal;
+  color: #FF0000;
+  background-color: "yellow";
+  padding-right: 20px;
+}
+
+BODY {
+  margin: 2% 15% 5% 5%;
+  font-family: helvetica;
+  background-color: #DDEEEE;
+  color: #19193A;
+  font-size: 10pt;
+}
+</STYLE>
+
+
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 35;
+function CalculateScore() {
+// new 
+var right = 0; var wrong = 0;var err_flag = 0; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if (j == 4 ) break;
+           var myvalue = parseInt(document.quizform.elements[index].value);
+           var ischecked = document.quizform.elements[index].checked;
+           if ( (ischecked && myvalue != 1) || (!ischecked && myvalue == 1) ) {
+              err_flag = 1;
+              question = i + 1;
+              err_str = err_str + question + ",";
+              wrong++;
+              break;
+           }
+       }
+       if ( !err_flag ) right++;
+       err_flag = 0;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+}
+</script>
+</head>
+<body bgcolor="papayawhip">
+<h3>CMPS 350 HW 05: Names, Type Checking, Scope and Binding</h3>
+<font color=red>DUE: next monday before lecture </font>
+<form name="quizform" METHOD="POST" ACTION="./emailme.php">
+<pre class=verbatim>
+01. What is one advantage that dynamic typing offers over static typing?
+    A. reliability    B. flexibility     C. efficiency  
+   </pre>A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="1"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: dynamic typing will generally cost you in efficiency and reliability.'; } "
+>
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+02. Under what condition is language A more strongly typed than language B?
+   A. if B has more implicit type coercions
+   B. if B has more explicit type conversions 
+   C. both statements are true 
+   </pre>A<input type="radio" name="Q2" value="1"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="0"> D<input type="radio" name="Q2" value="0">  
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q2Area');
+          if ( document.quizform.Q2[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: coercions are type conversions that occur implicitly and thus considered a violation of type rules - conversions override type rules but do not violate them.'; } "
+>
+<DIV id="Q2Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+03. Most modern scripting languages (e.g., JavaScript, Perl, PHP, Ruby) are 
+    A.  dynamically typed       B.  typeless        C. static typed 
+   </pre>A<input type="radio" name="Q3" value="1"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="0"> D<input type="radio" name="Q3" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q3Area');
+          if ( document.quizform.Q3[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a typeless language is one in which no distinctions made about data type - no modern languages are typeless.'; } "
+>
+<DIV id="Q3Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+04. Which is always bound to a modifiable memory reference?
+    A. an lvalue          B. an rvalue       C. both must be bound 
+   </pre>A<input type="radio" name="Q4" value="1"> B<input type="radio" name="Q4" value="0"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q4Area');
+          if ( document.quizform.Q4[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: an lvalue refers to the left-hand side of an assignment statement - an rvalue refers to the right .'; } "
+>
+<DIV id="Q4Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+05. What is true in the assignment statement 'A = 5 + 8'?
+    A. there is no rvalue
+    B. the result of 5 + 8 is an unmodifiable rvalue
+   </pre>A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="1"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q5Area');
+          if ( document.quizform.Q5[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: An rvalue is the right-hand side of an assignment statement. In the case of an expression involving literals, the result of the expression is stored in the memory address of the left hand side (the lvalue).'; } "
+>
+<DIV id="Q5Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+06. Select the true statement(s).
+    A. A binding is static if it first occurs before run time and remains 
+       unchanged throughout program execution.
+    B. A binding is dynamic if it first occurs during execution or can change 
+       during execution of the program.
+    C. Dynamic binding my be performed by the linker.
+   </pre>A<input type="checkbox" name="Q6" value="1"> B<input type="checkbox" name="Q6" value="1"> C<input type="checkbox" name="Q6" value="0"> D<input type="checkbox" name="Q6" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q6Area');
+          if ( document.quizform.Q6[0].checked  
+               && document.quizform.Q6[1].checked  
+               && !document.quizform.Q6[2].checked  
+               && !document.quizform.Q6[3].checked  
+              )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: binding is the association of an entity with an attribute - such as a variable with a memory address.'; } "
+>
+<DIV id="Q6Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+07. What is true about this C code if it comprises one compilation unit?
+      void funa( ) {
+        extern x;
+        x = x--; 
+        printf("x = %d",x);
+      }
+   A. the linker will bind x to a memory address on the runtime stack
+   B. the linker will bind x to a memory address in the data section
+   C. the compiler will bind x to a memory address in the data section
+   </pre>A<input type="radio" name="Q7" value="0"> B<input type="radio" name="Q7" value="1"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q7Area');
+          if ( document.quizform.Q7[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: external variables have external linkage - so the compiler is not involved.'; } "
+>
+<DIV id="Q7Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+08. What is true concerning static variables, such as x in this C function?
+     void fun () {
+          static int x = 5;
+     }
+   A. the value of x can never change
+   B. x is bound to the same memory address throughout program execution
+   C. both statements are true
+   </pre>A<input type="radio" name="Q8" value="0"> B<input type="radio" name="Q8" value="1"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q8Area');
+          if ( document.quizform.Q8[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: static in this context refers to storage binding - not value binding. '; } "
+>
+<DIV id="Q8Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+09. What can occur in a dynamically scoped but not in a static scoped language?
+    A. a reference to a nonlocal variable is bound to a memory address at 
+       runtime 
+    B. the visibility of a variable can change at runtime 
+    C. both statements are true
+</pre>A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="1"> C<input type="radio" name="Q9" value="0"> D<input type="radio" name="Q9" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q9Area');
+          if ( document.quizform.Q9[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: a nonlocal variable is any variable that is visible outside the referencing environment - this includes the stack-dynamic variables used in static scoped languages. When are stack-dynamic variables bound to an address? '; } "
+>
+<DIV id="Q9Area" STYLE="background-color: white" >
+</DIV><p>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip; width: 70%">
+<pre> -- Sample Ada program 1
+
+    procedure Main is                    
+    X : Integer := 0;                    
+    procedure Sub3;  (forward reference) 
+    procedure Sub2;  (forward reference) 
+    ---------------------------------|   
+   |  procedure Sub1 is              |   
+   |  X : Integer := 0;              |   
+   |  --------------------------     |   
+   |  |  procedure Sub2 is     |     |   
+   |  |  begin                 |     |   
+   |  |    X := X + 2;         |     |   
+   |  |  end;                  |     |   
+   |  --------------------------     |  
+   |  begin                          |   
+   |   Sub3;                         |   
+   |  end;                           |   
+   |----------------------------------   
+                                         
+   |----------------------------------   
+   |  procedure Sub3 is              |   
+   |  Y : Integer;                   |    
+   |  begin                          |   
+   |    X := X + 3;                  |  
+   |  end;                           |   
+   |----------------------------------     
+    begin                                 
+      Y := 4                             
+      Sub1;                              
+      Sub2;                             
+      Put(X);                            
+    end;                                 
+</pre> </div>
+<pre>
+10. Under static scoping the nonlocal reference to X from Sub3 is bound to 
+    the declaration of X in Sub1. 
+    A. true      B. false   </pre>
+    A<input type="radio" name="Q10" value="0"> B<input type="radio" name="Q10" value="1"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q10Area');
+          if ( document.quizform.Q10[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: You can look out but not in.'; } "
+>
+<DIV id="Q10Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+11. Under static scoping, the reference to X in Sub2 is bound to the 
+    declaration of X in Main.
+    A. true      B. false  
+    </pre>A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="1"> C<input type="radio" name="Q11" value="0"> D<input type="radio" name="Q11" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q11Area');
+          if ( document.quizform.Q11[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Find the closest reference looking out.'; } "
+>
+<DIV id="Q11Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+12. Under static scoping, what value for X is displayed on the screen after
+    executing Main? 
+    A. 2        B. 3       C. 0
+    </pre>A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q12Area');
+          if ( document.quizform.Q12[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: X in main is visible to only one subprocedure.'; } "
+>
+<DIV id="Q12Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+13. What is true regarding the reference to Y from Main? 
+    A. Y will be bound to the the address of Y in Sub3      
+    B. this will result in a compilation error  </pre>
+   <input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="1"> C<input type="radio" name="Q13" value="0"> D<input type="radio" name="Q13" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q13Area');
+          if ( document.quizform.Q13[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: You cannot look in, even from main.'; } "
+
+<DIV id="Q13Area" STYLE="background-color: white" >
+</DIV><p>
+<div STYLE="border: 1px dashed; color: #000000; background-color: papayawhip; width: 70%;">
+<pre>
+   -- sample Ada program JUNK 
+   Procedure JUNK is
+   X:INTEGER:= 0;
+   procedure SUB2;
+     Procedure SUB1 is
+       X:INTEGER;
+       BEGIN
+          X := 10;
+          SUB2;
+       END;
+     Procedure SUB2 is
+     BEGIN
+        X := X + 15;
+     END;
+     BEGIN
+       SUB2;
+       SUB1;
+       Put(X);  
+     END;
+</div>
+<pre>
+14. Under static scoping what value of X is printed in procedure JUNK? 
+    A. 0      B. 5     C. 15    D. 30
+    </pre>A<input type="radio" name="Q14" value="0"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="1"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q14Area');
+          if ( document.quizform.Q14[3].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Look at the scope of X in the code.'; } "
+>
+<DIV id="Q14Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+15. Under dynamic scoping, what value of X would be printed in procedure JUNK?
+    A. 0      B. 5     C. 15    D. 30
+    </pre>A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="0"> C<input type="radio" name="Q15" value="1"> D<input type="radio" name="Q15" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q15Area');
+          if ( document.quizform.Q15[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A reference to a nonlocal is bound to the closest stackframe on the runtime stack.'; } "
+>
+<DIV id="Q15Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+Assume you attempt to compile and link these two C compilation units:
+---------------------------------  ----------------------
+| static int x = 10;            |  | static int x = 20;  |
+| void fun(char *);             |  |                     |
+| int main( )                   |  | void fun(char * str)|
+| {                             |  | {                   |
+|     {                         |  |    x = 30;          |
+|       static int x = 15;      |  |    str[0] = 'a';    |
+|     }                         |  | }                   |
+|     fun("hello");             |  |                     |
+|     print( x );               |  |                     | 
+|   }                           |  |                     |
+| return 0;                     |  |                     |
+| }                             |  |                     |
+|-------------------------------   -----------------------
+
+16. This code will not link since you have declared multiple static variables 
+    with the same name.
+    A. true        B. false </pre>
+
+A<input type="radio" name="Q16" value="0"> B<input type="radio" name="Q16" value="1"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q16Area');
+          if ( document.quizform.Q16[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Do not confuse static - which has to do with the lifetime of a variable - with the scope of a variable.'; } "
+>
+<DIV id="Q16Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+ 
+17. The compilation unit containing function fun in Program 2 will not compile 
+    because you can't change the value of a static variable (you can only set 
+    the value once when the variable is declared).
+    A. true       B. false
+    </pre>A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="1"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q17Area');
+          if ( document.quizform.Q17[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Do not confuse static with immutability. Static means the address of the variable is bound and never changes - it does not mean the value never changes.'; } "
+>
+<DIV id="Q17Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+18. Assuming you fix any problems with the static variables in Program 1 (if 
+    there are any), consider the statement  str[0] = 'a'. What is true?
+    A. The lvalue is immutable and thus this code will not compile.
+    B. The code will compile but will produce a Segmentation Fault (core dump)
+       at runtime. 
+    C. There is nothing wrong with this statement.
+    D. The code will not compile because a literal string does not match type
+       char *. 
+    </pre>A<input type="radio" name="Q18" value="1"> B<input type="radio" name="Q18" value="0"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q18Area');
+          if ( document.quizform.Q18[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: If there was a problem with type, the compiler would have caught it before runtime.'; } "
+>
+<DIV id="Q18Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+19. What is true regarding this C++ variable declaration?
+             const int y = 5;       // this is a named constant
+    A. The statement will not compile because the lvalue is unmodifiable.
+    B. Any subsequent assignment statment for y will result in an unmodifiable 
+       lvalue error by the compiler.
+    C. The variable y exists throughout the entire program execution. 
+    D. B and C are both true  
+    </pre>A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="1"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q19Area');
+          if ( document.quizform.Q19[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Named constants can be set once and only once at declaration time.'; } "
+>
+<DIV id="Q19Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+20. A static variable with class scope in C++ exists before any object of that
+    class is created.  
+    A. true       B. false 
+    </pre>A<input type="radio" name="Q20" value="1"> B<input type="radio" name="Q20" value="0"> C<input type="radio" name="Q20" value="0"> D<input type="radio" name="Q20" value="0"> 
+     
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q20Area');
+          if ( document.quizform.Q20[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: A static variable is bound to a memory address at compile time and exists the lifetime of the program.'; } "
+>
+<DIV id="Q20Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+21. It is possible to dynamically bind the value of variable and statically
+    bind the address of that same variable.
+    A. true         B. false
+    </pre>A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q21Area');
+          if ( document.quizform.Q21[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: this is a static variable.'; } "
+>
+<DIV id="Q21Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+22. What type of coercion is present in the following C code?
+      int X = 10;
+      float Y = 10.5;
+      X = Y;
+    A. an int is coerced into a float
+    B. a float coerced into an int
+    </pre>A<input type="radio" name="Q22" value="0"> B<input type="radio" name="Q22" value="1"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="0"> 
+ 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q22Area');
+          if ( document.quizform.Q22[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The type of the variable on the left hand side controls the type of the assignment.'; } "
+>
+<DIV id="Q22Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+23. How would would describe the type binding in this Perl statement? (assume
+    this is the first reference to $var)
+            $var = 5;
+    A. $var is dynamically bound to type integer 
+    B. $var is statically and implicitly bound to type scalar  
+    C. both statements are true
+    </pre>A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="1"> D<input type="radio" name="Q23" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q23Area');
+          if ( document.quizform.Q23[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Review test.pl code.'; } "
+>
+<DIV id="Q23Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+24. Which of the following is not a category of scalar variables defined by  
+    their lifetime?
+    A. stack dynamic
+    B. explicit stack dynamic
+    C. static
+    D. implicit heap dynamic
+    </pre>A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="1"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q24Area');
+          if ( document.quizform.Q24[1].checked  )
+                { myArea.innerHTML='CORRECT - to use the term explicit with stack dynamice does not make sense'; }
+            else
+    { myArea.innerHTML='Hint: all variables local to a function are stack dynamic - it does not make sense to use explicit in this context.'; } "
+>
+<DIV id="Q24Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+25. What does this C function achieve?
+    void ptrs( int** ptr1, int** ptr2){
+       int* tmp_ptr = *ptr1;
+       tmp_ptr = *ptr1;
+       *ptr1 = *ptr2;    
+       *ptr2 = tmp_ptr; 
+    }
+ 
+    A. swap the values of ptr1 and ptr2   
+    B. swap the values that ptr1 and ptr2 are referencing	
+    C. both statements are true
+    </pre>A<input type="radio" name="Q25" value="0"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="1"> D<input type="radio" name="Q25" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q25Area');
+          if ( document.quizform.Q25[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: see /Code/C/pointers.c.'; } "
+>
+<DIV id="Q25Area" STYLE="background-color: white" >
+</DIV><pre>
+The regular expressions (REs) that follow use this notation: [ ] denotes a set 
+of choices for a single character; ( ) is a substring; * is 0 or more; 
++ is 1 or more; { } is optional; . (dot) is a wildcard for a single character; 
+^ anchors to the beginning of the line; $ anchors to the end of the 
+line; \ is used to escape a metacharacter   
+
+26. An Ada identifier must start with a letter and be followed by zero or more 
+    letters, digits or underscores. An underscore cannot be the final symbol 
+    or be followed by another underscore. Is this regular express correct?
+  
+          [a-zA-Z][a-zA-Z0-9_]([a-zA-Z0-9])*{_[a-zA-Z0-9]}
+
+    A. true     B. false 
+    </pre>A<input type="radio" name="Q26" value="0"> B<input type="radio" name="Q26" value="1"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q26Area');
+          if ( document.quizform.Q26[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Try matching a short illegal identifier such as A9__C.'; } "
+>
+<DIV id="Q26Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+27. What will this Perl statement achieve?  (s is the substitute command and g 
+    will apply the command to all instances of the match in the line)
+ 
+         $line =~ s/^[0-9]*\.//g;            
+    A. remove all digits in the line.
+    B. remove all the digits at the beginning of the line.  
+    C. remove all the digits at the beginning of the line that are followed by .
+    </pre>A<input type="radio" name="Q27" value="0"> B<input type="radio" name="Q27" value="0"> C<input type="radio" name="Q27" value="1"> D<input type="radio" name="Q27" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q27Area');
+          if ( document.quizform.Q27[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: see /Code/Perl/spell_check.pl.'; } "
+>
+<DIV id="Q27Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+28. A static named constant can be dynamically bound to a value once at runtime.
+    A. true         B. false
+    </pre>A<input type="radio" name="Q28" value="1"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q28Area');
+          if ( document.quizform.Q28[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: do not confuse address binding with value binding - the address is bound once at compile time.'; } "
+>
+<DIV id="Q28Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+29. What does the RE in this Perl statement match?
+    next if /^$/;   
+    A. all lines     B. blank lines only
+    </pre>A<input type="radio" name="Q29" value="0"> B<input type="radio" name="Q29" value="1"> C<input type="radio" name="Q29" value="0"> D<input type="radio" name="Q29" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q29Area');
+          if ( document.quizform.Q29[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: see /Code/Perl/spell_check.pl.'; } "
+>
+<DIV id="Q29Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+30. Downcasting a derived type to a base type in C++ is 
+    A. explicit.         B. implicit. 
+    </pre>A<input type="radio" name="Q30" value="0"> B<input type="radio" name="Q30" value="1"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q30Area');
+          if ( document.quizform.Q30[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Implicit casting by the compiler is a narrowing coercion - you just lose precision. Casting a derived type to its base is a narrowing coercion.'; } "
+>
+<DIV id="Q30Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+31. What is this Ada statement?
+ 
+       type AN_ARRAY is array(FIRST..LAST) of INTEGERS;           
+
+   A. an abstract data type 
+   B. an array variable of integers named AN_ARRAY 
+   C. both A and B 
+   </pre>A<input type="radio" name="Q31" value="1"> B<input type="radio" name="Q31" value="0"> C<input type="radio" name="Q31" value="0"> D<input type="radio" name="Q31" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q31Area');
+          if ( document.quizform.Q31[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: This is a type declaration only, there is no array variable yet .'; } "
+>
+<DIV id="Q31Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+32. This Ada program will raise a range error exception at runtime.
+    A. true      B. false 
+
+    PROCEDURE main is
+    subtype SUB_INT is INTEGER range 1..50;              
+    X : SUB_INT;           
+    BEGIN
+       X := 60; 
+    END
+   </pre>A<input type="radio" name="Q32" value="1"> B<input type="radio" name="Q32" value="0"> C<input type="radio" name="Q32" value="0"> D<input type="radio" name="Q32" value="0"> 
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q32Area');
+          if ( document.quizform.Q32[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: The compiler may warn you but will still compile the code.'; } "
+>
+<DIV id="Q32Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+33. The following Perl statements will execute. What do you now know?
+        $var = 5;             
+        $var = "hello there";        
+     A. that strings are primitive scalar types
+     B. that strings are implicitly coerced into integers
+    </pre>A<input type="radio" name="Q33" value="1"> B<input type="radio" name="Q33" value="0"> C<input type="radio" name="Q33" value="0"> D<input type="radio" name="Q33" value="0"> 
+</pre>
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q33Area');
+          if ( document.quizform.Q33[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Perl uses duck typing - meaning that the type of a variable can change at runtime - no coercion necessary.'; } "
+>
+<DIV id="Q33Area" STYLE="background-color: white" >
+</DIV>
+<pre>
+34. Which of that following do abstract data types always support?
+    A. encapsulation   B. modularity   C. parameterizaion 
+    </pre>A<input type="radio" name="Q34" value="0"> B<input type="radio" name="Q34" value="0"> C<input type="radio" name="Q34" value="1"> D<input type="radio" name="Q34" value="0"> 
+</pre>
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q34Area');
+          if ( document.quizform.Q34[2].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: Parameterization is the ability to define a generic data type - e.g. C++ templates.'; } "
+>
+<DIV id="Q34Area" STYLE="background-color: white" >
+</DIV>
+
+<pre>
+35. Ada was designed by the DoD for reliability, large team projects, and 
+    embedded systems.  
+    A. true    B. false
+  </pre>A<input type="radio" name="Q35" value="1"> B<input type="radio" name="Q35" value="0"> C<input type="radio" name="Q35" value="0"> D<input type="radio" name="Q35" value="0"> 
+</pre>
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q35Area');
+          if ( document.quizform.Q35[0].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: embedded systems are heavily used by the military.'; } "
+>
+<DIV id="Q35Area" STYLE="background-color: white" >
+</DIV>
+</pre>
+<p>
+<input type="button" value="GradeIt" onClick="CalculateScore()" 
+   STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 5">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+Your Name: <INPUT TYPE="text" name="name">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="ClearForm" STYLE="background-color:yellow">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+
+</body>
+</html>
+

@@ -1,0 +1,196 @@
+<HTML>
+<!-- this is a comment in HTML ; HTML is case-insensitive ; JavaScript is 
+     case-sensitive; event triggers begin with on: onLoad, onMouseOver, ...
+     the JavaScript event-handler is enclosed in double-quotes - use single
+     quotes to quote inside a handler                -->
+
+<!-- filename: events.html
+     purpose:  use event handlers to manipulate images and document color  -->
+
+<HEAD>
+<TITLE>Event Handling in JavaScript</TITLE>
+<style type=text/css>
+    body { margin : 5% 5% 5% 5%; }
+</style>
+
+<SCRIPT language="JavaScript">
+
+  // JavaScript supports C++-style comments
+
+  // grab some information from the environment
+  var browser_name = navigator.appName;
+  var version = parseFloat(navigator.appVersion);
+
+ /* 
+  Preload some images; these image objects do NOT belong to the document yet. 
+  To be part of the document (i.e. window.document.imageName) the image must 
+  be loaded and named in an IMG SRC tag. Preloading images puts them into the 
+  browser's cache. */
+
+  if (navigator.appVersion.substring(0,1) >= 3) {
+             image1=new Image(158, 25);             // fix image size in pixels 
+             image1.src="./Images/act1.gif";
+             image2=new Image(158, 25);
+             image2.src="./Images/act2.gif";
+  }
+
+  // preload some more images and set current color to blue  
+  var current_color = "blue";  // var gives the variable document scope
+  var water_bg      = new Image(); 
+  water_bg.src      = "./Images/water_bg.jpg";
+
+  var yellow        = new Image();
+  yellow.src        = "./Images/yellow.gif";
+  var blue          = new Image();
+  blue.src          = "./Images/blue.gif";
+  var current       = new Image();
+  current.src       = blue.src;      // start with a blue background
+  var next_face     = new Image();
+  next_face.src     = "./Images/sad_face.gif";     
+  var temp          = new Image();   // use for image swapping       
+
+function display()
+{
+  // add code to this function
+}
+
+</SCRIPT>
+</HEAD>
+
+<BODY onLoad="window.document.bgColor='#FF33FF'">
+
+<!-- div elements need an ID to access the element from JavaScript --> 
+<DIV ID="innerDiv" STYLE="
+     background-color: #A0D0E0;
+     border-bottom: 4px solid #FFC600;
+     border-top: 4px solid #EFEFEF;
+     border-left: 4px dotted #EFEFEF;
+     border-right: 4px dotted #EFEFEF;
+     padding: 8px 10px 8px 10px;
+     width: 85%;" >
+
+<!-- for a less irritating background, see more hex color codes:
+  http://www.cs.csub.edu/technical_info/tables_charts/colors.html -->
+
+<h3> test various ways to embed JavaScript in FORM element triggers </h3>
+
+<!-- to have access to a form or a form element you must name it -->
+<FORM NAME="myForm">
+
+<b> test click/dbl click triggers: </b> 
+<INPUT TYPE="button" NAME="button1" 
+       value="Click to Write DoubleClick to Erase" 
+       onClick="area=document.getElementById('myArea'); 
+                area.innerHTML='Write stuff dynamically on the page<p>'; 
+                return false;"
+      onDblClick="area.innerHTML='myArea is here.';" >
+
+<!-- create an area on the document to write to -->
+<P/>
+<DIV id="myArea" STYLE="background-color: #339363">
+myArea is here.
+</DIV>
+
+<P/> <b> test changing document body background:</b>
+
+<INPUT TYPE="button" NAME="button2" value="set background to an image"
+   onClick="document.body.background='./Images/water_bg.jpg'; 
+       return false;" >
+</P>
+
+<b> test changing innerDiv background color: </b>
+<INPUT TYPE="button" NAME="button3" value="change div background color"
+      onClick=" 
+            var divArea = document.getElementById('innerDiv');
+            divArea.style.background = '#A6A6A6'; 
+            return false;" >
+
+<P/>
+
+<b> test onChange trigger in select element: </b>
+<SELECT name = "mySelect" 
+       onChange = "alert(mySelect[this.selectedIndex].value);">
+   <option value = "apple">I love apples
+   <option value = "orange">I love oranges
+   <option value = "pear">I love pears
+</SELECT>
+
+<p/>
+<b>Test onBlur trigger and copying input from a text element: </b>
+Enter Text:<input type=text name="myText" 
+   onChange="var divArea = document.getElementById('textDiv');
+         alert(divArea);
+         divArea.innerHTML = myForm.myText.value;"> 
+
+</FORM>
+</DIV>
+
+<DIV id="textDiv">
+</DIV>
+
+<DIV id=innerDiv2 STYLE="background-color: #FFFFFF">
+
+<h3> test various ways to embed JavaScript in HREF tags </h3>
+
+
+<!-- embed the IMG SRC in an A HREF if you want the onClick event handler --> 
+<b>Click me to trigger an event and go nowhere: </b>
+
+<A HREF="#" onClick=" if (current.src==blue.src)  {
+                            document.current.src =  yellow.src;
+                         }
+                         else { 
+                            document.current.src =  blue.src;
+                         }
+                       return false;">
+
+<IMG SRC="./Images/blue.gif" NAME="current" ALIGN=TOP border="0">
+</A> 
+
+<p/>
+<b>Drag Mouse Over Me: </b>
+
+<!-- an onMouseOver event handler changes the background color  --> 
+
+<A HREF="#" onMouseOver="window.document.body.style.background='none';
+                 window.document.body.style.bgColor='#FFFFFF'; return false;">
+<IMG SRC="./Images/bunny.gif" border=0> </a>
+
+
+<!-- An onMouseOver event on this image switches the
+ image from happy to sad or vice versa using image and variable swapping. -->
+<A HREF="#" 
+   onMouseOver="temp.src = window.document.face.src;
+                  window.document.face.src = next_face.src;
+                  next_face.src = temp.src; return false;" >
+<IMG SRC="./Images/happy_face.gif" name="face" border="0"> </a>
+
+
+<!--  This event overwrites one image with another on the onMouseOver and the
+      onMouseOut events. -->
+<a href="#"
+onMouseOver="window.document.shape_image.src='./Images/square.jpg';"
+
+onMouseOut="window.document.shape_image.src='./Images/circle.gif';"
+    onClick="return false;">
+<img src="./Images/circle.gif" name="shape_image" border="0">
+</a>
+ 
+
+<pre>
+
+</pre>
+<p/>
+<!-- this is a clickable image in an HREF tag that actually goes somewhere -->
+<b>Click me to trigger an event to go somewhere:</b> 
+<A HREF="http://www.cs.csubak.edu/~donna/cs350/Code/JavaScript" 
+      onMouseOut="image.src=image1.src" 
+      onMouseOver="image.src=image2.src">
+
+     <IMG ALT="Act Now!" border=0 height=25 name=image 
+     SRC="./Images/act1.gif" 
+      width=158> 
+</A>
+</DIV>
+</BODY>
+</HTML>

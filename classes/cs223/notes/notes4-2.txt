@@ -1,0 +1,59 @@
+Pointers:
+
+Stores memory address data value, memory address stores data/value
+
+Null pointer - special address for nothing (0x0); int *ptr = NULL;
+(new standard: nullptr), int *ptr = nullptr
+
+Setting the memory address:
+	Existing Variables- set pointer to address of this variable, i.e. 
+	int v = 4;
+	int *ptr = NULL; // best to intialize pointer to NULL.
+	
+	int *ptr = &v;
+	int arr[5];
+	ptr = arr;
+	
+	int *p2 = &v;
+	ptr = p2;
+
+	Iterate an array w/ pointer:
+	for(int *p = arr; p < (arr+5); p++){
+		cout << *p << endl; //dereferences to show value
+	}
+
+Dynamically allocate memory:
+	int *ptr = new int[15]; // allocates new memory for ptr
+	delete [] ptr; // frees memory (deallocation)
+
+	Single Element
+		try{
+			ptr = new int;
+		}
+		catch (bad_alloc) { // allocation failure
+			ptr = NULL; // safest to reset pointer to NULL.
+		}
+		//use the memory
+		delete ptr;
+		ptr = NULL; // must manually reset to NULL
+	
+	Array of Elements (dynamic arrays)
+		do {
+			cout<< "Enter size: " << endl;
+			cin>> size;
+		} while (size<1);
+		try{
+			int size = 15;
+			ptr = new int[size];
+		}
+		catch (bad-alloc) {
+			ptr = NULL;
+		}
+		//use array
+		
+		for (int i = 0; i < size; i++){
+			ptr[i] = 0
+		}
+
+		delete [] ptr;
+		ptr = NULL; 

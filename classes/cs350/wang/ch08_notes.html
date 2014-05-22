@@ -1,0 +1,734 @@
+<html>
+<head>
+<!-- <link rel="stylesheet" type="text/css" href="./notes.css" title="style1">
+ -->
+<STYLE>
+  li { 
+  list-style-type:circle; 
+  } 
+</STYLE>
+</head>
+<!--
+<font face="Arial" style="font-size: 10pt; font-weight: 600; color: black" > 
+ --> 
+<body STYLE="margin: 0% 25% 0% 5%; background-color: #CDD;">
+<a name="top"></a>
+
+<h3>CMPS 350 Ch.8 Lecture Notes </h3>
+<h2>Control Statements in Imperative Languages</h2> 
+resources:<br>  
+<a href="http://www0.us.ioccc.org/years.html">obfuscated C contest</a><br/>
+<a href="http://techpubs.sgi.com/library/dynaweb_docs/0650/SGI_Developer/books/CLanguageRef/sgi_html/index.html">ANSI C docs</a> <br>
+<a href="./Code/C/hw08.c">hw08.c</a> <p>
+A control statement modifies the default line-by-line order of execution 
+in a program by branching.<br/> 
+Types of control in a program:
+<li> precedence and associativity for expressions
+<li> <a href="./Code/C/forks.c">forks</a>, <a href="./Code/C/Semaphores">semaphores and threads</a> for processes
+<li> resolution for logic languages 
+<li> the function call for functional languages
+<li> subprograms for procedural languages 
+<li> control statements for imperative languages (focus of this lecture)
+
+<p> 
+Control statements in imperative languages mirror the instruction-set hardware 
+</p> 
+  
+<li> no unconditional or subroutine jump in IBM 701 - if/else and while only
+<li> FORTRAN I control statements and LISP car/cdr based on <a href="http://en.wikipedia.org/wiki/IBM_704">IBM 704 hardware</a>
+
+ <li> RISC instruction set has two control instructions:
+      conditional branch - branch on equal or not equal
+      unconditional jump - to address or to label
+      (<a href="http://en.wikipedia.org/wiki/MIPS_architecture#MIPS_Assembly_Language">MIPS architecture</a>)
+
+<h3><SPAN style="background-color:yellow"> UNCONDITIONAL BRANCH STATEMENTS
+</span>
+</h3>
+Examples:  goto, break, continue, redo
+<p>
+ <li> All unconditional branches are restricted and camouflaged goto's
+ <li> Perl: last (jump out) next (jump to top) redo (to top w/o re-evaluation)
+ <li> Java has NO goto but has a labeled break and continue
+</p>
+ <pre> 
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;">   
+<tt> // unconditional branches in C:  (<a href="./Code/C/hw08.c">see code</a>)
+       j = 0;
+       while (j < 3)
+       {
+         if (array[j] < 1) 
+             goto out_of_bounds;
+         else if (array[j] == 1) 
+             break;        // breaks out of the loop
+         else if (array[j] > 1) {
+             j++;
+             continue;   // takes you to the top of the loop
+          }
+       }
+       printf("break got me here\n");
+       out_of_bounds: printf("goto got me here\n");
+ </tt>
+  </div>
+  
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;">   
+     for (i = 0; i < SIZE; i++)
+     {
+        if (num[i] <= 1.00)  
+           continue;         //  skip values <= 1.00  
+        printf("value = %.2f\n", num[i]);
+     }
+  
+  </div>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;">   
+ <tt>
+     for (i = 0; i < SIZE; i++)
+     {
+        if (num[i] <= 1.00)  
+           break;   // exit loop completely for values <= 1.00 
+        printf("value = %.2f\n", num[i]);
+     }
+  
+ </tt> 
+  </div>  
+</pre> 
+<h3>THE INFAMOUS GOTO</h3>
+   A heated debate in 1960's and 1970's; readability major concern
+  
+<pre>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;">   
+  <tt>
+   ! Example of spaghetti code in Fortran
+      GOTO 10   ! jump forward
+   23 CONTINUE
+      i = i - 1
+      IF (i .eq. 0) GOTO 99
+   10 PRINT "I Loop"
+   69 j = j - 1 ! loop
+      print "J Loop" 
+      IF (j .ne. 0) GOTO 69
+      GOTO 23   ! jump back
+  099 CONTINUE
+  </div>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;">   
+    // the same code without gotos
+    do {
+        print "I Loop"
+  
+        while (j>0) {
+           print "J Loop"
+           j--
+        }
+    i--
+    }
+    while (i > 0)
+  </tt>
+  </div>
+</pre>
+   GOTOs can be messy but might be the best and cleanest
+   way 
+  <li>to get out of loops (<a href="./Code/C/hw08.c">see code</a>)
+  <li>to completely control statement execution within the body of the loop
+   <li>to eliminate non-tail recursion.
+<p> 
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt> <pre> // try converting this into a loop without GOTOs
+     L1: if B1 then goto L2
+           statement1;
+         if B2 then goto L2
+           statement2;
+         goto L1;
+     L2: statement3; </pre>
+ </tt> 
+  </div>
+  <p>
+  If the last thing a function does before the return is call itself, 
+  the function is tail recursive. </p>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+  <pre>
+
+     // tail recursive - all the work is done on the way *up*
+    int sum = 0;
+    void foo ( int i, int list[] ) {
+      if (i < size) {
+        sum += list[i++];
+        foo ( i, list );
+      }
+      else
+        return;
+    } 
+
+     // NOT tail recursive - all the work is done on the way *down*
+     int fac (int n) {
+       if (n == 0) return 1
+       else
+          return n * fac(n-1);  // last operation is mult 
+     }
+
+ </tt> </div> </pre>
+  <br>
+  If a function is tail recursive, you can easily
+  convert the recursive call into a loop. 
+<p>
+<div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+ <pre>
+   // tail recursive function 
+   void stuff (int n) { 
+       print n; 
+       if (n>0) 
+           stuff (n-1); 
+    }
+
+    // converted into an equivalent loop 
+    while (n > 0) { 
+        print n; 
+        n--;
+    }</pre></tt>
+  </div>
+  <br>
+ Knuth, "Structured Programming with Goto Statements," 
+  <u>Computing Surveys</u> 6:4 (1974).<br/>
+  Knuth shows that goto is the most intuitive solution to replace 
+  non-tail recursion: <p>
+
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre> void treeprint(Node * t){
+         if (t != null) {
+            treeprint(t->left);
+            print(t);
+            treeprint(t->right);
+         }
+       }</tt></pre>
+  </div>
+  <p>
+  First replace the tail recursive call with a goto:
+</p>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt><pre>
+      void treeprint(Node * t){
+      L:  if (t != null) {
+            treeprint(t->left);
+            print(t);
+            t = t->right;  <= normally done in the recursive call
+            goto L;
+          }
+      }
+  </div>
+</tt>
+  <p>
+  The remaining recursive call can then be eliminated with a stack:
+</pre>
+<div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"><tt><pre>
+      void treeprint(Node * t){
+          Stack s;  <= holds pointers 
+      L1: while ( t != null ) {
+             s.push(t); 
+             p = t->left;
+             goto L1;     
+      L2:    s.pop(t);
+             print(t->value);
+             t = t->right; 
+          } // end while   
+  
+          if (!s.empty())
+             goto L2;
+      }
+  Example 6c.
+  </div> </tt>
+</pre>  
+  <br>
+  "The goto's can be eliminated without difficulty, but in general when a
+  recursive call is embedded in several complex levels of control, there is
+  no equally simple way to remove recursion without resorting to something
+  like Example 6c" (p.282). 
+<h3><SPAN style="background-color:yellow"> CONDITIONAL BRANCH STATEMENTS
+ </span> </h3>
+ 
+Conditional branch control: selection statements, iterative (looping)
+ statements and guarded commands.
+  
+<h3>SELECTION STATEMENTS</h3>
+A selection statement is a choice between one or more paths of execution.
+  
+Types: 
+<li>1-way (if)  
+<li>2-way (if..else)   
+<li>n-way (if..elseif..else or switch)
+ 
+<p> 
+All selection statements have a condition:
+ </p> 
+ <li>  if (boolean_expr) ....   // condition returns T/F
+ <li>  if (arith_expr) ....     // False if 0 - True otherwise  
+
+ <li> if (condition) stmnt  // stmnt executed when condition is true - positive logic
+<li> if (!condition) stmnt // stmnt executed when condition is false - negative logic
+<pre>
+         if (!EOF)            
+             read(ch);  // executed when EOF is false
+</pre>
+       
+<u>One-Way Selection Statements</u>
+
+  <li>       if (condition) statement(s);   
+
+<li> In 1-way selection you either take a path or you don't
+  
+<li>  1-way selection and 'goto' can simulate everything (early Fortran)
+   
+<li>  Modern languages have n-way for writeability and readability 
+
+<p> 
+<u>Two-Way Selection Statements</u>
+
+<pre>
+       if (condition)
+          statement(s);
+       else
+          statement(s);
+</pre>
+<p>
+  The dangling else problem:
+</p>
+  
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre> 
+    if (sum == 0)
+    if (count == 0)
+    result = 0;
+    else result = 1;   // which 'if' gets the 'else'?  
+  
+  </div> </tt>
+</pre>
+<p>
+   Java/C/C++/C# static semantics rule is: else matches nearest if
+</p>
+ <p> 
+ To force alternative semantics use compound statements:</p>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+   if (sum == 0) {
+     if (count == 0)
+        result = 0;
+   }
+   else result = 1;
+ </tt> </div>
+</pre>
+
+   In Perl all then/else clauses are compound (solves dangling else)
+<p>  
+  <u>Multiple-Way Selection Statements</u>  
+
+  <li> keyword: switch  case  select
+
+   <li> what is control type (integral, float)?
+  
+   <li> how is flow through handled?   (execute code in remaining cases?)
+
+   <li> how is fall out handled?  (implicit exit after hitting a case?)  
+
+   <li> is default value supported? Yes? quick and easy No? 
+        forces programmer to think of all possible values
+
+</p> 
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre> 
+     // syntax of C's switch statement
+     switch (expression) {
+        case const_expr_1: stmt_1;   
+          ...
+        case const_expr_n: stmt_n;
+        [default: stmt_n+1]
+     }</tt> </pre>
+  </div>
+ In C's switch statement,</u> 
+<p>
+<li> control expression must be integral type 
+<li> selectable code can be statement sequences, blocks, or compound statements
+<li> no implicit branch at end of selectable segments <== flow through allowed 
+ <li> optional 'default' is for unrepresented values 
+<li><a href="./Code/C/hw08.c">C see code</a>
+ 
+<p> 
+Ada's "No Flow Through" is more reliable than C -
+    once stmt_seq is completed, control is passed out 
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+   case expression is
+      when choice list => stmt_sequence;
+      ...
+      when choice list => stmt_sequence;
+      when others => stmt_sequence;]
+   end case;
+   next_stmt; // control passed here </tt>
+  </div> </tt>
+ </pre> 
+<p>
+  <u>Multiple-Way Selection with elsif</u>
+ </p>
+<p>
+ Unlike C, some languages include an explicit keyword for "else if" such
+ as elsif or elif.
+</p>
+In Python:
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+   if x < 0:
+        x = 0
+        print 'Negative changed to zero'
+   elif x == 0:
+        print 'Zero'
+   elif x == 1:
+        print 'Single'
+  </div></tt> </pre>
+In Ada:
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+      if ...
+         then ...
+      elsif ...
+         then ...
+      elsif ...
+         then ...
+      else ...
+      end if
+  </div></tt> </pre>
+In Perl:
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+    if (num < 1.0) {
+      print "1";        
+    }
+    elsif ( num < 2.0) { 
+       print "2";
+    }
+    elsif ( num < 3.0) { 
+       print "3";
+    }
+  </div> </tt>
+ </pre> 
+<h3><SPAN style="background-color:yellow"> 
+  ITERATIVE STATEMENTS</span></h3>
+  The repeated execution of a statement or compound statement is accomplished
+  by iteration or recursion 
+   
+  <li> multiple entry points in a loop is controversial
+  
+  <li> multiple exit points in a loop is often done 
+ 
+<p> 
+  General design issues for iteration control statements:
+  <li> How is iteration controlled?
+  <li> Where is the control mechanism in the loop?
+ 
+<p> 
+  <u>Counter-Controlled Loops</u>
+  
+<p> 
+  A counting iterative statement has a loop variable and 3 parameters:
+  initial value, final value, stepsize value
+<p> 
+  
+  Design Issues:
+  <li> What are the type and scope of the loop variable?
+  <li> What is the value of the loop variable at loop termination?
+  <li> Can loop variable or parameters change 
+     in the loop body, and if so, how does this affect loop control?
+ <li> Should loop parameters be evaluated only once, or once for every 
+     iteration?  
+ 
+<p> 
+  Example, FORTRAN 90:
+<tt><pre> DO label var = start, finish [, stepsize]
+  
+    1. Loop variable must be INTEGER type
+    2. Loop variable always has a last value
+    3. The loop variable cannot be changed in the loop 
+    4. Loop parameters are evaluated only once and can be changed 
+       after evaluation w/o affecting loop execution 
+    5. Stepwize can be any value but zero
+    6. Parameters can be expressions
+</pre>
+</div>
+</tt>
+  
+  Example, Pascal:
+ <pre> for variable := initial (to|downto) final do statement
+  
+    1. Loop variable must be an ordinal type of usual scope
+    2. After normal termination, loop variable is undefined
+    3. The loop variable cannot be changed in the loop
+    4. The loop parameters can be changed, but they are evaluated just once, so 
+       it does not affect loop control </pre>
+ 
+  Example, Ada: 
+  <pre> for var in [reverse] discrete_range loop  
+        ...
+   end loop
+
+    1. A discrete range is a sub-range of an integer or enumeration type
+    2. Scope of the loop variable is the range of the loop
+    3. Loop variable is implicitly undeclared after loop termination
+</pre> 
+  Example: C's for loop is LISP-like
+
+<pre>
+<div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+   for ([expr_1] ; [expr_2] ; [expr_3]) statement
+  
+     which is equivalent to:
+  
+     expr_1;
+     while ( expr_2 ) {
+        statement
+        expr_3;
+     } </pre>
+ </div> </tt>
+In C,
+ <li>The expressions can be a single statement or a sequence of statements 
+ <li>The value of a statement sequence is the value of the last statement 
+ <li>There is no explicit loop variable
+ <li>Everything can be changed in the loop
+ <li>Expr_1 is evaluated once, the other two are evaluated with each iteration
+ <li> See C <a href="./Code/C/hw08.c">for loop</a> code examples
+ </p> 
+
+C++ differs from C in two ways:
+<li>control expression can also be Boolean (C++ has a Boolean type)
+<li>Expr_1 can include variable definitions (scope is within loop)
+ 
+<p> 
+ Java and C# force the
+  exclusive use of Boolean expressions in control expressions.
+</p>
+<div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+ <pre> upside is security:
+       while (i = 1)   // prevents this error since 'i' is INT type 
+
+  downside is a lack of flexibility: 
+       int num = 5;   // you want num of type int to control while 
+       while (num){   // exit loop when num is 0
+           x / num;      // a divide by zero error will never occur 
+           num--;
+       }
+</pre>
+</div>
+</tt> 
+<p> 
+  <u>Logically-Controlled Loops</u>
+</p> 
+<p>
+Repetition control based on a Boolean or arithmetic control expression.
+  General forms:
+</p>
+<pre>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+   while (ctrl_expr)    // pre-test
+   do loop body
+  
+   do loop body
+   while (ctrl_expr)   // post-test
+  
+  </div> </tt>
+</pre>
+   Examples:
+ <li> Pascal has separate pre-test and post-test logical loop statements 
+   (while-do and repeat-until)
+  
+ <li>C and C++ also have both - the control expression may be arithmetic
+   (while-do and do- while)
+  
+ <li>In Java control expression must be Boolean and the body 
+   can only be entered at the top since Java has no goto
+  
+ <li>Ada has a pretest version, but no post-test
+  
+ <li>FORTRAN 77 and 90 have neither
+  
+ <li>Perl has pre-test while and until, but no post-test logical loop
+ 
+<p> 
+  <u>User-Located Loop Control Mechanisms</u>  (<a href="./Code/C/hw08.c">see code</a>)
+</p>
+<p>
+ <li>allows programmers to pick an exit other than top or bottom loop
+ <li>Simple design for single loops (e.g., break)
+ <li>Design issues for nested loops
+ <li>Should the conditional be part of the exit?
+ <li>Should control be transferable out of more than one loop?
+</p>
+  
+ <p> 
+  <u>Iteration Based on Data Structures</u>
+ </p> 
+ <li>'foreach' is typical keyword
+ <li>Perl, JavaScript, PHP, Java, and C#
+ <li>Number of elements of in a data structure control loop iteration
+ <li>Control mechanism is a call to an iterator that returns the next 
+    element, if no element, terminate loop
+ <li>The order in which elements are returned is predefined
+ <li>C's 'for loop' can be used to build a user-defined iterator:
+ <pre> for (p=root; p==NULL; traverse(p))
+  { 
+    . . .
+  }
+ </pre> 
+<p>
+ <li>Perl and C#'s 'foreach' iterates on the elements of arrays, hashes, files:
+</p>
+<pre>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+    # Perl
+    foreach(@words) {
+       $word = $_;
+       $word =~ tr/A-Z/a-z/;   
+       print 'word: ', $_, "\n";
+    }
+  </div></tt>
+</pre>
+<pre>
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+    // C#
+   Strings[ ] = strList = {.Bob., .Carol., .Ted.};
+   foreach (Strings name in strList)
+        Console.WriteLine (.Name: {0}., name);
+
+</div></tt>
+</pre>
+
+Perl's while  (&lt;FILEHANDLE>) iterates on the lines of a file. 
+<pre>
+<div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+     open(WORDS, $filename);
+     while(&lt;WORDS>) {
+          . . . 
+     }
+     close(WORDS);
+  
+  </div></tt>
+</pre>
+ 
+<h3><SPAN style="background-color:yellow"> 
+ DIJKSTRA'S GUARDED COMMANDS</span></h3> 
+
+<p>
+ 
+A probabilistic choice construct that
+ makes it possible to express randomised algorithms. 
+  Purpose:
+ <li>To support a program verification during development
+ <li>For concurrent programming in CSP and Ada
+</p>
+<p>
+  Basic Idea: 
+  If the order of evaluation is not important, the program 
+  should not specify one
+</p>
+  SELECTION Guarded Command:
+<pre>  
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+  if &lt;Boolean exp> -> &lt;statement>        do this
+  [ ] &lt;Boolean exp> -> &lt;statement>    OR do this
+   ...
+  [ ] &lt;Boolean exp> -> &lt;statement>    OR do this
+  fi
+  </div> </tt>
+</pre>
+  Semantics: 
+ <li>When construct is reached, evaluate all Boolean expressions
+ <li>If more than one are true, choose one non-deterministically
+ <li>If none are true, it is a runtime error
+ <p> 
+  LOOP Guarded Command:
+ </p> 
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+  do &lt;Boolean> -> &lt;statement>
+  [ ] &lt;Boolean> -> &lt;statement>
+   ...
+  [ ] &lt;Boolean> -> &lt;statement>
+  od
+
+</pre>
+  </div></tt>
+<p>
+ <li>Semantics: for each iteration
+ <li>Evaluate all Boolean expressions
+ <li>If multiple are true, choose one non-deterministically; start loop again
+ <li>If none are true, exit loop
+</p>
+  
+Example:
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+      if a >= b then print "More or equal";
+      else print "Less";
+  
+  Guarded:
+      if a >= b => print "More or equal"
+      [ ] a < b => print "Less"
+      fi
+
+</pre> 
+  </div> </tt>
+  Another example:
+  <div STYLE="Background-Color : beige; border: dashed 1px; width: 80%;"> <tt>
+<pre>
+      if
+          a >= b -> print "More or equal"
+          a &lt;= b -> print "Less or equal"
+      fi
+</pre>
+  </div></tt>
+ 
+<p> 
+  When a = b, the result of command can be "More or equal" or "Less or equal".
+</p> 
+</pre>
+<h4>   Use in Concurrent Programming   </h4> 
+
+<p>
+Guarded commands are
+    a means for controlling asynchronous message passing - allows all 
+   requestors an equal but nondeterministic chance of communicating 
+  
+       ( <a href="./Code/Ada/lab08.adb">see Ada code</a> )
+
+</p>
+<p>
+Ada has concurrency built-in. A task is the basic unit of concurrency.
+<a href="http://rosettacode.org/wiki/Concurrent_computing#Ada">Concurrent hello world</a><pre>
+     with Ada.Text_IO; use Ada.Text_IO;
+     with Ada.Numerics.Float_Random; use Ada.Numerics.Float_Random;
+ 
+     procedure Concurrent_Hello is
+         task type Writer (Message : access String);   
+         task body Writer is
+            Seed : Generator;
+         begin
+            Reset (Seed); 
+            delay Duration (Random (Seed));
+            Put_Line (Message.all);
+         end Writer;
+ 
+         S1 : aliased String := "Enjoy";
+         S2 : aliased String := "Rosetta";
+         S3 : aliased String := "Code";
+         T1 : Writer (S1'Access);
+         T2 : Writer (S2'Access);
+         T3 : Writer (S3'Access);
+    begin
+       null;
+    end Concurrent_Hello;
+</pre>
+</p>
+<p>
+ IBM's latest OO/concurrent programming language for high-performance
+ computing (e.g. Watson)
+<a href="http://dist.codehaus.org/x10/documentation/languagespec/x10-latest.pdf">X10</a>
+
+</p>
+<SPAN STYLE="Background-Color : YELLOW">
+<a href="#top">TOP</a>
+</SPAN>
+
+  </body>
+  </html>

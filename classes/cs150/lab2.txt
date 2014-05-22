@@ -1,0 +1,26 @@
+  502  mkdir -m700 cs150
+  503  ls cs150/
+  504  cd cs15
+  505  chmod 700 cs150
+  506  ls -ld cs150/
+  507  cp junk.txt cs150
+  508  ls -l cs150/
+  509  cd cs150/
+  510  rm junk.txt
+  511  mv lab1.txt ..
+  512  cd
+  513  rmdir cs150
+  514  vi hello.cpp
+  515  chmod 740 hello.cpp 
+  516  ls -l hello.cpp 
+  517  g++ -o hello hello.cpp 
+  518  ./hello
+  519  cat &
+  520  ps ux
+  521  ps x
+  522  ps -ef | grep nramsey
+  523  kill -9 26733
+  524  ps -ef | grep nramsey
+  525  ps -ef | grep nramsey > file1.txt
+  526  ls
+  527  history > lab2.txt

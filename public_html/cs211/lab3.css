@@ -1,0 +1,52 @@
+ul.a {list-style-type: circle;}
+ul.b {list-style-type: square;}
+
+ol.c {list-style-type: upper-roman;}
+ol.d {list-style-type: lower-alpha;}
+
+img.a 
+{
+margin: 50px 100px 50px 0px;
+  padding: 0px;
+}
+
+img.b
+{
+  margin: 50px 5px 50px 800px;
+}
+
+body
+{
+  background-color: #C0C0C0;
+  color: #FFFFFF;
+  margin: 5px;
+  padding: 5px;
+}
+
+h1 
+{
+  color: blue;
+  font-family:"Times New Roman", Times, serif;
+} 
+
+div
+{
+  
+  border:1px solid black;
+  outline:gold solid;
+  padding: 4px 4px 4px 4px;
+  margin: 100px;
+  line-height: 20px;
+}
+
+img
+{
+  outline: 3px solid white;
+  margin: 50px 100px 50px 100px;
+  padding: 0px;
+}
+
+button
+{
+  margin: 0px 0px 0px 585px;
+}

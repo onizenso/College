@@ -1,0 +1,121 @@
+.:Windows Analysis:.
+
+Sources for Enumeration
+    Log files/databases
+    Registry File
+    Swap file
+    Data from Live Collection
+    Data from drive analysis
+    Application specific data
+    User-specific data
+
+Log Files on Windows
+    Event Log is stored in several locations, but also has a GUI
+        often will look at log file instead of using GUI
+    Go through Control Panel -> System Administration Tools -> 
+        Logging/Audit Settings
+    Look for what is set to be logged, and for any missing information that is 
+        missing but should be there
+    Storage location for files:
+        %systemroot%\System32\config\
+             |_.->replace with system installation location (C:\Windows\)
+             Look where Environmental Variables are stored to check 
+                 for manipulation
+        Files:
+            SecEvent.evt (security Win7)            Security Events
+            AppEvent.evt (software Win7)            App Events
+            SysEvent.evt (system Win7)              System Events
+
+        Log files for specific applications do not have unified storage locale
+            one location: %SystemRoot%\System32\LogFiles
+            no unified format for application specific log files
+
+Registry File(s)
+    Primary method of configuring system & applications
+    Can also stor data for applications and/or system processes
+    Binary file(s), only human-readable with interpreter
+    Can be split across multiple files
+    Can store data like key pairs, and application variables
+    Primary storage is a key:data pair
+        registry key has a specific naming structure/hierarchy
+            Common "roots" for key:
+                HKEY_LOCAL_MACHINE(HKLM) - configs for local machine
+                HKEY_USERS
+                HKEY_CURRENT_USERS
+                HKEY_CLASSES_ROOT
+                {WinNT only} HKEY_CURRENT_CONFIG
+            A list of all active hives can be found at 
+                 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\hivelist
+            User specific file: NtUser.dat in each user folder
+
+    Tools to query registry:
+        look at lab from Windows Live Collection
+        regexport <hive name> (look up man page for this tool)
+
+    HKLM on NT-based systems contains:
+        SAM, SECURITY, SYSTEM, SOFTWARE
+
+    HKEY_USERS contains:
+        DEFAULT from system-wide file
+        Subkeys for each user from the user file
+
+    File locations:
+        System-wide (NT-based)
+            %SystemRoot%\System32\Config
+        User-specific:
+            NTuser.dat in user's folder
+
+Windows Swap File - pagefile.sys
+    Normally hidden, but can be accessed with switches to
+        commands (e.g. dir /ah)
+    Defaults to unencrypted
+        there are options to encrypt the pagefile
+    Contains copy of memory pages that are swapped to disk
+        could have useful info like the data for a file,
+            password typed into browser, browser history, etc.
+    Look into methods for secure deletion of pagefile on shutdown
+    Possible to disable the pagefile entirely: proceed with caution
+
+User-Specific Information
+    Already covered registry file for users
+    Each user is given a folder (location varies slightly by version)
+        There is also a Default (or all users) folder
+        Stores documents, settings, caches, etc.
+    Caches have useful info
+        obvious: 
+            cookies, web page history, etc.
+        less obvious: 
+            recently accessed files, recently accessed removable drives, etc.
+        look here for evidence of crime here, or the absence of cache files
+    Application user-specific data is also stored here
+        There are tools to read browser cache & config data
+ 
+Printer Spool Files
+    deleted when job completes, but just regular deletion
+        contains all the info sent to printer for print job
+        **if can recover spool file, can recover document being printed
+    collect any hard drives from printers/copiers, 
+        images from files may be stored here
+
+Application-Specific Data
+    On 64-bit systems there are two folders: Program Files & Program Files(x86)
+    Contains binaries, libraries & system-wide config files
+    Look for:
+        Apps that shouldn't be there
+        Apps that have been altered (including libraries)
+        Configs that have been changed
+            Especially pay attention to services changed for more permissiveness
+
+Password Info
+    Depending on version, may be trivial to recover passwords for 
+        users on system
+    Many tools available to crack these databases:
+        JohnTheRipper, look more up on Google
+     
+
+
+    http://www.cs.csubak.edu/downloads.php
+       email Steve via pine to request MSDN account, ask for 
+            Microsoft Academic Alliance account for WinXP ISO
+
+

@@ -1,0 +1,67 @@
+<html>
+<head>
+<title> CMPS 350 FINAL - PHP </title>
+</head>
+<!--
+  **********
+  *  PHP   *                                                          / 50
+  **********
+
+  Everything you need to complete this problem is in 
+
+       /usr/users/donna/public_html/cs350/Solutions/lab07/form.php
+
+  Write a PHP script 'final.php' that will be called when the SUBMIT button in 
+  the FORM below is clicked. Do not add or delete anything in this file. The 
+  PHP script should do the following:
+                                                                       PTS
+1. If a name has not been entered display an error message and EXIT    (05)
+2. Grab all the values in the POST array and store in local variables  (10)
+3. Count the number of courses that are remaining                      (10)
+4. Construct a list of remaining courses                               (10)
+5. Display results as shown below on the screen                        (10) 
+6. Write the same results as shown below to an output file             (05) 
+
+EMAIL final.php to me when complete and provide your URL so I can test it.
+
+ Sample output:
+
+ SURVEY RESULTS
+ Name: sam spade 
+ Year: senior
+ Track: HW
+ You have the following 4 course(s) remaining:
+ Operating Systems
+ Networking
+ Discrete Structures
+ Senior Seminar
+-->
+<BODY>
+<h1>SURVEY</h1>
+<FORM method="post" action="final.php">
+<DIV>
+Name: <input type="text" name="name"> <p>
+Year: <SELECT name = "year">
+<option value = "sophomore" >sophomore
+<option value = "junior" >junior
+<option value = "senior" >senior
+</SELECT>
+<P>
+Which major track are you on? <p>
+Computer Science Track <input type="radio" name="track" value="CS"> <br>
+CIS Track              <input type="radio" name="track" value="CIS"> <br>
+Hardware Track         <input type="radio" name="track" value="HW"> <br>
+<p>
+Which required major courses have you taken? Select all that apply.  <p>
+<input type = "checkbox" name = "C1"> Operating Systems<br>
+<input type = "checkbox" name = "C2"> Networking<br>
+<input type = "checkbox" name = "C3"> Architecture<br>
+<input type = "checkbox" name = "C4"> Discrete Structures<br>
+<input type = "checkbox" name = "C5"> Databases<br>
+<input type = "checkbox" name = "C6"> Senior Seminar<br>
+<p> <input TYPE="SUBMIT" VALUE="Submit FORM">
+<p> <INPUT TYPE="RESET" VALUE="Clear FORM">
+</DIV> 
+</FORM>
+</BODY>
+</HTML>

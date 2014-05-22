@@ -1,0 +1,79 @@
+         	 COMPUTER SCIENCE DEPARTMENT COURSE ASSESSMENT FORM
+  
+  Quarter: Wtr 2011
+
+  Required Core Course: CMPS 350
+  
+  Course Title: "Programming Languages"
+  
+  Instructor: Donna Meyers      
+  
+  Coverage in Program Outcomes Matrix for Computer Science:
+
+  Outcome                            Weighting factor (0-5)   CAC/ABET values
+  -------                            ----------------------   ---------------
+  Area 3a. math, physical sciences   2                        M
+  Area 3e. prof., ethical, security  2                        M
+  Area 3i. current technologies      5                        E
+  Area 3m. cross platform            2                        M 
+ 
+  Core Areas on
+  Major Field Exam
+  Prog. Fundamentals                 3 
+
+  The Learning Outcomes for areas 3a, 3e, 3i and 3m are from the 2008 Interim 
+  Revision of the ACM 2001 Curriculum Report for Programming Fundamentals(PF) 
+  and Programming Languages(PL) in accordance with CAC/ABET standards. 
+  Category AL covers 31 of the 290 core hours in the recommended curriculum.
+  
+  The ACM guidelines with weighted factors shown as core hours and the
+  assessment method for each learning outcome are detailed below. Assessment 
+  results are shown as:
+  E - Exceeds CAC/ABET expectations 
+  M - Meets CAC/ABET expectations
+  C - Conditionally meets expectations (some improvements would be welcome)
+  F - Fails to meet CAC/ABET expectations 
+
+  ------------------------------------------------------------------------ 
+  Category: PF/Recursion[core] 
+  Learning Outcomes: Demonstrate a practical understanding of recursion.
+  Method: Lab 03 "Introduction to Lisp"/Coding Portion of Exam #1.  
+  Result:  Meets CAC/ABET expectations
+
+
+  Category: PF/EventDrivenProgramming[core]  
+  Learning Outcomes: Understand Event-driven Programming Methodology 
+  Method: Lab 06 "Introduction to Event-driven Programming with JavaScript"
+  Result: Exceeds CAC/ABET expectations
+
+
+  Category: PF/ObjectOriented[core]  
+  Learning Outcomes: Understand Object-oriented Methodology
+  Method: Lab 01 "Exception Handling in C++"  
+  Result: Exceeds CAC/ABET expectations
+
+  Category: PF/SecureProgramming[core]  
+  Learning Outcomes: Understand Secure Programming Methodology
+  Method: Lab 09 "Introduction to Ada"  
+  Result: Meets CAC/ABET expectations
+
+  Category: PL/Overview[core]  
+  Learning Outcomes: Differentiate between Programming Language Paradigms 
+  Method: Coding Exam #1, Coding Exam #2, Coding Final  
+  Result: Exceeds CAC/ABET expectations
+
+  Category: PL/DeclarationsAndTypes[core]  
+  Learning Outcomes: Understand common scalar and structured data types 
+  Method: Exam #2  
+  Result: Meets CAC/ABET expectations
+  
+  Category: PL/AbstractionMechanisms[core]  
+  Learning Outcomes: Understand Modern Methods of Abstraction 
+  Method: Lab 08 "Concurrent Programming in Python"  
+  Result: Meets CAC/ABET expectations
+
+----------------------------------------------------------------------------
+Supporting Documentation:
+
+http://www.cs.csub.edu/~donna/cs350/
+

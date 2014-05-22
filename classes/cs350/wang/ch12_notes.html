@@ -1,0 +1,89 @@
+<html>
+<HEAD>
+</head>
+<body>
+<center>
+<h2>Support for Object Oriented Programming in Java</h2></center>
+<p>
+ This
+ <a href="http://en.wikipedia.org/wiki/Comparison_of_Java_to_C_Plus_Plus">Wiki</a> has a good overview of the major differences between Java and C++.
+<p>
+<h3>General Characteristics</h3>
+
+<li>All structured data types (including arrays) must be objects 
+<li>the primitive scalar types (int, float, double) may or may not be 
+ explicitly instantiated as objects
+<li>In Java 5.0+, all primitive types are implicitly coerced into 
+wrapper classes for use in predefined container classes
+<li>All objects are heap-dynamic, referenced through reference variables, and most allocated with new
+<li>No explicit delete - garbage collection is automatic
+<li>A finalize method is implicitly called before garbage collector (similar to
+ C++'s destructor)
+<li>Does not support operator overloading, pointers or goto ; C++ does
+<li>minimal compilation unit is a class ; in C++ it is a file
+<li>In Java, all parameters are passed by value; C++ supports pass-by-reference and pass-by-value
+
+<h3>Inheritance</h3>
+<li>Single inheritance supported only, but there is an abstract class 
+category that provides some of the benefits of multiple inheritance (interface)
+
+<li>An interface can include only method declarations and 
+named constants, e.g., <pre>
+	public interface Comparable {
+		     public int comparedTo (Object b);
+	}
+</pre>
+Methods can be final (similar to C++ const)
+
+<h3>Dynamic Binding in Java</h3>
+
+<li>All messages are dynamically bound to methods unless the method is final 
+(if method cannot be overriden dynamic binding serves no purpose)
+
+<li>Static binding is also used if the method is static or private (both of which disallow overriding)
+
+<li>Several varieties of nested classes
+<li>All can be hidden from all classes in their package, except for the nesting class
+<li>Nested classes can be anonymous
+<li>A local nested class is defined in a method of its nesting class
+<li>No access specifier is used
+
+<h3>Evaluation</h3>
+<li>Design decisions to support OOP are similar to C++
+<li>No support for procedural programming - C++  supports procedures outside classes
+<li>No parentless classes
+<li>Dynamic binding is used as normal way to bind method calls to method definitions
+<li>Uses interfaces to provide a simple form of support for multiple inheritance
+
+<center><h2>Support for OOP in C#</h2></center>
+
+<h3>General characteristics</h3>
+
+<li>Support for OOP similar to Java
+<li>Includes both classes and structs
+<li>Classes are similar to Java's classes
+ 
+<h3>Inheritance</h3>
+<li>Uses the syntax of C++ for defining classes
+<li>A method inherited from parent class can be replaced in the derived class by marking its definition with new
+<li>The parent class version can still be called explicitly with the 
+<pre>
+       prefix base: base.Draw() </pre>
+<h3>Dynamic binding</h3>
+<li>To allow dynamic binding of method calls to methods,
+The base class method is marked virtual
+<li>The corresponding methods in derived classes are marked override
+<li>Abstract methods are marked abstract and must be implemented in all subclasses
+<li>All C# classes are ultimately derived from a single root class, Object
+
+<h3>Nested Classes</h3>
+<li>A C# class that is directly nested in a nesting class behaves like a Java static nested class
+<li>C# does not support nested classes that behave like the non-static classes of Java
+
+<h3>Evaluation</h3>
+<li>C# is the most recently designed C-based object-oriented language
+<lI>The differences between C#'s and Java's support for OOP are relatively
+ minor
+
+</body>
+</html>

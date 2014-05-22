@@ -1,0 +1,21 @@
+                          EXAM 2 [CODING SECTION] - WTR 2011
+
+
+50 pts - Worth 50% of Exam 2 grade
+
+The coding portion is open book and open computer. You will be asked to code a 
+short program in each of two languages:  (Perl or Java) and Prolog.  For
+Prolog, review /Code/Prolog/exam_review.pl 
+
+The level of difficulty is based on the assumption you have completed the labs.
+Problems are written so that both can be completed within 2.5 hours.
+  
+Create a subdirectory for this exam on sleipnir and copy the files you need:
+
+       cp /home/fac/donna/public_html/cs350/exam_files/java/* .
+       cp /home/fac/donna/public_html/cs350/exam_files/perl/* .
+       cp /home/fac/donna/public_html/cs350/exam_files/prolog/* .
+
+
+Note: stay away from copy and paste - it turns spaces into tabs and this 
+does funky things with datafiles.

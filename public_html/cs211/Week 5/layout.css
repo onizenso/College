@@ -1,0 +1,101 @@
+
+p  
+{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+ul.square
+{
+list-style-type: square;
+}
+   
+body 
+{
+  margin: 10px; 5px;
+  padding: 5px;
+  background: url('redgradient.jpg');  
+  background-repeat: no-repeat; 
+}
+
+div.wrapper
+{
+  position: absolute;
+  left: 20px;
+  top: 10px; 
+  width: 850px;  
+  height: 800px;
+  margin: 5px auto;
+  background-color:blue;
+}
+
+div.wrapper div
+{
+  background-color: #CCFFFF;
+}
+
+div.header
+{
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  right: 10px;
+  height: 100px; 
+}
+
+div.header h1
+{
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
+
+div.header p
+{
+  position: absolute;
+  right: 10px;
+  top: 20px;
+}
+
+div.menu
+{
+  position: absolute;
+  left: 10px;
+  top: 120px;
+  width: 115px; 
+  height: 400px;
+  padding: 2px;
+}
+
+div.notes
+{
+  position: absolute;
+  right: 10px;
+  top: 120px;
+  width: 115px; 
+  height:550px;
+  padding: 2px;
+}
+
+div.content
+{
+  position: absolute;
+  right: 140px;
+  top: 120px;
+  width: 570px; 
+  background: url('backpalm.jpg'); 
+}
+
+div.footer
+{
+  position:absolute;
+  right:10px;
+  left:10px;
+  top:710px;
+  bottom:10px;
+}
+
+
+  
+  
+

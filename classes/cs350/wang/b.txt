@@ -1,0 +1,10 @@
+
+<input type="button" value="check" onClick="
+          myArea=document.getElementById('Q1Area');
+          if ( document.quizform.Q1[1].checked  )
+                { myArea.innerHTML='CORRECT'; }
+            else
+    { myArea.innerHTML='Hint: .'; } " >
+<DIV id="Q1Area" STYLE="background-color: white" >
+</DIV>
+<pre>

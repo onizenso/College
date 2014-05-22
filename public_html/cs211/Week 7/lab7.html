@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">  
+  <html>
+  <head>
+  <title>Lab 7</title>
+  <noscript>Your browser does not support Javascript. Please turn on or download Javascript to properly view this page</noscript>
+  <style type="text/css">
+		div.img
+			{
+			margin:2px;
+			border:1px solid #0000ff;
+			height:auto;
+			width:auto;
+			float:left;
+			text-align:center;
+			}
+			
+			div.img img
+			{
+			display:inline;
+			margin:3px;
+			border:1px solid #ffffff;
+			}
+  </style>
+  <script type="text/javascript">
+		function changeTemp ()
+		{
+		var far="Put in a temperature in Fahrenheit";
+		var b=32;
+		var c=5;
+		var d=9;
+		var cel;
+		var fnum=prompt (far);
+		cel=(fnum-b)*(c/d);
+		alert(cel.toFixed(2));
+		}
+  </script>
+  </head>
+  <body>
+  <div class="img">
+	<img src="bass_guitar.jpg" alt="Bass" name="bass"
+			onMouseOver="window.document.claypool.src='victor wooten.jpg';
+						window.document.jaco.src='cosmos.jpg';"
+			onMouseOut="window.document.claypool.src='lesclaypool.jpg';
+						window.document.jaco.src='jacop.jpg';">
+	<img src="lesclaypool.jpg" alt="Les Claypool" name="claypool">
+	<img src="jacop.jpg" alt="Jaco Pastorius" name="jaco">
+  </div>
+  <input type="button" value="Click Here" onclick="changeTemp (); returnfalse;" /> 
+</body>
+</html>

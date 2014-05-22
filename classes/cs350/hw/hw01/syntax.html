@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	</head>
+	<body>
+		<h1>CS350: Homework 1 - Primitive Data</h1>
+		<h2>C# Primitive Types</h2>
+
+		<table width=100%>
+			<tbody>
+				<tr>
+					<th><strong>Short Name</strong></th>
+					<th><strong>.NET Class</strong></th>
+					<th><strong>Type</strong></th>
+					<th><strong>Width</strong></th>
+					<th><strong>Value Range</strong></th>
+				</tr>
+				<tr>
+					<td>byte</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.byte(v=vs.90).aspx">Byte</a>
+					</td>
+					<td>Unsigned integer</td>
+					<td>8</td>
+					<td>0 to 255</td>
+				</tr>
+				<tr>
+					<td>sbyte</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.sbyte(v=vs.90).aspx">SByte</a>
+					</td>
+					<td>Signed integer</td>
+					<td>8</td>
+					<td>-128 to 127</td>
+				</tr>
+				<tr>
+					<td>int</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.int32(v=vs.90).aspx">Int32</a>
+					</td>
+					<td>Signed integer</td>
+					<td>32</td>
+					<td>-2,147,483,648 to 2,147,483,647</td>
+				</tr>
+				<tr>
+					<td>uint</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.uint32(v=vs.90).aspx">UInt32</a>
+					</td>
+					<td>Unsigned integer</td>
+					<td>32</td>
+					<td>0 to 4294967295</td>
+				</tr>
+				<tr>
+					<td>short</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.int16(v=vs.90).aspx">Int16</a>
+					</td>
+					<td>Signed integer</td>
+					<td>16</td>
+					<td>-32,768 to 32,767</td>
+				</tr>
+				<tr>
+					<td>ushort</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.uint16(v=vs.90).aspx">UInt16</a>
+					</td>
+					<td>Unsigned integer</td>
+					<td>16</td>
+					<td>0 to 65535</td>
+				</tr>
+				<tr>
+					<td>long</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.int64(v=vs.90).aspx">Int64</a>
+					</td>
+					<td>Signed integer</td>
+					<td>64</td>
+					<td>-9223372036854775808 to 9223372036854775807</td>
+				</tr>
+				<tr>
+					<td>ulong</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.uint64(v=vs.90).aspx">UInt64</a>
+					</td>
+					<td>Unsigned integer</td>
+					<td>64</td>
+					<td>0 to 18446744073709551615</td>
+				</tr>
+				<tr>
+					<td>float</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.single(v=vs.90).aspx">Single</a>
+					</td>
+					<td>Single-precision floating point type</td>
+					<td>32</td>
+					<td>-3.402823e38 to 3.402823e38</td>
+				</tr>
+				<tr>
+					<td>double</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.double(v=vs.90).aspx">Double</a>
+					</td>
+					<td>Double-precision floating point type</td>
+					<td>64</td>
+					<td>-1.79769313486232e308 to 1.79769313486232e308</td>
+				</tr>
+				<tr>
+					<td>char</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.char(v=vs.90).aspx">Char</a>	
+					</td>
+					<td>A single Unicode character</td>
+					<td>16</td>
+					<td>Unicode symbols used in text</td>
+				</tr>
+				<tr>
+					<td>bool</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.boolean(v=vs.90).aspx">Boolean</a>	
+					</td>
+					<td>Logical Boolean type</td>
+					<td>8</td>
+					<td>True or false</td>
+				</tr>
+				<tr>
+					<td>object</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.object(v=vs.90).aspx">Object</a>
+					</td>
+					<td>Base type of all other types</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>string</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.string(v=vs.90).aspx">String</a>
+					</td>
+					<td>A sequence of characters</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>decimal</td>
+					<td>
+						<a href="http://msdn.microsoft.com/en-us/library/system.decimal(v=vs.90).aspx">Decimal</a>
+					</td>
+					<td>
+						Precise fractional or integral type that can represent decimal numbers with 29 significant digits
+					</td>
+					<td>128</td>
+					<td>+/-1.0 x 10e-28 to +/-7.9 x 10e28</td>
+				</tr>
+			</tbody>
+		</table>
+
+	<h2>Java Primitive Types</h2>
+		<table summary="Default values for Java primitive types"  width=100%>
+			<tbody>
+				<tr>
+					<th><strong>Short Name</strong></th>
+					<th><strong>Data Type</strong></th>
+					<th><strong>Width</strong></th>
+					<th><strong>Value Range</strong></th>
+					<th><strong>Default Value (for fields)</strong></th>
+				</tr>
+				<tr>
+					<td>byte</td>
+					<td>byte</td>
+					<td></td>
+					<td></td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>short</td>
+					<td>short</td>
+					<td></td>
+					<td></td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>int</td>
+					<td>int</td>
+					<td></td>
+					<td></td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>long</td>
+					<td>long</td>
+					<td></td>
+					<td></td>
+					<td>0L</td>
+				</tr>
+				<tr>
+					<td>float</td>
+					<td>float</td>
+					<td></td>
+					<td></td>
+					<td>0.0f</td>
+				</tr>
+				<tr>
+					<td>double</td>
+					<td>double</td>
+					<td></td>
+					<td></td>
+					<td>0.0d</td>
+				</tr>
+				<tr>
+					<td>char</td>
+					<td>char</td>
+					<td></td>
+					<td></td>
+					<td>'\u0000'</td>
+				</tr>
+				<tr>
+					<td>String (or any object)</td>
+					<td>String (or any object)</td>
+					<td></td>
+					<td></td>
+					<td>null</td>
+				</tr>
+				<tr>
+					<td>boolean</td>
+					<td>boolean</td>
+					<td></td>
+					<td></td>
+					<td>false</td>
+				</tr>
+			</tbody>
+		</table>
+
+	<h2>C++ Primitive Types</h2>
+		<table summary="Default values for Java primitive types"  width=100%>
+			<tbody>
+				<tr>
+					<th><strong>Short Name</strong></th>
+					<th><strong>Data Type</strong></th>
+					<th><strong>Width</strong></th>
+					<th><strong>Value Range</strong></th>
+				</tr>
+				<tr>
+					<td>Character</td><td>char</td><td>1byte</td><td>-127 to 127 or 0 to 255</td>
+				</tr>
+				<tr>
+					<td>Unsigned Character</td><td>unsigned char</td><td>1byte</td><td>0 to 255</td>
+				</tr>
+				<tr>
+					<td>Signed Character</td><td>signed char</td><td>1byte</td><td>-127 to 127</td>
+				</tr>
+				<tr>
+					<td>Integer</td><td>int</td><td>4bytes</td><td>-2147483648 to 2147483647</td>
+				</tr>
+				<tr>
+					<td>Unsigned Integer</td><td>unsigned int</td><td>4bytes</td><td>0 to 4294967295</td>
+				</tr>
+				<tr>
+					<td>Signed Integer</td><td>signed int</td><td>4bytes</td><td>-2147483648 to 2147483647</td>
+				</tr>
+				<tr>
+					<td>Short Integer</td><td>short int</td><td>2bytes</td><td>-32768 to 32767</td>
+				</tr>
+				<tr>
+					<td>Unsigned Short Integer</td><td>unsigned short int</td><td>Range</td><td>0 to 65,535</td>
+				</tr>
+				<tr>
+					<td>Signed Short Integer</td><td>signed short int</td><td>Range</td><td>-32768 to 32767</td>
+				</tr>
+				<tr>
+					<td>Long Integer</td><td>long int</td><td>4bytes</td><td>-2,147,483,647 to 2,147,483,647</td>
+				</tr>
+				<tr>
+					<td>Signed Long Integer</td><td>signed long int</td><td>4bytes</td><td>same as long int</td>
+				</tr>
+				<tr>
+					<td>Unsigned Long Integer</td><td>unsigned long int</td><td>4bytes</td><td>0 to 4,294,967,295</td>
+				</tr>
+				<tr>
+					<td>Floating Point</td><td>float</td><td>4bytes</td><td>+/- 3.4e +/- 38 (~7 digits)</td>
+				</tr>
+				<tr>
+					<td>Double Floating Point</td><td>double</td><td>8bytes</td><td>+/- 1.7e +/- 308 (~15 digits)</td>
+				</tr>
+				<tr>
+					<td>Long Double Floating Point</td><td>long double</td><td>8bytes</td><td>+/- 1.7e +/- 308 (~15 digits)</td>
+				</tr>
+				<tr>
+					<td>Wide character</td><td>wchar_t</td><td>2 or 4 bytes</td><td>1 wide character</td>
+				</tr>
+
+			</tbody>
+		</table>
+		<footer></footer>
+	</body>
+</html>

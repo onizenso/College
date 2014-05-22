@@ -1,0 +1,347 @@
+01. Convert the following propositions into English assuming 
+    p: the election is decided.
+    q: the votes have been counted.
+
+    	a) ~p -> ~q : If the election is not decided then the votes have not 			been counted
+	b)The inverse of p -> q : 
+		If the election is not decided , 
+		then the votes have not been counted.
+	c) ~q v ( ~p ^ q ) : 
+		Either the votes have not been counted, or the election is not 
+		not decided and the votes have been counted.
+	
+02. Write this proposition using p, q, r and logical connectives assuming 
+    p: You get an A on the final exam.
+    q: You do every exercise in this book.
+    r: You get an A in this class.
+
+    You get an A on the final, but you do not do every exercise in the book;
+    nevertheless, you get an A in the class.
+
+	p ^ ~q ^ r
+
+03. Is this biconditional true or false?
+         1 + 1 = 3 if and only if pigs can fly.
+
+	true
+
+04. Express the following sentence as an implication.
+          It is raining only if there are clouds in the sky.
+	
+	If it is raining then there are clouds in the sky.
+
+05. Assume p->q, where 
+       p: I stay up late
+       q: I sleep until noon
+
+    a) State the converse of p -> q in English. 
+
+	If I sleep until noon, then I stay up late.
+
+    b) State the contrapositive of p -> q in English.
+	
+	If do not sleep until noon then I do not stay up late.
+
+    c) State the inverse of p -> q in English.
+	
+	If I do not stay up late, then I do not sleep until noon.
+
+    d) State p->q without using words the words if then.
+
+	I stay up late only when I sleep until noon. (Either I do not stay 		up late or I sleep until noon.)
+
+06. What is the result column (from top to bottom) in the truth table for 
+    these expressions?
+    a)   p XOR (p | q)
+	    F
+	    F
+	    T
+	    F
+    b) (p^q) -> (p|q)	
+	(T)  T    (T)
+	(F)  T	  (T)
+	(F)  T    (T)
+ 	(F)  T    (F)
+
+07. Evaluate this expression by applying the bitwise XOR operator:
+            (01010 XOR 11011) XOR 01000 
+		   (T)	       T   (F)
+		   (F)	       T   (T)
+		   (F)	       F   (F)
+		   (F)	       F   (F)
+		   (T) 	       T   (F)
+
+08. Convert the following English sentences into logic:
+       p = The election is decided
+       q = The votes have been counted.
+  
+    a) The votes have been counted but the election has not been decided.
+
+	q ^~ p
+
+    b) The election is decided only if the votes have been counted.
+
+	p -> q
+
+    c) The votes must be counted in order for the election to be decided. 
+
+	p -> q
+
+    d) Since the election has been decided, the votes must have been counted.
+
+	p -> q
+
+09. Write these propositions using p, q, and r and logical connectives assuming
+      p: You get an A on the final.
+      q: You do every exercise.
+      r: You get an A in the class. 
+  
+    a) You get an A in the class but you did not do every exercise.
+
+	r ^ ~q
+
+    b) You get an A in this class only if you do every exercise or you get 	an A on the final. 
+
+	r -> (q v p)
+
+    c) To get an A in this class you must get an A on the final exam.
+
+	r -> p
+
+    d) If you get an A in the class you know you got an A on the final.
+
+	r -> p
+
+    e) You cannot get an A in the class without getting an A on the final.
+
+	r -> p
+
+    f) It is possible to get an A on the final and not get an A in the class.
+
+	p ^ ~r
+
+    g) To get an A in this class you must get an A on the final, and 
+       if you get an A on the final you know you get an A in the class.
+
+	(r -> p) ^ (p -> r)
+
+10. Given this implication 
+         If it snows tonight, then I will stay at home.
+      p: If it snows tonight
+      q: I will stay at home
+
+   a) State the converse in English.
+
+	If I stay at home, then it will snow tonight.
+
+   b) State the contrapositive in English.
+
+	If I do not stay at home, then it will not snow tonight.
+
+   c) State the inverse in English.
+
+	If it will not snow tonight, then I will not stay home.
+
+11. The inverse of an implication is the contrapositive of the implication's
+    converse. (T / F)
+
+	True
+
+12. Give the result column from top to bottom in the truth table for 
+    a) p -> ~p 
+	  F
+	  T
+
+    b)  p <-> ~p
+	   F
+	   F
+
+13. Which phrase in this sentence is the antecedent? 
+       "I must eat breakfast in order to run five miles."
+
+	I run five miles
+
+14. Evaluate this expression by applying bitwise AND and bitwise OR:
+       110001 ^ (001011 v 011011) 
+	      F	 	F
+	      T		T
+	      F		T
+	      F		F
+	      F		T
+	      T		T
+
+14. What is the result column of the truth table constructed for the logical
+    statement below? Hint: this is the biconditional applied to the associative
+    law of the disjunction. 
+          (( p v q) v r) <-> (p v (q v r))
+			  T
+			  T
+			  T
+			  T
+			  T
+			  T
+			  T
+			  T
+
+The next three questions pertain to the logical statement S: 
+     ( ~p  ^  (p v q) ) -> q 
+15. Use a truth table to show that S is a tautology.
+	( ~p  ^  (p v q) ) -> q 
+	      F		   T  T	
+	      F	  	   T  F
+	      T		   T  T
+	      F		   T  F
+
+16. In English explain why S is a tautology. Hint: explain why the antecedent can never be true when the conseqence q is false. (This is a proof by contradiction.)
+
+	The antecedent can never be true when the consquent is false because this would contradict the entire statement being a tautology.
+
+17. Is this a correct application of logical equivalences to S? 
+   (~p  ^  (p v q)) -> q    == ~(~p  ^  (p v q)) v q    Implication elimination
+                            == p v ~(p v q) v q         De Morgan's
+                            == p v ~p ^ ~q v q          De Morgan's
+                            == p v (~p ^ ~q) v q        by precedence order
+                            == (p v q) v (~p ^ ~q)      Associativity
+
+True, by conditional elimination
+
+18. Explain why (p v q) v (~p ^ ~q) is a tautology. 
+
+	Because when p is true the expression evaluates to true, and when p is false the expression evaluates to true. Expression always evaluates to true.
+
+19. Use a truth table to show that (p <-> q) and ((p^q)v(~p^~q)) are logically equivalent. 
+
+-------------------		
+ $P  $Q  $P <=> $Q 
+-------------------
+ F   F       Tr     
+ T   F       Fa     
+ F   T       Fa     
+ T   T       Tr     
+-------------------
+
+-----------------------------------------------------------------------------
+ $P  $Q  $P ^ $Q  ~ $P  ~ $Q  (~ $P) ^ (~ $Q)  ($P ^ $Q) | ((~ $P) ^ (~ $Q)) 
+-----------------------------------------------------------------------------
+ F   F      F      T     T           T                   Tr               
+ T   F      F      F     T           F                   Fa               
+ F   T      F      T     F           F                   Fa               
+ T   T      T      F     F           F                   Tr               
+-----------------------------------------------------------------------------
+
+20. Use a truth table to show that p->q and ~q->~p are logically equivalent.
+  (Show that the biconditional of the two expressions is a tautology.)
+
+-----------------------------------------------------------------------------------
+ $P  $Q  $P => $Q  ~ $Q  ~ $P  (~ $Q) => (~ $P)  ($P => $Q) <=> ((~ $Q) => (~ $P)) 
+-----------------------------------------------------------------------------------
+ F   F      T       T     T           T                      T                 
+ T   F      F       T     F           F                      T                 
+ F   T      T       F     T           T                      T                 
+ T   T      T       F     F           T                      T                 
+--------------------------------------------------------------------------------
+
+21. An expression is satisfiable if at least one assignment of truth values 
+    makes the expression true. Is the statement below satisfiable? Use the 
+    lisp validity function to confirm that your answer is correct by pasting 
+    this into the Lisp logic engine: 
+   (validity "( P | Q | ~R ) ^ ( P | ~Q | ~S ) ^ (P | ~R | ~S) ^ (~P | ~Q | ~S) ^ (P | Q | ~S)") 
+
+Statement:
+    ( p v q v ~r )^( p v ~q v ~s )^(p v ~r v ~s)^(~p v ~q v ~s)^( p v q v ~s)
+
+Satisfiable
+
+22. Find an assignment of p, q, r and s to make the expression above true. Note 
+    that each clause in the expression must be true:
+
+       1             2                3                4                 5
+( p | q | ~r ) ^ ( p | ~q | ~s ) ^ (p | ~r | ~s) ^ (~p | ~q | ~s) ^ ( p | q | ~s)
+  T   F    T   T   T    T    T   T  T   T     T  T   F    T    T  T   T   F    T
+
+23. Confirm by a truth table that these two expressions are equivalent:
+         Expression 1. (p^q)^r  Expression 2. p^(q^r) 
+
+----------------------------------------------------------------------------------
+ P  Q  R  P ^ Q  (P ^ Q) ^ R  Q ^ R  P ^ (Q ^ R)  ((P ^ Q) ^ R) <=> (P ^ (Q ^ R)) 
+----------------------------------------------------------------------------------
+ F  F  F    F       F           F      F                         T                
+ T  F  F    F       F           F      F                         T                
+ F  T  F    F       F           F      F                         T                
+ T  T  F    T       F           F      F                         T                
+ F  F  T    F       F           F      F                         T                
+ T  F  T    F       F           F      F                         T                
+ F  T  T    F       F           T      F                         T                
+ T  T  T    T       T           T      T                         T                
+----------------------------------------------------------------------------------
+
+Yes, it is a tautology.
+
+
+24. Construct a truth table for this expression. Is it a tautology?
+              (p^ ( p -> q)) -> q
+
+------------------------------------------------------------
+ $P  $Q  $P => $Q  $P ^ ($P => $Q)  ($P ^ ($P => $Q)) => $Q 
+------------------------------------------------------------
+ F   F      T               F                         T            
+ T   F      F               F                         T            
+ F   T      T               F                         T            
+ T   T      T               T                         T            
+------------------------------------------------------------
+
+Yes, it is a tautology.
+
+25. Construct a truth table for this expression. Is it a tautology?  
+            ( ~p ^ (p -> q) ) -> ~q
+
+------------------------------------------------------------------------------------
+ $P  $Q  ~ $P  $P => $Q  (~ $P) ^ ($P => $Q)  ~ $Q  ((~ $P) ^ ($P => $Q)) => (~ $Q) 
+------------------------------------------------------------------------------------
+ F   F    T       T               T            T                          T                
+ T   F    F       F               F            T                          T                
+ F   T    T       T               T            F                          F                
+ T   T    F       T               F            F                          T                
+------------------------------------------------------------------------------------
+
+
+It is not a tautology, because the result column is TTFT.
+
+26. Use logical equivalences to show that the expression below is NOT a 
+    tautology by simplifying the expression to something obviously not always
+    true.
+        (~p^(p->q)) -> ~q 
+(~p^(~p v q)) -> ~q
+~((~p^~p)v(~p^q)) v ~q
+~(~p v (~p ^ q)) v ~q
+~(~p v F) v ~q
+~(~p) v ~q
+p v ~q
+  T   
+  T   
+  F   
+  T   
+
+27. Are these two expressions logically equivalent?
+        ~((p v q) ^ ~(p ^ q))  == (p <-> q)
+
+  First construct a truth table. The definition of XOR is (p v q) ^ ~(p ^ q).
+  What are the result columns and are they identical?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ $P  $Q  $P | $Q  $P ^ $Q  ~ (^ $P $Q)  ($P | $Q) ^ (~ (^ $P $Q))  ~ (^ (| $P $Q) (~ (^ $P $Q)))  $P <=> $Q  (~ (^ (| $P $Q) (~ (^ $P $Q)))) <=> ($P <=> $Q) 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ F   F      F        F          T                   F                            T                    T                                       T                        
+ T   F      T        F          T                   T                            F                    F                                       T                        
+ F   T      T        F          T                   T                            F                    F                                       T                        
+ T   T      T        T          F                   F                            T                    T                                       T                        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+The two expressions are not logically equivalent, because the result column is TFFT.
+
+28. Is the compound statement below satisfiable? Use the Lisp logic engine to 
+    check your work.
+     1          2          3           4           5           6 
+(~p|~q|r) ^ (~p|q|~s) ^ (p|~q|~s) ^ (~p|~r|~s) ^ (p|q|~r) ^ (p|~r|~s) 
+
+(validity "(~p|~q|r) ^ (~p|q|~s) ^ (p|~q|~s) ^ (~p|~r|~s) ^ (p|q|~r) ^ (p|~r|~s)");
+SATISFIABLE 

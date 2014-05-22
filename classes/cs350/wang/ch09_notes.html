@@ -1,0 +1,632 @@
+<html>
+<style type=text/css> 
+body
+   { margin : 5% 5% 5% 5%; }
+</style>
+<body> 
+<h3> CMPS 350 LECTURE NOTES - SUBPROGRAMS </h3>
+<a href="./Code/C++/functions.cpp">C++</a> <br>
+<a href="./Code/Ada/hw09.adb">Ada</a> <br>
+<a href="./Code/C_sharp/sample6.cs">C# code</a> <br>
+<a href="./Code/Python/functions.py">Python code</a> <br>
+
+<font face="Courier" style="font-size: 12pt; font-weight: 500">
+<pre class=verbatim> 
+<b>A SUBPROGRAM...</b>
+
+o  is also called a subroutine, a function, a procedure, a method
+o  is a collection of statements that can be reused - thus a process 
+   abstraction (data abstraction began later)
+o  has a single entry point
+o  suspends execution of the calling program during execution of the called 
+   subprogram 
+o  returns control to caller when the called subprogram terminates
+o  includes a mechanism to pass parameters for parameterized computations and 
+   to return a value
+o  that is semantically modeled on a mathematical function should only return 
+   a value and not produce side effects (i.e. functional languages) 
+ 
+<b>SUBPROGRAM TERMINOLOGY</b>
+
+A <u>subprogram definition</u> describes the interface to and the actions 
+of the subprogram abstraction
+
+A <u>subprogram call</u> is an explicit request that the subprogram be 
+executed
+
+A <u>subprogram header</u> is the first part of the definition, includes 
+name, type of subprogram, and formal parameters
+
+The <u>parameter profile</u> (aka signature) of a subprogram is the number, 
+order, and types of its parameters
+
+The <u>protocol</u> is a subprogram's parameter profile and, if it is a 
+function, its return type  
+
+A <u>subprogram declaration (or prototype)</u> provides the protocol, but not 
+the body, of the subprogram 
+
+A <u>formal parameter</u> is a dummy variable listed in the subprogram 
+header and used in the subprogram
+
+An <u>actual parameter</u> (also called argument) represents a value or 
+address used in the subprogram call statement 
+
+<div style="border:1px dashed; background-color: #AAAAAA; padding: 5%;">
+    /* Actual to Formal Parameter Correspondence */
+    int test ( int num ) {    <== formal/dummy parameter
+       return num++;
+    }
+    int my_num = 5;
+    test(my_num);             <= actual parameter 
+
+</div>
+<u>Positional binding</u> is the binding of actual parameters to formal 
+parameters by position: the first actual parameter is bound to the first 
+formal parameter and so forth (safe and effective); C/C++/Java do this.
+
+<u>Keyword binding</u> occurs when the name of the formal parameter to which 
+an actual parameter is to be bound is specified with the actual parameter
+ - parameters can appear in any order - <a href="http://www.cs.csub.edu/~donna/cs350/Code/Python/functions.py">(see Python)</a>
+
+<u>Formal Parameter Default Values</u>
+In certain languages (e.g., C++, Ada), formal parameters can have default 
+values (if not actual parameter is passed)
+In C++, default parameters must appear last because parameters are 
+positionally associated (<a href="./Code/C++/Polymorphism/circle.h">ex. C++</a>)
+
+<u>Variable Number of Parameters</u>
+<a href="./Code/Python/functions.py">Python</a> supports variable length parameter lists through *name syntax;
+C# methods can accept a variable number of parameters as long as they are 
+of the same type
+
+<b>DESIGN ISSUES</b>
+
+o  What parameter passing methods are provided? (in C pass-by-value only)
+o  Are parameter types checked?  (in C yes but in Perl no)
+o  Are local variables static or dynamic?  (in C dynamic by default)
+o  Can subprograms be nested?   (not in ANSI C but yes in GNU C)
+o  Are subprograms treated as first class objects?  (not in C but yes in Python)
+o  Can subprograms be overloaded?  (not in C but yes in C++)
+o  Can subprogram be generic?   (C++ templates)
+
+<hr>
+<b>LOCAL REFERENCING ENVIRONMENTS</b>
+
+<u>stack-dynamic local variables</u> 
+o this is the default practice
+o variables are bound/unbound to storage at runtime
+o supports recursion
+o storage for locals is shared among some subprograms
+o run-time overhead of allocation/de-allocation and initialization 
+o indirect addressing (inefficient and security problems) 
+o subprograms cannot be history sensitive
+
+<u>static local variables</u>
+o variables are bound/unbound to storage at compile time 
+o more efficient (no indirection): <a href="./Code/C/timing.c">see timing.c</a>
+o no run-time overhead
+o cannot support recursion
+
+<hr>
+<b>FIVE PARAMETER PASSING METHODS</b>
+
+The three semantic modes (in mode, out mode and inout mode) are implemented
+by one of the following 5 mechanisms.
+<SPAN STYLE="Background-Color : yellow">
+<u>Pass-by-Value (In Mode)</u>
+</SPAN>
+o semantics: pass a value in; do not change it within the function or in caller
+o The R-value of the actual parameter is copied to the R-value of the formal
+  parameter
+o copying requires additional storage and copy operation (can be costly) 
+o All parameters in C and Java are pass-by-value ("pass by reference" is
+  really passing a reference or pointer by value) (<a href="./Code/Java/Functions.java">see Java code</a>)
+
+<div style="border:1px dashed; background-color: #AAAAAA">
+    // use of const to enforce In Mode parameter passing semantics
+    test(const int formal) {         
+       int result = 100/formal; 
+       formal = formal + 1;   <= compilation error
+    } 
+    int actual = 5;
+    test(actual);  // the R-value of actual is copied to R-value of formal       
+</div>
+<SPAN STYLE="Background-Color : yellow">
+<u>Pass-by-Value-Result (Inout Mode)</u> (also called pass-by-copy)
+</SPAN>
+o pass the value coming in and pass the value out upon exit (two copies)
+o On call, r-values of actuals are passed and copied to r-values of formals 
+o On return, r-values of formals are copied back to r-values of actuals 
+o has the disadvantage of pass-by-value  (copying cost)
+o advantage over pass-by-reference is no dereferencing
+
+   This mechanism is implemented in Fortran. 
+
+<SPAN STYLE="Background-Color : yellow">
+<u>Pass-by-Reference (Inout Mode)</u> (also called pass-by-sharing)
+</SPAN>
+o the l-value of the actual parameter is assigned to the l-value of the actual 
+  parameter 
+o the semantics supports an assignment statement in the callee that modifies
+  the value in the calling routine
+
+<div style="border:1px dashed; background-color: #AAAAAA">
+  // demonstrate the difference between C++ pass-by-ref and 
+  // C pass-by-value pointer 
+  void foo(int & x){
+     x = 5;   <== C++ modifies actual parameter 
+  }
+  void foo (int * x)
+  {
+     x = 0;   <== C does NOT modify actual parameter 
+  }
+</div>
+o Passing process is efficient (no copying or duplicated storage)
+o more secure than the use of pointers - cannot modify the pointer address
+o <a href="./Code/C++/functions.cpp">see C++ code </a> with reference type (&)
+
+Disadvantages:
+o potentials for un-wanted side effects (as with any out mode parameter)
+o un-wanted aliases (access broadened)
+
+<div style="border:1px dashed; background-color: #AAAAAA">
+// demonstrate pass by reference in C# with keyword 'ref' (<a href="./Code/C_sharp/sample6.cs">see code</a>)
+   void Foo (ref int x) 
+   {
+      x = 0;   // will modify y in calling routine  
+   }
+   ...
+
+   int y=5; 
+   Foo (ref y);
+   Console.WriteLine ("{0} \n",y);   // will print 0
+
+</div>
+<SPAN STYLE="Background-Color : yellow">
+<u>Pass-by-Result (Out Mode)</u>
+</spaN>
+o no value is transmitted to subprogram
+o the corresponding formal parameter must be an L-value; its value is 
+  transmitted to caller's actual parameter upon return
+o cannot be accessed until AFTER subprogram call 
+o if implemented by copy rather than access path (typically is) requires
+  extra storage and copy operation
+
+<div style="border:1px dashed; background-color: #AAAAAA">
+// demonstrate pass-by-result in C# with 'out' keyword (<a href="./Code/C_sharp/sample6.cs">see code</a>)
+
+  void Foo (out int x)
+  {
+
+    // int a = x; <== compilation error if try to read x here 
+    x = 10;  // assignment must occur for method to complete normally
+    int a = x; // The value of x can be read now
+  }
+
+  int y;   // declare a variable with no value assigned to it 
+  Foo (out y);   // pass y in as an output parameter
+  Console.WriteLine (y);  // prints 10 
+
+</div>
+
+Semantic Difficulties:
+ Passing the same L-value to more than one result parameter:
+ sub(p1, p1); // what is the current value of p1?
+
+ Potential problem: evaluation time of actual parameters can impact result;
+ if list[index] is passed in and index changed in the subroutine (as global
+ or pass by result), the address of list[index] will differ between call
+ and return. 
+
+<SPAN STYLE="Background-Color : yellow">
+<u>Pass-by-Name (Inout Mode)</u>
+</SPAN>
+o Formals are bound to an access method at the time of the call, but actual 
+  binding to a value or address takes place at the time of a reference or 
+  assignment at runtime
+o Allows flexibility in late binding
+o Used by Algo 60, Miranda, Haskell
+   
+<div style="border:1px dashed; background-color: #AAAAAA">
+// demonstrate pass-by-name for virtual functions (polymorphism) in C++:
+  Circle c;         // Circle is a Shape  
+  test(c);          
+  void test ( Shape & s ){  
+      s.update();  // late binding of s.update() to Circle c object 
+  }
+  
+</div>
+<b>IMPLEMENTING PARAMETER-PASSING METHODS</b>
+
+o In most languages, parameter communication takes place thru run-time stack
+
+o Pass-by-reference is the simplest to implement; only an address is placed 
+  in the stack
+
+o A subtle but fatal error can occur with pass-by-reference and 
+  pass-by-value-result: a formal parameter corresponding to a constant can 
+  mistakenly be changed
+
+o The security of pass-by-value is eliminated when the value passed is a
+  pointer (<a href="./Code/C/functions.c">see C code</a>)
+
+<u>Parameter Passing Methods of Major Languages</u>
+o Fortran
+  Always used the Inout semantics model
+  Before Fortran 77: pass-by-reference
+  Fortran 77 and later: scalar variables are often passed by value-result
+
+o C
+  Everything is pass-by-value
+  Pass-by-reference is "simulated" by passing a pointer by value
+
+o C++
+  pass-by-value, pass-by-reference, pass-by-name <a href="./Code/C++/functions.cpp">(see code)</a> 
+
+o Java
+  Everything is pass-by-value (<a href="http://java.sun.com/docs/books/tutorial/java/javaOO/arguments.html">see docs</a>)
+  For object parameters, a reference is passed by value (see Java docs) in the
+  same way that C passes pointers - except programmer has no access to the
+  pointer <a href="./Code/Java/Functions.java">(see code)</a>
+
+o Ada
+  Three semantics modes of parameter transmission: IN, OUT, IN OUT; 
+  IN is the default mode
+  Formal parameters declared out can be assigned but not referenced; those 
+  declared in can be referenced but not assigned; in out parameters can be 
+  referenced and assigned <a href="./Code/Ada/hw09.adb">(see code)</a> <br>
+
+o C#
+  Default method: pass-by-value
+  Pass-by-reference is specified by preceding both a formal parameter and 
+  its actual parameter with 'ref'
+  Pass-by-result is specified by preceding both a formal parameter and 
+  its actual parameter with 'out' 
+  <a href="./Code/C_sharp/sample6.cs">(see code)</a>
+
+o PHP: 
+  Default method: pass-by-value
+  Use & to <a href="http://www.php.net/manual/en/functions.arguments.php">pass by ref</a> ; more examples of <a href="http://www.php.net/manual/en/functions.arguments.php">parameter passing</a>
+
+o Perl: all actual parameters are implicitly placed in a predefined array 
+  named @_  <a href="./Code/Perl/test.pl">(see code)</a> 
+
+o Python:
+  A parameter reference (address) is passed by value (like C and Java); 
+  immutable objects in the caller cannot be changed in the callee but 
+  mutable objects (lists for example) can be changed in the callee.
+  see <a href="./Code/Python/functions.py">functions.py</a> for examples. 
+
+  The author of Python (Guido van Rossum) calls this parameter passing scheme 
+  "call by object reference." (<a href="./Code/Python/functions.py">see code</a>):
+
+<div style="border:1px dashed; background-color:#AAAAAA;">
+  def one():
+     x = 1            # a scalar is immutable
+     two(x)      
+     print "x:" x    
+     alist = [0,1]
+     three(alist)
+     print "alist: " alist
+
+  def two(y):     
+     y = 2
+
+  def three(blist):   # binds blist to alist  
+     blist.append(2)  # a list is mutable so blist and alist become [0,1,2]
+     blist = []       # binds blist to a null list but alist is not changed 
+ 
+  one()               # prints  x: 1    alist: [0,1,2]
+</div>
+
+<hr>
+<b>TYPE CHECKING PARAMETERS</b>
+
+o Considered essential for reliability
+o FORTRAN 77 and original C: none
+  Pascal, FORTRAN 90, Java, and Ada: it is always required
+  ANSI C and C++: choice is made by the user via function prototypes
+  Relatively new languages Perl, JavaScript, and PHP do not require type 
+  checking <a href="./Code/PHP/functions.txt">(see code)</a>
+
+<div style="border:1px dashed; background-color:#AAAAAA;">
+      &lt;?php
+      $num = 5;
+      Test($num,"hello");
+      Test("hello",$num);
+
+      function test( $first, $second) {
+          echo "$first and $second &lt;br>";
+      }
+      ?>
+</div>
+ Parametric Polymorphism refers to languages that generally enforce
+ parameter type checking and yet also support shift-changing of types
+ at runtime. This ability is part of a wider concept known as
+ generic programming.
+ <p>
+ Ada (static, strongly typed) and C++ (static, somewhat strongly typed) 
+ both support Parametric Polymorphism. In Ada it is through  the
+ keyword 'generic' applied to types, subscript ranges, and constant values.
+ In C++ it is through inheritance and
+ the keyword 'virtual' applied to base class
+ methods.
+<div style="border:1px dashed; background-color:#AAAAAA;">
+  generic
+  type element is private;
+  type Index is (<>);
+  type Vector is array (Index) of Element;
+  procedure Generic_Sort (List) : in out Vector ) is
+     Temp : Element;
+     Lower_Bound : List'First;
+     Upper_Bound : List'Range;
+     Index_1: List'Range;
+     Index_2 : List'Range;
+     Outer_limit : List'Range;
+     Inner_Begin : List'Range;
+     begin
+     Outer_Limit : Upper_Bound - 1;
+     for Index_1 in Lower_Bound .. Outer_Limit loop
+         Inner_Begin := Index_1 + 1;
+        for Index_2 in Inner_Begin .. Upper_Bound loop
+            if List(Index_1) > List(Index>2) then
+                temp := List(Index_1);
+                List(Index_1) := List(Index_2);
+                List (Index_2) := Temp;
+            end if;
+        end loop; -- for Index_1
+      end Loop; -- for Index_2
+  end Generic_Sort; 
+
+</div>
+
+<b>MULTIDIMENSIONAL ARRAYS AS PARAMETERS</b>
+    
+If a multidimensional array is passed to a subprogram, the compiler needs 
+the declared size of that array to build the storage mapping function
+
+In languages where n-dimen arrays are implemented as a single dimension, 
+such as C and C++, the declared sizes of all but the first subscript must 
+be included in the actual parameter. WHY? (<a href="./Code/C/arrays.c">see C code</a>) 
+
+Makes subprograms inflexible
+
+Solution: pass a pointer to the array and the sizes of the dimensions as 
+other parameters; the user must include the storage mapping function in 
+terms of the size parameters
+
+Java and C#
+ o Arrays are objects; they are all single-dimensioned, but the elements can 
+   be arrays
+ o Each array inherits a named constant (length in Java, Length in C#) that 
+   is set to the length of the array when the array object is created
+
+PHP  
+  o all arrays (indexed or associative) are internally stored as associative 
+<hr>
+<b>Design Considerations for Parameter Passing </b>
+
+A tradeoff between efficiency (two-way) and security (one-way)
+
+Security demands limited access to variables, which means one-way 
+whenever possible
+
+Pass-by-reference is more efficient than any other method - no dereferencing
+to acquire memory address; const & is the safest and most efficient. 
+   
+<hr>
+<b>SUBPROGRAMS PASSED AS PARAMETERS </B>
+
+o Are parameter types checked?
+
+o What is the correct referencing environment for the subprogram?
+
+In C/C++, a function can be passed as a parameter by passing a
+  pointer to the function; functions as parameters are type checked (<a href="./Code/C/Semaphores/main.c"> see C code </a> )
+
+PHP has some built-in support for passing functions in functions <a href="./Code/PHP/functions.txt">(see code)</a>  
+ <a href="./Code/PHP/functions.php">RunIt</a>
+
+In Python functions are treated like first-class objects (no differently than
+data); functions can be passed to a function like any other type 
+parameters are not checked (<a href="./Code/Python/functions.py">see code</a>)
+<hr>
+<b>NESTED SUBPROGRAMS PASSED AS PARAMETERS</b>
+
+ANSI C/C++ do not support nested subprograms. Ada, GNU gcc, and JavaScript do.
+
+Referencing Environment for Nested Subprograms 
+
+<u>Shallow binding:</u> The environment of the call statement that enacts the 
+passed subprogram (applicable to languages that use dynamic scoping)
+
+<u>Deep binding:</u> The environment of the definition of the passed subprogram
+(applicable to languages that use static scoping)
+
+<u>Ad hoc binding:</u> The environment of the call statement that passed the 
+subprogram 
+
+<div style="border:1px dashed; background-color:#AAAAAA;">
+// JavaScript Example 
+// What is the referencing environment of sub2?
+
+function sub1(){
+    var x = 1;
+    function sub2(){   //x=1 if static environment of function definition
+      alert(x);
+    };
+    function sub3(){
+      var x = 2;
+      sub4(sub2);     //x=2 if static environment of the call statement  
+    };
+    function sub4(subx){
+        var x = 3;
+        subx();      //x=3 if dynamic environment of function execution
+    }
+    sub3();
+};
+
+</div>
+<SCRIPT>
+function sub1(){
+    var x = 1;
+    function sub2(){ 
+      alert(x);
+    };
+    function sub3(){
+      var x = 2;
+      sub4(sub2);    
+    };
+    function sub4(subx){
+        var x = 3;
+        subx();    
+    }
+    sub3();
+};
+</SCRIPT>
+<form>
+<input type="button" value="Execute sub1( )"  bgcolor="yellow"
+           onClick="sub1(); return false;"> 
+</form>
+<hr>
+<b>OVERLOADED SUBPROGRAMS</B>
+
+An overloaded subprogram is one that has the same name as another 
+subprogram in the same referencing environment
+
+Every version of an overloaded subprogram has a unique protocol
+
+C++, Java, C#, and Ada include predefined overloaded subprograms 
+
+In Ada, the return type of an overloaded function can be used to 
+disambiguate calls (thus two overloaded functions can have the same 
+parameters)
+
+Ada, Java, C++, and C# allow users to write multiple versions of 
+subprograms with the same name (e.g. name mangling) <a href="./Code/C++/date.h">(see code)</a>
+
+PHP does not support function overloading, nor is it possible to undefine 
+or redefine previously-declared functions.
+<hr>
+<B>GENERIC SUBPROGRAMS</B>
+
+A generic or polymorphic subprogram takes parameters of different types on 
+different activations
+
+Overloaded subprograms provide ad hoc polymorphism
+
+A subprogram that takes a generic parameter that is used in a type 
+expression that describes the type of the parameters of the subprogram 
+provides parametric polymorphism
+
+Examples of parametric polymorphism: C++
+
+    template &lt;class Type>
+    Type max(Type first, Type second) {
+        return first > second ? first : second;
+    }
+    
+    The above template can be instantiated for any type for which operator > 
+    is defined
+    
+    int max (int first, int second) {
+    return (first > second) ? first : second;
+    }
+   
+<hr>
+<B> DESIGN ISSUES FOR FUNCTIONS</B>
+
+o Are side effects allowed? 
+o Parameters should always be in-mode to reduce side effect (like Ada)
+o What types of return values are allowed? 
+  - most imperative languages restrict the return types
+  - C allows any type except arrays and functions
+  - C++ is like C but also allows user-defined types
+  - Ada allows any type
+  - Java and C# do not have functions but methods can have any type
+
+<hr>
+<B>USER-DEFINED OVERLOADED OPERATORS</B>
+
+Operators can be overloaded in Ada and C++
+
+An Ada example to overload * to support vectors (can also do this in C++):
+
+    Function R*S(A,B: in Vec_Type): return Integer is
+      Sum: Integer := 0;
+      begin
+         for Index in A <== range loop
+             Sum := Sum + A(Index) * B(Index)
+         end loop
+      return sum;
+    end R*S;
+    
+    c = a * b; <== where a, b, and c are of type Vec_Type
+
+<hr>
+<b>COROUTINES</b>
+
+(<a href="http://en.wikipedia.org/wiki/Coroutine">see wiki</a>)
+
+Threads involve simultaneous execution and coroutines involve interleaved 
+execution
+
+Threads are designed to solve complex and processor intensive problems
+
+Coroutines solve problems in which there is a symmetric relationship
+between two subroutines
+
+In coroutines the caller and called coroutines are on a more equal basis
+
+A traditional subroutine has one entry (the call) and one exit (the return)
+
+In coroutines there may be multiple entries and exits (a subroutine is a 
+special case of coroutine)
+
+Coroutines may repeatedly resume each other forever
+
+The first time a coroutine is invoked, execution starts at the beginning of the
+coroutine; each subsequent time a coroutine is invoked, execution resumes 
+following the place where the coroutine last returned (yielded).
+
+A coroutine can return multiple times, making it possible to return additional 
+values upon subsequent calls to the coroutine. Coroutines in which subsequent 
+calls yield additional results are often known as generators.
+
+
+Subroutines require a single stack preallocated at the beginning of program 
+execution
+
+Coroutines are best implemented using continuations on additional stacks
+(languages with automatic garbage collection are best for this reason) 
+
+Example (note that two threads are not required to do this):
+
+<div style="border:1px dashed; background-color:#AAAAAA;">
+var q := new queue
+
+coroutine produce
+    loop
+        while q is not full
+            create some new items
+            add the items to q
+        yield to consume
+
+coroutine consume
+    loop
+        while q is not empty
+            remove some items from q
+            use the items
+        yield to produce
+
+</div>
+   
+<a href="./Code/Python/generators.py">Python generators</a> 
+* Python generators are close to coroutines
+<a href="./Code/Python/coroutines.py">Python coroutines</a> 
+* Python 2.5 supports coroutines
+
+</pre>
+</body>
+</html> 

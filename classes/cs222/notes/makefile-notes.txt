@@ -1,0 +1,12 @@
+all: adventure
+
+clean:
+	rm *.o adventure
+
+adventure: list of all necessarry files string_functions.o
+	how to compile
+
+//Creates .o file from files passed directly after colon
+string_functions.o: string_functions.h string_functions.cpp
+	g++ -c string_functions.cpp
+//second line must start with a tab

@@ -1,0 +1,537 @@
+<html>
+<head>
+<font face="Courier" style="font-size: 12pt; font-weight: 500">
+<h3>CMPS 350 WTR 2008 EXAM 01 SOLUTIONS&nbsp;&nbsp;&nbsp; / 50</h3>
+* questions that over 50% of the class missed
+<pre>
+*1. In the following C code, Line 1 is illegal. (True / False)
+
+      int a = 5, b = 6;
+      int *aptr = &a;  
+      int *bptr = &b; 
+      int * cptr = aptr + bptr;  //  Line 1 
+ANS:A 
+
+*2. Assume you have a class Student that uses dynamic memory allocation for
+   the student's name: 
+ 
+      char * name; 
+ 
+    This code will produce cross-linked pointers under what circumstances?
+    Student One("Sam Spade");
+    Student Two("Joe Smoo")
+    One = Two;  
+
+   A. if a bit copy is used for the assignment statement
+   B. if this code is executed:    strcpy("Foo Bar",Two.name); 
+   C. both A and B are correct
+ANS: A
+
+3. What is the primary disadvantage of having too many features in a language?
+   A. writability  B. reliability    C. readability 
+ANS: C 
+
+4. Which of the following is not a factor in readability?
+   A. orthogonality     B. type checking
+ANS:  B    
+
+5. What language used orthogonality as a primary design criterion?
+   A. Ada       B. ALGOL 68    C.  Java    D. Python
+ANS: B
+
+6. Using a different closing reserved word or symbol for each kind of control 
+   statement will improve what?
+   A. readability           B. writeability           C. both A and B
+ANS: A
+
+7. What construct of a programming language provides process abstraction?
+   A. subprograms  B. if statements  C. while loops  D. all choices are correct
+ANS: A
+
+*8. Which two deficiencies were discovered as a result of research in software 
+   development in the 1970s, resulting in languages such as Pascal?
+   A. Insufficient control statements and type checking
+   B. Insufficient control statements and insufficient data types
+ANS: A
+
+*9. When is the symbol table created?
+   A. during preprocessing
+   B. during compilation
+   C. during program execution
+ANS: B
+
+10. Speedcoding was invented by a team led by John Backus in 1953 for the IBM 
+    701. Speedcoding overcame two significant shortcomings of computer hardware 
+    of the early 1950s. These shortcomings were
+
+    A. core memory and index registers
+    B. core memory and floating-point hardware
+    C. floating-point hardware and magnetic storage
+ANS: A
+
+11. A lambda expression in Lisp is equivalent to a function in C. (True / False)
+ANS: B
+
+12. What missing language element of ALGOL 60 damaged its chances for 
+    widespread use? (One of the design goals of ALGOL was portability.)
+
+    A. dynamic memory 
+    B. input/output statements
+    C. pass by reference
+ANS: B
+
+13. Which language provided the basis of all subsequent imperative languages,
+    although the language itself was never widely used.
+
+    A. PL/I     B. ALGOL     C. Ada    D.  SIMULA
+ANS B 
+
+14. Which language was the first widely used time-sharing language?
+    A. PL/I     B. ALGOL     C. BASIC    D.  SIMULA
+ANS C 
+
+15. Perl was originally based on what?
+    A. C and Unix shell utilities (awk, sed, sh) 
+    B. C and assembly
+    C. Fortran and C
+ANS: A
+
+16. Ada was primarily designed for what application area?
+    A. engineering 
+    B. business 
+    C. military 
+    D. embedded systems
+ANS: D
+
+17. Which language was developed specifically for web programming?
+    A. PHP      B. Python      C. Ruby    D. Perl
+ANS: A 
+
+*18. Which of the following features are in C# but not in Java?
+    A. methods that exist outside classes
+    B. pointers and pass by reference
+    C. both A and B 
+ANS: C; ANSWER INCORRECT IN HOMEWORK #2 - MY MISTAKE
+
+19. Which is the primary means of computation for an imperative language?   
+    A. arithmetic operators    B. the assignment statement   
+ANS: B
+
+20. What will be returned by this code under static scoping rules?
+      x = 0;
+      int f () { return x; }
+      int g () { int x = 1; return f(); }
+     A. 1        B. 0      C. f()
+ANS: B 
+	
+21. The following are all lexemes in the Java language. (True / False)
+     ++     
+     literal    
+     ;      
+     while 
+ANS: B
+	
+Grammar 1:
+    &lt;assign> -> &lt;id> = &lt;expr>
+    &lt;id> -> A | B | C 
+    &lt;expr> -> &lt;expr> + &lt;term> | &lt;term>
+    &lt;term> -> &lt;term> * &lt;factor>  | &lt;factor>
+    &lt;factor> -> ( &lt;expr> ) | &lt;id>
+
+*22. What is true concerning Grammar 1?
+    A. * has precedence over + 
+    B. + is right associative.      
+    C. Both statements are true
+ANS:  A
+
+Grammar 2:
+     &lt;assign> -> &lt;id> = &lt;expr>
+     &lt;id> -> A | B | C
+     &lt;expr> -> &lt;id> + &lt;expr> | &lt;id> * &lt;expr> | ( &lt;expr> ) | &lt;id>
+
+23. The following statement is valid in the language defined by Grammar 2.
+    (True / False)
+
+    A = (A *  B) + (C + B)
+ANS: B
+                                                    
+Grammar 4:
+    &lt;assign> -> &lt;id> = &lt;expr>
+    &lt;id> -> A | B | C 
+    &lt;expr> -> &lt;expr> + &lt;term> | &lt;term>
+    &lt;term> -> &lt;term> * &lt;factor>  | &lt;factor>
+    &lt;factor> -> ( &lt;expr> ) | &lt;id>
+
+24. Using grammar 4, a partial leftmost derivation is started for statement:
+
+    A = ( A + B) * C
+
+    &lt;assign> => &lt;id> = &lt;expr>
+                => A  =  &lt;expr>
+
+    The next sentential form is        
+          A = &lt;term>
+    (True / False)
+ANS: A 
+
+25. By Grammar 4, the parse tree below is correct for the following statement:
+    A = ( A + B) * C
+
+                    &lt;assign> 
+                   /   |   \ 
+                 &lt;id>  =   &lt;expr>
+                  |          |
+                  A       &lt;term>   
+                         /   |  \
+                      &lt;term> * &lt;factor>
+                        |          |
+                     &lt;factor>     &lt;id>
+                        |          |
+                    ( &lt;expr> )     C 
+                     /  |  \       
+                &lt;expr>  + &lt;term>   
+                  |         |
+                &lt;term>    &lt;factor>
+                  |         |
+                &lt;factor>   &lt;id>
+                  |         |
+                 &lt;id>       B
+                  |
+                  A 
+   (True / False)
+ANS: A 
+
+*26. The following grammar is ambiguous.  (True / False)
+
+   &lt;S> -> &lt;A>
+   &lt;A> -> &lt;B>a + &lt;A>  | &lt;id>
+   &lt;B> -> b&lt;id>
+   &lt;id> -> a | b | c
+
+ANS: B
+
+27. This grammar defines the set of all strings of 2 or more 'a's followed by 
+    2 or more 'b's followed by 2 or more 'c's.
+   (True / False)
+ANS: B
+   &lt;S> -> &lt;A>&lt;B>&lt;C> 
+   &lt;A> -> b&lt;A> | a 
+   &lt;B> -> b&lt;B> | b 
+   &lt;C> -> c&lt;C> | c 
+
+28. Consider the grammar:
+   &lt;S> -> &lt;A> a &lt;B> b
+   &lt;A> -> &lt;A> b | b 
+   &lt;B> -> a &lt;B> | a
+
+   Which of the following strings is in the language defined by this grammar?
+   A. bbbab     B. baab    C. bbaaaaa    
+ANS: B 
+
+29. The set of strings with equal numbers of 'a's, 'b's, and 'c's in that 
+    order is
+    A. a context-free language   
+    B. a context-sensitive language  
+    C. an unrestricted language
+    D. a regular language
+ANS: B
+
+30. Consider the grammar
+    S -> AB | AD
+    A -> Aa | b
+    B -> Bb | a
+    D -> cDc | d 
+
+   Which of the following is NOT a valid string in the language?
+   A. ba       B. bbbbab        C. aaaacccc         D. bccdcc   
+ANS: C
+
+31. What problem would an attribute grammar most likely be able to solve?
+    A. A divide by zero error.
+    B. Declaring the same variable more than once in a block.
+    C. Either choice would be equally likely. 
+ANS: B
+
+32. Would is true concerning an attribute grammar?
+    A. An attribute grammar adds context sensitive information to a 
+       context-free grammar. 
+    B. An attribute grammar describes some behavior of a program at runtime.
+    C. Both statements are true.
+ANS: A  
+
+*33. What is Size in the following attribute grammar? ('<-' means assignment)
+
+       &lt;astring> ::= &lt;astring>[2] a
+       Size(&lt;astring>) <- Size(&lt;astring>[2]) + 1  
+
+   A. an inherited attribute
+   B. a synthesized attribute        
+ANS: B; in the rule , the "parent" is getting data from the "child"
+
+Attribute Grammar 1.
+   BNF grammar:
+   1. &lt;assign> -> &lt;var> = &lt;expr>
+   2. &lt;expr> -> &lt;var> + &lt;var> 
+   3.              | &lt;var>
+   4. &lt;var> -> A | B | C
+
+  Attribute:
+  o actual_type: stores actual data type
+
+  BNF Grammar with semantic functions and predicates added: 
+  1.  &lt;assign> -> &lt;var> =  &lt;expr>
+  2.  &lt;expr> -> &lt;var>[2] + &lt;var>[3]
+    Predicate: &lt;var>[2].actual_type == &lt;var>[3].actual_type)
+  3.  &lt;expr> -> &lt;var>
+  4.  &lt;var> -> A | B | C 
+    Semantic rule: &lt;var>.actual_type &lt;- lookup (&lt;var>.string)
+
+*34. The predicate in this attribute grammar ensures what?
+    A. Data types cannot be mixed in expressions.
+    B. Assignment statements need not have the same types on both sides of 
+       the assignment operator.
+    C. Both A and B are true.
+    D. Both A and B are false.
+ANS: C
+
+35. The decorated parse tree for the assignment statement below, assuming 
+    B is type 'int' and C is type 'real' is correct. (True / False)
+
+        A = B + C
+                          &lt;assign>
+                         /          \
+                     &lt;var>   =     &lt;expr>
+                      |           /         \ 
+                      A      &lt;var>     +    &lt;var>
+                        .actual_type=int   .actual_type=real
+                               |                |
+                               B                C
+ANS: A
+
+36. Compute the weakest precondition for the following assignment statement 
+    and postcondition:
+
+          a = 2 * (b -1) - 1   {a > 0}
+
+    A.  a < 0     B. a > 0     C. b > 0       D.  b > 3/2
+ANS: D
+<!--
+ANS:
+   2 * (b-1) - 1 > 0 
+   2b - 2 > 1
+   2b > 3
+   {b > 3/2}  -->
+
+*37. Which of the following need not be true for a loop invariant 'I' in the
+    axiomatic semantics for a pretest loop shown here?
+
+         {P} while B do S end {Q}?
+  	
+    A.  {I and B} S {I}  
+    B.  P implies I
+    C.  {I and (not B)} implies Q
+    D.  I implies Q
+ANS: D
+notes:
+  	{I and B} S {I}       <= 'I' must be true while executing body of loop
+  	P => I                <= 'I' must be true initially
+  	I => Q                <= 'I' does not necessarily imply Q
+  	{I and (not B)} => Q  <= 'I' and not(B) implies Q 
+
+ The answer is I => Q. 
+
+38. Complete the weakest precondition for the following assignment statement
+    and postcondition.
+
+   {     } a = 3 * (b - 7) - 1   {a > 1}
+
+    A. b > 21/3         B. b > 23/3          C. b > 8
+ANS: B
+<!--
+  {b > 23/3} ; (3b-21) -1 > 1; 3b - 21 > 2; b > 23/3
+
+                     test:
+                     a = 3 * (23/3 - 7) - 1
+                     = (23 - 21) - 1
+                     = 1; thus anything greater than 23/3 will work -->
+
+ERROR IN ANSWER
+*39. An axiom for the assignment statement x = E is as follows, where x -> E 
+    means that all instances of x are replaced by E
+
+       {P} x = E {Q} 
+       P = Q<sub>x->E</sub>
+
+    Given this axiom, what is P for the assignment statement shown below?
+
+      { P }  x = b * 3  { x < 7 }
+
+    A. b * 3       B.  x / 3        C. b < 21        D. x > 7/3 
+ANS: C; the correct answer should be: { b < 7/3 }; b * 3 < 7 is b < 7/3 
+
+40. The Rule of Consequence in axiomatic semantics is shown here:
+
+    {P} S {Q}, P' => P, Q => Q'    ( '=>' denotes implication ) 
+    --------------------------
+          {P'} S {Q'}           
+
+    For {P} = x > 0 and {Q} = x > 10, what are possible values for {P'} and
+    {Q'}?
+
+    A. {P'} = x > -2 and {Q'} = x > 10
+    B. {P'} = x > 10 and {Q'} = x > 0 
+    C. either choice would work  
+ANS: B
+
+41. What is true concerning the Rule of Consequence?
+
+    A. A postcondition can always be weakened and a precondition strengthened.
+    B. A precondition can always be weakened and a postcondition strengthened.
+ANS: B
+
+42. What are the primary advantages to dynamic typing? 
+    A. readability and efficiency
+    B. flexibility and writability 
+    C. flexibility and efficiency
+    D. readability and writeability
+ANS: B
+
+43. What is a true statement concerning an rvalue?
+    A. An rvalue is bound to a value.
+    B. The expression "5 + 8" is an rvalue.
+    C. both statements are true.
+ANS: C
+
+*44. What is true concerning dynamic scope?
+    A. The visibility of variables cannot be determined until runtime. 
+    B. A variable that is not visible in a function is found in the function
+       closest to main in the runtime stack.
+    C. both statements are true
+ANS: A; POOR WORDING - FIXED
+ 
+This diagram represents the static scope in an Ada program:
+ ---------------------------------------------------------- 
+ |  procedure Main is                                     |
+ |   x : Integer;                                         |
+ |   procedure Sub3;  (a function prototype)              |
+ |   -----------------------------------------------      |
+ |  |  procedure Sub1 is                            |     |
+ |  |                                               |     |
+ |  |  --------------------------------------       |     |
+ |  |  |  procedure Sub2 is                 |       |     |
+ |  |  |  x : Integer                       |       |     |
+ |  |  |    begin                           |       |     |
+ |  |  |    ....                            |       |     |
+ |  |  |    end;                            |       |     |
+ |  |  --------------------------------------       |     |
+ |  |  begin                                        |     |
+ |  |   ...                                         |     |
+ |  |  end;   // Sub1                               |     |
+ |  |------------------------------------------------     |
+ |   ------------------------------------------------     |
+ |  |  procedure Sub3 is                            |     |
+ |  |  begin                                        |     |
+ |  |   ...                                         |     |
+ |  |  end;   // Sub1                               |     |
+ |  |------------------------------------------------     |  
+ |   begin  -- of Main                                    | 
+ |   ...                                                  | 
+ |   end;                                                 |
+ |--------------------------------------------------------| 
+ 
+*45. Under dynamic scoping rules, if Main calls Sub1, Sub1 calls Sub2, and 
+    Sub2 calls Sub3, a reference to X from Sub3 is to the X in 
+    A. Sub2            B. Main
+ANS: A 
+
+    This is represented on the runtime stack: 
+    --------  
+    Sub3
+    --------  
+    Sub2
+    X
+    --------  
+    Sub1
+    --------  
+    X
+    Main 
+    --------  
+ 
+*46. Given this Ada program
+   -----------------
+   |  MAIN         |
+   |  X = 5        |
+   | -----------   |
+   | | SUB1    |   |
+   | | print X |   |
+   | -----------   |
+   | -----------   |
+   | | SUB2    |   |
+   | | x=10    |   |
+   | -----------   |
+   |  CALL SUB2    |
+   |  CALL SUB1    |
+   -----------------
+
+   The value of X in SUB1 under dynamic scoping rules is 10. (True / False)
+ANS: A
+
+47. What is true of the following C/C++ code?
+
+    void test(char * str){
+        str[0] = 'a';  
+    } 
+    test("hello");
+   
+    A. this code will compile and run without a problem
+    B. this code will not compile  
+    C. this code will produce a core dump at runtime
+ANS: C 
+
+48. Unmodifiable lvalue errors are generated by
+    A. the compiler    B. the linker      C. either A or B
+ANS: A 
+ 
+49. A static variable with class scope in C++ exists before any object of 
+    that class is created.  ( True / False )
+ANS: A
+     
+50. Aliases can be created by which of the following language constructs?
+    A. Pointer assignments
+    B. C/C++'s union type
+    C. both A and B
+ANS:  C
+
+51. What type of coercion is present in the following C code?
+
+    int a = 10;
+    float b = 10.5;
+    a = b;
+    A. an int is coerced into a float
+    B. a float coerced into an int
+ANS: B
+
+*52. Which of the following is not a category of scalar variables defined by 
+    their lifetimes?
+    A. stack dynamic
+    B. static
+    C. implicit heap dynamic
+    D. explicit stack dynamic
+ANS: D 
+
+53. The dynamic binding of values to named constants allows what?
+    A. the value of a named constant to be set once at runtime
+    B. the value of a named constant to be set and modified at runtime
+ANS: A
+
+54. In C++, casting of a derived type to a base type is 
+    A. implicit.         B. explicit.       C. illegal
+ANS: A
+
+*55. Functions in C default to external linkage. (True / False)
+ANS: A
+ 
+</pre>
+</body>
+</html>
+

@@ -1,0 +1,19 @@
+PL/SQL is a procedural language
+Create functions to access and return data
+Can create stored procedures and triggers with PL/SQL
+
+Disconnect the record set from the database. Grab data from the database, 
+store locally within the application.
+
+Commit changes only after data processing is complete. 
+
+Chapter Notes on PL/SQL:
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch01.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch02.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch03.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch06.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch07.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch08.htm
+http://www.cs.csubak.edu/~hwang/CS342/pl_sql_ch09.htm
+
+*look up Embedded SQL

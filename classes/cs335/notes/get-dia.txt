@@ -1,0 +1,4 @@
+.:Dia - Open Source Diagram Program:.
+
+use sudo apt-get install dia to install on ubuntu
+google "dia diagram open source" to find installer for Windows

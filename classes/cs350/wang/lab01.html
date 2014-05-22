@@ -1,0 +1,175 @@
+<HTML>
+<HEAD>
+<TITLE>LAB 01</TITLE>
+</HEAD>
+<BODY STYLE="margin: 5% 5% 5% 5%;" TEXT="#000000" LINK="#FB6A2D" VLINK="#993300" ALINK="#FF6600">
+Computer Science 350 
+<h3>LAB 01: Exception Handling in C++</h3>
+<BR>
+<font color=red>Due:&nbsp; Before next lab</FONT>
+<p>
+Goal: to use C++'s exception handing facilities
+</p>
+<p>
+<b>resources:</b><br>
+<a href="http://www.cs.csubak.edu/cs150/index.php?p=lab3">using tar</a><br>
+<a href="http://www.cs.csubak.edu/HowToGuides/gdb_basics.html">gdb basics</a><br>
+<a href="http://publib.boulder.ibm.com/infocenter/comphelp/v9v111/index.jsp?topic=/com.ibm.xlcpp9.aix.doc/standlib/header_stdexcept.htm">C++ stdexcept class</a><br>
+<a href="http://www.cs.csubak.edu/~donna/cs350/Code/C++/FAQ.txt">C++ exceptions FAQ</a>
+<br><a href="./Code/C++/Example">sample program</a>  <br>
+<a href="http://www.cprogramming.com/tutorial/stl/stlintro.html?utm_source=newletter&utm_medium=email&utm_campaign=eighth-followup">Cprogramming.com tutorials</a>
+<p>
+ The source code supplied in this lab compiles under
+  GNU g++ version 4.1.2 or above
+ under Linux on sleipnir. If you use another machine, you should verify 
+ the version of GNU g++:<pre>
+        $ g++ --version 
+</pre>
+<p>
+ In this lab you will learn how to  prevent   unrecoverable/fatal
+ errors at runtime. Under Unix, fatal errors will result in a core dump. Under
+ Windows you get the blue screen of death.
+ As a programmer, your job is to prevent this from ever occuring
+ by adding some form of
+  error/exception handling mechanism to trap all critical errors.
+ Critical errors include divide by zero, attempting to
+ access memory beyond the bounds of an array or dereferencing a null or
+ dangling pointer.
+ Primitive error handling can be as  simple as displaying a message to 
+ standard error (stderr, cerr), standard out (stdout, cout)
+ or to a log file. You then choose whether to continue or abort
+   the program. Most modern object-oriented languages are taking the 
+  approach that error handling should be built-in to the language.  
+ Built-in exception handling features provide a standardized and
+  much more sophisticated method of handling errors.
+  <p>
+ C++ has built-in error handling called exception classes. C++ also 
+  supports user-defined exception classes.
+ In this lab you will modify a user-defined exception handling class
+ called RangeError.
+ The class is designed to return out-of-range errors in a list template class.
+   The code is <a href="./lab01_files">here</a> on sleipnir. 
+ Login to sleipnir. You should copy (not copy and paste) the 
+ files into your directory with this
+ command: 
+<pre>
+     cp /home/fac/donna/public_html/cs350/lab01_files/*  . &larr; this is a dot
+</pre>
+Description of the files.<p>
+<ol>
+<li>range_error.h - This file contains the class definition and 
+ methods for the RangeError exception class. There are only
+ three methods: the constructor, what(), and an overloaded output operator. 
+ A RangeError object data holds 
+  the source filename of the offending code, the 
+ line number in which the error occurs, and the 
+ faulty index value. The filename and the line number are 
+ grabbed from two compiler environmental variables: __FILE__ and
+ __LINE__ (two underscores prepend and end the variables)
+ when the RangeError object is instantiated.
+<p>
+ <li>list.h  - This file is a template class for an array based list. 
+ The first several methods in
+ this class provide examples of constructing and tossing a RangeError 
+ object.
+<p>
+<li>main.cpp - In main.cpp, a list object is instantiated. There is a single try block
+for error handling with a catch for RangeError objects and a generic
+ catch block.
+<p>
+<li>Makefile - This Makefile will create an executable called 'main'. Simply
+type 'make' at the command line. <i>You do not need to modify the Makefile.</i>
+</ol>
+<p>
+To understand C++'s exception handing
+ facilities,  you must know the program flow
+  of try, catch, and throw. In particular, the code that is executed and the 
+ code that is skipped within and without try and catch blocks. You should be
+ able to answer these questions after completing
+ this  lab. 
+<p>
+<b>Task 1.</b><br>
+Your first task is to add a fourth parameter to the RangeError class 
+ that will display the name of the function in which the error was 
+ found. This information is available in the 
+  environment variable called __func__ (note: earlier versions of
+ g++ called this  __FUNCTION__). 
+ To support this, you will need to  modify two files:
+  range_error.h and list.h.  
+ In range_error.h you must change the class definition, the overloaded
+ output operator and the RangeError constructor
+ to handle a fourth parameter (it is a string similar to filename). In
+ list.h you need to modify
+ all instances of the code in which a RangeError is instantiated to
+  grab and pass the value of __func__.
+<p>
+
+<b>Task 2.</b><br>
+ Your second task is to trap all range out-of-bound errors in the List class
+  by enclosing any code that accesses the array into a try block.
+ The first several methods are completed for you - use these as examples.
+ You need to code the last two.
+ <i>You will need to check for the appropriate
+ range error condition in these two additional methods.</i> 
+ When an exception (out-of-bounds error) is raised, throw a 
+ RangeError object.
+ Catch any exception in the function in which it occurs. 
+ Throw the exception back to main. 
+<p>
+<b>Task 3.</b><br>
+ There is only one try block in the original main.cpp. This means that 
+ the first
+ error condition that is found will be passed to the catch block and
+ none of the other code will be executed. Generally you want more
+ granularity in your error handling. Modify main.cpp to contain
+ at least three try and catch blocks.  
+ Look at main.cpp in this <a href="./Code/C++/Example">program</a> for an 
+ example for how to write multiple try blocks.
+<p>
+<b>Optional Task 4.</b><br>
+ If you found the above tasks easy, add 
+  the ability to accept command-line 
+   input to your program (this is probably new
+   to you.) Frequently, rather than prompting the user for 
+ input, you want to grab input from the command line; i.e., the
+ command you use to execute the program. In subsequent labs you
+  will use this often with scripts to send arguments to commands.
+ Add the ability to read the name of an output file that you will open
+ to log error messages from stderr. 
+ For example, this command will send error messages
+ to err.log:<pre>
+     lab01 err.log
+</pre> 
+Refer to <a href="./Code/C++/fileio.cpp">this sample program</a> for
+ help with command line arguments and external file IO. 
+<p>
+
+<SPAN STYLE="background-color: YELLOW">
+<b>What To Submit For This Lab</b></span><p>
+ Compile your code. Redirect your output to a file; i.e.,<pre>
+   
+    $ ./main > lab01.out
+
+</pre>Attach the 
+ outfile and email it to donna@cs.csub.edu.
+ This is a *sample* output file. Yours will most likely look different.
+<pre>
+
+99 error caught...
+
+
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 0
+from main: 
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 0
+
+from main: 
+RangeError exception thrown: list.h Line: 131 Function: max Index: 0
+
+
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 1
+from main: 
+RangeError exception thrown: list.h Line: 107 Function: swap Index: 1
+
+</pre>
+</BODY>
+</HTML>

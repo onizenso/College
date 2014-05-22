@@ -1,0 +1,298 @@
+<html> <head> 
+<script type="text/javascript" language="JavaScript">
+NumChoices = 5;   NumQuestions = 35;
+function CalculateScore() {
+    var right = 0; var wrong = 0;var err_flag = 1; var err_str = " "; index = 0;
+    for (i = 0; i < NumQuestions; i++) {
+       for (j = 0; j < NumChoices; j++) {
+           index = i*NumChoices+j;
+           if ( (j <= 3 ) && document.quizform.elements[index].checked &&
+                       parseInt(document.quizform.elements[index].value) == 1 )
+              { right += 1; err_flag = 0; }
+       }
+       if ( err_flag && (index % 5)) {
+           question = i + 1;
+           wrong++;
+           err_str = err_str + question + ",";
+       }
+       err_flag = 1;
+     }
+     document.quizform.wrong.value = wrong;
+     document.quizform.right.value = right;
+     document.quizform.percentage.value = (right/NumQuestions)*100 + "%";
+     document.quizform.err_str.value = err_str;
+}
+</script>
+</head> <body bgcolor="white">
+<font face="Courier" style="font-size: 11pt; font-weight: 500">
+<h3>CMPS 350: HW 09 Subroutines </h3> 
+<font color=red>DUE: wed mar 11, 1:45</font>
+<form name="quizform" METHOD="POST" ACTION="http://sumatra.cs.csubak.edu/formmail.php">
+<a href="./Code/C++/functions.cpp">C++</a> <br>
+<a href="./Code/Ada/hw09.adb">Ada</a> <br>
+<a href="./Code/C_sharp/functions.cs">C# code</a> <br>
+<pre class=verbatim>
+01. Why is this function call a compilation error in C#?
+             Foo (out 5);   
+    A. a literal cannot be passed as an argument in C#
+    B. 5 is not an L-value
+   A<input type="radio" name="Q1" value="0"> B<input type="radio" name="Q1" value="1"> C<input type="radio" name="Q1" value="0"> D<input type="radio" name="Q1" value="0">  
+
+02. What statement is NOT true concerning positional binding? (or D if all true)
+    A. C/C++ use this form of formal to actual parameter binding. 
+    B. The first actual parameter is bound to the first formal parameter.
+    C. Formal parameters cannot have default values in positional binding.
+    D. All statements are true
+   A<input type="radio" name="Q2" value="0"> B<input type="radio" name="Q2" value="0"> C<input type="radio" name="Q2" value="1"> D<input type="radio" name="Q2" value="0">  
+
+03. Which of the following languages does not require that the number of actual 
+    parameters match the number of formal parameters?
+    A. C++ and  Java    B. C and PHP    C. JavaScript and Perl
+   A<input type="radio" name="Q3" value="0"> B<input type="radio" name="Q3" value="0"> C<input type="radio" name="Q3" value="1"> D<input type="radio" name="Q3" value="0"> 
+
+04. The default design for modern languages is for the local variables in 
+    subprograms to be 
+    A. static     B. dynamic
+   A<input type="radio" name="Q4" value="0"> B<input type="radio" name="Q4" value="1"> C<input type="radio" name="Q4" value="0"> D<input type="radio" name="Q4" value="0"> 
+
+05. Which of the following is NOT a primary design issues for subprograms.
+    A. What parameter passing methods are provided?
+    B. Do subprogram identifiers have internal or external linkage? 
+    C. Are parameter types checked?
+    D. Are local variables static or dynamic?
+   A<input type="radio" name="Q5" value="0"> B<input type="radio" name="Q5" value="1"> C<input type="radio" name="Q5" value="0"> D<input type="radio" name="Q5" value="0"> 
+
+06. Which of the following is NOT a primary design issues for subprograms.
+    A. How many parameters can be subprogram have?
+    B. Can subprograms be overloaded?
+    C. Can subprogram be generic?
+    D. Can you have nested subprograms?
+   A<input type="radio" name="Q6" value="1"> B<input type="radio" name="Q6" value="0"> C<input type="radio" name="Q6" value="0"> D<input type="radio" name="Q6" value="0"> 
+
+07. A language can only support recursion if the language supports stack-dynamic
+    locals in subprograms. (T/F)
+   A<input type="radio" name="Q7" value="1"> B<input type="radio" name="Q7" value="0"> C<input type="radio" name="Q7" value="0"> D<input type="radio" name="Q7" value="0"> 
+
+08. In pass by reference, the address of the actual parameter is the same as
+    the address of the formal parameter. 
+    A.  true      B. false 
+   A<input type="radio" name="Q8" value="1"> B<input type="radio" name="Q8" value="0"> C<input type="radio" name="Q8" value="0"> D<input type="radio" name="Q8" value="0"> 
+
+09. If the address of the actual parameter is 0xffbefa28, and the address of 
+    the formal parameter is 0xffbefa0c, what do you know about the parameter 
+    passing mechanism?
+    A. this is pass by value.
+    B. if this is an in mode parameter, the R-value of the actual is copied
+       to the R-value of the formal.
+    C. both A and B are true
+   A<input type="radio" name="Q9" value="0"> B<input type="radio" name="Q9" value="0"> C<input type="radio" name="Q9" value="1"> D<input type="radio" name="Q9" value="0"> 
+
+10. Which of the following share the same parameter passing semantics? 
+    A. Pass by value and pass by result
+    B. Pass by value result and pass by reference
+    C. Pass by result and pass by reference
+   A<input type="radio" name="Q10" value="0"> B<input type="radio" name="Q10" value="1"> C<input type="radio" name="Q10" value="0"> D<input type="radio" name="Q10" value="0"> 
+
+11. Which parameter passing mechanism supports one-way parameter passing only?
+    A. pass by value
+    B. pass by result
+    C. both A and B are correct
+   A<input type="radio" name="Q11" value="0"> B<input type="radio" name="Q11" value="0"> C<input type="radio" name="Q11" value="1"> D<input type="radio" name="Q11" value="0"> 
+
+12. Which language does not support two-way parameters? 
+    A. Fortran     B. C      C. C++   
+    A<input type="radio" name="Q12" value="0"> B<input type="radio" name="Q12" value="1"> C<input type="radio" name="Q12" value="0"> D<input type="radio" name="Q12" value="0"> 
+
+13. Select the true statement. 
+    A. C and Java require parameter type checking.
+    B. Perl and PHP do not require parameter type checking.
+    C. Both A and B are true.
+    A<input type="radio" name="Q13" value="0"> B<input type="radio" name="Q13" value="0"> C<input type="radio" name="Q13" value="1"> D<input type="radio" name="Q13" value="0">
+
+14. Select the true statement concerning arrays passed as parameters in C.
+    A. If the parameter is type [], the address of the array is passed by value.
+    A. If the parameter is type [], the entire array is passed by value.
+    B. If the parameter is type *, the address of the array is passed by 
+       reference.
+    A<input type="radio" name="Q14" value="1"> B<input type="radio" name="Q14" value="0"> C<input type="radio" name="Q14" value="0"> D<input type="radio" name="Q14" value="0"> 
+
+15. In languages such as C/C++, where n-dimen arrays are really single 
+    dimensional arrays, the sizes of which dimensions must be included in 
+    the actual parameter?
+    A. the sizes of all dimensions must be included 
+    B. the size of every dimension but the first 
+    C. the size of every dimension but the last
+    A<input type="radio" name="Q15" value="0"> B<input type="radio" name="Q15" value="1"> C<input type="radio" name="Q15" value="0"> D<input type="radio" name="Q15" value="0"> 
+
+16. What type of parameter passing mode is best for security concerns?
+    A. in mode         B. inout mode        C. out mode    
+    A<input type="radio" name="Q16" value="1"> B<input type="radio" name="Q16" value="0"> C<input type="radio" name="Q16" value="0"> D<input type="radio" name="Q16" value="0"> 
+
+17. Which type of parameter passing is most efficient?
+    A. passing a reference by value (C/Java/Python)
+    B. pass by reference (C++)
+    C. A and B are equally efficient 
+    A<input type="radio" name="Q17" value="0"> B<input type="radio" name="Q17" value="1"> C<input type="radio" name="Q17" value="0"> D<input type="radio" name="Q17" value="0"> 
+<!-- passing a reference by value requires a dereference to get the address 
+  of the parameter - pass by reference the address is already available  -->
+
+18. Deep, shallow and ad hoc binding refers to what?
+    A. the referencing environment for functions passed as parameters
+    B. the referencing environment for nested functions passed as parameters
+    C. both A and B
+    A<input type="radio" name="Q18" value="0"> B<input type="radio" name="Q18" value="1"> C<input type="radio" name="Q18" value="0"> D<input type="radio" name="Q18" value="0"> 
+
+19. Which form of binding uses the dynamic environment of the function that
+    actually enacts the passed subprogram?
+    A. deep binding
+    B. shallow binding
+    A<input type="radio" name="Q19" value="0"> B<input type="radio" name="Q19" value="1"> C<input type="radio" name="Q19" value="0"> D<input type="radio" name="Q19" value="0"> 
+<!-- think of deep as going all the way back to the code -->
+
+20. Which of the following is an example of parametric polymorphism?
+    A. overloaded functions in C++
+    B. a template function in C++
+    C. both A and B are correct
+    A<input type="radio" name="Q20" value="0"> B<input type="radio" name="Q20" value="0"> C<input type="radio" name="Q20" value="1"> D<input type="radio" name="Q20" value="0"> 
+
+21. The following are all design issues for functions. (T / F)
+    A. What types of values can be returned?
+    B. Are side effects allowed?
+    C. Are variable length parameter list supported?
+    D. Can parameters have default values? 
+    A<input type="radio" name="Q21" value="1"> B<input type="radio" name="Q21" value="0"> C<input type="radio" name="Q21" value="0"> D<input type="radio" name="Q21" value="0"> 
+
+22. Unlike normal subroutines, coroutines may have more than a single 
+    entry point. (T/F)
+    A<input type="radio" name="Q22" value="1"> B<input type="radio" name="Q22" value="0"> C<input type="radio" name="Q22" value="0"> D<input type="radio" name="Q22" value="0"> 
+
+23. What is not true concerning formal parameters?  (select D if all are true)
+    A. they *refer* to arguments that exist in the calling function.
+    B. they are copies or addresses of actual parameters
+    C. they exist only in the subroutine.
+    D. All statements are true.
+    A<input type="radio" name="Q23" value="0"> B<input type="radio" name="Q23" value="0"> C<input type="radio" name="Q23" value="1"> D<input type="radio" name="Q23" value="0"> 
+
+24. What is NOT true concerning the non-static local variables of a subprogram?
+    A. they are stored either on the runtime stack or in the heap.
+    B. they reduce executable code size compared to static variables
+    C. they are essential for recursion
+    D. all statements are true
+    A<input type="radio" name="Q24" value="0"> B<input type="radio" name="Q24" value="0"> C<input type="radio" name="Q24" value="0"> D<input type="radio" name="Q24" value="1">
+
+25. What is true concerning a local variable in a subprogram compared to a
+    static variable?
+    A. a local variable address must be computed anew for each function call
+    B. a static variable address is fixed throughout code execution
+    C. both statements are true
+    A<input type="radio" name="Q25" value="0"> B<input type="radio" name="Q25" value="0"> C<input type="radio" name="Q25" value="1"> D<input type="radio" name="Q25" value="0">
+
+26. In which of the following inout mode mechanisms are changes made 
+    immediately to the variable in the calling program?
+    A. pass by reference (as in C++) 
+    B. pass by value-result (as in Fortran)
+    A<input type="radio" name="Q26" value="1"> B<input type="radio" name="Q26" value="0"> C<input type="radio" name="Q26" value="0"> D<input type="radio" name="Q26" value="0"> 
+
+27. In which of the following inout mode mechanisms are changes to a variable 
+    made only after the return?
+    A. pass by reference (as in C++) 
+    B. pass by value-result (as in Fortran)
+    A<input type="radio" name="Q27" value="0"> B<input type="radio" name="Q27" value="1"> C<input type="radio" name="Q27" value="0"> D<input type="radio" name="Q27" value="0"> 
+
+28. Which is an example of parametric polymorphism?
+    A. a template function in C++ 
+    B. a (void *) parameter in C 
+    A<input type="radio" name="Q28" value="1"> B<input type="radio" name="Q28" value="0"> C<input type="radio" name="Q28" value="0"> D<input type="radio" name="Q28" value="0"> 
+<!--  A; In parametric polymorphism, parameters types can change in the 
+ parameter list of the same function. A void * type doesn't change type - -->
+
+The next three questions refer to the choice of referencing environment of a 
+subprogram A that is passed as a parameter to subprogram B.
+
+29. If the referencing environment is that of the call statement for B, it is
+    A. Shallow binding.
+    B. Deep binding.
+    C. Ad hoc binding.
+    A<input type="radio" name="Q29" value="0"> B<input type="radio" name="Q29" value="0"> C<input type="radio" name="Q29" value="1"> D<input type="radio" name="Q29" value="0"> 
+
+30. If the referencing environment is the function definition of A, it is
+    A. Shallow binding.
+    B. Deep binding.
+    C. Ad hoc binding.
+    A<input type="radio" name="Q30" value="0"> B<input type="radio" name="Q30" value="1"> C<input type="radio" name="Q30" value="0"> D<input type="radio" name="Q30" value="0"> 
+
+31. If the referencing environment is the body of B, where the call statement
+    to A is located, it is 
+    A. Shallow binding.
+    B. Deep binding.
+    C. Ad hoc binding.
+    A<input type="radio" name="Q31" value="1"> B<input type="radio" name="Q31" value="0"> C<input type="radio" name="Q31" value="0"> D<input type="radio" name="Q31" value="0">
+
+32. The following C# code will produce a compilation error. (T/F)
+       int foo(int a, out int b){
+          int x = b;   
+          return x; 
+       }
+   A<input type="radio" name="Q32" value="1"> B<input type="radio" name="Q32" value="0"> C<input type="radio" name="Q32" value="0"> D<input type="radio" name="Q32" value="0"> 
+    
+33. What type of parameter can be changed only on the return path?
+    A. Inout mode        B. Out mode           C. In mode
+    A<input type="radio" name="Q33" value="0"> B<input type="radio" name="Q33" value="1"> C<input type="radio" name="Q33" value="0"> D<input type="radio" name="Q33" value="0"> 
+
+The next questions refer this program, written in pseudo-code. 
+      swap (  a,  b ) 
+         var temp;
+         temp = a;
+         a = b;
+         b = temp;
+         value = 2, List = {1,3,5,7,9};
+         swap(value, List[0])  
+         swap(List[0], List[1])  
+         swap(value, List[value])  
+34. If the parameters to swap use the modes
+         swap ( in-out a,  in b ), 
+    List is unchanged after the three calls to swap.
+    A.  true    B.  false 
+    A<input type="radio" name="Q34" value="1"> B<input type="radio" name="Q34" value="0"> C<input type="radio" name="Q34" value="0"> D<input type="radio" name="Q34" value="0"> 
+
+35. If the parameters to swap use the modes
+        swap ( in a,  in-out b ), 
+    the value of List at the end of the three calls to swap is 
+    A. {1,3,5,7,9}     B. {2,2,2,7,9}     C. {3,1,5,7,9}
+    A<input type="radio" name="Q35" value="0"> B<input type="radio" name="Q35" value="1"> C<input type="radio" name="Q35" value="0"> D<input type="radio" name="Q35" value="0"> 
+
+36. If both parameters to swap are pass by value-result, the value of List 
+    at the end of the three calls to swap is
+    A. {1,3,5,7,9}
+    B. {2,2,2,7,9}
+    C. {3,1,5,7,9}
+    A<input type="radio" name="Q36" value="0"> B<input type="radio" name="Q36" value="0"> C<input type="radio" name="Q36" value="1"> D<input type="radio" name="Q36" value="0"> 
+
+37. Which of the following mechanisms will produce the same results after three
+    calls to swap (assume value and List use the same mechanism)?
+    A. pass by value and pass by value-result
+    B. pass by value-result and pass by reference
+    C. pass by value and pass by result
+    A<input type="radio" name="Q37" value="0"> B<input type="radio" name="Q37" value="1"> C<input type="radio" name="Q37" value="0"> D<input type="radio" name="Q37" value="0"> 
+
+</pre>
+<input type="button" value="GradeIt" onClick="CalculateScore()" STYLE="background-color:yellow">
+&nbsp;&nbsp; &nbsp;
+<nobr>Right: <input type="text" name="right" size="3"></nobr>
+<nobr>Wrong: <input type="text" name="wrong" size="3"></nobr>
+<nobr>Percent: <input type="text" name="percentage" size="4">(90% or higher for
+credit)</nobr>
+<INPUT TYPE="hidden" NAME="subject" VALUE="CMPS 350: HW 9">
+<p>Errors: <input type="text" name="err_str" size="90"><p>
+YourName: <INPUT TYPE="text" name="name">
+YourEmail: <INPUT TYPE="text" name="email">
+<INPUT TYPE="submit" VALUE="Email Score" STYLE="background-color:yellow">
+<INPUT TYPE="reset" VALUE="Clear FORM" STYLE="background-color:white">
+<noscript>
+<br><b>
+ Your browser must be JavaScript enabled to calculate your score.</b>
+</noscript>
+</p>
+</form>
+</body>
+</html>

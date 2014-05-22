@@ -1,0 +1,15 @@
+B0987,An American Tragedy,Theodore Dreiser,$6.75
+I7863,U.S.A. Trilogy,John Dos Passos,$8.23
+C8767,The Wings of the Dove,Henry James,$2.34
+D3214,Tender is the Night,F. Scott Fitzgerald,$8.23
+I3456,The Good Soldier,Ford Maddox Ford,$14.23
+U2345,Brave New World,Aldous Huxley,$2.35
+X3456,Darkness at Noon, Arthur Koestler,$7.21
+Y3421,The Great Gatsby,F. Scott Fitzgerald,$7.23
+D3490,The Sun Also Rises,Ernest Hemmingway,$5.12
+X3456,Lord of the Flies,William Golding,$3.29
+I7777,Point Counter Point,Aldous Huxley,$9.34
+I3452,Pale Fire,Vladimir Nabokov,$8.01
+F3400,A Clockwork Orange,Anthony Burgess,$7.34
+D8988,Of Human Bondage,Somerset Maugham,$8.12
+X7654,Ulysses,James Joyce,$7.33

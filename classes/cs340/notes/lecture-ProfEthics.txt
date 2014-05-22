@@ -1,0 +1,65 @@
+.:Professional Ethics & Evidence Handling:.
+
+Professional Ethics
+    Basic Concept: Safety, welfare of society; honesty, trustworthiness
+    
+    (ISC)^2
+        Brief code that encapsulates general idea of Ethics in the field
+        Whistle-blowing condoned under certain circumstances
+        Duty to our Principles: duties concerning Employers &&|| Co-workers
+        Canons: 
+            Protect society, the common good 
+            Act justly, decently
+            Keep educated, current, competent
+            Advance and Protect the Profession
+            Educate Your Users (to best ability)
+    
+Evidence Handling
+    Collecting Evidence
+    Handling Evidence
+    Storing Evidence
+    
+    Key: Relevant Evidence
+        Can be positive||negative evidence, proving||disproving theory
+        If doubtful, trust evidence as relevant
+        FRE determines relevance
+    Best Evidence Rule & Original Evidence
+        Requires "original" evidence be submitted to court
+        Defense needs ability to examine evidence levied against defendant
+        Document where human-readable content is key, printout is sufficient
+        "Genuine Copy" - typically acceptable, preserves critical evidence
+            used when the original file may be corrupted during investigation
+            maintain both "best evidence" and "working" copy of evidence
+
+Collecting & Handling Evidence
+    Document Everything!
+        Fill out Evidence Tag thoroughly
+    Authentication of Evidence
+        Required by FRE 901: must be authenticated to be admissible
+        How to Authenticate
+            Person who collected evidence testifies in court
+            Comprehensive foundation for data derived from evidence
+                Accuracy of copies and originals maintained
+                Used legitimate methods and tools
+                Minimize erroneous corruptions when making copies
+    Chain of Custody
+        Tamper-proof when stored
+        Only allow authorized access
+            Log all accesses
+
+    Validating Evidence (Tools to Use)
+        Cryptographic Hashes
+            chains of different hashes may be used to further validate data
+        Digital Signatures
+        Backups of Best Evidence & Working Copies
+            also created for Evidence Tags to build "paper-trail"
+        
+    Admissibility of Evidence
+        If vidence is solely derived from program/circuit/network,
+            it is NOT "hearsay"
+        Business records are typically not hearsay 
+            (need to records of actual activities)
+        Computer stored data may be hearsay if:
+            Created by a person
+
+    

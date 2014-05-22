@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inventory>
+   <item 
+      name="MythTV"
+      release_date="2/12/2006"
+      version="0.19"
+      filesize="9.69 MB"
+      category="Linux, Application, Multimedia"
+      links="http://www.mythtv.org/"
+      description="A description goes here."
+   > 987 </item>
+
+   <item
+      name="Notepad++"
+      release_date="12/24/2005"
+      version="3.40"
+      filesize="956 KB"
+      category="Windows, Application, Text Editor"
+      links="http://notepad-plus.sourceforge.net/"
+      description="Notepad++ is a free source code editor."
+   > 87 </item>
+   
+   <item 
+      name="CygWin"
+      release_date="1/20/2006"
+      version="1.5.19"
+      filesizen="298 KB"
+      categoryn="Windows, Linux API"
+      linksn="http://www.cygwin.com/"
+      descriptionn="Cygwin is a Linux-like environment for Windows. "
+   > 33 </item>
+   
+   <item
+      name="Firefox"
+      release_date="2/17/2006"
+      version="1.5.0.1"
+      filesize="5.0 MB"
+      category="Windows, Linux, Mac OS X, Application, Web Browser"
+      links="http://www.mozilla.com/firefox/"
+      description="The award-winning Web browser is better than ever. "
+   > 400 </item>
+</inventory>
+

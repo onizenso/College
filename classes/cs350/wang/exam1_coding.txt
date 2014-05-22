@@ -1,0 +1,24 @@
+
+WTR 2011 CMPS 350 EXAM 1 
+                               LISP CODING 
+
+Worth 50% of Exam 1 grade.
+
+This portion of exam #1 is in class, open book and open computer. You 
+will be asked to code one or more programs in Lisp.
+
+The problems are designed to be completed within 2.5 hours, assuming you have
+completed the Lisp homework assignments.
+
+Create a subdirectory for this exam on sleipnir and copy this file into it:
+
+       cp /home/fac/donna/public_html/cs350/exam_files/lisp/* .
+
+TO STUDY - Look at
+
+http://www.cs.csub.edu/~donna/cs350/Code/Lisp/sample_exam.cl
+and
+http://www.cs.csub.edu/~donna/cs350/Code/Lisp/more.lisp
+
+You will have 10 problems of this level of difficulty.
+
